@@ -77,5 +77,14 @@ $(document).ready(() => {
       efficaciesRow.append(efficacyLabel);
       efficaciesRow.append(formInputDiv);
     });
+
+    let nextButtonDiv = $("<div>", { class: "text-center" });
+    let nextButton = $("<button>", { class: "btn btn-success" }).text(
+      "Siguiente"
+    );
+
+    nextButtonDiv.append(nextButton);
+
+    inlineForm.append(nextButtonDiv);
   };
 });
