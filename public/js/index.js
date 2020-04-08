@@ -1,8 +1,6 @@
 $(document).ready(() => {
-  let firstTime = true;
-  let test = "test";
   $("#btn-si").on("click", () => {
-    window.location.href = "baseline";
+    window.location.href = "sobre";
   });
 
   $("#btn-no").on("click", () => {

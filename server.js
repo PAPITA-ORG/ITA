@@ -20,6 +20,12 @@ app.get("/", (req, res) => {
 app.get("/baseline", (req, res) => {
   res.render("baseline");
 });
+
+// First time user about
+app.get("/sobre", (req, res) => {
+  res.render("sobre");
+});
+
 // Start Server
 app.listen(3000, () => {
   console.log(`Server started on port 3000`);
