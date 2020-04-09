@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const PORT = process.env.PORT || 3000;
 
 // initialize express app
 const app = express();
@@ -27,6 +28,6 @@ app.get("/sobre", (req, res) => {
 });
 
 // Start Server
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log(`Server started on port 3000`);
 });
