@@ -5,7 +5,7 @@ const path = require("path");
 const app = express();
 
 // Serve static assets
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Load View Engine
 app.set("views", path.join(__dirname, "views"));
