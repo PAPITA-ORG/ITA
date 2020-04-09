@@ -5,6 +5,5 @@ $(document).ready(() => {
 
   $("#btn-no").on("click", () => {
     firstTime = false;
-    console.log("noo");
   });
 });
