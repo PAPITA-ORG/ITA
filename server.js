@@ -4,12 +4,12 @@ const path = require("path");
 // initialize express app
 const app = express();
 
+// Serve static assets
+app.use(express.static("public"));
+
 // Load View Engine
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
-
-// Serve static assets
-app.use(express.static("public"));
 
 // Home Route
 app.get("/", (req, res) => {
