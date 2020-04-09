@@ -1,7 +1,9 @@
 extends layout
 
 block content
-
+    
+    div(style="margin-top: 40px")
+    
     div(class="container")
         div(class='row align-items-center justify-content-center')
             div(class="col-md-8" id='baseline-content')
@@ -10,9 +12,12 @@ block content
                     div(class='input-group-prepend')
                         span(class='input-group-text') Cual es tu nombre de usuario?
                     input(type='text' aria-label='Nombre de usuario' class='form-control col-sm-4' id='nombre-usuario')
-        div(class='row align-items-center justify-content-center' id='terminos')
+    
+        div(style="margin-top: 40px")
+
+        div(class='row scrollabetextbox align-items-center justify-content-center' id='terminos')
             div(class="col-md-8" id='terminos-condiciones')
-                p EULA Terminos y condiciones
+                p EULA Terminos y condiciones 
                 div(class='text-right')
                     button(type='button' class='btn btn-success' id='baseline-btn-acepto') Acepto
 
