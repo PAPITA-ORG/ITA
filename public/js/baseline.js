@@ -1,6 +1,6 @@
 $(document).ready(() => {
   // when user clicks...
-  $("#baseline-btn-acepto").on("click", () => {
+  $("#baseline-btn-acepto").on("click", e => {
     // A larger form is appended to the DOM
     appendUserForm();
   });
@@ -79,12 +79,24 @@ $(document).ready(() => {
     });
 
     let nextButtonDiv = $("<div>", { class: "text-center" });
-    let nextButton = $("<button>", { class: "btn btn-success" }).text(
-      "Siguiente"
-    );
+    let nextButton = $("<button>", {
+      class: "btn btn-success",
+      id: "baseline-btn-siguiente"
+    }).text("Siguiente");
 
     nextButtonDiv.append(nextButton);
 
     inlineForm.append(nextButtonDiv);
+
+    $("#baseline-btn-siguiente").on("click", e => {
+      e.preventDefault();
+      // submit a new user
+      submitUserInfo();
+    });
+  };
+
+  const submitUserInfo = () => {
+    // console.log("new user!");
+    // window.location.href = '/resultado'
   };
 });

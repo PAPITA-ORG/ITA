@@ -14,9 +14,10 @@
   },
   "dependencies": {
     "acorn": "^7.1.1",
+    "airtable": "^0.8.1",
     "express": "^4.17.1",
-    "pug": "^2.0.4",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "pug": "^2.0.4"
   },
   "engines": {
     "node": "12.x"
