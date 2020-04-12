@@ -1,6 +1,6 @@
 $(document).ready(() => {
   // when user clicks...
-  $("#baseline-btn-acepto").on("click", e => {
+  $("#btn-enviar").on("click", e => {
     // A larger form is appended to the DOM
     appendUserForm();
   });
