@@ -98,5 +98,25 @@ $(document).ready(() => {
   const submitUserInfo = () => {
     // console.log("new user!");
     // window.location.href = '/resultado'
+
+    let test = {
+      fields: {
+        Usuario: "Domingo",
+        Genero: "Masculino",
+        Comuna: "Pudahuel",
+        Parentezco: "Padre",
+        "Numero de ninos": "2",
+        Edades: "4,7",
+        Eficacia1: 40,
+        Eficacia2: 80,
+        Eficacia3: 30,
+        Eficacia4: 60,
+        Eficacia5: 35
+      }
+    };
+    axios
+      .post("/api/usuarios", test)
+      .then(res => console.log(res))
+      .catch(err => err);
   };
 });

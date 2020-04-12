@@ -1,12 +1,21 @@
 const express = require("express");
 const path = require("path");
+const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3000;
+const api = require("./routes");
 
 // initialize express app
 const app = express();
 
 // Serve static assets
 app.use(express.static(path.join(__dirname, "public")));
+
+// Parse json request bodies
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+// use api routes
+app.use(api);
 
 // Load View Engine
 app.set("views", path.join(__dirname, "views"));
