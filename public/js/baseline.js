@@ -5,6 +5,7 @@ $(document).ready(() => {
     appendUserForm();
   });
 
+  //add title: Cuentame un poco mas para comenzar:
   const appendUserForm = () => {
     $("#baseline-content").empty();
     $("#terminos").empty();
