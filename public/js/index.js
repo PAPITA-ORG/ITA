@@ -5,5 +5,6 @@ $(document).ready(() => {
 
   $("#btn-no").on("click", () => {
     firstTime = false;
+    window.location.href = "start2";
   });
 });

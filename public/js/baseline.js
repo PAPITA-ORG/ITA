@@ -90,6 +90,7 @@ $(document).ready(() => {
 
     $("#baseline-btn-siguiente").on("click", e => {
       e.preventDefault();
+      window.location.href = "start1";
       // submit a new user
       submitUserInfo();
     });
