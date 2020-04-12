@@ -1,7 +1,19 @@
 extends layout
 
 block content
-   
+
+doctype html
+html(lang="en")
+  head
+    title Login Form In Pug
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    link(rel='stylesheet', href='style.css')
+  body
+    #main
+
     h1 ITA
 
     div(class="container")
@@ -10,13 +22,25 @@ block content
                 p Hola, soy 
                  strong ITA
                  |, tu compania virtual para actividades infantiles.
-                p Es tu primera vez?
 
-        div(class='row align-items-center justify-content-left')
-            div(class='col-md-4')
-                div(class="btn-group" role='group')
-                    button(type="button" class="btn btn-success" id='btn-si') Si
-                    button(type="button" class="btn btn-danger" id='btn-no') No
+
+     form(action="#")
+       div.label login form
+       div.username
+        input(type="text" placeholder="username")
+       div.password
+        input(type="password" placeholder="password")
+       div.checkbox
+        input(type='checkbox' name='agreement' checked)
+        |Remember me
+       button(type="button") login
+       h3 or login with
+       div.social
+        button(type="button") <i class="fa fa-facebook"></i>
+        button(type="button") <i class="fa fa-google-plus"></i>
+       p
+        | not a member
+        a(href="#") Sing Up now
 
         div(style="margin-top: 40px")
 
