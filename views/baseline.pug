@@ -10,6 +10,10 @@ block content
         div(class='row align-items-center justify-content-center')
             div(class="col-md-12" id='baseline-content')
             form(method='POST' action='/register')
+                p Registrate con 
+                strong  ITA
+                |  !
+
                 div.form-group
                     label(for='email') Correo electronico:
                     input#email.form-control(type='email', placeholder='name@email.com' name='email')
@@ -25,7 +29,7 @@ block content
                 div.form-group
                     label(for='pw2') Acepto los terminos y condiciones  
                     input(id='agreement', type='checkbox')
-                button.btn.btn-primary(type='submit') Enviar
+                button.baseline.btn-acepto(type='submit') Enviar
 
     div(style="margin-top: 40px")
 
