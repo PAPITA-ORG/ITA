@@ -7,27 +7,25 @@ block content
     div(class="container")
         div(class='row align-items-center justify-content-center')
             div(class="col-md-8" id='baseline-content')
-            form(method='POST' action='/register')
-                div.form-group
-                    label(for='email') Correo electronico:
-                    input#email.form-control(type='email', placeholder='name@email.com' name='email')
-                div.form-group
-                    label(for='favoriteBook') Libro favorito:
-                    input#favoriteBook.form-control(type='text', placeholder='title of book' name='favoriteBook')
-                div.form-group
-                    label(for='pw') Contraseña:
-                    input#pw.form-control(type='password' name='password')
-                div.form-group
-                    label(for='pw2') Confirmar contraseña:
-                    input#pw2.form-control(type='password' name='confirmPassword')
-                button.btn.btn-primary(type='submit') Enviar
-                div.form-group
-                    label(for='pw2') I agree to the terms of use
-                    input(id='agreement', type='checkbox')
+                form(method='POST' action='/register')
+                        label(for='email') Correo electronico:
+                        input#email.form-control(type='email', placeholder='name@email.com' name='email')
+                    div.form-group
+                        label(for='favoriteBook') Libro favorito:
+                        input#favoriteBook.form-control(type='text', placeholder='title of book' name='favoriteBook')
+                    div.form-group
+                        label(for='pw') Contraseña:
+                        input#pw.form-control(type='password' name='password')
+                    div.form-group
+                        label(for='pw2') Confirmar contraseña:
+                        input#pw2.form-control(type='password' name='confirmPassword')
+                    button.btn.btn-primary(type='submit') Enviar
+                    div.form-group
+                        label(for='pw2') I agree to the terms of use
+                        input(id='agreement', type='checkbox')
 
-    div(style="margin-top: 40px")
+        div(style="margin-top: 40px")
 
-    div(class="container")
         div(class='row scrollabetextbox align-items-center justify-content-center' id='terminos')
             div(class="col-md-8 scroll" id='terminos-condiciones')
                 p EULA Terminos y condiciones 
