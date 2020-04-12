@@ -16,22 +16,29 @@ block content
             div(class="col-md-12")
     
             form(action="#")
-              div.label login form
+              div.label Ingresa
               div.username
-                input(type="text" placeholder="username")
+                input(type="text" placeholder="correo electronico")
               div.password
-                input(type="password" placeholder="password")
+                input(type="password" placeholder="contraseña")
               div.checkbox
                 input(type='checkbox' name='agreement' checked)
-                |Remember me
-              button(type="button") login
-              h3 or login with
+                |Recuerdame
+              button(type="button" id='btn-no') Siguiente
+              p
+                | o ingresa con
               div.social
                 button(type="button") <i class="fa fa-facebook"></i>
                 button(type="button") <i class="fa fa-google-plus"></i>
+    
+    div(class="container")
+        div(class='row align-items-center justify-content-center')
+            div(class="col-md-12")              
               p
-                | not a member
-                a(href="#") Sing Up now
+                | aun no has usado
+                strong  ITA
+              
+              button(type="button" id='btn-si') Pruebame ahora
 
     div(class="container")
         div(class='row align-items-center justify-content-center')

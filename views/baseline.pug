@@ -7,12 +7,23 @@ block content
     div(class="container")
         div(class='row align-items-center justify-content-center')
             div(class="col-md-8" id='baseline-content')
-                p Elige tu nombre de usuario, recuerda que debe ser muy original y facil de recordar.
-                div(class='input-group')
-                    div(class='input-group-prepend')
-                        span(class='input-group-text') Cual es tu nombre de usuario?
-                    input(type='text' aria-label='Nombre de usuario' class='form-control col-sm-4' id='nombre-usuario')
-    
+                form(method='POST' action='/register')
+                        label(for='email') Correo electronico:
+                        input#email.form-control(type='email', placeholder='name@email.com' name='email')
+                    div.form-group
+                        label(for='favoriteBook') Libro favorito:
+                        input#favoriteBook.form-control(type='text', placeholder='title of book' name='favoriteBook')
+                    div.form-group
+                        label(for='pw') Contraseña:
+                        input#pw.form-control(type='password' name='password')
+                    div.form-group
+                        label(for='pw2') Confirmar contraseña:
+                        input#pw2.form-control(type='password' name='confirmPassword')
+                    button.btn.btn-primary(type='submit') Enviar
+                    div.form-group
+                        label(for='pw2') I agree to the terms of use
+                        input(id='agreement', type='checkbox')
+
         div(style="margin-top: 40px")
 
         div(class='row scrollabetextbox align-items-center justify-content-center' id='terminos')
@@ -22,9 +33,6 @@ block content
                 |  Condiciones de uso
                 |  -Las presentes condiciones de uso, regulan el acceso y la utilización del portal “OBSERVATORIO SALUD”, lo que incluye, de modo enunciativo, todos los contenidos y los servicios puestos a disposición de los usuarios en el portal y/o a través del portal, bien por el portal, bien por sus usuarios, bien por terceros. No obstante, el acceso y la utilización de ciertos contenidos y/o servicios pueden encontrarse sometido a determinadas condiciones específicas.
                 |  Modificaciones
-
-                div(class='text-right')
-                    button(type='button' class='btn btn-success' id='baseline-btn-acepto') Acepto
 
     script(src="/js/baseline.js")
     
