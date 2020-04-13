@@ -27,6 +27,31 @@ app.get("/sobre", (req, res) => {
   res.render("sobre");
 });
 
+// First time user team
+app.get("/team", (req, res) => {
+  res.render("team");
+});
+
+// First time user start
+app.get("/start", (req, res) => {
+  res.render("start");
+});
+
+// First time user baseline
+app.get("/registro", (req, res) => {
+  res.render("registro");
+});
+
+// First time user selector
+app.get("/selector", (req, res) => {
+  res.render("selector");
+});
+
+// First time user end
+app.get("/end", (req, res) => {
+  res.render("end");
+});
+
 // Start Server
 app.listen(PORT, () => {
   console.log(`Server started on port 3000`);
