@@ -37,6 +37,11 @@ app.get("/start", (req, res) => {
   res.render("start");
 });
 
+// First time user start new
+app.get("/start_new", (req, res) => {
+  res.render("start_new");
+});
+
 // First time user baseline
 app.get("/registro", (req, res) => {
   res.render("registro");
