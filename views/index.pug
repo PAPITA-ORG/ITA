@@ -1,7 +1,7 @@
 extends layout
 
 block content
-
+    div(class="header")
     div(class="container")
         div(class='row align-items-center justify-content-center')
             div(class="col-md-12")
@@ -11,7 +11,6 @@ block content
               strong ITA
               |, tu compania virtual para actividades infantiles.
             
-            div(style="margin-top: 20px") 
             div(class="col-md-12")
             form(action="#")
               div.label Ingresa
@@ -23,26 +22,23 @@ block content
                 input(type='checkbox' name='agreement' checked)
                 |  Recuerdame
               button(type='button' class='btn btn-success' id='btn-no') Siguiente
-            
               p
                 | o ingresa con
               div.social
                 button(type="button" class="btn-floating btn-lg btn-fb") <i class="fa fa-facebook"></i>
                 button(type="button" class="btn-floating btn-lg btn-gplus") <i class="fa fa-google-plus"></i>
     
-            div(style="margin-top: 20px")    
-            div(class="col-md-12")
+            div(class="col-md-12" style="margin-top: 20px")
             p
               | aun no has usado
               strong  ITA 
               | ?  
               button(type='button' class='btn btn-success' id='btn-si') Pruebame ahora
             
-            div(style="margin-top: 20px")               
-            div(class="col-md-12")
+            div(style="margin-top: 20px" class="col-md-12")               
             p
               | Quieres saber mas?  
               button(type='button' class='btn btn-success' id='btn-team') Equipo ITA
-
+    div(class="footer")
     script(src="/js/index.js")
     
