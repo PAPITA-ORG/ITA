@@ -18,11 +18,11 @@ form {
 }
 
 .header {
-  padding: 60px;
+  padding: 20px;
   text-align: center;
   background: #8be0f5;
   color: black;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .footer {
@@ -88,8 +88,7 @@ h3 {
 
 p {
   text-align: center;
-  color: #fff;
-  text-transform: capitalize;
+  color: #black;
 }
 
 .social {
