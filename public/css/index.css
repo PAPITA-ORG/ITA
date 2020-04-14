@@ -18,7 +18,9 @@ body {
 .header {
   padding: 20px;
   text-align: center;
-  background: #5fb3e2;
+  background: url(/public/images/texturas-02.svg);
+  background-size: cover;
+  background-repeat: repeat;
   color: black;
   font-size: 20px;
 }
@@ -28,7 +30,9 @@ body {
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: #63ac49;
+  background: url(/public/images/texturas-01.svg);
+  background-size: cover;
+  background-repeat: repeat;
   color: white;
   text-align: center;
 }
