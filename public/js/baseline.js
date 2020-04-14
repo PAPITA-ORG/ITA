@@ -99,7 +99,7 @@ $(document).ready(() => {
 
   const submitUserInfo = () => {
     // console.log("new user!");
-    // window.location.href = '/resultado'
+    window.location.href = "/start_new";
 
     let test = {
       fields: {
@@ -116,9 +116,9 @@ $(document).ready(() => {
         Eficacia5: 35
       }
     };
-    axios
-      .post("/api/usuarios", test)
-      .then(res => console.log(res))
-      .catch(err => err);
+    // axios
+    //   .post("/api/usuarios", test)
+    //   .then(res => console.log(res))
+    //   .catch(err => err);
   };
 });
