@@ -52,7 +52,8 @@ form {
   background-color: #6ad67c;
   padding: 30px;
   text-align: center;
-
+  border: 2px solid #ccc;
+  border-radius: 4px;
 }
 
 .checkbox {
