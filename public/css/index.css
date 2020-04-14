@@ -11,10 +11,32 @@ body {
   height: 100vh;
 }
 
+.center {
+  text-align: center;
+}
+
 form {
   background-color: rgba(60, 89, 107, 0.63);
   width: 40%;
   padding: 30px;
+}
+
+.header {
+  padding: 20px;
+  text-align: center;
+  background: #8be0f5;
+  color: black;
+  font-size: 20px;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #47a347;
+  color: white;
+  text-align: center;
 }
 
 .spacer5 {
@@ -70,8 +92,7 @@ h3 {
 
 p {
   text-align: center;
-  color: #fff;
-  text-transform: capitalize;
+  color: #black;
 }
 
 .social {
@@ -104,7 +125,7 @@ p {
 a {
   padding-left: 5px;
   text-decoration: none;
-  color: #63cdda;
+  color: #2214e0;
   text-transform: capitalize;
 }
 
@@ -113,11 +134,10 @@ a:hover {
 }
 
 .label {
-  font-size: 40px;
+  font-size: 30px;
   text-align: center;
-  color: #fff;
+  color: whitesmoke;
   padding-bottom: 15px;
-  text-transform: capitalize;
 }
 
 @media(max-width:610px) {

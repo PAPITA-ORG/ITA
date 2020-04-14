@@ -2,19 +2,17 @@ extends layout
 
 block content
 
-    h1 ITA
-
     div(class="container")
         div(class='row align-items-center justify-content-center')
+            div(class="col-md-12" style="margin-top: 20px")
+            img(src="/images/personaje-01.svg" width="200px" height="200px")
+            
+            p Hola, soy 
+              strong ITA
+              |, tu compania virtual 
+              | para actividades infantiles.
+            
             div(class="col-md-12")
-                p Hola, soy 
-                 strong ITA
-                 |, tu compania virtual para actividades infantiles.
-
-    div(class="container")
-        div(class='row align-items-center justify-content-center')
-            div(class="col-md-12")
-    
             form(action="#")
               div.label Ingresa
               div.username
@@ -25,33 +23,21 @@ block content
                 input(type='checkbox' name='agreement' checked)
                 |  Recuerdame
               button(type='button' class='btn btn-success' id='btn-no') Siguiente
-              div(style="margin-top: 20px")  
-              p
-                | o ingresa con
               div.social
                 button(type="button" class="btn-floating btn-lg btn-fb") <i class="fa fa-facebook"></i>
                 button(type="button" class="btn-floating btn-lg btn-gplus") <i class="fa fa-google-plus"></i>
     
-    div(style="margin-top: 20px")    
-
-    div(class="container")
-        div(class='row align-items-center justify-content-center')
-            div(class="col-md-12")              
-              p
-                | aun no has usado
-                strong  ITA 
-                | ?
+            div(class="col-md-12" style="margin-top: 20px")
+            p
+              | Aun no has usado
+              strong  ITA 
+              | ?  
               button(type='button' class='btn btn-success' id='btn-si') Pruebame ahora
-
-              p
-                | Quieres saber mas?
+            
+            div(class="col-md-12")               
+            p
+              | Quieres saber mas?  
               button(type='button' class='btn btn-success' id='btn-team') Equipo ITA
-
-    div(class="container")
-        div(class='row align-items-center justify-content-center')
-          div(style="margin-top: 40px")
-            div(class="col-md-12")
-                iframe(width="560" height="315" src="https://www.youtube.com/embed/3e7Fp3D3YL8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
 
     script(src="/js/index.js")
     
