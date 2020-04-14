@@ -48,6 +48,11 @@ button:focus {
   outline: none;
 }
 
+form {
+  background-color: rgba(60, 89, 107, 0.63);
+  padding: 30px;
+}
+
 .checkbox {
   color: #fff;
   padding-bottom: 10px;
