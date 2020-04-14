@@ -52,10 +52,11 @@ form {
   background-color: rgb(92, 78, 89);
   padding: 30px;
   text-align: center;
+
 }
 
 .checkbox {
-  color: #fff;
+  color: black;
   padding-bottom: 10px;
 }
 
@@ -111,9 +112,9 @@ a:hover {
 }
 
 .label {
-  font-size: 30px;
+  font-size: 22px;
   text-align: center;
-  color: whitesmoke;
+  color: black;
   padding-bottom: 15px;
 }
 
