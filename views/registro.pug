@@ -9,27 +9,27 @@ block content
     div(class="container")
         div(class='row align-items-center justify-content-center')
             div(class="col-md-12" id='baseline-content')
-            form(method='POST' action='/register')
-                p Registrate con 
-                  strong  ITA
-                  |  !
+                form(method='POST' action='/register' id='form-register')
+                    p Registrate con 
+                    strong  ITA
+                    |  !
 
-                div.form-group
-                    label(for='email') Correo electronico:
-                    input#email.form-control(type='email', placeholder='name@email.com' name='email')
-                div.form-group
-                    label(for='favoriteBook') Libro favorito:
-                    input#favoriteBook.form-control(type='text', placeholder='title of book' name='favoriteBook')
-                div.form-group
-                    label(for='pw') Contraseña:
-                    input#pw.form-control(type='password' name='password')
-                div.form-group
-                    label(for='pw2') Confirmar contraseña:
-                    input#pw2.form-control(type='password' name='confirmPassword')
-                div.form-group
-                    label(for='pw2') Acepto los terminos y condiciones  
-                    input(id='agreement', type='checkbox')
-                button(type='button' class='btn btn-success' id='btn-enviar') Enviar
+                    div.form-group
+                        label(for='email') Correo electronico:
+                        input#email.form-control(type='email', placeholder='name@email.com' name='email')
+                    div.form-group
+                        label(for='favoriteBook') Libro favorito:
+                        input#favoriteBook.form-control(type='text', placeholder='title of book' name='favoriteBook')
+                    div.form-group
+                        label(for='pw') Contraseña:
+                        input#pw.form-control(type='password' name='password')
+                    div.form-group
+                        label(for='pw2') Confirmar contraseña:
+                        input#pw2.form-control(type='password' name='confirmPassword')
+                    div.form-group
+                        label(for='pw2') Acepto los terminos y condiciones  
+                        input(id='agreement', type='checkbox')
+                    button(type='button' class='btn btn-success' id='btn-enviar') Enviar
 
     div(style="margin-top: 40px")
 
