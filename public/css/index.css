@@ -31,7 +31,7 @@ body {
   width: 100%;
   background: url("../images/texturas-01.svg");
   background-repeat: repeat;
-  color: white;
+  opacity: 0.5;
   text-align: center;
 }
 
@@ -51,7 +51,7 @@ button:focus {
 }
 
 form {
-  background-color: #6ad67c;
+  background-color: #6ad67c8a;
   padding: 30px;
   text-align: center;
   border: 2px solid #ccc;
@@ -61,6 +61,7 @@ form {
 .checkbox {
   color: black;
   padding-bottom: 10px;
+  padding-right: 10px;
 }
 
 h3 {
