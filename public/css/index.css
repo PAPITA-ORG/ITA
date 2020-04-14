@@ -18,8 +18,7 @@ body {
 .header {
   padding: 20px;
   text-align: center;
-  background: url('images/texturas-02.svg');
-  background-size: cover;
+  background: url("images/texturas-02.svg");
   background-repeat: repeat;
   color: black;
   font-size: 20px;
@@ -30,8 +29,7 @@ body {
   left: 0;
   bottom: 0;
   width: 100%;
-  background: url('images/texturas-01.svg');
-  background-size: cover;
+  background: url("images/texturas-01.svg");
   background-repeat: repeat;
   color: white;
   text-align: center;
