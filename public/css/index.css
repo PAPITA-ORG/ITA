@@ -51,6 +51,7 @@ button:focus {
 form {
   background-color: rgba(60, 89, 107, 0.63);
   padding: 30px;
+  text-align: center;
 }
 
 .checkbox {
