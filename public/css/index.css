@@ -15,12 +15,6 @@ body {
   text-align: center;
 }
 
-form {
-  background-color: rgba(60, 89, 107, 0.63);
-  width: 40%;
-  padding: 30px;
-}
-
 .header {
   padding: 20px;
   text-align: center;
@@ -52,17 +46,6 @@ form {
 input:focus,
 button:focus {
   outline: none;
-}
-
-button {
-  background: #63cdda;
-  color: #fff;
-  border: 0px;
-  width: 25%;
-  padding: 10px;
-  margin: 5px;
-  font-size: 24px;
-  cursor: pointer;
 }
 
 .checkbox {
