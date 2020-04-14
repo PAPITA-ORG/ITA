@@ -39,18 +39,6 @@ form {
   text-align: center;
 }
 
-.spacer5 {
-  height: 5px;
-} 
-
-.scrollabletextbox {
-  height:100px;
-  width:200px;
-  font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
-  font-size: 82%;
-  overflow:scroll;
-}
-
 .username input,
 .password input {
   width: 100%;
@@ -70,7 +58,7 @@ button {
   background: #63cdda;
   color: #fff;
   border: 0px;
-  width: 100%;
+  width: 25%;
   padding: 10px;
   margin: 5px;
   font-size: 24px;
