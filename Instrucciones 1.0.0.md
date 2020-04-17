@@ -14,5 +14,7 @@ Instrucciones de ITA 1.0.0
    - Production
    - Bugs/Patches/Fixes 
 3. Backend
-   - Node.JS
-   - MongoDB Atlas
+   - Tener instalado Node.JS y hacer npm install 
+   - Ingresar credenciales enviadas por correo a ./config/keys.js 
+   
+   
