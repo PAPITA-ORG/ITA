@@ -6,14 +6,13 @@ Instrucciones de ITA 1.0.0
 
 Contenido
 
- 0. Que es ITA?
  1. 
-   1. 
+   1.1 
  2. Branches
-   1. Local
-   2. Staging
-   3. Production
-   4. Bugs/Patches/Fixes 
+   2.1 Local
+   2.2 Staging
+   2.3 Production
+   2.4 Bugs/Patches/Fixes 
   
  3. Backend
-   1. Node.JS
+   3.1 Node.JS
