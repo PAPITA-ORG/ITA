@@ -5,22 +5,22 @@ Instrucciones de ITA 1.0.0
 
 #### Overview
 
-1. Que es ITA?
+Que es ITA?
     - Proposito
     - PAPITA.ORG
 
-2. Features de ITA
+Features de ITA
     - 
     - 
     - 
-    
-3. Branches
+
+Branches
     - Local
     - Staging
     - Production
     - Bugs/Patches/Fixes
 
-4. Backend
+Backend
     - Tener instalado Node.JS y hacer npm install
     - Ingresar credenciales enviadas por correo a ./config/keys.js
 
