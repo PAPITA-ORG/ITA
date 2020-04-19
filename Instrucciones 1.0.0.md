@@ -3,7 +3,7 @@
 Instrucciones de ITA 1.0.0
 16/4/20
 
-##### Contenido
+#### Overview
 
 1. Que es ITA?
     - Proposito
@@ -19,9 +19,12 @@ Instrucciones de ITA 1.0.0
     - Bugs/Patches/Fixes
 
 4. Backend
-    - Node.JS
+    - Tener instalado Node.JS y hacer npm install
+    - Ingresar credenciales enviadas por correo a ./config/keys.js
 
-## Controllers
+
+
+#### Controllers
 
 Nuestro proximo objetivo general es armar la base de datos en MongoDB Atlas. Para esto necesitamos desarollar **controladores**.
 
@@ -50,7 +53,7 @@ Si se fijan, hay un archivo por cada tabla de nuestra base de datos. En cada uno
 
 En el index.js, se exportaran todos los archivos en `./controllers` (vease `./viewsControllers/index.js` para un ejemplo practico).
 
-## Routes
+#### Routes
 
 Routes se ve asi:
 
