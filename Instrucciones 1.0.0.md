@@ -8,10 +8,12 @@ Instrucciones de ITA 1.0.0
 1. Que es ITA?
     - Proposito
     - PAPITA.ORG
+
 2. Features de ITA
     - 
     - 
     - 
+    
 3. Branches
     - Local
     - Staging
