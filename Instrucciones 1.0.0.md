@@ -5,16 +5,21 @@ Instrucciones de ITA 1.0.0
 
 ##### Contenido
 
-0. Que es ITA?
-1. 1.1
-1. Branches
-   2.1 Local
-   2.2 Staging
-   2.3 Production
-   2.4 Bugs/Patches/Fixes
+1. Que es ITA?
+    - Proposito
+    - PAPITA.ORG
+2. Features de ITA
+    - 
+    - 
+    - 
+3. Branches
+    - Local
+    - Staging
+    - Production
+    - Bugs/Patches/Fixes
 
-1. Backend
-   3.1 Node.JS
+4. Backend
+    - Node.JS
 
 ## Controllers
 
