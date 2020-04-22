@@ -6,6 +6,8 @@ Instrucciones de ITA v1.0.0
 #### Overview
 
 Este documento tiene una descripcion del proyecto ITA, parte de PAPITACORP. Las instrucciones son un documento vivo que debe ser modificado en la medida que el proyecto continue. 
+###### Que es ITA?
+Samuel VArgas
 
 ###### Que es ITA?
 
