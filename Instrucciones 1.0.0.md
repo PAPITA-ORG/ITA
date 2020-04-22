@@ -41,6 +41,7 @@ COMUNITA es una comunidad virtual organizada a través de canales moderados, con
 - loading: muestra un loading falso para entregar mensajes de salud.
 - selector: muestra la actividad sugerida y tiene una opcion para buscar otra actividad (Skip).
 - end: mini-encuesta al final de cada actividad. al terminar te devuelve a start.
+- metrics: view que te muestra el nivel de energia, el tiempo y el tipo de actividad para el historial del usuario. 
 - team: credits
 - sobre: explicacion de ITA, la ciencia, etc.
 
