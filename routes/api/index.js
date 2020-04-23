@@ -5,7 +5,7 @@ const router = require("express").Router();
 const usuariosRouter = require("./usuarios");
 
 // route routers
-router.use("/usuarios", usuariosRouter);
+router.use("/usuarios").get(usuariosRouter);
 
 // export api router as route
 module.exports = router;
