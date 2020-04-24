@@ -7,6 +7,14 @@ Instrucciones de ITA v1.0.0
 
 Este documento tiene una descripcion del proyecto ITA, parte de PAPITACORP. Las instrucciones son un documento vivo que debe ser modificado en la medida que el proyecto continue.
 
+###### Equipo de desarrollo
+
+Valeriano Arnaiz   
+Juan Carlos Caro   
+Jose Labrin   
+Samuel Vargas      
+Alberto Vargas Marte  
+
 ###### Que es ITA?
 
 - Proposito: En cada familia hay gente que necesita apoyo y gente que provee apoyo. ITA entrega compañia y sugerencias a quienes proveen apoyo dentro del hogar. ITA es una herramienta digital de salud (digital health) para promover la auto-eficacia de los cuidadores en el hacia el aprendizaje de hábitos saludables. ITA está inicialmente enfocada en todo tipo de cuidadores dentro del hogar, pero inicialmente entregando soluciones para ninos entre 3 y 10 años de edad. Futuras expansiones de ITA esperan cubrir los primeros años de vida (0-2), así como el cuidado de individuos con necesidades especiales, independiente de la edad.
