@@ -4,8 +4,6 @@ const router = require("express").Router();
 // import indexes controller
 const indexController = require("../../controllers").indexes;
 
-// match router with '/api/indexes'
-
 // get all indexes
 router.route("/").get(indexController.findAll);
 
