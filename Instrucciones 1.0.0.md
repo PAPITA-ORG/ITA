@@ -29,6 +29,8 @@ Alberto Vargas Marte
 
 ###### ITA features
 
+En la primera version de compilacion, se espera que ITA tenga las siguientes caracteristicas: 
+
 - Login con correo y contrasena (tambien se puede conectar con facebook o google).
 - Overview de la aplicación y cuestionario base para usuarios nuevos.
 - Sugerencias personalizadas de actividades en tres áreas: ejercicio, alimentación y bienestar (i.e. desarrollo socioemocional).
@@ -39,34 +41,35 @@ Alberto Vargas Marte
 
 ###### ITA views
 
-- index
-- layout
-- start: Entrada pasa usuarios antiguos. Permite elegir el tipo de actividad y acceder a los stats (metrics). Te muestra en pantalla tu nivel de energia anterior (0-100).
-- registro: Entrada para usuarios nuevos. Permite registrarse y aceptar EULA.
-- baseline: Encuesta inicial para usuarios nuevos. solo se ejecuta una vez. una vez terminado te manda a start.
+Para Front-end estamos usando Bootstrap (CSS) y Pug (compressed HTML). Abajo hay una descripcion de cada view (.pug) en la pagina.
+
+- index: Login, acceso para usuarios nuevos y team info.
+- layout: configuracion general. 
+- start: Entrada pasa usuarios antiguos 9con cookies). Permite elegir el tipo de actividad y acceder a los stats (metrics). Te muestra en pantalla tu nivel de energia anterior (0-100).
+- sobre: Explicacion de ITA, la ciencia, etc. Lleva a un registro (con EULA) y luego a encuesta inicial para usuarios nuevos. solo se ejecuta una vez. una vez terminado te manda a start.   
 - loading: muestra un loading falso para entregar mensajes de salud.
 - selector: muestra la actividad sugerida y tiene una opcion para buscar otra actividad (Skip).
 - end: mini-encuesta al final de cada actividad. al terminar te devuelve a start.
 - metrics: view que te muestra el nivel de energia, el tiempo y el tipo de actividad para el historial del usuario.
 - team: credits
-- sobre: explicacion de ITA, la ciencia, etc.
 
 ###### Branches
 
 - Local
-- Staging
-- Production
-- Bugs/Patches/Fixes
+- Staging (compilacion)
+- Production (models, controllers, etc)
+- Bugs/Patches/Fixes (temp-page)
 
-###### Backend
+###### Lenguage backend
 
 Tener instalado Node.JS y hacer npm install
 
 Ingresar credenciales enviadas por correo a ./config/keys.js
 
-#### Controllers
 
-Nuestro proximo objetivo general es armar la base de datos en MongoDB Atlas. Para esto necesitamos desarollar **controladores**.
+#### Backend
+
+###### Controllers
 
 Estos consisten en objetos con funciones que interactuan con la base de datos a traves de _routes_ de nuestro propio API (ver Routers). Relativo a la base de nuestro proyecto, los controllers se ven asi:
 
@@ -108,8 +111,57 @@ Routes se ve asi:
 └── usuarios.js
 ```
 
-Lo que necesitamos aqui es muy parecido a con los controllers. En este caso se enlazaran las funciones exportadas desde `~./controllers/index.js` con rutas usando el paquete de npm `express`.
+En este caso se enlazaran las funciones exportadas desde `~./controllers/index.js` con rutas usando el paquete de npm `express`.
 
 En `~./routes/views.js` hay un ejemplo practico de como se efectua esto con funciones ubicadas en `~./controllers/viewsControllers/viewsControllers.js`. La idea es liar los controllers de nuestra base de datos a sus acciones 'GET', 'POST', 'PUT', 'DELETE' respectivas. Idealmente, queremos rutas a nuestro api en los formatos `/api/:tabla` y `/api/:tabla/:id` en donde `:tabla` corresponde cualquier tabla de nuestra base de datos (usuarios, actividades, etc.), mientras que `:id` se refiere a un parametro que representaria el codigo de identificacion de una observacion en cualquiera de estas tablas. Por ejemplo, para hacer llamados para un usuario con ID `123493` el llamado fuese a `/api/usuarios/123493`. Hay unos ejemplos buenos que explican como hacer rutas con express [aqui](https://expressjs.com/en/guide/routing.html). [Este video](https://www.youtube.com/watch?v=cVYQEvP-_PA&t=47s) tambien puede ayudar.
 
-Al completar estos archivos, podremos pasar a la siguiente fase de interactuar con el backend desde el frontend.
+
+#### Frontend
+
+Descrito abajo se indican los elementos de cada view o .pug (views/) y como se conectan las acciones con la base de datos en .js (public/js). Elementos en CSS van en public/css. Hay algunos .pug que se van a mover a ser parte del .js correspondiente (por mientras el codigo les puede servir para entender el elemento).
+
+###### Layout
+
+- Define las caracteristicas del header agrega una linea horizontal arriba y abajo usando CSS. 
+
+###### Index
+
+- Form con ingreso a la cuenta para usuarios antiguos (en caso de no tener cookies). Al ingresar se dirige a start.pug (una vez pasado por el validador).    
+- Boton hacia sobre view antes de ir al registro para usuarios nuevos.   
+- Boton hacia team view.   
+
+###### Start
+
+- Dashboard que tiene 4 botones permite acceso a elegir una actividad (por Topico, pasando por el loading view) o ver la metrica del usuario (metrics view).   
+- Debe mostrar ademas el nivel de energia del usuario en el ultimo login (AF1 se actualiza con AF2 del login anterior). Usuarios nuevos reemplazan AF1 con el valor promedio que se genera con las preguntas en baseline.js
+- El usuario puede modificar el nivel de energia (reemplazando el AF1 que se actualiza por defecto con uno definido por el usuario).   
+- hay un boton logout (en el futuro tambien crearemos un perfil de usuario, junto con la comunidad, i.e. COMUNITA).   
+
+###### Sobre
+
+- Descripcion breve del proyecto (y/o video) mas un boton para avanzar al registro.js (aun no hecho, solo placeholder).   
+- Una vez pasando el registro.js lleva a baseline.js para la encuesta inicial. Una vez terminado baseline.js lleva hacia el start view.   
+
+###### Loading
+
+- Llama un mensaje aleatorio de la base y lo proyecta junto con un loading falso que tiene un timer de 5 seg. Al terminar el timer se pasa a selector view.   
+
+###### Selector
+
+- muestra la actividad sugerida usando el texto glosa (descriptor) en la base de actividades. Ademas tiene un boton de randomizer (skip) para generar una actividad distinta si el usuario lo desea (deberiamos incorporar esto a models para guardar informacion sobre el skip).   
+- el view tiene un timer (a definir) que lleva al end view.   
+
+
+###### Metrics
+
+- muestra tres tipos de metricas: con iconos de flores indica el tipo de actividad y dificultad; con barras muestra la duracion de la actividad; con linea muestra la evolucion de la energia en el tiempo.   
+- tiene un boton para volver a view.   
+
+###### End
+
+- muestra una breve encuesta al fin de la actividad. Al cerrar, lleva de vuelta al start view.
+
+
+###### Team
+
+- muestra informacion del equipo y tiene un boton para volver a start view.
