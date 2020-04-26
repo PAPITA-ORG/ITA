@@ -130,6 +130,11 @@ Descrito abajo se indican los elementos de cada view o .pug (views/) y como se c
 - Boton hacia sobre view antes de ir al registro para usuarios nuevos.   
 - Boton hacia team view.   
 
+###### Sobre
+
+- Descripcion breve del proyecto (y/o video) mas un boton para avanzar al registro.js (aun no hecho, solo placeholder).   
+- Una vez pasando el registro.js lleva a baseline.js para la encuesta inicial. Una vez terminado baseline.js lleva hacia el start view.   
+
 ###### Start
 
 - Dashboard que tiene 4 botones permite acceso a elegir una actividad (por Topico, pasando por el loading view) o ver la metrica del usuario (metrics view).   
@@ -137,19 +142,16 @@ Descrito abajo se indican los elementos de cada view o .pug (views/) y como se c
 - El usuario puede modificar el nivel de energia (reemplazando el AF1 que se actualiza por defecto con uno definido por el usuario).   
 - hay un boton logout (en el futuro tambien crearemos un perfil de usuario, junto con la comunidad, i.e. COMUNITA).   
 
-###### Sobre
-
-- Descripcion breve del proyecto (y/o video) mas un boton para avanzar al registro.js (aun no hecho, solo placeholder).   
-- Una vez pasando el registro.js lleva a baseline.js para la encuesta inicial. Una vez terminado baseline.js lleva hacia el start view.   
-
-###### Loading
-
-- Llama un mensaje aleatorio de la base y lo proyecta junto con un loading falso que tiene un timer de 5 seg. Al terminar el timer se pasa a selector view.   
-
 ###### Selector
 
-- muestra la actividad sugerida usando el texto glosa (descriptor) en la base de actividades. Ademas tiene un boton de randomizer (skip) para generar una actividad distinta si el usuario lo desea (deberiamos incorporar esto a models para guardar informacion sobre el skip).   
-- el view tiene un timer (a definir) que lleva al end view.   
+- Llama un mensaje aleatorio de la base y lo proyecta junto con un loading falso que tiene un timer de 5 seg (loading.js). Al terminar el timer se pasa a selector view.  
+- muestra selector.js donde se ve la actividad sugerida usando el texto glosa (descriptor) en la base de actividades. Ademas tiene un boton de randomizer (skip) para generar una actividad distinta si el usuario lo desea (deberiamos incorporar esto a models para guardar informacion sobre el skip).   
+- el view tiene un timer (a definir) que lleva al end.js.   
+- end.js muestra una breve encuesta al fin de la actividad. Al cerrar, lleva de vuelta al start view.
+
+###### Team
+
+- muestra informacion del equipo y tiene un boton para volver a start view.
 
 ###### Registro
 
@@ -160,12 +162,3 @@ Descrito abajo se indican los elementos de cada view o .pug (views/) y como se c
 
 - muestra tres tipos de metricas: con iconos de flores indica el tipo de actividad y dificultad; con barras muestra la duracion de la actividad; con linea muestra la evolucion de la energia en el tiempo.   
 - tiene un boton para volver a view.   
-
-###### End
-
-- muestra una breve encuesta al fin de la actividad. Al cerrar, lleva de vuelta al start view.
-
-
-###### Team
-
-- muestra informacion del equipo y tiene un boton para volver a start view.
