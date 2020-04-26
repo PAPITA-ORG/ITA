@@ -126,7 +126,7 @@ Descrito abajo se indican los elementos de cada view o .pug (views/) y como se c
 
 ###### Index
 
-- Form con ingreso a la cuenta para usuarios antiguos (en caso de no tener cookies). Al ingresar se dirige a start.pug (una vez pasado por el validador).    
+- Form con ingreso a la cuenta para usuarios antiguos (en caso de no tener cookies). Al ingresar se dirige a start.pug una vez pasado por el validador (usando helmet: npm install helmet).    
 - Boton hacia sobre view antes de ir al registro para usuarios nuevos.   
 - Boton hacia team view.   
 
@@ -151,6 +151,10 @@ Descrito abajo se indican los elementos de cada view o .pug (views/) y como se c
 - muestra la actividad sugerida usando el texto glosa (descriptor) en la base de actividades. Ademas tiene un boton de randomizer (skip) para generar una actividad distinta si el usuario lo desea (deberiamos incorporar esto a models para guardar informacion sobre el skip).   
 - el view tiene un timer (a definir) que lleva al end view.   
 
+###### Registro
+
+- permite mostar un mensaje que te envie para escribir tu correo y recibir un token para cambiar contrasena (puede ser estatico)
+- con el token te lleva a un .js en el mismo que permita en el mismo view cambiar la contrasena y llevar al login de nuevo. 
 
 ###### Metrics
 
