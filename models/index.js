@@ -1,5 +1,5 @@
 module.exports = {
-  usuarios: require("./usuario"),
+  usuarios: require("./usuarios"),
   actividades: require("./actividades"),
   hijos: require("./hijos"),
   historial: require("./historial"),

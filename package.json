@@ -15,11 +15,16 @@
   "dependencies": {
     "acorn": "^7.1.1",
     "airtable": "^0.8.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "mongoose": "^5.9.9",
     "nodemon": "^2.0.2",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "pug": "^2.0.4"
   },
   "engines": {

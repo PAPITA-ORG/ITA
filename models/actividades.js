@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const Actividades = newSchema({
+const Actividades = Schema({
   _id: { type: Schema.Types.ObjectId, required: true },
   topico: { type: Schema.Types.String, required: true },
   topicoCod: { type: Schema.Types.Number, required: true },

@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const Mensajes = newSchema({
+const Mensajes = Schema({
   _id: { type: Schema.Types.ObjectId, required: true },
   mensaje: { type: Schema.Types.String, required: true }
 });

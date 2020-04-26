@@ -49,5 +49,9 @@ module.exports = {
       .create(usuario)
       .then(dbUsuarios => res.json(dbUsuarios))
       .catch(err => res.status(422).json(err));
+  },
+  // login usuario
+  login: (req, res) => {
+    res.render("login");
   }
 };
