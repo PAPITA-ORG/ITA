@@ -2,7 +2,7 @@
 const router = require("express").Router();
 
 // import historiales controller
-const historialController = require("../../controllers").historiales;
+const historialController = require("../../controllers").historial;
 
 // match router with '/api/historiales'
 
