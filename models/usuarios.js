@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const Usuarios = newSchema({
+const Usuarios = Schema({
   _id: { type: Schema.Types.ObjectId, required: true },
   correo: { type: Schema.Types.String, required: true },
   password: { type: Schema.Types.String, required: true },

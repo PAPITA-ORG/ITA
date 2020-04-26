@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const Historiales = newSchema({
+const Historiales = Schema({
   _id: { type: Schema.Types.ObjectId, required: true },
   af1: { type: Schema.Types.String, required: true },
   af2: { type: Schema.Types.String, required: true },

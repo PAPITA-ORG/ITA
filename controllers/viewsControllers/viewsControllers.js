@@ -1,5 +1,5 @@
 module.exports = {
-  indexView: (req, res) => {
+  login: (req, res) => {
     res.render("index");
   },
   sobreView: (req, res) => {
@@ -14,7 +14,7 @@ module.exports = {
   startNewView: (req, res) => {
     res.render("start_new");
   },
-  registroView: (req, res) => {
+  registro: (req, res) => {
     res.render("registro");
   },
   selectorView: (req, res) => {

@@ -5,7 +5,7 @@ const router = require("express").Router();
 const viewsController = require("../../controllers/viewsControllers").views;
 
 // index view
-router.route("/").get(viewsController.indexView);
+router.route("/").get(viewsController.login);
 
 // sobre view
 router.route("/sobre").get(viewsController.sobreView);
@@ -20,7 +20,7 @@ router.route("/start").get(viewsController.startView);
 router.route("/start_new").get(viewsController.startNewView);
 
 // get registro view
-router.route("/registro").get(viewsController.registroView);
+router.route("/registro").get(viewsController.registro);
 
 // selector view
 router.route("/selector").get(viewsController.selectorView);
