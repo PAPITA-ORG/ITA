@@ -128,26 +128,26 @@ Descrito abajo se indican los elementos de cada view o .pug (views/) y como se c
 
 - Form con ingreso a la cuenta para usuarios antiguos (en caso de no tener cookies). Al ingresar se dirige a start.pug una vez pasado por el validador (usando helmet: npm install helmet).    
 - Boton hacia sobre view antes de ir al registro para usuarios nuevos.   
-- Boton hacia team view.   
+- Boton hacia team view y un boton para cambiar contrasena.   
 
 ###### Sobre
 
-- Descripcion breve del proyecto (y/o video) mas un boton para avanzar al registro.js (aun no hecho, solo placeholder).   
-- Una vez pasando el registro.js lleva a baseline.js para la encuesta inicial. Una vez terminado baseline.js lleva hacia el start view.   
+- Descripcion breve del proyecto (y/o video) mas un boton para avanzar al registro (aun no hecho, solo placeholder).   
+- Una vez pasando el registro lleva a baseline para la encuesta inicial. Una vez terminado baseline lleva de vuelta hacia el start view.   
 
 ###### Start
 
-- Dashboard que tiene 4 botones permite acceso a elegir una actividad (por Topico, pasando por el loading view) o ver la metrica del usuario (metrics view).   
-- Debe mostrar ademas el nivel de energia del usuario en el ultimo login (AF1 se actualiza con AF2 del login anterior). Usuarios nuevos reemplazan AF1 con el valor promedio que se genera con las preguntas en baseline.js
-- El usuario puede modificar el nivel de energia (reemplazando el AF1 que se actualiza por defecto con uno definido por el usuario).   
-- hay un boton logout (en el futuro tambien crearemos un perfil de usuario, junto con la comunidad, i.e. COMUNITA).   
+- Dashboard que tiene 4 botones permite acceso a elegir una actividad (por Topico, pasando por el loading) o ver la metrica del usuario (metrics view).   
+- Debe mostrar ademas el nivel de energia del usuario en el ultimo login (AF1 se actualiza con AF2 del login anterior). Usuarios nuevos reemplazan AF1 con el valor promedio que se genera con las preguntas en baseline (ver gauge.js)
+- El usuario puede modificar el nivel de energia (reemplazando el AF1 que se actualiza por defecto con uno definido por el usuario) ESTO DEBE ESTAR CONECTADO AL GAGUE DESCRITO ANTES.   
+- hay un boton logout.  
 
 ###### Selector
 
-- Llama un mensaje aleatorio de la base y lo proyecta junto con un loading falso que tiene un timer de 5 seg (loading.js). Al terminar el timer se pasa a selector view.  
-- muestra selector.js donde se ve la actividad sugerida usando el texto glosa (descriptor) en la base de actividades. Ademas tiene un boton de randomizer (skip) para generar una actividad distinta si el usuario lo desea (deberiamos incorporar esto a models para guardar informacion sobre el skip).   
-- el view tiene un timer (a definir) que lleva al end.js.   
-- end.js muestra una breve encuesta al fin de la actividad. Al cerrar, lleva de vuelta al start view.
+- Llama un mensaje aleatorio de la base y lo proyecta junto con un loading falso que tiene un timer de 5 seg (loading). Al terminar el timer se pasa a selector (i.e. donde se sugiere la acitivdad).  
+- muestra selector donde se ve la actividad sugerida usando el texto glosa (descriptor) en la base de actividades. Ademas tiene un boton de randomizer (skip) para generar una actividad distinta si el usuario lo desea (deberiamos incorporar esto a models para guardar informacion sobre el skip).   
+- el view tiene un timer (a definir) que lleva al end.   
+- end muestra una breve encuesta al fin de la actividad. Al cerrar, lleva de vuelta al start view.
 
 ###### Team
 
