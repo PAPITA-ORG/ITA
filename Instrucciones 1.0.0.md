@@ -1,7 +1,7 @@
 # ITA
 
 Instrucciones de ITA v1.0.0  
-16/4/20
+27/4/20
 
 #### Overview
 
@@ -62,7 +62,7 @@ Para Front-end estamos usando Bootstrap (CSS) y Pug (compressed HTML). Abajo hay
 
 ###### Lenguage backend
 
-Tener instalado Node.JS y hacer npm install
+Tener instalado Node.JS y hacer npm install (y npm install mongoose)
 
 Ingresar credenciales enviadas por correo a ./config/keys.js
 
