@@ -22,6 +22,6 @@ router.route("/:id").delete(usuariosController.deleteOne);
 router.route("/:id").put(usuariosController.updateOne);
 
 // create one usuario
-router.route("/").post(usuariosController.create);
+router.route("/register").post(usuariosController.create);
 
 module.exports = router;
