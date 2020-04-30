@@ -7,6 +7,7 @@ module.exports = {
   findAll: (req, res) => {
     db.mensajes
       .find(req.query)
+      .sort({ date: 1 })
       .then(dbMensajes => res.json(dbMensajes))
       .catch(err => res.status(422).json(err));
   },
@@ -14,7 +15,6 @@ module.exports = {
   findByID: (req, res) => {
     db.mensajes
       .find({ _id: req.params.mensajeID })
-      .sort({ date: 1 })
       .then(dbMensajes => res.json(dbMensajes))
       .catch(err => res.status(422).json(err));
   },

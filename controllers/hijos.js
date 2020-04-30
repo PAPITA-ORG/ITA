@@ -7,6 +7,7 @@ module.exports = {
   findAll: (req, res) => {
     db.hijos
       .find(req.query)
+      .sort({ date: 1 })
       .then(dbHijos => res.json(dbHijos))
       .catch(err => res.status(422).json(err));
   },
@@ -14,7 +15,6 @@ module.exports = {
   findByID: (req, res) => {
     db.hijos
       .find({ _id: req.params.hijoID })
-      .sort({ date: 1 })
       .then(dbHijos => res.json(dbHijos))
       .catch(err => res.status(422).json(err));
   },
@@ -22,9 +22,7 @@ module.exports = {
   deleteOne: (req, res) => {
     db.hijos
       .deleteOne({ _id: req.params.hijoID })
-      .then(dbHijos =>
-        res.json(dbHijos, `deleted ${req.params.hijoID}`)
-      )
+      .then(dbHijos => res.json(dbHijos, `deleted ${req.params.hijoID}`))
       .catch(err => res.status(422).json(err));
   },
   // delete many hijos
