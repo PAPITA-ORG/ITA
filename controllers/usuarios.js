@@ -87,9 +87,7 @@ module.exports = {
     }
 
     if (errors.length > 0) {
-      res.render("register", {
-        errors
-      });
+      res.json(errors);
     } else {
       db.usuarios
         .create(usuario)
