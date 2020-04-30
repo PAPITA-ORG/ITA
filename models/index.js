@@ -3,5 +3,6 @@ module.exports = {
   actividades: require("./actividades"),
   hijos: require("./hijos"),
   historial: require("./historial"),
-  mensajes: require("./mensajes")
+  mensajes: require("./mensajes"),
+  comunas: require("./comunas")
 };

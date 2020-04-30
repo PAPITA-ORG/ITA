@@ -7,6 +7,7 @@ module.exports = {
   findAll: (req, res) => {
     db.usuarios
       .find(req.query)
+      .sort({ date: 1 })
       .then(dbUsuarios => res.json(dbUsuarios))
       .catch(err => res.status(422).json(err));
   },
@@ -14,7 +15,6 @@ module.exports = {
   findByID: (req, res) => {
     db.usuarios
       .find({ _id: req.params.usuarioID })
-      .sort({ date: 1 })
       .then(dbUsuarios => res.json(dbUsuarios))
       .catch(err => res.status(422).json(err));
   },
