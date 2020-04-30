@@ -43,11 +43,58 @@ module.exports = {
   },
   // create one usuario
   create: (req, res) => {
-    const usuario = req.body;
+    const {
+      correo,
+      password,
+      genero,
+      parentezco,
+      parentezcoCod,
+      comuna,
+      comunaCod,
+      i1,
+      i2,
+      i3,
+      i4,
+      i5,
+      af_0
+    } = req.body;
 
-    db.usuarios
-      .create(usuario)
-      .then(dbUsuarios => res.json(dbUsuarios))
-      .catch(err => res.status(422).json(err));
+    // validate creation of usuario
+
+    // check required fields
+    let errors = [];
+    if (
+      !correo ||
+      !password ||
+      !genero ||
+      !parentezco ||
+      !parentezcoCod ||
+      !comuna ||
+      !comunaCod ||
+      !i1 ||
+      !i2 ||
+      !i3 ||
+      !i4 ||
+      !i5 ||
+      !af_0
+    ) {
+      errors.push({ msg: "LLene el formulario completo por favor" });
+    }
+
+    // check password length
+    if (password.length < 6) {
+      errors.push({ msg: "Su contraseña debe ser de al menos 6 caracteres" });
+    }
+
+    if (errors.length > 0) {
+      res.render("register", {
+        errors
+      });
+    } else {
+      db.usuarios
+        .create(usuario)
+        .then(dbUsuarios => res.json(dbUsuarios))
+        .catch(err => res.status(422).json(err));
+    }
   }
 };
