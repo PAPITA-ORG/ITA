@@ -1,5 +1,9 @@
 // instantiate express router and store in variable `router`
 const router = require("express").Router();
+// import bcryptjs
+const bcrypt = require("bcryptjs");
+// import Usuarios model
+const Usuario = require("../../models").usuarios;
 
 // import usuarios controller
 const usuariosController = require("../../controllers").usuarios;
@@ -22,6 +26,100 @@ router.route("/:id").delete(usuariosController.deleteOne);
 router.route("/:id").put(usuariosController.updateOne);
 
 // create one usuario
-router.route("/register").post(usuariosController.create);
+// router.route("/register").post(usuariosController.create);
+router.post("/register", (req, res) => {
+  const {
+    correo,
+    password,
+    genero,
+    parentezco,
+    comuna,
+    i1,
+    i2,
+    i3,
+    i4,
+    i5,
+    af_0
+  } = req.body;
+
+  // validate creation of usuario
+
+  // check required fields
+  let errors = [];
+  if (
+    !correo ||
+    !password ||
+    !genero ||
+    !parentezco ||
+    !comuna ||
+    !i1 ||
+    !i2 ||
+    !i3 ||
+    !i4 ||
+    !i5 ||
+    !af_0
+  ) {
+    errors.push({ msg: "Por favor procure llenar el formulario completo" });
+  }
+
+  // check password length
+  if (password.length < 6) {
+    console.log("whoo");
+    errors.push({ msg: "Su contraseña debe ser de al menos 6 caracteres" });
+  }
+
+  if (errors.length > 0) {
+    console.log(errors);
+    res.status(422).json(errors);
+  } else {
+    // Validation passed
+    Usuario.findOne({ correo: correo })
+      .then(dbUsuarios => {
+        if (dbUsuarios) {
+          // user exists
+
+          errors.push({
+            msg: "Ups! Parece ser que ya existe una cuentITA bajo este correo"
+          });
+          res.json(errors);
+        } else {
+          // save a new user
+          const newUsuario = new Usuario({
+            correo: correo,
+            password: password,
+            genero: genero,
+            parentezco: parentezco,
+            comuna: comuna,
+            i1: i1,
+            i2: i2,
+            i3: i3,
+            i4: i4,
+            i5: i5,
+            af_0: af_0
+          });
+
+          // Hash Password
+          bcrypt.genSalt(10, (err, salt) => {
+            if (err) throw err;
+            return bcrypt.hash(newUsuario.password, salt, (err, hash) => {
+              if (err) throw err;
+
+              // set new usuario password to hash
+              newUsuario.password = hash;
+
+              // save user
+              newUsuario
+                .save()
+                .then(usuario => {
+                  res.redirect("/");
+                })
+                .catch(err => res.status(422).json(err));
+            });
+          });
+        }
+      })
+      .catch(err => err);
+  }
+});
 
 module.exports = router;

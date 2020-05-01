@@ -10,11 +10,11 @@ const actividadesRoutes = require("./actividades");
 const comunasRoutes = require("./comunas");
 
 // assign respective routes under '/api'
-router.route("/usuarios", usuariosRoutes);
-router.route("/mensajes", mensajesRoutes);
-router.route("/historial", historialRoutes);
-router.route("/hijos", hijosRoutes);
-router.route("/actividades", actividadesRoutes);
-router.route("/comunas", comunasRoutes);
+router.use("/usuarios", usuariosRoutes);
+router.use("/mensajes", mensajesRoutes);
+router.use("/historial", historialRoutes);
+router.use("/hijos", hijosRoutes);
+// router.use("/actividades", actividadesRoutes);
+router.use("/comunas", comunasRoutes);
 
 module.exports = router;
