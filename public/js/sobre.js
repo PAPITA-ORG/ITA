@@ -5,18 +5,14 @@ $(document).ready(() => {
     addForm();
   });
 
-  $("#sobre-form-btn").on("click", e => {
-    e.preventDefault();
-
-    console.log("hello");
-  });
-
   function addForm() {
     let sobreContainer = $("#sobre-main-container");
     sobreContainer.empty();
 
     // create a form
-    let sobreForm = $("<form>");
+    let sobreForm = $("<form>", {
+      id: "sobre-form"
+    });
 
     // create a div with class form-group
     let formGroup = $("<div>", {
@@ -44,6 +40,7 @@ $(document).ready(() => {
     // create submit button
 
     let submitButton = $("<button>", {
+      type: "submit",
       class: "btn btn-primary",
       id: "sobre-form-btn"
     }).text("Submit");
@@ -53,8 +50,13 @@ $(document).ready(() => {
     formGroup.append(emailSmall);
 
     sobreForm.append(formGroup);
-    sobreForm.append(submitButton);
 
     sobreContainer.append(sobreForm);
+    sobreContainer.append(submitButton);
+
+    $("#sobre-form-btn").click(e => {
+      // e.preventDefault();
+      // console.log("lalalalalala");
+    });
   }
 });

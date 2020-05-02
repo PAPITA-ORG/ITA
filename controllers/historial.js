@@ -7,6 +7,7 @@ module.exports = {
   findAll: (req, res) => {
     db.historiales
       .find(req.query)
+      .sort({ date: 1 })
       .then(dbHistoriales => res.json(dbHistoriales))
       .catch(err => res.status(422).json(err));
   },
@@ -14,7 +15,6 @@ module.exports = {
   findByID: (req, res) => {
     db.historiales
       .find({ _id: req.params.historialID })
-      .sort({ date: 1 })
       .then(dbHistoriales => res.json(dbHistoriales))
       .catch(err => res.status(422).json(err));
   },
