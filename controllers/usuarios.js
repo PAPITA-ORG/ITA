@@ -1,12 +1,15 @@
 // import database models and store in a variable
 const db = require("../models");
+// import LocalStrategy from passport-local and bcrypt
+const LocalStrategy = require("passport-local");
+const bcrypt = require("bcryptjs");
 
 // define methods for the usuarios controller
 module.exports = {
   // find all usuarios
   findAll: (req, res) => {
     db.usuarios
-      .find(req.query)
+      .find()
       .sort({ date: 1 })
       .then(dbUsuarios => res.json(dbUsuarios))
       .catch(err => res.status(422).json(err));
@@ -17,6 +20,50 @@ module.exports = {
       .find({ _id: req.params.usuarioID })
       .then(dbUsuarios => res.json(dbUsuarios))
       .catch(err => res.status(422).json(err));
+  },
+  // find usuario by credentials
+  findByCredentials: passport => {
+    passport.use(
+      new LocalStrategy(
+        { usernameField: "correo" },
+        (correo, password, done) => {
+          // Validar usuario
+          db.usuarios
+            .findOne({ correo: correo })
+            .then(usuario => {
+              if (!usuario) {
+                return done(null, false, {
+                  message: "Su correo no esta aun registrado!"
+                });
+              }
+
+              // Validar password
+              bcrypt.compare(password, usuario.password, (err, isMatch) => {
+                if (err) throw err;
+
+                if (isMatch) {
+                  return done(null, usuario);
+                } else {
+                  return done(null, false, {
+                    message: "Su clave esta incorrecta..."
+                  });
+                }
+              });
+            })
+            .catch(err => err);
+        }
+      )
+    );
+
+    passport.serializeUser((user, done) => {
+      return done(null, user.id);
+    });
+
+    passport.deserializeUser((id, done) => {
+      db.usuarios.findById(id, (err, user) => {
+        return done(err, user);
+      });
+    });
   },
   // delete one usuario
   deleteOne: (req, res) => {
@@ -40,59 +87,5 @@ module.exports = {
       .updateOne({ _id: req.params.id }, req.query)
       .then(dbUsuarios => res.json(dbUsuarios))
       .catch(err => res.status(422).json(err));
-  },
-  // create one usuario
-  create: (req, res) => {
-    const {
-      correo,
-      password,
-      genero,
-      parentezco,
-      parentezcoCod,
-      comuna,
-      comunaCod,
-      i1,
-      i2,
-      i3,
-      i4,
-      i5,
-      af_0
-    } = req.body;
-
-    // validate creation of usuario
-
-    // check required fields
-    let errors = [];
-    if (
-      !correo ||
-      !password ||
-      !genero ||
-      !parentezco ||
-      !parentezcoCod ||
-      !comuna ||
-      !comunaCod ||
-      !i1 ||
-      !i2 ||
-      !i3 ||
-      !i4 ||
-      !i5 ||
-      !af_0
-    ) {
-      errors.push({ msg: "LLene el formulario completo por favor" });
-    }
-
-    // check password length
-    if (password.length < 6) {
-      errors.push({ msg: "Su contraseña debe ser de al menos 6 caracteres" });
-    }
-
-    if (errors.length > 0) {
-      res.json(errors);
-    } else {
-      db.usuarios
-        .create(usuario)
-        .then(dbUsuarios => res.json(dbUsuarios))
-        .catch(err => res.status(422).json(err));
-    }
   }
 };
