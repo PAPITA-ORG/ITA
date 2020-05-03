@@ -113,6 +113,10 @@ router.post("/register", (req, res) => {
               newUsuario
                 .save()
                 .then(usuario => {
+                  req.flash(
+                    "success_msg",
+                    "Tu registracion esta completa! Continua con tu login."
+                  );
                   res.redirect("/");
                 })
                 .catch(err => res.status(422).json(err));
