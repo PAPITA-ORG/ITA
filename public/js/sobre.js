@@ -48,11 +48,12 @@ $(document).ready(() => {
     formGroup.append(emailLabel);
     formGroup.append(emailInput);
     formGroup.append(emailSmall);
-
+    
     sobreForm.append(formGroup);
+    sobreForm.append(submitButton);
 
     sobreContainer.append(sobreForm);
-    sobreContainer.append(submitButton);
+    
 
     $("#sobre-form-btn").click(e => {
       // e.preventDefault();
