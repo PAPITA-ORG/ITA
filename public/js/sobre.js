@@ -73,9 +73,10 @@ $(document).ready(() => {
     formGroup.append(passwordSmall);
 
     sobreForm.append(formGroup);
+    sobreForm.append(submitButton);
 
     sobreContainer.append(sobreForm);
-    sobreContainer.append(submitButton);
+    
 
     const appendUserForm = () => {
       let screenFields = [

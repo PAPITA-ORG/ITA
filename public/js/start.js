@@ -1,6 +1,6 @@
 $(document).ready(() => {
   // when user clicks...
-  $("#btn-enviar").on("click", e => {
+  $("#btn-start2-btn-sig").on("click", e => {
     // A larger form is appended to the DOM
     appendUserForm();
   });
