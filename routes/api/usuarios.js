@@ -33,6 +33,7 @@ router.post("/register", (req, res) => {
   const {
     correo,
     password,
+    edad,
     genero,
     parentezco,
     comuna,
@@ -51,6 +52,7 @@ router.post("/register", (req, res) => {
   if (
     !correo ||
     !password ||
+    !edad ||
     !genero ||
     !parentezco ||
     !comuna ||
@@ -66,7 +68,6 @@ router.post("/register", (req, res) => {
 
   // check password length
   if (password.length < 6) {
-    console.log("whoo");
     errors.push({ msg: "Su contraseña debe ser de al menos 6 caracteres" });
   }
 
@@ -89,6 +90,7 @@ router.post("/register", (req, res) => {
           const newUsuario = new Usuario({
             correo: correo,
             password: password,
+            edad: edad,
             genero: genero,
             parentezco: parentezco,
             comuna: comuna,
