@@ -51,10 +51,9 @@ $(document).ready(() => {
     
     sobreForm.append(formGroup);
     sobreForm.append(submitButton);
-
+    
     sobreContainer.append(sobreForm);
     
-
     $("#sobre-form-btn").click(e => {
       // e.preventDefault();
       // console.log("lalalalalala");
