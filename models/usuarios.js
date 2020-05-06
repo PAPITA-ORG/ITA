@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 const Usuarios = Schema({
   correo: { type: Schema.Types.String, required: true },
   password: { type: Schema.Types.String, required: true },
+  edad: { type: Schema.Types.Number, required: true },
   genero: { type: Schema.Types.String, required: true },
   parentezco: { type: Schema.Types.String, required: true },
   comuna: { type: Schema.Types.String },
