@@ -25,16 +25,18 @@ module.exports = {
   findByCredentials: passport => {
     passport.use(
       new LocalStrategy(
-        { usernameField: "correo" },
-        (correo, password, done) => {
+        { usernameField: "correo", passReqToCallback: true },
+        (req, correo, password, done) => {
           // Validar usuario
           db.usuarios
             .findOne({ correo: correo })
             .then(usuario => {
               if (!usuario) {
-                return done(null, false, {
-                  message: "Su correo no esta aun registrado!"
-                });
+                return done(
+                  null,
+                  false,
+                  req.flash("error_msg", "Su correo no esta aun registrado!")
+                );
               }
 
               // Validar password
@@ -44,9 +46,11 @@ module.exports = {
                 if (isMatch) {
                   return done(null, usuario);
                 } else {
-                  return done(null, false, {
-                    message: "Su clave esta incorrecta..."
-                  });
+                  return done(
+                    null,
+                    false,
+                    req.flash("error_msg", "Su clave esta incorrecta...")
+                  );
                 }
               });
             })

@@ -133,7 +133,7 @@ Descrito abajo se indican los elementos de cada view o .pug (views/) y como se c
 ###### Sobre
 
 - Descripcion breve del proyecto (y/o video) mas un boton para avanzar al registro (aun no hecho, solo placeholder).   
-- Una vez pasando el registro lleva a baseline para la encuesta inicial. Una vez terminado baseline lleva de vuelta hacia el start view.   
+- Una vez pasando el registro lleva a baseline para la encuesta inicial. Una vez terminado baseline lleva de vuelta hacia el index view (login).   
 
 ###### Start
 
@@ -142,12 +142,12 @@ Descrito abajo se indican los elementos de cada view o .pug (views/) y como se c
 - El usuario puede modificar el nivel de energia (reemplazando el AF1 que se actualiza por defecto con uno definido por el usuario) ESTO DEBE ESTAR CONECTADO AL GAGUE DESCRITO ANTES.   
 - hay un boton logout.  
 
-###### Selector
-
-- Llama un mensaje aleatorio de la base y lo proyecta junto con un loading falso que tiene un timer de 5 seg (loading). Al terminar el timer se pasa a selector (i.e. donde se sugiere la acitivdad).  
+- Al hacer clic a una actividad llama un mensaje aleatorio de la base y lo proyecta junto con un loading falso que tiene un timer de 5 seg (loading). Al terminar el timer se pasa a selector (i.e. donde se sugiere la acitivdad).  
 - muestra selector donde se ve la actividad sugerida usando el texto glosa (descriptor) en la base de actividades. Ademas tiene un boton de randomizer (skip) para generar una actividad distinta si el usuario lo desea (deberiamos incorporar esto a models para guardar informacion sobre el skip).   
 - el view tiene un timer (a definir) que lleva al end.   
 - end muestra una breve encuesta al fin de la actividad. Al cerrar, lleva de vuelta al start view.
+
+- ademas start permite acceder a un boton de metrics, que muestra tres tipos de metricas: con iconos de flores indica el tipo de actividad y dificultad; con barras muestra la duracion de la actividad; con linea muestra la evolucion de la energia en el tiempo. esta parte del script tiene un boton para volver a view.   
 
 ###### Team
 
@@ -158,7 +158,3 @@ Descrito abajo se indican los elementos de cada view o .pug (views/) y como se c
 - permite mostar un mensaje que te envie para escribir tu correo y recibir un token para cambiar contrasena (puede ser estatico)
 - con el token te lleva a un .js en el mismo que permita en el mismo view cambiar la contrasena y llevar al login de nuevo. 
 
-###### Metrics
-
-- muestra tres tipos de metricas: con iconos de flores indica el tipo de actividad y dificultad; con barras muestra la duracion de la actividad; con linea muestra la evolucion de la energia en el tiempo.   
-- tiene un boton para volver a view.   
