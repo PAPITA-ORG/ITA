@@ -57,7 +57,7 @@ button:focus {
 }
 
 form {
-  background-color: #6ad67cd7;
+  background-color: #38e06aab;
   padding: 30px;
   text-align: center;
   display: inline-block;
@@ -133,7 +133,7 @@ a:hover {
 
 @media(max-width:610px) {
   form {
-    width: 60%;
+    width: 70%;
   }
 
   button {
