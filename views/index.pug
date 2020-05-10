@@ -13,25 +13,25 @@ block content
               |, tu compania virtual 
               | para actividades infantiles.
             
-            div(class="col-md-12")
-            if error_msg!= ''
-              div.alert.alert-warning.alert-dismissible.fade.show(role="alert")=error_msg
-                button.close(type="button" data-dismiss='alert' aria-label='Close')
-                  span(aria-hidden='true') &times;
-            form(action="/api/usuarios/login", method='post')
-              div.label Ingresa a tu cuenta
-              div.username
-                input(type="text" placeholder="correo electronico" name='correo')
-              div.password
-                input(type="password" placeholder="contraseña" name='password')
-              div.checkbox
-                input(type='checkbox' name='agreement' checked)
-                |  Recuerdame
-              button(type='submit' class='btn btn-success' id='btn-login') Siguiente
-              div.social(style="margin-top: 10px")
-                button(type="button" class="btn-floating btn-lg btn-fb") <i class="fa fa-facebook"></i>
-                button(type="button" class="btn-floating btn-lg btn-gplus") <i class="fa fa-google-plus"></i>
-    
+            div(class="col-md-12 center")
+              if error_msg!= ''
+                div.alert.alert-warning.alert-dismissible.fade.show(role="alert")=error_msg
+                  button.close(type="button" data-dismiss='alert' aria-label='Close')
+                    span(aria-hidden='true') &times;
+              form(action="/api/usuarios/login", method='post')
+                div.label Ingresa a tu cuenta
+                div.username
+                  input(type="text" placeholder="correo electronico" name='correo')
+                div.password
+                  input(type="password" placeholder="contraseña" name='password')
+                div.checkbox
+                  input(type='checkbox' name='agreement' checked)
+                  |  Recuerdame
+                button(type='submit' class='btn btn-success' id='btn-login') Siguiente
+                div.social(style="margin-top: 10px")
+                  button(type="button" class="btn-floating btn-lg btn-fb") <i class="fa fa-facebook"></i>
+                  button(type="button" class="btn-floating btn-lg btn-gplus") <i class="fa fa-google-plus"></i>
+      
           div(class="col-md-12 " style="margin-top: 20px")
             p
               | Aun no has usado
