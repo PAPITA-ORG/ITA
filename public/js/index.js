@@ -5,6 +5,6 @@ $(document).ready(() => {
 
   $("#btn-team").on("click", () => {
     firstTime = false;
-    window.location.href = "team";
+    location.href = 'https://www.papita.org';
   });
 });
