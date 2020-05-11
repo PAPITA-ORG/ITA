@@ -3,8 +3,12 @@ $(document).ready(() => {
     window.location.href = "sobre";
   });
 
+  $("#btn-password").on("click", () => {
+    window.location.href = "registro";
+  });
+
   $("#btn-team").on("click", () => {
     firstTime = false;
-    location.href = 'https://www.papita.org';
+    window.open("https://www.papita.org", '_blank');
   });
 });

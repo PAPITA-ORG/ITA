@@ -2,18 +2,42 @@ extends layout
 
 block content
     
-    h1 ITA
+    div(class="container" id="start-main-container")
 
-    div(style="margin-top: 40px")
+        div(class='row align-items-center justify-content-center' id="start-main-container" style="margin-top: 20px")
+            canvas(
+                data-type="radial-gauge"
+                data-value="88"
+                data-width="200"
+                data-height="200"
+                data-ticks-angle="270"
+                data-bar-width="30"
+                data-bar-shadow="1"
+                data-color-bar-progress="rgba(77,175,124,.75)"
+                data-color-bar="rgba(30,130,76,1)"
+                data-border-shadow-width="1"
+                data-border-inner-width="1"
+                data-border-outer-width="1"
+                data-border-middle-width="1"
+                data-highlights="false"
+                data-value-box-stroke="0"
+                data-color-value-box-shadow="0"
+                data-value-box-border-radius="0"
+                data-value-text-shadow="0"
+                data-value-box="0"
+                data-needle="true")
 
-    div(class="container")
-        div(class='row align-items-center justify-content-center')
-            div(class="col-md-12")
-                p Puedo sugerir actividades en base a este nivel de energia o puedes cambiarlo moviendo la barra
-
-                P Haz clic en siguiente cuando esten listos para la actividad 
-
-                button(type='button' class='btn btn-success' id='start2-btn-sig') Siguiente
-
-    script(src="/js/start.js")
+            div(class="col-md-12 center" style="margin-top: 20px")
+                h5  Que quieres hacer hoy?   
+                p      
+                    a(href="/" id="btn-mind") 
+                        img(src="/images/personaje-08.svg" width="200" height="200")
+                    a(href="/" id="btn-diet") 
+                        img(src="/images/personaje-07.svg" width="160" height="160")
+                    a(href="/" id="btn-boy") 
+                        img(src="/images/personaje-06.svg" width="150" height="150")
+                    a(href="/" id="btn-stats") 
+                        img(src="/images/stats.png" width="140" height="140")
+    
+        script(src="/js/start.js")
     
