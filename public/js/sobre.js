@@ -227,7 +227,8 @@ $(document).ready(() => {
 
       $("#selector-btn-registrar").on("click", e => {
         e.preventDefault();
-
+        window.location.href("/");
+          
         usuarioRegistro["edad"] = Number($("#input0").val());
 
         axios
@@ -238,7 +239,7 @@ $(document).ready(() => {
     };
 
     $("#sobre-form-btn").click(e => {
-      e.preventDefault();
+            e.preventDefault();
       let formFields = [
         { field: "email", value: $("#sobre-form-email").val() },
         { field: "password", value: $("#sobre-form-password").val() }
