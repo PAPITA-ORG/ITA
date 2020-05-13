@@ -35,11 +35,11 @@ $(document).ready(() => {
       class: "center"
     }).width(300).height(300);
 
-    statsRow.append(potatoStat);
-    statsRowLabel.append(potatoStatLabel);
+    bodyRow.append(potatoStat);
+    bodyRowLabel.append(potatoStatLabel);
 
-    startContainer.append(statsRowLabel);
-    startContainer.append(statsRow); 
+    startContainer.append(bodyRowLabel);
+    startContainer.append(bodyRow); 
 
   };
 
