@@ -1,34 +1,34 @@
 $(document).ready(() => {
-  let startContainer = $("#start-main-container");
   $("#btn-stats").on("click", e => {
     e.preventDefault();
     stats();
   });
 
-  let startContainer = $("#start-main-container");
-  $("#btn-stats").on("click", e => {
+  $("#btn-body").on("click", e => {
     e.preventDefault();
-    stats();
+    body();
   });
 
-  const exercise = () => {
+  let startContainer = $("#start-main-container");
+  
+  const body = () => {
     startContainer.empty();
   
-    let statsRow = $("<div>", {
+    let bodyRow = $("<div>", {
       style: "margin-top: 20px",
       class: "col-sm-12 form-group justify-center center",
-      id: "stats-row"
+      id: "body-row"
     });
   
-    let statsRowLabel = $("<div>", {
+    let bodyRowLabel = $("<div>", {
       style: "margin-top: 20px",
       class: "col-sm-12 form-group justify-center center",
-      id: "stats-row"
+      id: "body-row"
     });
 
     let potatoStatLabel = $("<label>", {
       for: "start-potatostat"
-    }).text("No stats yet, here is a potato"); 
+    }).text("No body yet, here is a potato"); 
 
     let potatoStat = $("<img>", {
       src: "/images/papitacorp.jpg",
