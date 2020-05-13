@@ -1,91 +1,78 @@
 $(document).ready(() => {
-  // when user clicks...
-  $("#btn-start2-btn-sig").on("click", e => {
-    // A larger form is appended to the DOM
-    appendUserForm();
+  let startContainer = $("#start-main-container");
+  $("#btn-stats").on("click", e => {
+    e.preventDefault();
+    stats();
   });
 
-  const appendUserForm = () => {
-    $("#baseline-content").empty();
-    $("#terminos").empty();
-    let efficacies = [
-      "Tu nivel de energia (eficacia) la ultima vez fue"
-    ];
+  let startContainer = $("#start-main-container");
+  $("#btn-stats").on("click", e => {
+    e.preventDefault();
+    stats();
+  });
 
-    let inlineForm = $("<form>", {
-      id: "baseline-form"
+  const exercise = () => {
+    startContainer.empty();
+  
+    let statsRow = $("<div>", {
+      style: "margin-top: 20px",
+      class: "col-sm-12 form-group justify-center center",
+      id: "stats-row"
     });
-    $("#baseline-content").append(inlineForm);
-
-    let formGroupRow = $(`<div>`, { class: "form-group row" });
-    inlineForm.append(formGroupRow);
-
-    screenFields.map((field, i) => {
-      let fieldLabel = $(`<label>`, {
-        for: `input${i}`,
-        class: "col-sm-3 col-form-label"
-      }).text(field);
-      let formInputDiv = $(`<div>`, { class: "col-sm-3" });
-      let formInput = $(`<input>`, {
-        type: "text",
-        class: "form-control",
-        id: `input${i}`
-      }).css("margin-bottom", "10px");
-
-      formInputDiv.append(formInput);
-      formGroupRow.append(fieldLabel);
-      formGroupRow.append(formInputDiv);
-      // console.log(formGroupRow);
-    });
-    let efficaciesRow = $("<div>", {
-      class: "form-group row",
-      id: "form-efficacies"
+  
+    let statsRowLabel = $("<div>", {
+      style: "margin-top: 20px",
+      class: "col-sm-12 form-group justify-center center",
+      id: "stats-row"
     });
 
-    inlineForm.append(efficaciesRow);
+    let potatoStatLabel = $("<label>", {
+      for: "start-potatostat"
+    }).text("No stats yet, here is a potato"); 
 
-    efficacies.map((efficacy, i) => {
-      let efficacyLabel = $(`<label>`, {
-        for: `range${i}`,
-        class: "col-sm-6 col-form-label"
-      }).text(efficacy);
+    let potatoStat = $("<img>", {
+      src: "/images/papitacorp.jpg",
+      class: "center"
+    }).width(300).height(300);
 
-      let formInputDiv = $(`<div>`, { class: "col-sm-6" });
+    statsRow.append(potatoStat);
+    statsRowLabel.append(potatoStatLabel);
 
-      let formInput = $(`<input>`, {
-        type: "range",
-        val: "0",
-        min: "0",
-        max: "100",
-        class: "form-control",
-        id: `range${i}`
-      }).css("margin-bottom", "10px");
+    startContainer.append(statsRowLabel);
+    startContainer.append(statsRow); 
 
-      formInputDiv.append(formInput);
-      efficaciesRow.append(efficacyLabel);
-      efficaciesRow.append(formInputDiv);
-    });
-
-    let nextButtonDiv = $("<div>", { class: "text-center" });
-    let nextButton = $("<button>", {
-      class: "btn btn-success",
-      id: "baseline-btn-siguiente"
-    }).text("Siguiente");
-
-    nextButtonDiv.append(nextButton);
-
-    inlineForm.append(nextButtonDiv);
-
-    $("#baseline-btn-siguiente").on("click", e => {
-      e.preventDefault();
-      window.location.href = "selector";
-      // submit a new user
-      submitUserInfo();
-    });
   };
 
-  const submitUserInfo = () => {
-    // console.log("new user!");
-    // window.location.href = '/resultado'
+  const stats = () => {
+    startContainer.empty();
+  
+    let statsRow = $("<div>", {
+      style: "margin-top: 20px",
+      class: "col-sm-12 form-group justify-center center",
+      id: "stats-row"
+    });
+  
+    let statsRowLabel = $("<div>", {
+      style: "margin-top: 20px",
+      class: "col-sm-12 form-group justify-center center",
+      id: "stats-row"
+    });
+
+    let potatoStatLabel = $("<label>", {
+      for: "start-potatostat"
+    }).text("No stats yet, here is a potato"); 
+
+    let potatoStat = $("<img>", {
+      src: "/images/papitacorp.jpg",
+      class: "center"
+    }).width(300).height(300);
+
+    statsRow.append(potatoStat);
+    statsRowLabel.append(potatoStatLabel);
+
+    startContainer.append(statsRowLabel);
+    startContainer.append(statsRow); 
+
   };
+
 });

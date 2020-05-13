@@ -7,7 +7,7 @@ $(document).ready(() => {
     // call addForm function
     addForm();
   });
-
+  
   function addForm() {
     sobreContainer.empty();
 
@@ -24,18 +24,18 @@ $(document).ready(() => {
     // create a label
     let emailLabel = $("<label>", {
       for: "sobre-form-email"
-    }).text("Email address");
+    }).text("Ingresa tus datos");
 
-    let passwordLabel = $("<label>", {
+     let passwordLabel = $("<label>", {
       for: "sobre-form-password"
-    }).text("Contrasena");
+    }).text("Contrasena"); 
 
     // create email input tag
     let emailInput = $("<input>", {
       type: "email",
       class: "form-control",
       id: "sobre-form-email",
-      placeholder: "Enter verguita"
+      placeholder: "correo"
     });
 
     // create password input
@@ -43,7 +43,7 @@ $(document).ready(() => {
       type: "password",
       class: "form-control",
       id: "sobre-form-password",
-      placeholder: "Ingrese su contrasena"
+      placeholder: "contraseña"
     });
 
     // create small tag
@@ -56,22 +56,42 @@ $(document).ready(() => {
       class: "form-text text-muted"
     }).text("Asegure que su contrasena sea de mas de 6 caracteres");
 
+    // create checkbox
+
+    let checkBoxLabel = $("<label>", {
+      for: "sobre-checkbox",
+    }).text(" Acepto los ");
+
+    let checkBoxPopup = $("<a />", {
+      class: "trigger_popup_fricc",
+      text: "terminos y condiciones"
+    });
+
+     let checkBox = $("<input>", {
+      type: 'checkbox',
+      class: "checkbox",
+      id: "sobre-checkbox"
+     }).prop( "checked", false );
+     
     // create submit button
 
     let submitButton = $("<button>", {
       type: "submit",
-      class: "btn btn-primary",
+      class: "btn btn-success",
       id: "sobre-form-btn"
-    }).text("Submit");
+    }).text("Siguiente");
 
     formGroup.append(emailLabel);
     formGroup.append(emailInput);
-    formGroup.append(emailSmall);
+    //formGroup.append(emailSmall);
 
-    formGroup.append(passwordLabel);
+    //formGroup.append(passwordLabel);
     formGroup.append(passwordInput);
-    formGroup.append(passwordSmall);
-
+    //formGroup.append(passwordSmall);
+    formGroup.append(checkBox)
+    formGroup.append(checkBoxLabel)
+    formGroup.append(checkBoxPopup);
+    
     sobreForm.append(formGroup);
     sobreForm.append(submitButton);
     
@@ -81,12 +101,17 @@ $(document).ready(() => {
     const appendUserForm = () => {
       let screenFields = [
         "Edad",
-        "Parentezco",
+        "Parentezco con los niños/as",
         "Genero",
-        "Numero de ninos",
         "Comuna",
-        "Edades de ninos"
+        //"Numero de ninos",
+        //"Edades de ninos"
       ];
+      
+      let edades = [
+        "3","4","5","6","7","8","9","10"
+      ];
+
       let efficacies = [
         "Siempre puedo resolver problemas si trato lo suficiente",
         "Es facil lograr mis metas y mantener mis objetivos",
@@ -100,9 +125,15 @@ $(document).ready(() => {
       });
       sobreContainer.append(inlineForm);
 
+      let formGroupRowLabel = $("<label>", {
+        for: "formGroupRow",
+      }).text("Cuentanos mas de ti"); 
+
+      inlineForm.append(formGroupRowLabel);  
+
       let formGroupRow = $(`<div>`, { class: "form-group row" });
       inlineForm.append(formGroupRow);
-
+   
       screenFields.map((field, i) => {
         let fieldLabel = $(`<label>`, {
           for: `input${i}`,
@@ -120,10 +151,45 @@ $(document).ready(() => {
         formGroupRow.append(formInputDiv);
         // console.log(formGroupRow);
       });
+
+      let edadesRowLabel = $("<label>", {
+        for: "fedadesRow",
+      }).text("Que edad tienen los niños/as (marque todas las que aplica)"); 
+
+      let edadesRow = $("<div>", {
+        class: "col-sm-12 form-group justify-center",
+        id: "form-edades"
+      });
+
+      edades.map((field, i) => {
+        let edadesLabel = $(`<label>`, {
+          for: `input${i}`,
+          class: "col-sm-1"
+        }).text(field);
+        let formGroupEdad = $("<input>", {
+          type: 'checkbox',
+          class: "checkbox",
+          id: `checkbox${i}`
+         }).prop( "checked", false );
+
+        edadesRow.append(edadesLabel)
+        edadesRow.append(formGroupEdad)
+        // console.log(formGroupRow);
+      });
+
+      inlineForm.append(edadesRowLabel);  
+      inlineForm.append(edadesRow); 
+
       let efficaciesRow = $("<div>", {
         class: "form-group row",
         id: "form-efficacies"
       });
+      
+      let formInputLabel = $("<label>", {
+        for: "formInput",
+      }).text("Indique cuan de acuerdo esta con cada frase moviendo la barra"); 
+
+      inlineForm.append(formInputLabel);
 
       inlineForm.append(efficaciesRow);
 
@@ -143,7 +209,7 @@ $(document).ready(() => {
           class: "form-control",
           id: `range${i}`
         }).css("margin-bottom", "10px");
-
+                
         formInputDiv.append(formInput);
         efficaciesRow.append(efficacyLabel);
         efficaciesRow.append(formInputDiv);
@@ -153,7 +219,7 @@ $(document).ready(() => {
       let nextButton = $("<button>", {
         class: "btn btn-success",
         id: "selector-btn-registrar"
-      }).text("Registrar");
+      }).text("Registrarse");
 
       nextButtonDiv.append(nextButton);
 
@@ -161,7 +227,8 @@ $(document).ready(() => {
 
       $("#selector-btn-registrar").on("click", e => {
         e.preventDefault();
-
+        window.location.href("/");
+          
         usuarioRegistro["edad"] = Number($("#input0").val());
 
         axios
@@ -172,12 +239,19 @@ $(document).ready(() => {
     };
 
     $("#sobre-form-btn").click(e => {
-      e.preventDefault();
+            e.preventDefault();
       let formFields = [
         { field: "email", value: $("#sobre-form-email").val() },
         { field: "password", value: $("#sobre-form-password").val() }
       ];
 
+      if ($('#sobre-checkbox').is(':checked')) {
+          alert('Usted acepta los terminos y condiciones')
+      }
+      else {
+          alert('Por favor acepte los terminos y condiciones')
+      }
+      
       formFields.forEach(field => {
         usuarioRegistro[field.field] = field.value;
       });
@@ -188,4 +262,16 @@ $(document).ready(() => {
       appendUserForm();
     });
   }
+});
+
+$(window).load(function () {
+  $(".trigger_popup_fricc").click(function(){
+     $('.hover_bkgr_fricc').show();
+  });
+  $('.hover_bkgr_fricc').click(function(){
+      $('.hover_bkgr_fricc').hide();
+  });
+  $('.popupCloseButton').click(function(){
+      $('.hover_bkgr_fricc').hide();
+  });
 });
