@@ -10,7 +10,8 @@ Este documento tiene una descripcion del proyecto ITA, parte de PAPITACORP. Las 
 ###### Equipo de desarrollo
 
 Valeriano Arnaiz   
-Juan Carlos Caro   
+Juan Carlos Caro  
+Alexandra Muñoz         
 Jose Labrin   
 Samuel Vargas      
 Alberto Vargas Marte  
