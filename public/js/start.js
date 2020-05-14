@@ -31,16 +31,16 @@ $(document).ready(() => {
     }, 3000);
   });
 
-  $("#start-choice-btn").on("click", e => {
-    e.preventDefault();
-    //window.open("https://youtu.be/lGxNjqAjfkc", '_blank'); 
-    end();
-  });
-  
-  $("#start-form-btn").on("click", e => {
-    e.preventDefault();
-    window.location.href("/");
-  });
+    $("#start-choice-btn").on("click", e => {
+      e.preventDefault();
+      //window.open("https://youtu.be/lGxNjqAjfkc", '_blank'); 
+      addForm();
+    });
+    
+    $("#start-form-btn").on("click", e => {
+      e.preventDefault();
+      window.location.href("/");
+    });
 
   let startContainer = $("#start-main-container");
   
@@ -266,7 +266,7 @@ $(document).ready(() => {
     }
   }
 
-  function end() {
+  function addForm() {
     startContainer.empty();
 
     // create a form
