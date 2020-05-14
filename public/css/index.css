@@ -160,6 +160,17 @@ strong {
   color: rgb(10, 7, 167);
 }
 
+#myProgress {
+  width: 100%;
+  background-color: grey;
+}
+
+#myBar {
+  width: 1%;
+  height: 30px;
+  background-color: green;
+}
+
 /* Popup box BEGIN */
 .hover_bkgr_fricc{
   background:rgba(0,0,0,.4);

@@ -153,22 +153,22 @@ $(document).ready(() => {
       });
 
       let edadesRowLabel = $("<label>", {
-        for: "fedadesRow",
+        for: "edadesRow",
       }).text("Que edad tienen los niños/as (marque todas las que aplica)"); 
 
       let edadesRow = $("<div>", {
-        class: "col-sm-12 form-group justify-center",
+        class: "row justify-center",
         id: "form-edades"
       });
 
       edades.map((field, i) => {
         let edadesLabel = $(`<label>`, {
           for: `input${i}`,
-          class: "col-sm-1"
+          class: "col"
         }).text(field);
         let formGroupEdad = $("<input>", {
           type: 'checkbox',
-          class: "checkbox",
+          class: "checkbox col",
           id: `checkbox${i}`
          }).prop( "checked", false );
 
