@@ -1,9 +1,11 @@
 $(document).ready(() => {
-  // when user clicks...
+  
+  // Condicion de contraseñas iguales
   $("#btn-registro-enviar").on("click", () => {
-    window.location.href = "/";
-
-    
-
+    if ($("#pw.form-control").val() != $("#pw2.form-control").val()){
+      alert("Las contraseñas no coinciden")
+    }else{
+      window.location.href = "/";
+    }
   });
 });
