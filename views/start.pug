@@ -4,7 +4,7 @@ block content
     
     div(class="container" id="start-main-container")
 
-        div(class='row align-items-center justify-content-center' id="start-top-container" style="margin-top: 20px")
+        div(class='container row align-items-center justify-content-center' id="start-top-container" style="margin-top: 20px")
             canvas(
                 data-type="radial-gauge"
                 data-value="88"
@@ -27,7 +27,7 @@ block content
                 data-value-box="0"
                 data-needle="true")
 
-        div(class="col-md-12 center" style="margin-top: 20px" id="start-bottom-container")
+        div(class="container col-md-12 center" style="margin-top: 20px" id="start-bottom-container")
             h5  Que quieres hacer hoy?   
             p      
                 a(href="/" id="btn-mind") 
@@ -40,4 +40,6 @@ block content
                     img(src="/images/stats.png" width="140" height="140")
 
         script(src="/js/start.js")
+        script(src="https://code.jquery.com/jquery.min.js")
+        script(src="/js/emotion-ratings.js")
     
