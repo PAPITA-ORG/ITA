@@ -8,30 +8,33 @@ $(document).ready(() => {
     e.preventDefault();
     loading();
     move();
-    setTimeout(function (){
-      selector();
-    }, 3000);
+    body();
+    selector();
   });
 
   $("#btn-diet").on("click", e => {
     e.preventDefault();
     loading();
     move();
-    setTimeout(function (){
-      selector();
-    }, 3000); 
+    diet();
+    selector();
   });
 
   $("#btn-mind").on("click", e => {
     e.preventDefault();
     loading();
     move();
-    setTimeout(function (){
-      selector();
-    }, 3000);
+    mind();
+    selector();
   });
 
-    $("#start-choice-btn").on("click", e => {
+    $("#start-choice-btn-1").on("click", e => {
+      e.preventDefault();
+      //window.open("https://youtu.be/lGxNjqAjfkc", '_blank'); 
+      addForm();
+    });
+
+    $("#start-choice-btn-2").on("click", e => {
       e.preventDefault();
       //window.open("https://youtu.be/lGxNjqAjfkc", '_blank'); 
       addForm();
@@ -43,99 +46,65 @@ $(document).ready(() => {
     });
 
   let startContainer = $("#start-main-container");
-  
+  let startTopContainer = $("#start-top-container");
+  let startBottomContainer = $("#start-bottom-container");
+
   const mind = () => {
-    startContainer.empty();
-  
+    startTopContainer.empty();
+     
     let mindRow = $("<div>", {
       style: "margin-top: 20px",
       class: "col-sm-12 form-group justify-center center",
       id: "mind-row"
     });
-  
-    let mindRowLabel = $("<div>", {
-      style: "margin-top: 20px",
-      class: "col-sm-12 form-group justify-center center",
-      id: "mind-row"
-    });
 
-    let potatoStatLabel = $("<label>", {
+    let mindLabel = $("<label>", {
       for: "start-potatostat"
-    }).text("No mind yet, here is a potato"); 
+    }).text("What is mind?"); 
 
-    let potatoStat = $("<img>", {
-      src: "/images/papitacorp.jpg",
-      class: "center"
-    }).width(300).height(300);
+    mindRowLabel.append(mindLabel);
 
-    mindRow.append(potatoStat);
-    mindRowLabel.append(potatoStatLabel);
-
-    startContainer.append(mindRowLabel);
+    mindRow.append(mindLabel);
     startContainer.append(mindRow); 
 
   };
 
   const diet = () => {
-    startContainer.empty();
-  
+    startTopContainer.empty();
+     
     let dietRow = $("<div>", {
       style: "margin-top: 20px",
       class: "col-sm-12 form-group justify-center center",
       id: "diet-row"
     });
-  
-    let dietRowLabel = $("<div>", {
-      style: "margin-top: 20px",
-      class: "col-sm-12 form-group justify-center center",
-      id: "diet-row"
-    });
 
-    let potatoStatLabel = $("<label>", {
+    let dietLabel = $("<label>", {
       for: "start-potatostat"
-    }).text("No diet yet, here is a potato"); 
+    }).text("What is diet?"); 
 
-    let potatoStat = $("<img>", {
-      src: "/images/papitacorp.jpg",
-      class: "center"
-    }).width(300).height(300);
+    dietRowLabel.append(dietLabel);
 
-    dietRow.append(potatoStat);
-    dietRowLabel.append(potatoStatLabel);
-
-    startContainer.append(dietRowLabel);
+    dietRow.append(dietLabel);
     startContainer.append(dietRow); 
 
   };
 
   const body = () => {
-    startContainer.empty();
-  
+    startTopContainer.empty();
+     
     let bodyRow = $("<div>", {
       style: "margin-top: 20px",
       class: "col-sm-12 form-group justify-center center",
       id: "body-row"
     });
-  
-    let bodyRowLabel = $("<div>", {
-      style: "margin-top: 20px",
-      class: "col-sm-12 form-group justify-center center",
-      id: "body-row"
-    });
 
-    let potatoStatLabel = $("<label>", {
+    let bodyLabel = $("<label>", {
       for: "start-potatostat"
-    }).text("No body yet, here is a potato"); 
+    }).text("What is body?"); 
 
-    let potatoStat = $("<img>", {
-      src: "/images/papitacorp.jpg",
-      class: "center"
-    }).width(300).height(300);
+    bodyRowLabel.append(bodyLabel);
 
-    bodyRow.append(potatoStat);
-    bodyRowLabel.append(potatoStatLabel);
-
-    startContainer.append(bodyRowLabel);
+    bodyRow.append(bodyLabel);
     startContainer.append(bodyRow); 
 
   };
@@ -174,7 +143,7 @@ $(document).ready(() => {
 
   const selector = () => {
     
-    startContainer.empty();
+    startBottomContainer.empty();
     
     let startSelector = $("<div>", {
       style: "margin-top: 20px",
@@ -188,22 +157,52 @@ $(document).ready(() => {
     }).width(200).height(240);
 
     let startSelectorLabel = $("<label>", {
-      for: "start-random-selector"
+      for: "start-selector"
     }).text("Quieres hacer esta actividad? (haz clic abajo)");
 
-    let startButton = $("<button>", {
-      type: "submit",
-      class: "btn btn-success",
-      id: "start-choice-btn"
+    let startButton1 = $("<button>", {
+      //type: "submit",
+      class: "btn btn-success1",
+      id: "start-choice-btn-1"
     }).text("Aprende actividades saludables con ITA");
+
+    let startButton2 = $("<button>", {
+      //type: "submit",
+      class: "btn btn-success2",
+      id: "start-choice-btn-2"
+    }).text("Prueba ITA hoy");
+
+    let startRandom = $("<div>", {
+      style: "margin-top: 10px",
+      class: "col-sm-12 form-group justify-center center",
+      id: "start-selector"
+    });
+
+    let startRandomLabel = $("<label>", {
+      for: "start-random-selector"
+    }).text("Prefieres otra?");
+
+    let startRandomButton = $("<button>", {
+      //type: "submit",
+      class: "btn btn-success",
+      id: "start-random-btn"
+    }).text("Prueba de nuevo");
 
     linebreak = document.createElement("br");
   
     startSelector.append(startIta);  
     startSelector.append(startSelectorLabel);
-    startSelector.append(linebreak);
-    startSelector.append(startButton);
-    startContainer.append(startSelector); 
+    //startSelector.append(linebreak);
+    startSelector.append(startButton1);
+    startSelector.append(startButton2);
+
+    startRandom.append(startRandomLabel);
+    //startRandom.append(linebreak);
+    startRandom.append(startRandomButton);
+
+    startContainer.append(startSelector);
+    startContainer.append(startRandom);
+     
     
   };  
 
