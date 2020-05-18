@@ -163,7 +163,7 @@ $(document).ready(() => {
 
       edades.map((field, i) => {
         let edadesLabel = $(`<label>`, {
-          for: `input${i}`,
+          for: `ages${i}`,
           class: "col"
         }).text(field);
         let formGroupEdad = $("<input>", {
@@ -224,24 +224,43 @@ $(document).ready(() => {
       nextButtonDiv.append(nextButton);
 
       inlineForm.append(nextButtonDiv);
-
+      
       $("#selector-btn-registrar").on("click", e => {
         e.preventDefault();
-        window.location.href("/");
-          
-        usuarioRegistro["edad"] = Number($("#input0").val());
+        console.log(usuarioRegistro);
+        
+        var af_0 = 69;
+        
+        let formFields = [
+          {field: "edad", value: Number($("#input0").val())},
+          {field: "parentezco", value: $("#input1").val()},
+          {field: "genero", value: $("#input2").val()},
+          {field: "comuna", value: $("#input3").val()},
+          {field: "i1", value: Number($("#range0").val())},
+          {field: "i2", value: Number($("#range1").val())},
+          {field: "i3", value: Number($("#range2").val())},
+          {field: "i4", value: Number($("#range3").val())},
+          {field: "i5", value: Number($("#range4").val())},
+          {field: "af_0", value: af_0},      
+        ];
+       
+        formFields.forEach(field => {
+          usuarioRegistro[field.field] = field.value;
+        });
 
         axios
           .post("/api/usuarios/register", usuarioRegistro)
           .then(res => res)
           .catch(err => err);
+
+        window.location.href="/";
       });
     };
 
     $("#sobre-form-btn").click(e => {
             e.preventDefault();
       let formFields = [
-        { field: "email", value: $("#sobre-form-email").val() },
+        { field: "correo", value: $("#sobre-form-email").val() },
         { field: "password", value: $("#sobre-form-password").val() }
       ];
 
