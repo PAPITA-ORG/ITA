@@ -35,8 +35,8 @@ router.post("/register", (req, res) => {
     password,
     edad,
     genero,
-    parentezco,
-    comuna,
+    parentesco,
+    comunaCod,
     i1,
     i2,
     i3,
@@ -54,8 +54,8 @@ router.post("/register", (req, res) => {
     !password ||
     !edad ||
     !genero ||
-    !parentezco ||
-    !comuna ||
+    !parentesco ||
+    !comunaCod ||
     !i1 ||
     !i2 ||
     !i3 ||
@@ -92,8 +92,8 @@ router.post("/register", (req, res) => {
             password: password,
             edad: edad,
             genero: genero,
-            parentezco: parentezco,
-            comuna: comuna,
+            parentesco: parentesco,
+            comunaCod: comunaCod,
             i1: i1,
             i2: i2,
             i3: i3,
