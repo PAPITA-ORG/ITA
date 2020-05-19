@@ -1,5 +1,6 @@
 $(document).ready(() => {
   let usuarioRegistro = {};
+  let comunasList = {};
 
   let sobreContainer = $("#sobre-main-container");
   $("#btn-sig").click(e => {
@@ -10,6 +11,19 @@ $(document).ready(() => {
   
   function addForm() {
     sobreContainer.empty();
+
+    axios
+    .get("/api/comunas")
+    .then((res) => {console.log(res.data)})
+    .catch(err => err);
+
+    /*let comunasList = "#res.data";
+
+    var genero = {
+      {"firstName":"John", "lastName":"Doe"},
+      {"firstName":"Anna", "lastName":"Smith"},
+      {"firstName":"Peter", "lastName":"Jones"}
+    };*/
 
     // create a form
     let sobreForm = $("<form>", {
