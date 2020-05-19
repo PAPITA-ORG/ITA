@@ -4,9 +4,15 @@ const mongoKeys = require("./config/keys").MONGODB_URI;
 const mongoose = require("mongoose");
 const PORT = process.env.PORT || 3000;
 const routes = require("./routes");
+const passport = require("passport");
+const session = require("express-session");
+const flash = require("express-flash");
 
 // initialize express app
 const app = express();
+
+// passport config
+require("./config/passport")(passport);
 
 // Serve static assets
 app.use(express.static(path.join(__dirname, "public")));
@@ -14,6 +20,30 @@ app.use(express.static(path.join(__dirname, "public")));
 // Parse json request bodies
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Express Session
+app.use(
+  session({
+    secret: "secret",
+    resave: true,
+    saveUninitialized: true
+  })
+);
+
+// passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// use flash
+app.use(flash());
+
+// Global Variables
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash("success_msg");
+  res.locals.error_msg = req.flash("error_msg");
+  res.locals.error = req.flash("error");
+  next();
+});
 
 // use all routes
 app.use(routes);

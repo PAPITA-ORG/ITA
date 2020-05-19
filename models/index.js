@@ -1,7 +1,8 @@
 module.exports = {
-  usuarios: require("./usuario"),
+  usuarios: require("./usuarios"),
   actividades: require("./actividades"),
   hijos: require("./hijos"),
   historial: require("./historial"),
-  mensajes: require("./mensajes")
+  mensajes: require("./mensajes"),
+  comunas: require("./comunas")
 };

@@ -1,11 +1,20 @@
-// start express router
+// instantiate express router and store in variable `router`
 const router = require("express").Router();
 
-// import all routers
-const usuariosRouter = require("./usuarios");
+// import all routes
+const usuariosRoutes = require("./usuarios");
+const mensajesRoutes = require("./mensajes");
+const historialRoutes = require("./historial");
+const hijosRoutes = require("./hijos");
+const actividadesRoutes = require("./actividades");
+const comunasRoutes = require("./comunas");
 
-// route routers
-router.use("/usuarios", usuariosRouter);
+// assign respective routes under '/api'
+router.use("/usuarios", usuariosRoutes);
+router.use("/mensajes", mensajesRoutes);
+router.use("/historial", historialRoutes);
+router.use("/hijos", hijosRoutes);
+router.use("/actividades", actividadesRoutes);
+router.use("/comunas", comunasRoutes);
 
-// export api router as route
 module.exports = router;
