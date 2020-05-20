@@ -12,6 +12,11 @@ $(document).ready(() => {
   });
   // condicion boton enviar
   $("#btn-registro-enviar").on("click", () => {
-    window.location.href = "/";
+    axios
+          .post("/api/usuarios/register", usuarioRegistro)
+          .then(res => res)
+          .catch(err => err);
+          
+    window.location.href = "/";    
   });
 });
