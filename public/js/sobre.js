@@ -8,7 +8,6 @@ $(document).ready(() => {
     axios
     .get("/api/comunas")
     .then((res) => {
-      console.log(res.data);
       comunasList = res.data;
       // call addForm function
       addForm();   
@@ -107,8 +106,6 @@ $(document).ready(() => {
     
 
     const appendUserForm = () => {
-
-    console.log(comunasList);
     
     var generoList = [
       {"genero":1, "nombre":"prefiero no decir"},
@@ -285,9 +282,8 @@ $(document).ready(() => {
       
       $("#selector-btn-registrar").on("click", e => {
         e.preventDefault();
-        console.log(usuarioRegistro);
-        
-        var af_0 = 69;
+
+        let af_0 = -1;
 
         let genero = generoList.filter(d => {
           return d.nombre === $("#input2").val();  
@@ -297,13 +293,9 @@ $(document).ready(() => {
           return d.nombre === $("#input1").val();  
         });
 
-        console.log(genero, parentesco);
-
         let comuna = comunasList.filter(d => {
           return d.comuna === $("#input3").val();  
         });
-
-        console.log(comuna);
 
         let formFields = [
           {field: "edad", value: Number($("#input0").val())},
@@ -317,17 +309,46 @@ $(document).ready(() => {
           {field: "i5", value: Number($("#range4").val())},
           {field: "af_0", value: af_0},      
         ];
-       
+        
+        let formRanges = formFields.filter(field => {
+          return (field.field === "i1" ||
+          field.field === "i2" ||
+          field.field === "i3" ||
+          field.field === "i4" ||
+          field.field === "i5")  
+        });
+        
+        let totalRanges = 0;
+
+        for(var i = 0; i < formRanges.length; i++) {
+          totalRanges += formRanges[i].value;
+        }
+
+        af_0 = totalRanges / formRanges.length;
+
+        function replaceByValue( field, oldvalue, newvalue ) {
+          for( var k = 0; k < formFields.length; ++k ) {
+              if( oldvalue == formFields[k][field] ) {
+                  formFields[k][field] = newvalue ;
+              }
+          }
+          return formFields;
+        }
+
+        replaceByValue('value','-1',af_0);
+
         formFields.forEach(field => {
           usuarioRegistro[field.field] = field.value;
         });
+        
+        console.log(usuarioRegistro);
 
         axios
           .post("/api/usuarios/register", usuarioRegistro)
           .then(res => res)
           .catch(err => err);
 
-        //window.location.href="/";
+        window.location.href="/";
       });
     };
 
@@ -366,5 +387,4 @@ $(document).ready(() => {
   });
   $('.popupCloseButton').click(function(){
       $('.hover_bkgr_fricc').hide();
-  });
-});*/
+  });*/

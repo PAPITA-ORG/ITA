@@ -9,7 +9,7 @@ $(document).ready(() => {
     loading();
     setTimeout(function(){
       body();
-    }, 3000);
+    }, 10000);
     setTimeout(function(){
       startEndSurvey();
     }, 15000);    
@@ -20,7 +20,7 @@ $(document).ready(() => {
     loading();
     setTimeout(function(){
       diet();
-    }, 3000);
+    }, 10000);
     setTimeout(function(){
       startEndSurvey();
     }, 15000);
@@ -31,7 +31,7 @@ $(document).ready(() => {
     loading();
     setTimeout(function(){
       mind();
-    }, 3000);
+    }, 10000);
     setTimeout(function(){
       startEndSurvey();
     }, 15000);    
