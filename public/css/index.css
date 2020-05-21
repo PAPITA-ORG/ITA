@@ -19,26 +19,44 @@ body {
   height: 100vh;
 }
 
+/**/
+.starrating2 > input {display: none;}  /* Remove radio buttons */
+
+.starrating2 > label:before { 
+  content: "\f004"; /* Star */
+  margin: 2px;
+  font-size: 2em;
+  font-family: FontAwesome;
+  display: inline-block; 
+}
+
+.starrating2 > label
+{
+  color: #409b03; /* Start color when not clicked */
+}
+
+.starrating2 > input:checked ~ label
+{ color: #b10c1a ; } /* Set yellow color when star checked */
+
+/**/
 .starrating > input {display: none;}  /* Remove radio buttons */
 
 .starrating > label:before { 
   content: "\f004"; /* Star */
   margin: 2px;
-  font-size: 4em;
+  font-size: 2em;
   font-family: FontAwesome;
   display: inline-block; 
 }
 
 .starrating > label
 {
-  color: #222222; /* Start color when not clicked */
+  color: #409b03; /* Start color when not clicked */
 }
 
 .starrating > input:checked ~ label
-{ color: #ffca08 ; } /* Set yellow color when star checked */
+{ color: #b10c1a ; } /* Set yellow color when star checked */
 
-.starrating > input:hover ~ label
-{ color: #ffca08 ;  } /* Set yellow color when star hover */
 
 .center {
   text-align: center;
