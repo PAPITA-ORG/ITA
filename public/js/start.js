@@ -96,34 +96,57 @@ $(document).ready(() => {
     
     let starsRating = [1,2,3,4,5];
 
+    let rateUserDiv = $("<div>", {
+      id: "rate-user-div",
+    });
+    
+    let rateUserLabel = $("<label>", {
+      for: "rate-user-div"
+    }).text("Te gusto la actividad?");
+
     let rateUser = $("<div>", {
       id: "rate-user",
       class: "starrating risingstar d-flex justify-content-center flex-row-reverse"
     });
-
+    
+    rateUserDiv.append(rateUserLabel)
+    
     starsRating.map((stars, i) => {
 
-      let stars = $(`<input>`, {
+      let starUserInput = $(`<input>`, {
         type: "radio",
-        value: "${i}",
-        min: "0",
-        max: "100",
-        class: "form-control",
-        id: `star${i}`,
+        value: i+1,
+        id: `staruser${i+1}`,
         name: "rating"
       });
+
+      let starUserInputLabel = $(`<label>`, {
+        for: `staruser${i+1}`,
+      });
               
-      rateUser.append(stars);
+      rateUser.append(starUserInput);
+      rateUser.append(starUserInputLabel);      
     });
+
+    rateUserDiv.append(rateUser);
 
     // child rating
     
+    let rateChildDiv = $("<div>", {
+      id: "rate-child-div",
+    });
+    
+    let rateChildLabel = $("<label>", {
+      for: "rate-child-div"
+    }).text("Te gusto la actividad a tu niño o niña?");
+
     let rateChild = $("<div>", {
       id: "rate-child",
       class: "starrating risingstar d-flex justify-content-center flex-row-reverse"
     });    
     */
 
+    rateChildDiv.append(rateChild);
 
     //  self-efficacy bar
 
@@ -161,8 +184,10 @@ $(document).ready(() => {
     formGroup.append(formLabel);
     
     startForm.append(formGroup);
+
     //startForm.append(rateUser);
     //startForm.append(rateChild);
+
     startForm.append(efficacyEnd);
     startForm.append(submitButton);
     startTopContainer.append(startForm);
@@ -170,7 +195,7 @@ $(document).ready(() => {
 
     $("#start-form-btn").on("click", e => {
       e.preventDefault();
-      window.location.href="start";
+      //window.location.href="start";
       //PUSH END SURVEY
     });
 
