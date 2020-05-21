@@ -5,17 +5,8 @@ block content
     div(class="container" id="start-main-container")
 
         div(class='container row align-items-center justify-content-center' id="start-top-container" style="margin-top: 20px")
-            div(id="radialgauge")
-                //-script.
-                    $(function () {
-                        $("#radialgauge").igRadialGauge({
-                            height: "200px",
-                            width: "100%",
-                            maximumValue: 100,
-                            isNeedleDraggingEnabled: true
-                        });
-                    });
-
+            div(id="knob")
+                
         div(class="container col-md-12 center" style="margin-top: 20px" id="start-bottom-container")
             h5  Que quieres hacer hoy?   
             p      
@@ -29,5 +20,5 @@ block content
                     img(src="/images/stats.png" width="140" height="140")
 
         script(src="/js/start.js")
-
+        
     

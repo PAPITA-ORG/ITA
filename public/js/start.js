@@ -1,4 +1,5 @@
 $(document).ready(() => {
+
   $("#btn-stats").on("click", e => {
     e.preventDefault();
     stats();
@@ -10,9 +11,9 @@ $(document).ready(() => {
     setTimeout(function(){
       body();
     }, 10000);
-    setTimeout(function(){
+    /*setTimeout(function(){
       startEndSurvey();
-    }, 15000);    
+    }, 15000);*/    
   });
 
   $("#btn-diet").on("click", e => {
@@ -69,9 +70,9 @@ $(document).ready(() => {
 
     var emotionsArray = ['angry','disappointed','meh', 'happy', 'inLove'];
       
-      $("#rate-user").emotionsRating({
-        emotions: emotionsArray
-      });
+    $("#rate-user").emotionsRating({
+      emotions: emotionsArray
+    });
 
     // child rating (not working)
     
@@ -80,11 +81,12 @@ $(document).ready(() => {
     });    
     
     var emotionsArray = ['angry','disappointed','meh', 'happy', 'inLove'];
-
+    
       $("#rate-child").emotionsRating({
         emotions: emotionsArray
       });
-
+    
+    console.log(emotionsRating);
     //  self-efficacy bar
 
     let efficacyEnd = $("<div>", {
