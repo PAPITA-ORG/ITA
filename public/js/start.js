@@ -1,5 +1,36 @@
 $(document).ready(() => {
 
+  var $myFuelGauge;
+
+  $( function () {
+    $myFuelGauge = $("div#fuel-gauge").dynameter({
+      width: 200,
+      label: 'fuel',
+      value: 7.5,
+      min: 0.0,
+      max: 15.0,
+      unit: 'gal',
+      regions: { // Value-keys and color-refs
+        0: 'error',
+        .5: 'warn',
+        1.5: 'normal'
+      }
+    });
+
+    // jQuery UI slider widget
+    $('div#fuel-gauge-control').slider({
+      min: 0.0,
+      max: 15.0,
+      value: 7.5,
+      step: .1,
+      slide: function (evt, ui) {
+        $myFuelGauge.changeValue((ui.value).toFixed(1));
+      }
+    });
+
+  });
+
+
   $("#btn-stats").on("click", e => {
     e.preventDefault();
     stats();
