@@ -62,31 +62,39 @@ $(document).ready(() => {
       for: "form-group"
     }).text("Cuentame tu experiencia");
 
-    // user rating (not working)
+    // user rating
     
+    let starsRating = [1,2,3,4,5];
+
     let rateUser = $("<div>", {
-      id: "rate-user"
+      id: "rate-user",
+      class: "starrating risingstar d-flex justify-content-center flex-row-reverse"
     });
 
-    var emotionsArray = ['angry','disappointed','meh', 'happy', 'inLove'];
-      
-    $("#rate-user").emotionsRating({
-      emotions: emotionsArray
+    starsRating.map((stars, i) => {
+
+      let stars = $(`<input>`, {
+        type: "radio",
+        value: "${i}",
+        min: "0",
+        max: "100",
+        class: "form-control",
+        id: `star${i}`,
+        name: "rating"
+      });
+              
+      rateUser.append(stars);
     });
 
-    // child rating (not working)
+    // child rating
     
     let rateChild = $("<div>", {
-      id: "rate-child"
+      id: "rate-child",
+      class: "starrating risingstar d-flex justify-content-center flex-row-reverse"
     });    
     
-    var emotionsArray = ['angry','disappointed','meh', 'happy', 'inLove'];
-    
-      $("#rate-child").emotionsRating({
-        emotions: emotionsArray
-      });
-    
-    console.log(emotionsRating);
+
+
     //  self-efficacy bar
 
     let efficacyEnd = $("<div>", {
