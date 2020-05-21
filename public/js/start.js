@@ -140,7 +140,7 @@ $(document).ready(() => {
 
     $("#start-form-btn").on("click", e => {
       e.preventDefault();
-      window.location.href="start";
+      //window.location.href="start";
       //PUSH END SURVEY
     });
 
