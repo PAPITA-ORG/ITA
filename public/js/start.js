@@ -13,7 +13,7 @@ $(document).ready(() => {
     }, 1000);
     setTimeout(function(){
       startEndSurvey();
-    }, 1000); 
+    }, 1000);   
   });
 
   $("#btn-diet").on("click", e => {
