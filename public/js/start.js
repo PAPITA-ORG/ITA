@@ -87,7 +87,7 @@ $(document).ready(() => {
         type: "radio",
         value: i+1,
         id: `staruser${i+1}`,
-        name: "rating"
+        name: "ratingUser"
       });
 
       let starUserInputLabel = $(`<label>`, {
@@ -112,7 +112,7 @@ $(document).ready(() => {
 
     let rateChild = $("<div>", {
       id: "rate-child",
-      class: "starrating2 risingstar d-flex justify-content-center flex-row-reverse"
+      class: "starrating risingstar d-flex justify-content-center flex-row-reverse"
     });
     
     rateChildDiv.append(rateChildLabel)
@@ -123,7 +123,7 @@ $(document).ready(() => {
         type: "radio",
         value: i+1,
         id: `starchild${i+1}`,
-        name: "rating"
+        name: "ratingChild"
       });
 
       let starChildInputLabel = $(`<label>`, {
