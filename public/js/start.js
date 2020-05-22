@@ -2,34 +2,137 @@ $(document).ready(() => {
 
   var $myFuelGauge;
 
+  let startContainer = $("#start-main-container");
+  let startTopContainer = $("#start-top-container");
+  let startBottomContainer = $("#start-bottom-container");
+
+  let fuelGauge = $("<div>", {
+    class: "fuel-gauge"
+  });
+  
+  let fuelGaugeControl = $("<div>", {
+    class: "fuel-gague-control"
+  });
+  
+  const startDashboard = () => {
+
+    startTopContainer.empty();
+    startBottomContainer.empty();
+    
+    let efficacyStart = $("<div>", {
+      class: "form-group row",
+      id: "form-efficacies"
+    });
+
+    let efficacyStartLabel = $(`<label>`, {
+      class: "col-sm-6 col-form-label"
+    }).text("Cual es tu energia ahora?");
+
+    let formInputDiv = $(`<div>`, { class: "col-sm-6" });
+
+    let formInput = $("<input>", {
+      type: "range",
+      val: "0",
+      min: "0",
+      max: "100",
+      class: "form-control",
+    }).css("margin-bottom", "10px");
+            
+    formInputDiv.append(formInput);
+    efficacyStart.append(efficacyStartLabel);
+    efficacyStart.append(formInputDiv);
+    fuelGauge.append(fuelGaugeControl);
+    startTopContainer.append(fuelGauge);
+    startTopContainer.append(efficacyStart);
+
+    let tituloContainer = $("<h5>", {
+    }).text('Que quieres hacer hoy?');
+    let parrafContainer = $("<p>", {
+    });
+    let btnmind = $("<a>", {
+      href:'/',
+      id: "btn-mind"
+    });
+    let img1 = $("<img>", {
+      src: "/images/personaje-08.svg",
+      width:"200",
+      height:"200"
+    });
+
+    let btndiet = $("<a>", {
+      href:'/',
+      id: "btn-diet"
+    });
+    let img2 = $("<img>", {
+      src: "/images/personaje-07.svg",
+      width:"160",
+      height:"216"
+    });
+
+    let btnbody = $("<a>", {
+      href:'/',
+      id: "btn-body"
+    });
+    let img3 = $("<img>", {
+      src: "/images/personaje-06.svg",
+      width:"150",
+      height:"150"
+    });
+
+    let btnstats = $("<a>", {
+      href:'/',
+      id: "btn-stats"
+    });
+    let img4 = $("<img>", {
+      src: "/images/stats.png",
+      width:"140",
+      height:"140"
+    });
+    
+    btnstats.append(img4);
+    parrafContainer.append(btnstats);
+    btnbody.append(img3);
+    parrafContainer.append(btnbody);
+    btndiet.append(img2);
+    parrafContainer.append(btndiet);
+    btnmind.append(img1);
+    parrafContainer.append(btnmind);
+    startBottomContainer.append(tituloContainer);
+    startBottomContainer.append(parrafContainer);
+
+  };
+
   $( function () {
-    $myFuelGauge = $("div#fuel-gauge").dynameter({
+
+    $myFuelGauge = $("#fuel-gauge").dynameter({
       width: 200,
-      label: 'fuel',
-      value: 7.5,
+      label: '',
+      value: 80,
       min: 0.0,
-      max: 15.0,
-      unit: 'gal',
+      max: 100.0,
+      unit: '',
       regions: { // Value-keys and color-refs
         0: 'error',
-        .5: 'warn',
-        1.5: 'normal'
+        25: 'warn',
+        60: 'normal',
       }
     });
 
     // jQuery UI slider widget
-    $('div#fuel-gauge-control').slider({
+
+    $('#fuel-gauge-control').slider({
       min: 0.0,
-      max: 15.0,
-      value: 7.5,
+      max: 100.0,
+      value: 37.5,
       step: .1,
       slide: function (evt, ui) {
         $myFuelGauge.changeValue((ui.value).toFixed(1));
       }
     });
-
+    
   });
 
+  startDashboard();
 
   $("#btn-stats").on("click", e => {
     e.preventDefault();
@@ -68,11 +171,7 @@ $(document).ready(() => {
       startEndSurvey();
     }, 15000);    
   });
-
-  let startContainer = $("#start-main-container");
-  let startTopContainer = $("#start-top-container");
-  let startBottomContainer = $("#start-bottom-container");
-  
+ 
   function startEndSurvey() {
     
     startContainer.empty();
