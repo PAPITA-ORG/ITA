@@ -16,7 +16,7 @@ $(document).ready(() => {
 
   $( function () {
 
-    $myFuelGauge = $("#fuel-gauge").dynameter({
+    $myFuelGauge = $("div#fuel-gauge").dynameter({
       width: 200,
       label: '',
       value: 80,
@@ -29,24 +29,11 @@ $(document).ready(() => {
         60: 'normal',
       }
     });
-
-    // jQuery UI slider widget
-
-    $('#fuel-gauge-control').slider({
-      min: 0.0,
-      max: 100.0,
-      value: 37.5,
-      step: .1,
-      slide: function (evt, ui) {
-        $myFuelGauge.changeValue((ui.value).toFixed(1));
-      }
-    });
-    
+   
   });
 
   const startDashboard = () => {
 
-    startTopContainer.empty();
     startBottomContainer.empty();
     
     let efficacyStart = $("<div>", {
