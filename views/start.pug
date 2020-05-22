@@ -30,16 +30,16 @@ block content
         div(class="container col-md-12 center" style="margin-top: 20px" id="start-bottom-container")
             h5  Que quieres hacer hoy?   
             p      
-                a(href="/" id="btn-mind") 
+                a(id="btn-mind" data-value = '3') 
                     img(src="/images/personaje-08.svg" width="200" height="200")
-                a(href="/" id="btn-diet") 
+                a(id="btn-diet" data-value='2') 
                     img(src="/images/personaje-07.svg" width="160" height="160")
-                a(href="/" id="btn-body") 
+                a(id="btn-body" data-value = '1') 
                     img(src="/images/personaje-06.svg" width="150" height="150")
-                a(href="/" id="btn-stats") 
+                a(id="btn-stats") 
                     img(src="/images/stats.png" width="140" height="140")
-
+        script.
+            let userId = !{JSON.stringify(id)}
         script(src="/js/start.js")
-        script(src="https://code.jquery.com/jquery.min.js")
-        script(src="/js/emotion-ratings.js")
+
     
