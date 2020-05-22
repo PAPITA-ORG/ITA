@@ -125,6 +125,7 @@ $(document).ready(() => {
         // slider and gauge events
         $("#slider-af1").on("change", e => {
           $myFuelGauge.changeValue(e.currentTarget.valueAsNumber);
+          historial["af1"] = e.currentTarget.valueAsNumber;
         });
       };
 
@@ -389,7 +390,8 @@ $(document).ready(() => {
           val: "0",
           min: "0",
           max: "100",
-          class: "form-control"
+          class: "form-control",
+          id: "slider-af2"
         }).css("margin-bottom", "10px");
 
         formInputDiv.append(formInput);
@@ -414,7 +416,15 @@ $(document).ready(() => {
         startTopContainer.append(startForm);
         startContainer.append(startTopContainer);
         $(".rating").on("click", e => {
-          console.log(e.currentTarget);
+          e.currentTarget.className === "rating userRating"
+            ? (historial["disfruta"] = e.currentTarget.value)
+            : (historial["disfrutaNino"] = e.currentTarget.value);
+        });
+
+        $("#slider-af2").on("change", e => {
+          historial["af2"] = e.currentTarget.valueAsNumber;
+
+          console.log(historial);
         });
 
         $("#start-form-btn").on("click", e => {
