@@ -1,5 +1,139 @@
 $(document).ready(() => {
 
+  var $myFuelGauge;
+
+  let startContainer = $("#start-main-container");
+  let startTopContainer = $("#start-top-container");
+  let startBottomContainer = $("#start-bottom-container");
+
+  let fuelGauge = $("<div>", {
+    class: "fuel-gauge"
+  });
+  
+  let fuelGaugeControl = $("<div>", {
+    class: "fuel-gague-control"
+  });
+  
+  const startDashboard = () => {
+
+    startTopContainer.empty();
+    startBottomContainer.empty();
+    
+    let efficacyStart = $("<div>", {
+      class: "form-group row",
+      id: "form-efficacies"
+    });
+
+    let efficacyStartLabel = $(`<label>`, {
+      class: "col-sm-6 col-form-label"
+    }).text("Cual es tu energia ahora?");
+
+    let formInputDiv = $(`<div>`, { class: "col-sm-6" });
+
+    let formInput = $("<input>", {
+      type: "range",
+      val: "0",
+      min: "0",
+      max: "100",
+      class: "form-control",
+    }).css("margin-bottom", "10px");
+            
+    formInputDiv.append(formInput);
+    efficacyStart.append(efficacyStartLabel);
+    efficacyStart.append(formInputDiv);
+    fuelGauge.append(fuelGaugeControl);
+    startTopContainer.append(fuelGauge);
+    startTopContainer.append(efficacyStart);
+
+    let tituloContainer = $("<h5>", {
+    }).text('Que quieres hacer hoy?');
+    let parrafContainer = $("<p>", {
+    });
+    let btnmind = $("<a>", {
+      href:'/',
+      id: "btn-mind"
+    });
+    let img1 = $("<img>", {
+      src: "/images/personaje-08.svg",
+      width:"200",
+      height:"200"
+    });
+
+    let btndiet = $("<a>", {
+      href:'/',
+      id: "btn-diet"
+    });
+    let img2 = $("<img>", {
+      src: "/images/personaje-07.svg",
+      width:"160",
+      height:"216"
+    });
+
+    let btnbody = $("<a>", {
+      href:'/',
+      id: "btn-body"
+    });
+    let img3 = $("<img>", {
+      src: "/images/personaje-06.svg",
+      width:"150",
+      height:"150"
+    });
+
+    let btnstats = $("<a>", {
+      href:'/',
+      id: "btn-stats"
+    });
+    let img4 = $("<img>", {
+      src: "/images/stats.png",
+      width:"140",
+      height:"140"
+    });
+    
+    btnstats.append(img4);
+    parrafContainer.append(btnstats);
+    btnbody.append(img3);
+    parrafContainer.append(btnbody);
+    btndiet.append(img2);
+    parrafContainer.append(btndiet);
+    btnmind.append(img1);
+    parrafContainer.append(btnmind);
+    startBottomContainer.append(tituloContainer);
+    startBottomContainer.append(parrafContainer);
+
+  };
+
+  $( function () {
+
+    $myFuelGauge = $("#fuel-gauge").dynameter({
+      width: 200,
+      label: '',
+      value: 80,
+      min: 0.0,
+      max: 100.0,
+      unit: '',
+      regions: { // Value-keys and color-refs
+        0: 'error',
+        25: 'warn',
+        60: 'normal',
+      }
+    });
+
+    // jQuery UI slider widget
+
+    $('#fuel-gauge-control').slider({
+      min: 0.0,
+      max: 100.0,
+      value: 37.5,
+      step: .1,
+      slide: function (evt, ui) {
+        $myFuelGauge.changeValue((ui.value).toFixed(1));
+      }
+    });
+    
+  });
+
+  startDashboard();
+
   $("#btn-stats").on("click", e => {
     e.preventDefault();
     stats();
@@ -10,10 +144,10 @@ $(document).ready(() => {
     loading();
     setTimeout(function(){
       body();
-    }, 10000);
-    /*setTimeout(function(){
+    }, 1000);
+    setTimeout(function(){
       startEndSurvey();
-    }, 15000);*/    
+    }, 1000);   
   });
 
   $("#btn-diet").on("click", e => {
@@ -37,11 +171,7 @@ $(document).ready(() => {
       startEndSurvey();
     }, 15000);    
   });
-
-  let startContainer = $("#start-main-container");
-  let startTopContainer = $("#start-top-container");
-  let startBottomContainer = $("#start-bottom-container");
-  
+ 
   function startEndSurvey() {
     
     startContainer.empty();
@@ -62,31 +192,80 @@ $(document).ready(() => {
       for: "form-group"
     }).text("Cuentame tu experiencia");
 
-    // user rating (not working)
+    // user rating
     
+    let starsRating = [1,2,3,4,5];
+
+    let rateUserDiv = $("<div>", {
+      id: "rate-user-div",
+    });
+    
+    let rateUserLabel = $("<label>", {
+      for: "rate-user-div"
+    }).text("Te gusto la actividad?");
+
     let rateUser = $("<div>", {
-      id: "rate-user"
+      id: "rate-user",
+      class: "starrating risingstar d-flex justify-content-center flex-row-reverse"
     });
+    
+    rateUserDiv.append(rateUserLabel)
+    
+    starsRating.map((stars, i) => {
 
-    var emotionsArray = ['angry','disappointed','meh', 'happy', 'inLove'];
-      
-    $("#rate-user").emotionsRating({
-      emotions: emotionsArray
-    });
-
-    // child rating (not working)
-    
-    let rateChild = $("<div>", {
-      id: "rate-child"
-    });    
-    
-    var emotionsArray = ['angry','disappointed','meh', 'happy', 'inLove'];
-    
-      $("#rate-child").emotionsRating({
-        emotions: emotionsArray
+      let starUserInput = $(`<input>`, {
+        type: "radio",
+        value: i+1,
+        id: `staruser${i+1}`,
+        name: "ratingUser"
       });
+
+      let starUserInputLabel = $(`<label>`, {
+        for: `staruser${i+1}`,
+      });
+              
+      rateUser.append(starUserInput);
+      rateUser.append(starUserInputLabel);      
+    });
+
+    rateUserDiv.append(rateUser);
+
+    // child rating
     
-    console.log(emotionsRating);
+    let rateChildDiv = $("<div>", {
+      id: "rate-child-div",
+    });
+    
+    let rateChildLabel = $("<label>", {
+      for: "rate-child-div"
+    }).text("Te gusto la actividad a tu niño o niña?");
+
+    let rateChild = $("<div>", {
+      id: "rate-child",
+      class: "starrating risingstar d-flex justify-content-center flex-row-reverse"
+    });
+    
+    rateChildDiv.append(rateChildLabel)
+    
+    starsRating.map((stars2, i) => {
+
+      let starChildInput = $(`<input>`, {
+        type: "radio",
+        value: i+1,
+        id: `starchild${i+1}`,
+        name: "ratingChild"
+      });
+
+      let starChildInputLabel = $(`<label>`, {
+        for: `starchild${i+1}`,
+      });
+              
+      rateChild.append(starChildInput);
+      rateChild.append(starChildInputLabel);      
+    });
+
+    rateChildDiv.append(rateChild);
+
     //  self-efficacy bar
 
     let efficacyEnd = $("<div>", {
@@ -123,8 +302,8 @@ $(document).ready(() => {
     formGroup.append(formLabel);
     
     startForm.append(formGroup);
-    startForm.append(rateUser);
-    startForm.append(rateChild);
+    startForm.append(rateUserDiv);
+    startForm.append(rateChildDiv);
     startForm.append(efficacyEnd);
     startForm.append(submitButton);
     startTopContainer.append(startForm);
@@ -132,7 +311,7 @@ $(document).ready(() => {
 
     $("#start-form-btn").on("click", e => {
       e.preventDefault();
-      window.location.href="start";
+      //window.location.href="start";
       //PUSH END SURVEY
     });
 
