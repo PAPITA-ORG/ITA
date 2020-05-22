@@ -3,4 +3,5 @@ $(document).ready(function () {
     var mySwiper = new Swiper ('.swiper-container', {
       // Optional parameters
     })
+    let indexContainer = $("#index-container");
   });
