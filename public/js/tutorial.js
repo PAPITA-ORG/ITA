@@ -1,7 +1,14 @@
 $(document).ready(function () {
-    //initialize swiper when document ready
+  var registro = 0
+  //condicion para tutorial o no
+  if(registro == 0){
+    //initialize swiper     
     var mySwiper = new Swiper ('.swiper-container', {
-      // Optional parameters
-    })
-    let indexContainer = $("#index-container");
+    // Optional parameters
+    $("#btn-finish").on("click", () => {
+    // condicion
+    });
+  }
+  
   });
+  
