@@ -75,9 +75,9 @@ $(document).ready(() => {
           id: "btn-mind"
         });
         let img1 = $("<img>", {
-          src: "/images/personaje-08.svg",
-          width: "200",
-          height: "200"
+          src: "/images/personaje-08.png",
+          width: "150",
+          height: "150"
         });
 
         let btndiet = $("<a>", {
@@ -85,9 +85,9 @@ $(document).ready(() => {
           id: "btn-diet"
         });
         let img2 = $("<img>", {
-          src: "/images/personaje-07.svg",
-          width: "160",
-          height: "216"
+          src: "/images/personaje-07.png",
+          width: "150",
+          height: "150"
         });
 
         let btnbody = $("<a>", {
@@ -96,7 +96,7 @@ $(document).ready(() => {
           "data-value": "1"
         });
         let img3 = $("<img>", {
-          src: "/images/personaje-06.svg",
+          src: "/images/personaje-06.png",
           width: "150",
           height: "150"
         });
@@ -107,8 +107,8 @@ $(document).ready(() => {
         });
         let img4 = $("<img>", {
           src: "/images/stats.png",
-          width: "140",
-          height: "140"
+          width: "150",
+          height: "150"
         });
 
         btnstats.append(img4);
