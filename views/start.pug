@@ -5,9 +5,12 @@ block content
     div(class="container" id="start-main-container")
 
         div(class='container row align-items-center justify-content-center' id="start-top-container" style="margin-top: 20px")
+            
+            div(id="fuel-gauge")
+                div(id="fuel-gauge-control")
 
         div(class="container col-md-12 center" style="margin-top: 20px" id="start-bottom-container")
-
-        script(src="public\js\tutorial.js")
-        
-    
+            
+        script.
+            let userId = !{JSON.stringify(id)}
+        script(src="/js/start.js")
