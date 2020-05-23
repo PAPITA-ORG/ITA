@@ -5,22 +5,13 @@ module.exports = {
   sobreView: (req, res) => {
     res.render("sobre");
   },
-  teamView: (req, res) => {
-    res.render("team");
-  },
   startView: (req, res) => {
     res.render("start", { id: req.session.passport.user });
-  },
-  startNewView: (req, res) => {
-    res.render("start_new");
   },
   registro: (req, res) => {
     res.render("registro");
   },
-  selectorView: (req, res) => {
-    res.render("selector");
+  tutorialView: (req, res) => {
+    res.render("tutorial");
   },
-  endView: (req, res) => {
-    res.render("end");
-  }
 };
