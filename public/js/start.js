@@ -9,6 +9,8 @@ $(document).ready(() => {
       const usuario = res.data[0];
       let topicoCod;
 
+      console.log(usuario);
+
       let historial = {
         random: 0,
         usuario: usuario._id,
@@ -58,7 +60,7 @@ $(document).ready(() => {
           class: "col-sm-6 col-form-label"
         }).text("Cual es tu energia ahora?");
 
-        let formInputDiv = $(`<div>`, { class: "col-sm-6" });
+        let formInputDiv = $(`<div>`, { class: "col-sm-6 col-md-12" });
 
         let formInput = $("<input>", {
           type: "range",
@@ -75,7 +77,7 @@ $(document).ready(() => {
 
         fuelGauge.append(fuelGaugeControl);
         startTopContainer.append(fuelGauge);
-        startTopContainer.append(document.createElement('br'));
+        startTopContainer.append(document.createElement("br"));
         startTopContainer.append(efficacyStart);
 
         let tituloContainer = $("<h5>", {}).text("Que quieres hacer hoy?");
@@ -89,7 +91,6 @@ $(document).ready(() => {
           src: "/images/personaje-08.png",
           width: "150",
           height: "150"
-
         });
 
         let btndiet = $("<a>", {
@@ -128,7 +129,7 @@ $(document).ready(() => {
         parrafContainer.append(btnstats);
         btnbody.append(img3);
         parrafContainer.append(btnbody);
-        parrafContainer.append(document.createElement('br'));
+        parrafContainer.append(document.createElement("br"));
         btndiet.append(img2);
         parrafContainer.append(btndiet);
         btnmind.append(img1);
@@ -165,7 +166,7 @@ $(document).ready(() => {
 
         let startRandomMessage = $("<label>", {
           for: "start-random-message"
-        //MAKE MESSAGE RANDOM FROM MESSAGES COLLECTION  
+          //MAKE MESSAGE RANDOM FROM MESSAGES COLLECTION
         }).text("Practica, Practica, Practica");
 
         let progressRow = $("<div>", {
@@ -449,7 +450,12 @@ $(document).ready(() => {
           axios
             .post("/api/historial", historial)
             .then(res => {
-              window.location.href = "start";
+              let fieldsToModify = { af_0: historial.af2, tutorial: 0 };
+              axios
+                .put(`/api/usuarios/${usuario._id}`, fieldsToModify)
+                .then(res => {
+                  window.location.href = "start";
+                });
             })
             .catch(err => err);
         });
@@ -577,7 +583,6 @@ $(document).ready(() => {
         setTimeout(function() {
           body(usuario, topicoCod);
         }, 3000);
-
       });
 
       $("#btn-diet").on("click", e => {
@@ -599,7 +604,6 @@ $(document).ready(() => {
       });
     })
     .catch(err => err);
-
 
   var i = 0;
   function move() {
