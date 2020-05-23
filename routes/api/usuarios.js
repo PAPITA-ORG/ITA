@@ -42,7 +42,8 @@ router.post("/register", (req, res) => {
     i3,
     i4,
     i5,
-    af_0
+    af_0,
+    tutorial
   } = req.body;
 
   // validate creation of usuario
@@ -61,7 +62,8 @@ router.post("/register", (req, res) => {
     !i3 ||
     !i4 ||
     !i5 ||
-    !af_0
+    !af_0 ||
+    !tutorial
   ) {
     errors.push({ msg: "Por favor procure llenar el formulario completo" });
   }
@@ -99,7 +101,8 @@ router.post("/register", (req, res) => {
             i3: i3,
             i4: i4,
             i5: i5,
-            af_0: af_0
+            af_0: af_0,
+            tutorial: tutorial
           });
 
           // Hash Password
