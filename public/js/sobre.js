@@ -307,8 +307,7 @@ $(document).ready(() => {
           {field: "i3", value: Number($("#range2").val())},
           {field: "i4", value: Number($("#range3").val())},
           {field: "i5", value: Number($("#range4").val())},
-          {field: "af_0", value: af_0},
-          {field: "tutorial", value: 1},             
+          {field: "af_0", value: af_0},           
         ];
         
         let formRanges = formFields.filter(field => {
