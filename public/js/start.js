@@ -461,10 +461,6 @@ $(document).ready(() => {
         setTimeout(function() {
           body(usuario, topicoCod);
         }, 3000);
-
-        // setTimeout(function() {
-        //   startEndSurvey();
-        // }, 15000);
       });
 
       $("#btn-diet").on("click", e => {
@@ -473,9 +469,6 @@ $(document).ready(() => {
         setTimeout(function() {
           diet();
         }, 3000);
-        setTimeout(function() {
-          startEndSurvey();
-        }, 15000);
       });
 
       $("#btn-mind").on("click", e => {
@@ -484,9 +477,6 @@ $(document).ready(() => {
         setTimeout(function() {
           mind();
         }, 3000);
-        setTimeout(function() {
-          startEndSurvey();
-        }, 15000);
       });
     })
     .catch(err => err);
