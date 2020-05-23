@@ -528,21 +528,34 @@ $(document).ready(() => {
 
         let potatoStatLabel = $("<label>", {
           for: "start-potatostat"
-        }).text("No stats yet, here is a potato");
+        }).text("Aun no has hecho suficientes actividades para tener stats :D");
 
         let potatoStat = $("<img>", {
-          src: "/images/papitacorp.jpg",
+          src: "/images/logo_papita-01.png",
           class: "center"
         })
-          .width(300)
           .height(300);
 
+        let potatoButton = $("<button>", {
+          class: "btn btn-success",
+          id: "potato-button"
+        }).text("Llevame de vuelta!");
+
         statsRow.append(potatoStat);
+        statsRow.append(document.createElement("br"));
+        statsRow.append(potatoButton);
         statsRowLabel.append(potatoStatLabel);
 
         startContainer.append(statsRowLabel);
         startContainer.append(statsRow);
+
+        $("#potato-button").on("click", () => {
+
+          window.location.href = "start";
+        });
+
       };
+
 
       const body = (usuario, topicoCod) => {
         startContainer.empty();
