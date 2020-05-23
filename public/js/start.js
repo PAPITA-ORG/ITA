@@ -1,4 +1,8 @@
 $(document).ready(() => {
+  $("#btn-logout").on("click", () => {
+    window.location.href = "/";
+  });
+
   axios
     .get(`/api/usuarios/${userId}`)
     .then(res => {
@@ -46,9 +50,7 @@ $(document).ready(() => {
         startBottomContainer.empty();
 
         let efficacyStart = $("<div>", {
-
-          class: "form-group row",
-
+          class: "center",
           id: "form-efficacies"
         });
 
@@ -68,11 +70,12 @@ $(document).ready(() => {
         }).css("margin-bottom", "10px");
 
         formInputDiv.append(formInput);
-        efficacyStart.append(efficacyStartLabel);
-
+        //efficacyStart.append(efficacyStartLabel);
         efficacyStart.append(formInputDiv);
+
         fuelGauge.append(fuelGaugeControl);
         startTopContainer.append(fuelGauge);
+        startTopContainer.append(document.createElement('br'));
         startTopContainer.append(efficacyStart);
 
         let tituloContainer = $("<h5>", {}).text("Que quieres hacer hoy?");
@@ -125,6 +128,7 @@ $(document).ready(() => {
         parrafContainer.append(btnstats);
         btnbody.append(img3);
         parrafContainer.append(btnbody);
+        parrafContainer.append(document.createElement('br'));
         btndiet.append(img2);
         parrafContainer.append(btndiet);
         btnmind.append(img1);
@@ -161,6 +165,7 @@ $(document).ready(() => {
 
         let startRandomMessage = $("<label>", {
           for: "start-random-message"
+        //MAKE MESSAGE RANDOM FROM MESSAGES COLLECTION  
         }).text("Practica, Practica, Practica");
 
         let progressRow = $("<div>", {
@@ -301,7 +306,7 @@ $(document).ready(() => {
 
         // create a div with class form-group
         let formGroup = $("<div>", {
-          class: "form-group"
+          class: "form-group justify-center"
         });
 
         let formLabel = $("<label>", {

@@ -43,6 +43,7 @@ router.post("/register", (req, res) => {
     i4,
     i5,
     af_0,
+    tutorial
   } = req.body;
 
   // validate creation of usuario
@@ -100,6 +101,7 @@ router.post("/register", (req, res) => {
             i4: i4,
             i5: i5,
             af_0: af_0,
+            tutorial: tutorial,
           });
 
           // Hash Password
@@ -131,26 +133,26 @@ router.post("/register", (req, res) => {
 });
 
 // Login Handler
-/*router.post(
+router.post(
   '/login',
   passport.authenticate('local', {
     failureRedirect: '/'
   }), (req, res) => {
-    if (newUsuario.tutorial == 1) {
+    if (req.user.tutorial == 1) {
       res.redirect('/tutorial');
     }
     else {
       res.redirect('/start');
     }
-  });*/
+  });
 
-router.post("/login", (req, res, next) => {
+/*router.post("/login", (req, res, next) => {
   passport.authenticate("local", {
     successRedirect: "/start",
     failureRedirect: "/",
     failureFlash: true
   })(req, res, next);
   
-});
+});*/
 
 module.exports = router;
