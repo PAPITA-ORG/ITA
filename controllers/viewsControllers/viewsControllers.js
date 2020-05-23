@@ -12,6 +12,6 @@ module.exports = {
     res.render("registro");
   },
   tutorialView: (req, res) => {
-    res.render("tutorial");
+    res.render("tutorial", { id: req.session.passport.user });
   },
 };
