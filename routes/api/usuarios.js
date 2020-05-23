@@ -131,12 +131,27 @@ router.post("/register", (req, res) => {
 });
 
 // Login Handler
-router.post("/login", (req, res, next) => {
+router.post(
+  '/login',
+  passport.authenticate('local', {
+    failureRedirect: '/login'
+  }), (req, res) => {
+    if (tutorial == 1) {
+      res.redirect('/tutorial');
+    }
+    if (tutorial == 0) {
+      res.redirect('/start');
+    }
+  });
+
+
+/*router.post("/login", (req, res, next) => {
   passport.authenticate("local", {
     successRedirect: "/start",
     failureRedirect: "/",
     failureFlash: true
   })(req, res, next);
-});
+  
+});*/
 
 module.exports = router;
