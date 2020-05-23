@@ -42,7 +42,7 @@ $(document).ready(() => {
         startBottomContainer.empty();
 
         let efficacyStart = $("<div>", {
-          class: "form-group row",
+          class: "row align-items-center justify-content-center",
           id: "form-efficacies"
         });
 
@@ -62,7 +62,6 @@ $(document).ready(() => {
         }).css("margin-bottom", "10px");
 
         formInputDiv.append(formInput);
-        efficacyStart.append(efficacyStartLabel);
         efficacyStart.append(formInputDiv);
         fuelGauge.append(fuelGaugeControl);
         startTopContainer.append(fuelGauge);
