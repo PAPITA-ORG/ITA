@@ -7,6 +7,11 @@ module.exports = {
   },
   startView: (req, res) => {
     res.render("start", { id: req.session.passport.user });
+
+  },
+  startNewView: (req, res) => {
+    res.render("start_new");
+
   },
   registro: (req, res) => {
     res.render("registro");
