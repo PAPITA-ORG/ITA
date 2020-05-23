@@ -9,8 +9,6 @@ $(document).ready(() => {
       const usuario = res.data[0];
       let topicoCod;
 
-      console.log(usuario);
-
       let historial = {
         random: 0,
         usuario: usuario._id,
@@ -75,7 +73,6 @@ $(document).ready(() => {
         fuelGauge.append(fuelGaugeControl);
         fuelGaugeDiv.append(fuelGauge);
 
-       
         startTopContainer.append(fuelGaugeDiv);
         startTopContainer.append(efficacyStart);
 
@@ -532,8 +529,7 @@ $(document).ready(() => {
         let potatoStat = $("<img>", {
           src: "/images/logo_papita-01.png",
           class: "center"
-        })
-          .height(300);
+        }).height(300);
 
         let potatoButton = $("<button>", {
           class: "btn btn-success",
@@ -549,12 +545,9 @@ $(document).ready(() => {
         startContainer.append(statsRow);
 
         $("#potato-button").on("click", () => {
-
           window.location.href = "start";
         });
-
       };
-
 
       const body = (usuario, topicoCod) => {
         startContainer.empty();
