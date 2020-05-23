@@ -12,6 +12,6 @@ const Comunas = Schema({
   comuna: { type: Schema.Types.String, required: true }  
 });
 
-const Comuna = mongoose.model("Comunas", Comunas);
+const Comuna = mongoose.model("Comuna", Comunas);
 
 module.exports = Comuna;

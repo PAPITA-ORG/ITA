@@ -11,7 +11,6 @@ const flash = require("express-flash");
 // initialize express app
 const app = express();
 
-
 // passport config
 require("./config/passport")(passport);
 

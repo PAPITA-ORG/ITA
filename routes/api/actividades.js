@@ -13,7 +13,9 @@ router.route("/").get(actividadesController.findAll);
 router.route("/:id").get(actividadesController.findByID);
 
 // get all curated actividades
-router.route("/:topico/:af_0").get(actividadesController.findByCategories);
+router
+  .route("/:topicoCod/:dificultadCod")
+  .get(actividadesController.findByCategories);
 
 // delete all actividades
 router.route("/").delete(actividadesController.deleteMany);

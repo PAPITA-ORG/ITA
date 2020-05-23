@@ -23,10 +23,8 @@ module.exports = {
   findByCategories: (req, res) => {
     db.actividades
       .find({
-        ["Topico"]: Number(req.params.topico),
-        ["Dificultad"]: {
-          ["$lte"]: Math.round(Number(req.params.af_0) / 20)
-        }
+        topicoCod: req.params.topicoCod,
+        dificultadCod: req.params.dificultadCod
       })
       .then(dbActividades => res.json(dbActividades))
       .catch(err => res.status(422).json(err));
