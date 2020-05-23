@@ -273,3 +273,7 @@ strong {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+
+#start-top-container {
+  padding: 0 20px;
+}

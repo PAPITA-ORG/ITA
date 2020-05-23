@@ -23,17 +23,12 @@ $(document).ready(() => {
       let startTopContainer = $("#start-top-container");
       let startBottomContainer = $("#start-bottom-container");
 
-      let fuelGauge = $("<div>", {
-        class: "fuel-gauge"
-      });
+      let fuelGauge = $("#fuel-gauge");
 
-      let fuelGaugeControl = $("<div>", {
-        class: "fuel-gague-control"
-      });
+      let fuelGaugeControl = $("#fuel-gauge-control");
 
       $(function() {
         $myFuelGauge = $("div#fuel-gauge").dynameter({
-          width: 200,
           label: "",
           value: usuario.af_0,
           min: 0.0,
@@ -51,8 +46,10 @@ $(document).ready(() => {
       const startDashboard = () => {
         startBottomContainer.empty();
 
+        let fuelGaugeDiv = $("#fuel-row");
+
         let efficacyStart = $("<div>", {
-          class: "center",
+          class: "center col-md-6",
           id: "form-efficacies"
         });
 
@@ -60,7 +57,7 @@ $(document).ready(() => {
           class: "col-sm-6 col-form-label"
         }).text("Cual es tu energia ahora?");
 
-        let formInputDiv = $(`<div>`, { class: "col-sm-6 col-md-12" });
+        let formInputDiv = $(`<div>`, { class: "col-sm-12 col-md-12" });
 
         let formInput = $("<input>", {
           type: "range",
@@ -76,8 +73,10 @@ $(document).ready(() => {
         efficacyStart.append(formInputDiv);
 
         fuelGauge.append(fuelGaugeControl);
-        startTopContainer.append(fuelGauge);
-        startTopContainer.append(document.createElement("br"));
+        fuelGaugeDiv.append(fuelGauge);
+
+       
+        startTopContainer.append(fuelGaugeDiv);
         startTopContainer.append(efficacyStart);
 
         let tituloContainer = $("<h5>", {}).text("Que quieres hacer hoy?");
