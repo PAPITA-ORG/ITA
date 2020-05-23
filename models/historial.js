@@ -14,6 +14,6 @@ const Historiales = Schema({
   actividad: { type: Schema.Types.ObjectId, ref: "Actividad" }
 });
 
-const Historial = mongoose.model("Historial", Historiales);
+const Historial = mongoose.model("Historiale", Historiales);
 
 module.exports = Historial;

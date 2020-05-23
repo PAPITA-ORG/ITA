@@ -15,6 +15,7 @@ const Usuarios = Schema({
   i4: { type: Schema.Types.Number, required: true },
   i5: { type: Schema.Types.Number, required: true },
   af_0: { type: Schema.Types.Number, required: true },
+  tutorial: { type: Schema.Types.Number, required: true },
   historial: [{ type: Schema.Types.ObjectId, ref: "Historial" }]
 });
 

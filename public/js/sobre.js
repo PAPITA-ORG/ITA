@@ -307,7 +307,8 @@ $(document).ready(() => {
           {field: "i3", value: Number($("#range2").val())},
           {field: "i4", value: Number($("#range3").val())},
           {field: "i5", value: Number($("#range4").val())},
-          {field: "af_0", value: af_0},      
+          {field: "af_0", value: af_0},
+          {field: "tutorial", value: 1},             
         ];
         
         let formRanges = formFields.filter(field => {
@@ -348,7 +349,7 @@ $(document).ready(() => {
           .then(res => res)
           .catch(err => err);
 
-        window.location.href="/";
+        //window.location.href="/";
       });
     };
 
@@ -378,13 +379,6 @@ $(document).ready(() => {
   }
 });
 
-/*$(window).load(function () {
-  $(".trigger_popup_fricc").click(function(){
-     $('.hover_bkgr_fricc').show();
-  });
-  $('.hover_bkgr_fricc').click(function(){
-      $('.hover_bkgr_fricc').hide();
-  });
-  $('.popupCloseButton').click(function(){
-      $('.hover_bkgr_fricc').hide();
-  });*/
+
+
+

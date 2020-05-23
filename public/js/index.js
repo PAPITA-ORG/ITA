@@ -1,4 +1,5 @@
 $(document).ready(() => {
+  let indexContainer = $("#index-container");
   $("#btn-si").on("click", () => {
     window.location.href = "sobre";
   });
@@ -11,4 +12,5 @@ $(document).ready(() => {
     firstTime = false;
     window.open("https://www.papita.org", '_blank');
   });
+
 });
