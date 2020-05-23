@@ -18,6 +18,19 @@ module.exports = {
       .then(dbActividades => res.json(dbActividades))
       .catch(err => res.status(422).json(err));
   },
+
+  // find actividad by topic and difficulty
+  findByCategories: (req, res) => {
+    db.actividades
+      .find({
+        ["Topico"]: Number(req.params.topico),
+        ["Dificultad"]: {
+          ["$lte"]: Math.round(Number(req.params.af_0) / 20)
+        }
+      })
+      .then(dbActividades => res.json(dbActividades))
+      .catch(err => res.status(422).json(err));
+  },
   // delete one actividad
   deleteOne: (req, res) => {
     db.actividades

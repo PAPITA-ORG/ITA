@@ -10,7 +10,7 @@ block content
             
                     div.label Cambia tu contraseña
                     div.form-group
-                        label(for='email') Correo electronico:
+                        label(for='email') Correo electronico
                         input#email.form-control(type='input' name='correo')                 
                     div.form-group
                         label(for='pw') Nueva contraseña:
@@ -19,6 +19,6 @@ block content
                         label(for='pw2') Confirmar contraseña:
                         input#pw2.form-control(type='password' name='confirmPassword')
                     div.form-group
-                    button(type='button' class='btn btn-success' id='btn-registro-enviar') Enviar
+                    button(type='button' class='btn btn-success' id='btn-registro-enviar' disabled) Enviar
         script(src="/js/registro.js")
     

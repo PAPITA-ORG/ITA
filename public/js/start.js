@@ -1,385 +1,608 @@
 $(document).ready(() => {
-  $("#btn-stats").on("click", e => {
-    e.preventDefault();
-    stats();
+  $("#btn-logout").on("click", () => {
+    window.location.href = "/";
   });
 
-  $("#btn-body").on("click", e => {
-    e.preventDefault();
-    loading();
-    setTimeout(function(){
-      body();
-    }, 3000);
-    setTimeout(function(){
-      startEndSurvey();
-    }, 15000);    
-  });
+  axios
+    .get(`/api/usuarios/${userId}`)
+    .then(res => {
+      const usuario = res.data[0];
+      let topicoCod;
 
-  $("#btn-diet").on("click", e => {
-    e.preventDefault();
-    loading();
-    setTimeout(function(){
-      diet();
-    }, 3000);
-    setTimeout(function(){
-      startEndSurvey();
-    }, 15000);
-  });
+      let historial = {
+        random: 0,
+        usuario: usuario._id,
+        loginTime: Date.now()
+      };
 
-  $("#btn-mind").on("click", e => {
-    e.preventDefault();
-    loading();
-    setTimeout(function(){
-      mind();
-    }, 3000);
-    setTimeout(function(){
-      startEndSurvey();
-    }, 15000);    
-  });
+      let $myFuelGauge;
 
-  let startContainer = $("#start-main-container");
-  let startTopContainer = $("#start-top-container");
-  let startBottomContainer = $("#start-bottom-container");
-  
-  function startEndSurvey() {
-    
-    startContainer.empty();
-    
-    startTopContainer.empty();
+      let startContainer = $("#start-main-container");
+      let startTopContainer = $("#start-top-container");
+      let startBottomContainer = $("#start-bottom-container");
 
-    // create a form
-    let startForm = $("<form>", {
-      id: "start-form"
-    });
-
-    // create a div with class form-group
-    let formGroup = $("<div>", {
-      class: "form-group"
-    });
-
-    let formLabel = $("<label>", {
-      for: "form-group"
-    }).text("Cuentame tu experiencia");
-
-    // user rating (not working)
-    
-    let rateUser = $("<div>", {
-      id: "rate-user"
-    });
-
-    var emotionsArray = ['angry','disappointed','meh', 'happy', 'inLove'];
-      
-      $("#rate-user").emotionsRating({
-        emotions: emotionsArray
+      let fuelGauge = $("<div>", {
+        class: "fuel-gauge"
       });
 
-    // child rating (not working)
-    
-    let rateChild = $("<div>", {
-      id: "rate-child"
-    });    
-    
-    var emotionsArray = ['angry','disappointed','meh', 'happy', 'inLove'];
-
-      $("#rate-child").emotionsRating({
-        emotions: emotionsArray
+      let fuelGaugeControl = $("<div>", {
+        class: "fuel-gague-control"
       });
 
-    //  self-efficacy bar
+      $(function() {
+        $myFuelGauge = $("div#fuel-gauge").dynameter({
+          width: 200,
+          label: "",
+          value: usuario.af_0,
+          min: 0.0,
+          max: 100.0,
+          unit: "",
+          regions: {
+            // Value-keys and color-refs
+            0: "error",
+            25: "warn",
+            60: "normal"
+          }
+        });
+      });
 
-    let efficacyEnd = $("<div>", {
-      class: "form-group row",
-      id: "form-efficacies"
-    });
+      const startDashboard = () => {
+        startBottomContainer.empty();
 
-    let efficacyEndLabel = $(`<label>`, {
-      class: "col-sm-6 col-form-label"
-    }).text("Cual es tu energia ahora?");
+        let efficacyStart = $("<div>", {
+          class: "center",
+          id: "form-efficacies"
+        });
 
-    let formInputDiv = $(`<div>`, { class: "col-sm-6" });
+        let efficacyStartLabel = $(`<label>`, {
+          class: "col-sm-6 col-form-label"
+        }).text("Cual es tu energia ahora?");
 
-    let formInput = $("<input>", {
-      type: "range",
-      val: "0",
-      min: "0",
-      max: "100",
-      class: "form-control",
-    }).css("margin-bottom", "10px");
-            
-    formInputDiv.append(formInput);
-    efficacyEnd.append(efficacyEndLabel);
-    efficacyEnd.append(formInputDiv);
+        let formInputDiv = $(`<div>`, { class: "col-sm-6" });
 
-    // create submit button
+        let formInput = $("<input>", {
+          type: "range",
+          val: usuario.af_0,
+          min: "0",
+          max: "100",
+          class: "form-control",
+          id: "slider-af1"
+        }).css("margin-bottom", "10px");
 
-    let submitButton = $("<button>", {
-      type: "submit",
-      class: "btn btn-success",
-      id: "start-form-btn"
-    }).text("Volver");
+        formInputDiv.append(formInput);
+        //efficacyStart.append(efficacyStartLabel);
+        efficacyStart.append(formInputDiv);
 
-    formGroup.append(formLabel);
-    
-    startForm.append(formGroup);
-    startForm.append(rateUser);
-    startForm.append(rateChild);
-    startForm.append(efficacyEnd);
-    startForm.append(submitButton);
-    startTopContainer.append(startForm);
-    startContainer.append(startTopContainer);
+        fuelGauge.append(fuelGaugeControl);
+        startTopContainer.append(fuelGauge);
+        startTopContainer.append(document.createElement('br'));
+        startTopContainer.append(efficacyStart);
 
-    $("#start-form-btn").on("click", e => {
-      e.preventDefault();
-      window.location.href="start";
-      //PUSH END SURVEY
-    });
+        let tituloContainer = $("<h5>", {}).text("Que quieres hacer hoy?");
+        let parrafContainer = $("<p>", {});
+        let btnmind = $("<a>", {
+          href: "/",
+          id: "btn-mind",
+          "data-value": "3"
+        });
+        let img1 = $("<img>", {
+          src: "/images/personaje-08.png",
+          width: "150",
+          height: "150"
 
-  }; 
+        });
 
-  const selector = () => {
-    
-    startBottomContainer.empty();
-    
-    let startSelector = $("<div>", {
-      style: "margin-top: 20px",
-      class: "col-sm-12 form-group justify-center center",
-      id: "start-selector"
-    });
+        let btndiet = $("<a>", {
+          href: "/",
+          id: "btn-diet",
+          "data-value": "2"
+        });
+        let img2 = $("<img>", {
+          src: "/images/personaje-07.png",
+          width: "150",
+          height: "150"
+        });
 
-    let startIta = $("<img>", {
-      src: "/images/ita3d_1.png",
-      class: "center"
-    }).width(200).height(240);
+        let btnbody = $("<a>", {
+          href: "/",
+          id: "btn-body",
+          "data-value": "1"
+        });
+        let img3 = $("<img>", {
+          src: "/images/personaje-06.png",
+          width: "150",
+          height: "150"
+        });
 
-    let startSelectorLabel = $("<label>", {
-      for: "start-selector"
-    }).text("Quieres hacer esta actividad? (haz clic abajo)");
+        let btnstats = $("<a>", {
+          href: "/",
+          id: "btn-stats"
+        });
+        let img4 = $("<img>", {
+          src: "/images/stats.png",
+          width: "150",
+          height: "150"
+        });
 
-    let startButton1 = $("<button>", {
-      //type: "submit",
-      class: "btn btn-success",
-      style: "margin-top: 5px",
-      id: "start-choice-btn-1"
-    }).text("1) Aprende actividades saludables con ITA");
+        btnstats.append(img4);
+        parrafContainer.append(btnstats);
+        btnbody.append(img3);
+        parrafContainer.append(btnbody);
+        parrafContainer.append(document.createElement('br'));
+        btndiet.append(img2);
+        parrafContainer.append(btndiet);
+        btnmind.append(img1);
+        parrafContainer.append(btnmind);
+        startBottomContainer.append(tituloContainer);
+        startBottomContainer.append(parrafContainer);
 
-    let startButton2 = $("<button>", {
-      //type: "submit",
-      class: "btn btn-success",
-      style: "margin-top: 5px",
-      id: "start-choice-btn-2"
-    }).text("2) Prueba ITA hoy para un mejor mañana");
+        // slider and gauge events
+        $("#slider-af1").on("change", e => {
+          $myFuelGauge.changeValue(e.currentTarget.valueAsNumber);
+          historial["af1"] = e.currentTarget.valueAsNumber;
+        });
+      };
 
-    let startRandom = $("<div>", {
-      style: "margin-top: 10px",
-      class: "col-sm-12 form-group justify-center center",
-      id: "start-selector"
-    });
+      startDashboard();
 
-    let startRandomLabel = $("<label>", {
-      for: "start-random-selector"
-    }).text("Prefieres otra?  ");
+      // loading screen
 
-    let startRandomButton = $("<button>", {
-      //type: "submit",
-      class: "btn btn-success",
-      id: "start-random-btn"
-    }).text("Prueba de nuevo");
+      const loading = () => {
+        startContainer.empty();
 
-    startSelector.append(startIta);  
-    startSelector.append(startSelectorLabel);
-    startSelector.append(document.createElement('br'));
-    startSelector.append(startButton1);
-    startSelector.append(document.createElement('br'));
-    startSelector.append(startButton2);
+        let startMessage = $("<div>", {
+          style: "margin-top: 20px",
+          class: "col-sm-12 form-group justify-center center",
+          id: "start-message"
+        });
 
-    startRandom.append(startRandomLabel);
-    startRandom.append(startRandomButton);
+        let startIta = $("<img>", {
+          src: "/images/ita3d_1.png",
+          class: "center"
+        })
+          .width(200)
+          .height(240);
 
-    startBottomContainer.append(startSelector);
-    startBottomContainer.append(startRandom);
-    
-    $("#start-choice-btn-1").on("click", e => {
-      e.preventDefault();
-      window.open("https://youtu.be/lGxNjqAjfkc");
-      // Buttons not connecting (no log on console), idk why 
-      //setTimeout(function(){
-      //  startEndSurvey();
-      //}, 15000);
-    });
-  
-    $("#start-choice-btn-2").on("click", e => {
-      e.preventDefault();
-      window.open("https://youtu.be/lGxNjqAjfkc"); 
-      //setTimeout(function(){
-      //  startEndSurvey();
-      //}, 15000);
-    });
-  
-    $("#start-btn-random").on("click", e => {
-      e.preventDefault();
-      window.open("https://youtu.be/lGxNjqAjfkc");
-      // setTimeout(function(){
-      //  startEndSurvey();
-      // }, 15000);
-    });
+        let startRandomMessage = $("<label>", {
+          for: "start-random-message"
+        //MAKE MESSAGE RANDOM FROM MESSAGES COLLECTION  
+        }).text("Practica, Practica, Practica");
 
-  }; 
+        let progressRow = $("<div>", {
+          //style: "margin-top: 20px",
+          //class: "col-sm-12 form-group justify-center center",
+          id: "myProgress"
+        });
 
-  const mind = () => {
-    
-    startContainer.empty();
+        let barRow = $("<div>", {
+          //style: "margin-top: 20px",
+          //class: "col-sm-12 form-group justify-center center",
+          id: "myBar"
+        });
 
-    startTopContainer.empty();
-    startBottomContainer.empty();
-    
-    let mindRow = $("<div>", {
-      style: "margin-top: 20px",
-      class: "col-sm-12 form-group justify-center center",
-      id: "mind-row"
-    });
+        startMessage.append(startIta);
+        startMessage.append(startRandomMessage);
+        startContainer.append(startMessage);
+        progressRow.append(barRow);
+        startContainer.append(progressRow);
+        move();
+      };
 
-    let mindLabel = $("<label>", {
-      for: "start-potatostat"
-    }).text("What is mind?"); 
+      // selector
 
-    mindRow.append(mindLabel);
+      const selector = (usuario, topicoCod) => {
+        startBottomContainer.empty();
 
-    mindRow.append(mindLabel);
-    startTopContainer.append(mindRow);
-    selector();
-    startContainer.append(startTopContainer);
-    startContainer.append(startBottomContainer);
+        // create container where header for activities will be displayed
 
-  };
+        let startSelector = $("<div>", {
+          style: "margin-top: 20px",
+          class: "col-sm-12 form-group justify-center center",
+          id: "start-selector"
+        });
 
-  const diet = () => {
-    
-    startContainer.empty();
+        let startIta = $("<img>", {
+          src: "/images/ita3d_1.png",
+          class: "center"
+        })
+          .width(200)
+          .height(240);
 
-    startTopContainer.empty();
-    startBottomContainer.empty();
-     
-    let dietRow = $("<div>", {
-      style: "margin-top: 20px",
-      class: "col-sm-12 form-group justify-center center",
-      id: "diet-row"
-    });
+        let startSelectorLabel = $("<label>", {
+          for: "start-selector"
+        }).text("Quieres hacer esta actividad? (haz clic abajo)");
 
-    let dietLabel = $("<label>", {
-      for: "start-potatostat"
-    }).text("What is diet?"); 
+        startSelector.append(startIta);
+        startSelector.append(startSelectorLabel);
 
-    dietRow.append(dietLabel);
+        // create container where activity buttons will be displayed
+        let activityContainer = $("<div>", {
+          style: "margin-top: 20px",
+          class: "col-sm-12 justify-center center",
+          id: "actividades-container"
+        });
 
-    dietRow.append(dietLabel);
-    startTopContainer.append(dietRow); 
-    selector();
-    startContainer.append(startTopContainer);
-    startContainer.append(startBottomContainer);
+        startSelector.append(activityContainer);
 
-  };
+        let startRandom = $("<div>", {
+          style: "margin-top: 10px",
+          class: "col-sm-12 form-group justify-center center",
+          id: "start-selector"
+        });
 
-  const body = () => {
+        let startRandomLabel = $("<label>", {
+          for: "start-random-selector"
+        }).text("Prefieres otra?  ");
 
-    startContainer.empty();
+        let startRandomButton = $("<button>", {
+          class: "btn btn-success",
+          id: "start-random-btn"
+        }).text("Prueba de nuevo");
 
-    startTopContainer.empty();
-    startBottomContainer.empty();
-     
-    let bodyRow = $("<div>", {
-      style: "margin-top: 20px",
-      class: "col-sm-12 form-group justify-center center",
-      id: "body-row"
-    });
+        startRandom.append(startRandomLabel);
+        startRandom.append(startRandomButton);
 
-    let bodyLabel = $("<label>", {
-      for: "start-potatostat"
-    }).text("What is body?"); 
+        startBottomContainer.append(startSelector);
+        startBottomContainer.append(startRandom);
 
-    bodyRow.append(bodyLabel);
+        // request actividades and dynamically create ui elements to show them
 
-    bodyRow.append(bodyLabel);
-    startTopContainer.append(bodyRow);
-    selector();
-    startContainer.append(startTopContainer);
-    startContainer.append(startBottomContainer);
+        axios
+          .get(`/api/actividades/${topicoCod}/${usuario.af_0}`)
+          .then(res => {
+            const displayActivities = () => {
+              let randomActivities = [];
 
-  };
+              // empty activityContainer startBottomContainer
+              $("#actividades-container").empty();
 
-  const stats = () => {
-    
-    startContainer.empty();
-  
-    let statsRow = $("<div>", {
-      style: "margin-top: 20px",
-      class: "col-sm-12 form-group justify-center center",
-      id: "stats-row"
-    });
-  
-    let statsRowLabel = $("<div>", {
-      style: "margin-top: 20px",
-      class: "col-sm-12 form-group justify-center center",
-      id: "stats-row"
-    });
+              let i = 0;
 
-    let potatoStatLabel = $("<label>", {
-      for: "start-potatostat"
-    }).text("No stats yet, here is a potato"); 
+              while (i < 2) {
+                // find a random number j between 0 and the number of available activities
+                let j = Math.floor(Math.random() * res.data.length);
+                randomActivities.push(res.data[j]);
+                i++;
+              }
 
-    let potatoStat = $("<img>", {
-      src: "/images/papitacorp.jpg",
-      class: "center"
-    }).width(300).height(300);
+              randomActivities.map((activity, i) => {
+                let activityButton = $("<a>", {
+                  href: `${activity.Link}`,
+                  target: "_blank",
+                  class: `btn btn-success btn-block activity-btn`,
+                  id: `activity-${i}`
+                }).text(activity.Descriptor);
 
-    statsRow.append(potatoStat);
-    statsRowLabel.append(potatoStatLabel);
+                activityContainer.append(activityButton);
+                $(".activity-btn").on("click", e => {
+                  e.currentTarget.id === "activity-0"
+                    ? (historial["actividad"] = randomActivities[0]._id)
+                    : (historial["actividad"] = randomActivities[1]._id);
+                  startEndSurvey();
+                });
+              });
+            };
 
-    startContainer.append(statsRowLabel);
-    startContainer.append(statsRow); 
+            displayActivities();
 
-  };
-  
-  const loading = () => {
-    
-    startContainer.empty();
-    
-    let startMessage = $("<div>", {
-      style: "margin-top: 20px",
-      class: "col-sm-12 form-group justify-center center",
-      id: "start-message"
-    });
+            $("#start-random-btn").on("click", e => {
+              e.preventDefault();
+              historial["random"] = historial["random"] + 1;
+              displayActivities();
+            });
+          })
+          .catch(err => err);
+      };
 
-    let startIta = $("<img>", {
-      src: "/images/ita3d_1.png",
-      class: "center"
-    }).width(200).height(240);
+      function startEndSurvey() {
+        startContainer.empty();
 
-    let startRandomMessage = $("<label>", {
-      for: "start-random-message"
-    }).text("Practica, Practica, Practica");
+        startTopContainer.empty();
 
-    let progressRow = $("<div>", {
-      //style: "margin-top: 20px",
-      //class: "col-sm-12 form-group justify-center center",
-      id: "myProgress"
-    });
+        // create a form
+        let startForm = $("<form>", {
+          id: "start-form"
+        });
 
-    let barRow = $("<div>", {
-      //style: "margin-top: 20px",
-      //class: "col-sm-12 form-group justify-center center",
-      id: "myBar"
-    });
+        // create a div with class form-group
+        let formGroup = $("<div>", {
+          class: "form-group justify-center"
+        });
 
-    startMessage.append(startIta);  
-    startMessage.append(startRandomMessage);
-    startContainer.append(startMessage); 
-    progressRow.append(barRow);
-    startContainer.append(progressRow); 
-    move();
-  };  
+        let formLabel = $("<label>", {
+          for: "form-group"
+        }).text("Cuentame tu experiencia");
+
+        // user rating
+
+        let starsRating = [1, 2, 3, 4, 5];
+
+        let rateUserDiv = $("<div>", {
+          id: "rate-user-div"
+        });
+
+        let rateUserLabel = $("<label>", {
+          for: "rate-user-div"
+        }).text("Te gusto la actividad?");
+
+        let rateUser = $("<div>", {
+          id: "rate-user",
+          class:
+            "starrating risingstar d-flex justify-content-center flex-row-reverse"
+        });
+
+        rateUserDiv.append(rateUserLabel);
+
+        starsRating.map((stars, i) => {
+          let starUserInput = $(`<input>`, {
+            type: "radio",
+            value: starsRating.length - i,
+            id: `staruser${i + 1}`,
+            name: "ratingUser",
+            class: "rating userRating"
+          });
+
+          let starUserInputLabel = $(`<label>`, {
+            for: `staruser${i + 1}`
+          });
+
+          rateUser.append(starUserInput);
+          rateUser.append(starUserInputLabel);
+        });
+
+        rateUserDiv.append(rateUser);
+
+        // child rating
+
+        let rateChildDiv = $("<div>", {
+          id: "rate-child-div"
+        });
+
+        let rateChildLabel = $("<label>", {
+          for: "rate-child-div"
+        }).text("Te gusto la actividad a tu niño o niña?");
+
+        let rateChild = $("<div>", {
+          id: "rate-child",
+          class:
+            "starrating risingstar d-flex justify-content-center flex-row-reverse"
+        });
+
+        rateChildDiv.append(rateChildLabel);
+
+        starsRating.map((stars2, i) => {
+          let starChildInput = $(`<input>`, {
+            type: "radio",
+            value: starsRating.length - i,
+            id: `starchild${i + 1}`,
+            name: "ratingChild",
+            class: "rating childRating"
+          });
+
+          let starChildInputLabel = $(`<label>`, {
+            for: `starchild${i + 1}`
+          });
+
+          rateChild.append(starChildInput);
+          rateChild.append(starChildInputLabel);
+        });
+
+        rateChildDiv.append(rateChild);
+
+        //  self-efficacy bar
+
+        let efficacyEnd = $("<div>", {
+          class: "form-group row",
+          id: "form-efficacies"
+        });
+
+        let efficacyEndLabel = $(`<label>`, {
+          class: "col-sm-6 col-form-label"
+        }).text("Cual es tu energia ahora?");
+
+        let formInputDiv = $(`<div>`, { class: "col-sm-6" });
+
+        let formInput = $("<input>", {
+          type: "range",
+          val: "0",
+          min: "0",
+          max: "100",
+          class: "form-control",
+          id: "slider-af2"
+        }).css("margin-bottom", "10px");
+
+        formInputDiv.append(formInput);
+        efficacyEnd.append(efficacyEndLabel);
+        efficacyEnd.append(formInputDiv);
+
+        // create submit button
+
+        let submitButton = $("<button>", {
+          type: "submit",
+          class: "btn btn-success",
+          id: "start-form-btn"
+        }).text("Volver");
+
+        formGroup.append(formLabel);
+
+        startForm.append(formGroup);
+        startForm.append(rateUserDiv);
+        startForm.append(rateChildDiv);
+        startForm.append(efficacyEnd);
+        startForm.append(submitButton);
+        startTopContainer.append(startForm);
+        startContainer.append(startTopContainer);
+        $(".rating").on("click", e => {
+          e.currentTarget.className === "rating userRating"
+            ? (historial["disfruta"] = Number(e.currentTarget.value))
+            : (historial["disfrutaNino"] = Number(e.currentTarget.value));
+        });
+
+        $("#slider-af2").on("change", e => {
+          historial["af2"] = e.currentTarget.valueAsNumber;
+        });
+
+        $("#start-form-btn").on("click", e => {
+          e.preventDefault();
+          historial["logoutTime"] = Date.now();
+
+          axios
+            .post("/api/historial", historial)
+            .then(res => {
+              window.location.href = "start";
+            })
+            .catch(err => err);
+        });
+      }
+
+      const mind = (usuario, topicoCod) => {
+        startContainer.empty();
+
+        startTopContainer.empty();
+        startBottomContainer.empty();
+
+        let mindRow = $("<div>", {
+          style: "margin-top: 20px",
+          class: "col-sm-12 form-group justify-center center",
+          id: "mind-row"
+        });
+
+        let mindLabel = $("<label>", {
+          for: "start-potatostat"
+        }).text("What is mind?");
+
+        mindRow.append(mindLabel);
+
+        mindRow.append(mindLabel);
+        startTopContainer.append(mindRow);
+        selector(usuario, topicoCod);
+        startContainer.append(startTopContainer);
+        startContainer.append(startBottomContainer);
+      };
+
+      const diet = (usuario, topicoCod) => {
+        startContainer.empty();
+
+        startTopContainer.empty();
+        startBottomContainer.empty();
+
+        let dietRow = $("<div>", {
+          style: "margin-top: 20px",
+          class: "col-sm-12 form-group justify-center center",
+          id: "diet-row"
+        });
+
+        let dietLabel = $("<label>", {
+          for: "start-potatostat"
+        }).text("What is diet?");
+
+        dietRow.append(dietLabel);
+
+        dietRow.append(dietLabel);
+        startTopContainer.append(dietRow);
+        selector(usuario, topicoCod);
+        startContainer.append(startTopContainer);
+        startContainer.append(startBottomContainer);
+      };
+
+      const stats = () => {
+        startContainer.empty();
+
+        let statsRow = $("<div>", {
+          style: "margin-top: 20px",
+          class: "col-sm-12 form-group justify-center center",
+          id: "stats-row"
+        });
+
+        let statsRowLabel = $("<div>", {
+          style: "margin-top: 20px",
+          class: "col-sm-12 form-group justify-center center",
+          id: "stats-row"
+        });
+
+        let potatoStatLabel = $("<label>", {
+          for: "start-potatostat"
+        }).text("No stats yet, here is a potato");
+
+        let potatoStat = $("<img>", {
+          src: "/images/papitacorp.jpg",
+          class: "center"
+        })
+          .width(300)
+          .height(300);
+
+        statsRow.append(potatoStat);
+        statsRowLabel.append(potatoStatLabel);
+
+        startContainer.append(statsRowLabel);
+        startContainer.append(statsRow);
+      };
+
+      const body = (usuario, topicoCod) => {
+        startContainer.empty();
+
+        startTopContainer.empty();
+        startBottomContainer.empty();
+
+        let bodyRow = $("<div>", {
+          style: "margin-top: 20px",
+          class: "col-sm-12 form-group justify-center center",
+          id: "body-row"
+        });
+
+        let bodyLabel = $("<label>", {
+          for: "start-potatostat"
+        }).text("What is body?");
+
+        bodyRow.append(bodyLabel);
+
+        bodyRow.append(bodyLabel);
+        startTopContainer.append(bodyRow);
+        selector(usuario, topicoCod);
+        startContainer.append(startTopContainer);
+        startContainer.append(startBottomContainer);
+      };
+
+      $("#btn-stats").on("click", e => {
+        e.preventDefault();
+        stats();
+      });
+
+      $("#btn-body").on("click", e => {
+        e.preventDefault();
+
+        topicoCod = e.currentTarget.dataset.value;
+
+        loading();
+        setTimeout(function() {
+          body(usuario, topicoCod);
+        }, 3000);
+
+      });
+
+      $("#btn-diet").on("click", e => {
+        e.preventDefault();
+        topicoCod = e.currentTarget.dataset.value;
+        loading();
+        setTimeout(function() {
+          diet(usuario, topicoCod);
+        }, 3000);
+      });
+
+      $("#btn-mind").on("click", e => {
+        topicoCod = e.currentTarget.dataset.value;
+        e.preventDefault();
+        loading();
+        setTimeout(function() {
+          mind(usuario, topicoCod);
+        }, 3000);
+      });
+    })
+    .catch(err => err);
+
 
   var i = 0;
-    function move() {
+  function move() {
     if (i == 0) {
       i = 1;
       var elem = document.getElementById("myBar");
@@ -397,5 +620,4 @@ $(document).ready(() => {
       }
     }
   }
-  
 });

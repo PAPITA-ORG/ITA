@@ -35,14 +35,15 @@ router.post("/register", (req, res) => {
     password,
     edad,
     genero,
-    parentezco,
-    comuna,
+    parentesco,
+    comunaCod,
     i1,
     i2,
     i3,
     i4,
     i5,
-    af_0
+    af_0,
+    tutorial
   } = req.body;
 
   // validate creation of usuario
@@ -54,14 +55,14 @@ router.post("/register", (req, res) => {
     !password ||
     !edad ||
     !genero ||
-    !parentezco ||
-    !comuna ||
+    !parentesco ||
+    !comunaCod ||
     !i1 ||
     !i2 ||
     !i3 ||
     !i4 ||
     !i5 ||
-    !af_0
+    !af_0 
   ) {
     errors.push({ msg: "Por favor procure llenar el formulario completo" });
   }
@@ -92,14 +93,15 @@ router.post("/register", (req, res) => {
             password: password,
             edad: edad,
             genero: genero,
-            parentezco: parentezco,
-            comuna: comuna,
+            parentesco: parentesco,
+            comunaCod: comunaCod,
             i1: i1,
             i2: i2,
             i3: i3,
             i4: i4,
             i5: i5,
-            af_0: af_0
+            af_0: af_0,
+            tutorial: tutorial,
           });
 
           // Hash Password
@@ -131,12 +133,26 @@ router.post("/register", (req, res) => {
 });
 
 // Login Handler
-router.post("/login", (req, res, next) => {
+router.post(
+  '/login',
+  passport.authenticate('local', {
+    failureRedirect: '/'
+  }), (req, res) => {
+    if (req.user.tutorial == 1) {
+      res.redirect('/tutorial');
+    }
+    else {
+      res.redirect('/start');
+    }
+  });
+
+/*router.post("/login", (req, res, next) => {
   passport.authenticate("local", {
     successRedirect: "/start",
     failureRedirect: "/",
     failureFlash: true
   })(req, res, next);
-});
+  
+});*/
 
 module.exports = router;

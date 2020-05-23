@@ -5,26 +5,19 @@ $(document).ready(() => {
   let sobreContainer = $("#sobre-main-container");
   $("#btn-sig").click(e => {
     e.preventDefault();
-    // call addForm function
-    addForm();
+    axios
+    .get("/api/comunas")
+    .then((res) => {
+      comunasList = res.data;
+      // call addForm function
+      addForm();   
+    })
+    .catch(err => err);
   });
   
   function addForm() {
     sobreContainer.empty();
-
-    axios
-    .get("/api/comunas")
-    .then((res) => {console.log(res.data)})
-    .catch(err => err);
-
-    /*let comunasList = "#res.data";
-
-    var genero = {
-      {"firstName":"John", "lastName":"Doe"},
-      {"firstName":"Anna", "lastName":"Smith"},
-      {"firstName":"Peter", "lastName":"Jones"}
-    };*/
-
+    
     // create a form
     let sobreForm = $("<form>", {
       id: "sobre-form"
@@ -113,19 +106,38 @@ $(document).ready(() => {
     
 
     const appendUserForm = () => {
+    
+    var generoList = [
+      {"genero":1, "nombre":"prefiero no decir"},
+      {"genero":2, "nombre":"otro"},
+      {"genero":3, "nombre":"mujer"},
+      {"genero":4, "nombre":"hombre"}
+    ];
+
+    var parentescoList = [
+      {"parentesco":1, "nombre":"mama"},
+      {"parentesco":2, "nombre":"papa"},
+      {"parentesco":3, "nombre":"abuelo"},
+      {"parentesco":4, "nombre":"abuela"},
+      {"parentesco":5, "nombre":"otro familiar"},
+      {"parentesco":6, "nombre":"otro no familiar"}
+    ];
+
       let screenFields = [
-        "Edad",
-        "Parentezco con los niños/as",
+        //"Edad",
+        "Parentesco con los niños/as",
         "Genero",
         "Comuna",
         //"Numero de ninos",
         //"Edades de ninos"
       ];
-      
-      let edades = [
-        "3","4","5","6","7","8","9","10"
-      ];
 
+      /*let dropdownList = [
+        parentescoList,
+        generoList,
+        comunasList
+      ];*/
+      
       let efficacies = [
         "Siempre puedo resolver problemas si trato lo suficiente",
         "Es facil lograr mis metas y mantener mis objetivos",
@@ -148,52 +160,81 @@ $(document).ready(() => {
       let formGroupRow = $(`<div>`, { class: "form-group row" });
       inlineForm.append(formGroupRow);
    
-      screenFields.map((field, i) => {
-        let fieldLabel = $(`<label>`, {
-          for: `input${i}`,
-          class: "col-sm-3 col-form-label"
-        }).text(field);
-        let formInputDiv = $(`<div>`, { class: "col-sm-3" });
-        let formInput = $(`<input>`, {
-          type: "text",
-          class: "form-control",
-          id: `input${i}`
-        }).css("margin-bottom", "10px");
+      let fieldLabel0 = $(`<label>`, {
+        for: `input0`,
+        class: "col-sm-3 col-form-label"
+      }).text("Edad");
+      let formInputDiv0 = $(`<div>`, { class: "col-sm-3" });
+      let formInput0 = $(`<input>`, {
+        type: "text",
+        class: "form-control",
+        id: `input0`
+      }).css("margin-bottom", "10px");
 
-        formInputDiv.append(formInput);
-        formGroupRow.append(fieldLabel);
-        formGroupRow.append(formInputDiv);
-        // console.log(formGroupRow);
+      formInputDiv0.append(formInput0);
+      formGroupRow.append(fieldLabel0);
+      formGroupRow.append(formInputDiv0);
+
+      let fieldLabel1 = $(`<label>`, {
+        for: `input1`,
+        class: "col-sm-3 col-form-label"
+      }).text("Parentesco");
+      let formInputDiv1 = $(`<div>`, { class: "col-sm-3" });
+      let formInput1 = $(`<select>`, {
+        type: "text",
+        class: "form-control",
+        id: `input1`
+      }).css("margin-bottom", "10px");
+
+      parentescoList.map(list => {
+        let option = $("<option>").text(list.nombre);
+        formInput1.append(option);
       });
 
-      let edadesRowLabel = $("<label>", {
-        for: "edadesRow",
-      }).text("Que edad tienen los niños/as (marque todas las que aplica)"); 
+      formInputDiv1.append(formInput1);
+      formGroupRow.append(fieldLabel1);
+      formGroupRow.append(formInputDiv1);
 
-      let edadesRow = $("<div>", {
-        class: "row justify-center",
-        id: "form-edades"
+      let fieldLabel2 = $(`<label>`, {
+        for: `input2`,
+        class: "col-sm-3 col-form-label"
+      }).text("Genero");
+      let formInputDiv2 = $(`<div>`, { class: "col-sm-3" });
+      let formInput2 = $(`<select>`, {
+        type: "text",
+        class: "form-control",
+        id: `input2`
+      }).css("margin-bottom", "10px");
+
+      generoList.map(list => {
+        let option = $("<option>").text(list.nombre);
+        formInput2.append(option);
       });
 
-      edades.map((field, i) => {
-        let edadesLabel = $(`<label>`, {
-          for: `ages${i}`,
-          class: "col"
-        }).text(field);
-        let formGroupEdad = $("<input>", {
-          type: 'checkbox',
-          class: "checkbox col",
-          id: `checkbox${i}`
-         }).prop( "checked", false );
+      formInputDiv2.append(formInput2);
+      formGroupRow.append(fieldLabel2);
+      formGroupRow.append(formInputDiv2);
 
-        edadesRow.append(edadesLabel)
-        edadesRow.append(formGroupEdad)
-        // console.log(formGroupRow);
+      let fieldLabel3 = $(`<label>`, {
+        for: `input3`,
+        class: "col-sm-3 col-form-label"
+      }).text("Comuna");
+      let formInputDiv3 = $(`<div>`, { class: "col-sm-3" });
+      let formInput3 = $(`<select>`, {
+        type: "text",
+        class: "form-control",
+        id: `input3`
+      }).css("margin-bottom", "10px");
+
+      comunasList.map(list => {
+        let option = $("<option>").text(list.comuna);
+        formInput3.append(option);
       });
 
-      inlineForm.append(edadesRowLabel);  
-      inlineForm.append(edadesRow); 
-
+      formInputDiv3.append(formInput3);
+      formGroupRow.append(fieldLabel3);
+      formGroupRow.append(formInputDiv3);
+     
       let efficaciesRow = $("<div>", {
         class: "form-group row",
         id: "form-efficacies"
@@ -241,26 +282,67 @@ $(document).ready(() => {
       
       $("#selector-btn-registrar").on("click", e => {
         e.preventDefault();
-        console.log(usuarioRegistro);
-        
-        var af_0 = 69;
-        
+
+        let af_0 = -1;
+
+        let genero = generoList.filter(d => {
+          return d.nombre === $("#input2").val();  
+        });
+
+        let parentesco = parentescoList.filter(d => {
+          return d.nombre === $("#input1").val();  
+        });
+
+        let comuna = comunasList.filter(d => {
+          return d.comuna === $("#input3").val();  
+        });
+
         let formFields = [
           {field: "edad", value: Number($("#input0").val())},
-          {field: "parentezco", value: $("#input1").val()},
-          {field: "genero", value: $("#input2").val()},
-          {field: "comuna", value: $("#input3").val()},
+          {field: "parentesco", value: parentesco[0].parentesco},
+          {field: "genero", value: genero[0].genero},
+          {field: "comunaCod", value: comuna[0]._id},
           {field: "i1", value: Number($("#range0").val())},
           {field: "i2", value: Number($("#range1").val())},
           {field: "i3", value: Number($("#range2").val())},
           {field: "i4", value: Number($("#range3").val())},
           {field: "i5", value: Number($("#range4").val())},
-          {field: "af_0", value: af_0},      
+          {field: "af_0", value: af_0}, 
+          {field: "tutorial", value: 1}
         ];
-       
+        
+        let formRanges = formFields.filter(field => {
+          return (field.field === "i1" ||
+          field.field === "i2" ||
+          field.field === "i3" ||
+          field.field === "i4" ||
+          field.field === "i5")  
+        });
+        
+        let totalRanges = 0;
+
+        for(var i = 0; i < formRanges.length; i++) {
+          totalRanges += formRanges[i].value;
+        }
+
+        af_0 = totalRanges / formRanges.length;
+
+        function replaceByValue( field, oldvalue, newvalue ) {
+          for( var k = 0; k < formFields.length; ++k ) {
+              if( oldvalue == formFields[k][field] ) {
+                  formFields[k][field] = newvalue ;
+              }
+          }
+          return formFields;
+        }
+
+        replaceByValue('value','-1',af_0);
+
         formFields.forEach(field => {
           usuarioRegistro[field.field] = field.value;
         });
+        
+        console.log(usuarioRegistro);
 
         axios
           .post("/api/usuarios/register", usuarioRegistro)
@@ -297,14 +379,6 @@ $(document).ready(() => {
   }
 });
 
-$(window).load(function () {
-  $(".trigger_popup_fricc").click(function(){
-     $('.hover_bkgr_fricc').show();
-  });
-  $('.hover_bkgr_fricc').click(function(){
-      $('.hover_bkgr_fricc').hide();
-  });
-  $('.popupCloseButton').click(function(){
-      $('.hover_bkgr_fricc').hide();
-  });
-});
+
+
+

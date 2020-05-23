@@ -3,6 +3,8 @@
   src: url(../css/GABRIOLA.woff);
 }
 
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
 body {
   padding: 0;
   margin: 0px;
@@ -16,6 +18,28 @@ body {
   align-items: center;
   height: 100vh;
 }
+
+.starrating > input {display: none;}  /* Remove radio buttons */
+
+.starrating > label:before { 
+  content: "\f004"; /* Star */
+  margin: 2px;
+  font-size: 2em;
+  font-family: FontAwesome;
+  display: inline-block; 
+}
+
+.starrating > label
+{
+  color: #409b03; /* Start color when not clicked */
+}
+
+.starrating > input:checked ~ label
+{ color: #b10c1a ; } /* Set yellow color when star checked */
+
+.starrating > input:hover ~ label
+{ color: #ffca08 ;  } /* Set yellow color when star hover */
+
 
 .center {
   text-align: center;
@@ -163,12 +187,19 @@ strong {
 #myProgress {
   width: 100%;
   background-color: grey;
+  border: 2px solid #ccc;
+  border-radius: 4px;
 }
 
 #myBar {
   width: 1%;
   height: 30px;
   background-color: green;
+  text-align: center; /* To center it horizontally (if you want) */
+  line-height: 30px; /* To center it vertically */
+  color: white;
+  border: 2px solid #ccc;
+  border-radius: 4px;
 }
 
 /* Popup box BEGIN */
@@ -228,4 +259,17 @@ strong {
   font-weight: bold;*/
   display: inline-block;
 }
-/* Popup box BEGIN */
+/* Popup box END */
+
+.swiper-container {
+  width:375px;
+  height: 520px;
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}

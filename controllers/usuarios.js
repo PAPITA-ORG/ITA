@@ -17,7 +17,7 @@ module.exports = {
   // find usuario by id
   findByID: (req, res) => {
     db.usuarios
-      .find({ _id: req.params.usuarioID })
+      .find({ _id: req.params.id })
       .then(dbUsuarios => res.json(dbUsuarios))
       .catch(err => res.status(422).json(err));
   },
