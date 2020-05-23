@@ -29,7 +29,7 @@ $(document).ready(() => {
         $myFuelGauge = $("div#fuel-gauge").dynameter({
           width: 200,
           label: "",
-          value: 80,
+          value: af_0,
           min: 0.0,
           max: 100.0,
           unit: "",
