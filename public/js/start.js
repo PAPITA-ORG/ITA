@@ -529,7 +529,7 @@ $(document).ready(() => {
         let potatoStat = $("<img>", {
           src: "/images/logo_papita-01.png",
           class: "center"
-        }).height(300);
+        }).height(250);
 
         let potatoButton = $("<button>", {
           class: "btn btn-success",
