@@ -6,7 +6,7 @@ module.exports = {
   // find all actividades
   findAll: (req, res) => {
     db.actividades
-      .find(req.query)
+      .find()
       .sort({ date: 1 })
       .then(dbActividades => res.json(dbActividades))
       .catch(err => res.status(422).json(err));
