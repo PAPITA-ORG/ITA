@@ -42,7 +42,8 @@ router.post("/register", (req, res) => {
     i3,
     i4,
     i5,
-    af_0
+    af_0,
+    tutorial
   } = req.body;
 
   // validate creation of usuario
