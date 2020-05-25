@@ -87,6 +87,7 @@ $(document).ready(() => {
           src: "/images/personaje-08.png",
           width: "150",
           height: "150"
+
         });
 
         let btndiet = $("<a>", {
@@ -588,6 +589,7 @@ $(document).ready(() => {
         setTimeout(function() {
           body(usuario, topicoCod);
         }, 3000);
+
       });
 
       $("#btn-diet").on("click", e => {
