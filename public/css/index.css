@@ -261,10 +261,10 @@ strong {
 }
 /* Popup box END */
 
-/*.swiper-container {
-  /*width:375px;
-  height: 520px;
-}*/
+.swiper-container {
+  width:375px;
+  height: 450px;
+}
 
 .vertical-center {
   margin: 0;
