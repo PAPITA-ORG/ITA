@@ -249,7 +249,7 @@ $(document).ready(() => {
           .then(res => {
             const displayActivities = () => {
               let randomActivities = [];
-
+              
               // empty activityContainer startBottomContainer
               $("#actividades-container").empty();
 
