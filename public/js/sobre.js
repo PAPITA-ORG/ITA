@@ -5,6 +5,7 @@ $(document).ready(() => {
   let sobreContainer = $("#sobre-main-container");
   $("#btn-sig").click(e => {
     e.preventDefault();
+<<<<<<< HEAD
     axios
     .get("/api/comunas")
     .then((res) => {
@@ -13,11 +14,32 @@ $(document).ready(() => {
       addForm();   
     })
     .catch(err => err);
+=======
+    // call addForm function
+    addForm();
+>>>>>>> 025fe286c89c18f097bb558e8d87edc0cc0eafd1
   });
   
   function addForm() {
     sobreContainer.empty();
+<<<<<<< HEAD
     
+=======
+
+    axios
+    .get("/api/comunas")
+    .then((res) => {console.log(res.data)})
+    .catch(err => err);
+
+    /*let comunasList = "#res.data";
+
+    var genero = {
+      {"firstName":"John", "lastName":"Doe"},
+      {"firstName":"Anna", "lastName":"Smith"},
+      {"firstName":"Peter", "lastName":"Jones"}
+    };*/
+
+>>>>>>> 025fe286c89c18f097bb558e8d87edc0cc0eafd1
     // create a form
     let sobreForm = $("<form>", {
       id: "sobre-form"
@@ -106,6 +128,7 @@ $(document).ready(() => {
     
 
     const appendUserForm = () => {
+<<<<<<< HEAD
     
     var generoList = [
       {"genero":1, "nombre":"prefiero no decir"},
@@ -126,11 +149,17 @@ $(document).ready(() => {
       let screenFields = [
         //"Edad",
         "Parentesco con los niños/as",
+=======
+      let screenFields = [
+        "Edad",
+        "Parentezco con los niños/as",
+>>>>>>> 025fe286c89c18f097bb558e8d87edc0cc0eafd1
         "Genero",
         "Comuna",
         //"Numero de ninos",
         //"Edades de ninos"
       ];
+<<<<<<< HEAD
 
       /*let dropdownList = [
         parentescoList,
@@ -138,6 +167,13 @@ $(document).ready(() => {
         comunasList
       ];*/
       
+=======
+      
+      let edades = [
+        "3","4","5","6","7","8","9","10"
+      ];
+
+>>>>>>> 025fe286c89c18f097bb558e8d87edc0cc0eafd1
       let efficacies = [
         "Siempre puedo resolver problemas si trato lo suficiente",
         "Es facil lograr mis metas y mantener mis objetivos",
@@ -160,6 +196,7 @@ $(document).ready(() => {
       let formGroupRow = $(`<div>`, { class: "form-group row" });
       inlineForm.append(formGroupRow);
    
+<<<<<<< HEAD
       let fieldLabel0 = $(`<label>`, {
         for: `input0`,
         class: "col-sm-3 col-form-label"
@@ -235,6 +272,54 @@ $(document).ready(() => {
       formGroupRow.append(fieldLabel3);
       formGroupRow.append(formInputDiv3);
      
+=======
+      screenFields.map((field, i) => {
+        let fieldLabel = $(`<label>`, {
+          for: `input${i}`,
+          class: "col-sm-3 col-form-label"
+        }).text(field);
+        let formInputDiv = $(`<div>`, { class: "col-sm-3" });
+        let formInput = $(`<input>`, {
+          type: "text",
+          class: "form-control",
+          id: `input${i}`
+        }).css("margin-bottom", "10px");
+
+        formInputDiv.append(formInput);
+        formGroupRow.append(fieldLabel);
+        formGroupRow.append(formInputDiv);
+        // console.log(formGroupRow);
+      });
+
+      let edadesRowLabel = $("<label>", {
+        for: "edadesRow",
+      }).text("Que edad tienen los niños/as (marque todas las que aplica)"); 
+
+      let edadesRow = $("<div>", {
+        class: "row justify-center",
+        id: "form-edades"
+      });
+
+      edades.map((field, i) => {
+        let edadesLabel = $(`<label>`, {
+          for: `ages${i}`,
+          class: "col"
+        }).text(field);
+        let formGroupEdad = $("<input>", {
+          type: 'checkbox',
+          class: "checkbox col",
+          id: `checkbox${i}`
+         }).prop( "checked", false );
+
+        edadesRow.append(edadesLabel)
+        edadesRow.append(formGroupEdad)
+        // console.log(formGroupRow);
+      });
+
+      inlineForm.append(edadesRowLabel);  
+      inlineForm.append(edadesRow); 
+
+>>>>>>> 025fe286c89c18f097bb558e8d87edc0cc0eafd1
       let efficaciesRow = $("<div>", {
         class: "form-group row",
         id: "form-efficacies"
@@ -282,6 +367,7 @@ $(document).ready(() => {
       
       $("#selector-btn-registrar").on("click", e => {
         e.preventDefault();
+<<<<<<< HEAD
 
         let af_0 = -1;
 
@@ -302,13 +388,25 @@ $(document).ready(() => {
           {field: "parentesco", value: parentesco[0].parentesco},
           {field: "genero", value: genero[0].genero},
           {field: "comunaCod", value: comuna[0]._id},
+=======
+        console.log(usuarioRegistro);
+        
+        var af_0 = 69;
+        
+        let formFields = [
+          {field: "edad", value: Number($("#input0").val())},
+          {field: "parentezco", value: $("#input1").val()},
+          {field: "genero", value: $("#input2").val()},
+          {field: "comuna", value: $("#input3").val()},
+>>>>>>> 025fe286c89c18f097bb558e8d87edc0cc0eafd1
           {field: "i1", value: Number($("#range0").val())},
           {field: "i2", value: Number($("#range1").val())},
           {field: "i3", value: Number($("#range2").val())},
           {field: "i4", value: Number($("#range3").val())},
           {field: "i5", value: Number($("#range4").val())},
-          {field: "af_0", value: af_0},
-          {field: "tutorial", value: 1},             
+<<<<<<< HEAD
+          {field: "af_0", value: af_0}, 
+          {field: "tutorial", value: 1}
         ];
         
         let formRanges = formFields.filter(field => {
@@ -343,13 +441,21 @@ $(document).ready(() => {
         });
         
         console.log(usuarioRegistro);
+=======
+          {field: "af_0", value: af_0},      
+        ];
+       
+        formFields.forEach(field => {
+          usuarioRegistro[field.field] = field.value;
+        });
+>>>>>>> 025fe286c89c18f097bb558e8d87edc0cc0eafd1
 
         axios
           .post("/api/usuarios/register", usuarioRegistro)
           .then(res => res)
           .catch(err => err);
 
-        //window.location.href="/";
+        window.location.href="/";
       });
     };
 
@@ -379,6 +485,20 @@ $(document).ready(() => {
   }
 });
 
+<<<<<<< HEAD
 
 
 
+=======
+$(window).load(function () {
+  $(".trigger_popup_fricc").click(function(){
+     $('.hover_bkgr_fricc').show();
+  });
+  $('.hover_bkgr_fricc').click(function(){
+      $('.hover_bkgr_fricc').hide();
+  });
+  $('.popupCloseButton').click(function(){
+      $('.hover_bkgr_fricc').hide();
+  });
+});
+>>>>>>> 025fe286c89c18f097bb558e8d87edc0cc0eafd1

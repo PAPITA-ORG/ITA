@@ -3,8 +3,11 @@
   src: url(../css/GABRIOLA.woff);
 }
 
+<<<<<<< HEAD
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
+=======
+>>>>>>> 025fe286c89c18f097bb558e8d87edc0cc0eafd1
 body {
   padding: 0;
   margin: 0px;
@@ -187,12 +190,25 @@ strong {
 #myProgress {
   width: 100%;
   background-color: grey;
+<<<<<<< HEAD
+  border: 2px solid #ccc;
+  border-radius: 4px;
+=======
+>>>>>>> 025fe286c89c18f097bb558e8d87edc0cc0eafd1
 }
 
 #myBar {
   width: 1%;
   height: 30px;
   background-color: green;
+<<<<<<< HEAD
+  text-align: center; /* To center it horizontally (if you want) */
+  line-height: 30px; /* To center it vertically */
+  color: white;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+=======
+>>>>>>> 025fe286c89c18f097bb558e8d87edc0cc0eafd1
 }
 
 /* Popup box BEGIN */
@@ -252,9 +268,25 @@ strong {
   font-weight: bold;*/
   display: inline-block;
 }
+<<<<<<< HEAD
 /* Popup box END */
 
 .swiper-container {
-  width:600px;
-  height: 300px;
+  width:375px;
+  height: 520px;
 }
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+#start-top-container {
+  padding: 0 20px;
+}
+=======
+/* Popup box BEGIN */
+>>>>>>> 025fe286c89c18f097bb558e8d87edc0cc0eafd1

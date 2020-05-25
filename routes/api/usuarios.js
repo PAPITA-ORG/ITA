@@ -42,8 +42,7 @@ router.post("/register", (req, res) => {
     i3,
     i4,
     i5,
-    af_0,
-    tutorial
+    af_0
   } = req.body;
 
   // validate creation of usuario
@@ -62,8 +61,7 @@ router.post("/register", (req, res) => {
     !i3 ||
     !i4 ||
     !i5 ||
-    !af_0 ||
-    !tutorial
+    !af_0
   ) {
     errors.push({ msg: "Por favor procure llenar el formulario completo" });
   }
@@ -135,26 +133,17 @@ router.post("/register", (req, res) => {
 
 // Login Handler
 router.post(
-  '/login',
-  passport.authenticate('local', {
-    failureRedirect: '/login'
-  }), (req, res) => {
-    if (tutorial == 1) {
-      res.redirect('/tutorial');
-    }
-    if (tutorial == 0) {
-      res.redirect('/start');
-    }
-  });
-
-
-/*router.post("/login", (req, res, next) => {
+  "/login",
   passport.authenticate("local", {
-    successRedirect: "/start",
-    failureRedirect: "/",
-    failureFlash: true
-  })(req, res, next);
-  
-});*/
+    failureRedirect: "/"
+  }),
+  (req, res) => {
+    if (req.user.tutorial == 1) {
+      res.redirect("/tutorial");
+    } else {
+      res.redirect("/start");
+    }
+  }
+);
 
 module.exports = router;

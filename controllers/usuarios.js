@@ -18,6 +18,7 @@ module.exports = {
   findByID: (req, res) => {
     db.usuarios
       .find({ _id: req.params.id })
+      .populate("historials")
       .then(dbUsuarios => res.json(dbUsuarios))
       .catch(err => res.status(422).json(err));
   },
@@ -88,7 +89,7 @@ module.exports = {
   // update one usuario
   updateOne: (req, res) => {
     db.usuarios
-      .updateOne({ _id: req.params.id }, req.query)
+      .updateOne({ _id: req.params.id }, req.body)
       .then(dbUsuarios => res.json(dbUsuarios))
       .catch(err => res.status(422).json(err));
   }

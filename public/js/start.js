@@ -1,4 +1,8 @@
 $(document).ready(() => {
+  $("#btn-logout").on("click", () => {
+    window.location.href = "/";
+  });
+
   axios
     .get(`/api/usuarios/${userId}`)
     .then(res => {
@@ -17,19 +21,14 @@ $(document).ready(() => {
       let startTopContainer = $("#start-top-container");
       let startBottomContainer = $("#start-bottom-container");
 
-      let fuelGauge = $("<div>", {
-        class: "fuel-gauge"
-      });
+      let fuelGauge = $("#fuel-gauge");
 
-      let fuelGaugeControl = $("<div>", {
-        class: "fuel-gague-control"
-      });
+      let fuelGaugeControl = $("#fuel-gauge-control");
 
       $(function() {
         $myFuelGauge = $("div#fuel-gauge").dynameter({
-          width: 200,
           label: "",
-          value: 80,
+          value: usuario.af_0,
           min: 0.0,
           max: 100.0,
           unit: "",
@@ -45,10 +44,10 @@ $(document).ready(() => {
       const startDashboard = () => {
         startBottomContainer.empty();
 
+        let fuelGaugeDiv = $("#fuel-row");
+
         let efficacyStart = $("<div>", {
-
-          class: "form-group row",
-
+          class: "center col-md-6",
           id: "form-efficacies"
         });
 
@@ -56,11 +55,11 @@ $(document).ready(() => {
           class: "col-sm-6 col-form-label"
         }).text("Cual es tu energia ahora?");
 
-        let formInputDiv = $(`<div>`, { class: "col-sm-6" });
+        let formInputDiv = $(`<div>`, { class: "col-sm-12 col-md-12" });
 
         let formInput = $("<input>", {
           type: "range",
-          val: "0",
+          val: usuario.af_0,
           min: "0",
           max: "100",
           class: "form-control",
@@ -68,11 +67,13 @@ $(document).ready(() => {
         }).css("margin-bottom", "10px");
 
         formInputDiv.append(formInput);
-        efficacyStart.append(efficacyStartLabel);
-
+        //efficacyStart.append(efficacyStartLabel);
         efficacyStart.append(formInputDiv);
+
         fuelGauge.append(fuelGaugeControl);
-        startTopContainer.append(fuelGauge);
+        fuelGaugeDiv.append(fuelGauge);
+
+        startTopContainer.append(fuelGaugeDiv);
         startTopContainer.append(efficacyStart);
 
         let tituloContainer = $("<h5>", {}).text("Que quieres hacer hoy?");
@@ -125,6 +126,7 @@ $(document).ready(() => {
         parrafContainer.append(btnstats);
         btnbody.append(img3);
         parrafContainer.append(btnbody);
+        parrafContainer.append(document.createElement("br"));
         btndiet.append(img2);
         parrafContainer.append(btndiet);
         btnmind.append(img1);
@@ -161,6 +163,7 @@ $(document).ready(() => {
 
         let startRandomMessage = $("<label>", {
           for: "start-random-message"
+          //MAKE MESSAGE RANDOM FROM MESSAGES COLLECTION
         }).text("Practica, Practica, Practica");
 
         let progressRow = $("<div>", {
@@ -301,7 +304,7 @@ $(document).ready(() => {
 
         // create a div with class form-group
         let formGroup = $("<div>", {
-          class: "form-group"
+          class: "form-group justify-center"
         });
 
         let formLabel = $("<label>", {
@@ -444,7 +447,12 @@ $(document).ready(() => {
           axios
             .post("/api/historial", historial)
             .then(res => {
-              window.location.href = "start";
+              let fieldsToModify = { af_0: historial.af2, tutorial: 0 };
+              axios
+                .put(`/api/usuarios/${usuario._id}`, fieldsToModify)
+                .then(res => {
+                  window.location.href = "start";
+                });
             })
             .catch(err => err);
         });
@@ -517,20 +525,29 @@ $(document).ready(() => {
 
         let potatoStatLabel = $("<label>", {
           for: "start-potatostat"
-        }).text("No stats yet, here is a potato");
+        }).text("Aun no has hecho suficientes actividades para tener stats :D");
 
         let potatoStat = $("<img>", {
-          src: "/images/papitacorp.jpg",
+          src: "/images/logo_papita-01.png",
           class: "center"
-        })
-          .width(300)
-          .height(300);
+        }).height(250);
+
+        let potatoButton = $("<button>", {
+          class: "btn btn-success",
+          id: "potato-button"
+        }).text("Llevame de vuelta!");
 
         statsRow.append(potatoStat);
+        statsRow.append(document.createElement("br"));
+        statsRow.append(potatoButton);
         statsRowLabel.append(potatoStatLabel);
 
         startContainer.append(statsRowLabel);
         startContainer.append(statsRow);
+
+        $("#potato-button").on("click", () => {
+          window.location.href = "start";
+        });
       };
 
       const body = (usuario, topicoCod) => {
@@ -594,7 +611,6 @@ $(document).ready(() => {
       });
     })
     .catch(err => err);
-
 
   var i = 0;
   function move() {
