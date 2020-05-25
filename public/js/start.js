@@ -87,7 +87,6 @@ $(document).ready(() => {
           src: "/images/personaje-08.png",
           width: "150",
           height: "150"
-
         });
 
         let btndiet = $("<a>", {
@@ -203,12 +202,12 @@ $(document).ready(() => {
           src: "/images/ita3d_1.png",
           class: "center"
         })
-          .width(200)
-          .height(240);
+          .width(150)
+          .height(180);
 
         let startSelectorLabel = $("<label>", {
           for: "start-selector"
-        }).text("Quieres hacer esta actividad? (haz clic abajo)");
+        }).text("Prepare estas actividades para ti!");
 
         startSelector.append(startIta);
         startSelector.append(startSelectorLabel);
@@ -472,7 +471,7 @@ $(document).ready(() => {
 
         let mindLabel = $("<label>", {
           for: "start-potatostat"
-        }).text("What is mind?");
+        }).text("Hagamos una actividad saludable juntos!");
 
         mindRow.append(mindLabel);
 
@@ -496,8 +495,8 @@ $(document).ready(() => {
         });
 
         let dietLabel = $("<label>", {
-          for: "start-potatostat"
-        }).text("What is diet?");
+          for: "diet-row"
+        }).text("Cocinemos juntos!");
 
         dietRow.append(dietLabel);
 
@@ -530,7 +529,7 @@ $(document).ready(() => {
         let potatoStat = $("<img>", {
           src: "/images/logo_papita-01.png",
           class: "center"
-        }).height(250);
+        }).height(200);
 
         let potatoButton = $("<button>", {
           class: "btn btn-success",
@@ -557,14 +556,14 @@ $(document).ready(() => {
         startBottomContainer.empty();
 
         let bodyRow = $("<div>", {
-          style: "margin-top: 20px",
+          style: "margin-top: 10px",
           class: "col-sm-12 form-group justify-center center",
           id: "body-row"
         });
 
         let bodyLabel = $("<label>", {
-          for: "start-potatostat"
-        }).text("What is body?");
+          for: "body-row"
+        }).text("Hagamos actividad física juntos!");
 
         bodyRow.append(bodyLabel);
 
