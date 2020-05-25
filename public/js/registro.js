@@ -1,5 +1,4 @@
 $(document).ready(() => {
-<<<<<<< HEAD
   $("input[type=password]").on("keyup", () => {
     var pass = $('#pw.form-control').val();   
     var repass = $('#pw2.form-control').val();
@@ -20,15 +19,4 @@ $(document).ready(() => {
   */       
     window.location.href = "/";    
   });
-=======
-  
-  // Condicion de contraseñas iguales
-  $("#btn-registro-enviar").on("click", () => {
-    if ($("#pw.form-control").val() != $("#pw2.form-control").val()){
-      alert("Las contraseñas no coinciden")
-    }else{
-      window.location.href = "/";
-    }
-  });
->>>>>>> 025fe286c89c18f097bb558e8d87edc0cc0eafd1
 });
