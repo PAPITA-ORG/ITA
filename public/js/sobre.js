@@ -349,7 +349,7 @@ $(document).ready(() => {
           .then(res => res)
           .catch(err => err);
 
-        //window.location.href="/";
+        window.location.href="/";
       });
     };
 
