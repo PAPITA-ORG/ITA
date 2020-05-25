@@ -85,8 +85,8 @@ $(document).ready(() => {
         });
         let img1 = $("<img>", {
           src: "/images/personaje-08.png",
-          width: "150",
-          height: "150"
+          width: "130",
+          height: "130"
         });
 
         let btndiet = $("<a>", {
@@ -96,8 +96,8 @@ $(document).ready(() => {
         });
         let img2 = $("<img>", {
           src: "/images/personaje-07.png",
-          width: "150",
-          height: "150"
+          width: "130",
+          height: "130"
         });
 
         let btnbody = $("<a>", {
@@ -107,8 +107,8 @@ $(document).ready(() => {
         });
         let img3 = $("<img>", {
           src: "/images/personaje-06.png",
-          width: "150",
-          height: "150"
+          width: "130",
+          height: "130"
         });
 
         let btnstats = $("<a>", {
@@ -117,8 +117,8 @@ $(document).ready(() => {
         });
         let img4 = $("<img>", {
           src: "/images/stats.png",
-          width: "150",
-          height: "150"
+          width: "130",
+          height: "130"
         });
 
         btnstats.append(img4);
