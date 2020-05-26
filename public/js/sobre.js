@@ -107,36 +107,21 @@ $(document).ready(() => {
 
     const appendUserForm = () => {
     
-    var generoList = [
-      {"genero":1, "nombre":"prefiero no decir"},
-      {"genero":2, "nombre":"otro"},
-      {"genero":3, "nombre":"mujer"},
-      {"genero":4, "nombre":"hombre"}
-    ];
-
-    var parentescoList = [
-      {"parentesco":1, "nombre":"mama"},
-      {"parentesco":2, "nombre":"papa"},
-      {"parentesco":3, "nombre":"abuelo"},
-      {"parentesco":4, "nombre":"abuela"},
-      {"parentesco":5, "nombre":"otro familiar"},
-      {"parentesco":6, "nombre":"otro no familiar"}
-    ];
-
-      let screenFields = [
-        //"Edad",
-        "Parentesco con los niños/as",
-        "Genero",
-        "Comuna",
-        //"Numero de ninos",
-        //"Edades de ninos"
+      var generoList = [
+        {"genero":1, "nombre":"prefiero no decir"},
+        {"genero":2, "nombre":"otro"},
+        {"genero":3, "nombre":"mujer"},
+        {"genero":4, "nombre":"hombre"}
       ];
 
-      /*let dropdownList = [
-        parentescoList,
-        generoList,
-        comunasList
-      ];*/
+      var parentescoList = [
+        {"parentesco":1, "nombre":"mama"},
+        {"parentesco":2, "nombre":"papa"},
+        {"parentesco":3, "nombre":"abuelo"},
+        {"parentesco":4, "nombre":"abuela"},
+        {"parentesco":5, "nombre":"otro familiar"},
+        {"parentesco":6, "nombre":"otro no familiar"}
+      ];
       
       let efficacies = [
         "Siempre puedo resolver problemas si trato lo suficiente",
