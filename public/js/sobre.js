@@ -152,7 +152,7 @@ $(document).ready(() => {
       sobreContainer.append(inlineForm);
 
       let formGroupRowLabel = $("<label>", {
-        for: "formGroupRow",
+        for: "formGroupRow"
       }).text("Cuentanos mas de ti"); 
 
       inlineForm.append(formGroupRowLabel);  
@@ -342,7 +342,7 @@ $(document).ready(() => {
           usuarioRegistro[field.field] = field.value;
         });
         
-        console.log(usuarioRegistro);
+        //console.log(usuarioRegistro);
 
         axios
           .post("/api/usuarios/register", usuarioRegistro)
