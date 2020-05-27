@@ -147,4 +147,7 @@ router.post(
   }
 );
 
+// change password
+router.route("/changePassword").post(usuariosController.changePassword);
+
 module.exports = router;
