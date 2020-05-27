@@ -98,9 +98,15 @@ module.exports = {
     db.usuarios
       .find({ correo: req.body.correo })
       .then(usuario => {
+        // if no user is found...
         if (usuario.length === 0) {
           res.render("registro", {
             correo_err: "Lo sentimos, su cuenta aun no esta registrada"
+          });
+        } else if (req.body.password.length < 6) {
+          res.render("registro", {
+            correo_err:
+              "Lo sentimos, su contraseña debe ser al menos 6 caracteres"
           });
         } else {
           // hash password from request body
