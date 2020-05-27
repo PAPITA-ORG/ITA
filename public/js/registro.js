@@ -10,17 +10,18 @@ $(document).ready(() => {
       $("#btn-registro-enviar").removeAttr("disabled");
     }
   });
-  $("#btn-registro-enviar").on("click", e => {
-    let requestBody = {
-      correo: $("#email").val(),
-      password: pass
-    };
+  // $("#btn-registro-enviar").on("click", e => {
+  //   let requestBody = {
+  //     correo: $("#email").val(),
+  //     password: pass
+  //   };
 
-    axios
-      .post("/api/usuarios/changePassword", requestBody)
-      .then(res => {
-        window.location.href = "/";
-      })
-      .catch(err => err);
-  });
+  //   axios
+  //     .post("/api/usuarios/changePassword", requestBody)
+  //     .then(res => {
+  //       console.log(res);
+  //       // window.location.href = "/";
+  //     })
+  //     .catch(err => err);
+  // });
 });
