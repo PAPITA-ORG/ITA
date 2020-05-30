@@ -1,12 +1,14 @@
 // import database models and store in a variable
 const db = require("../models");
 
+const Hijo = db.hijos;
+
 // define methods for the hijos controller
 module.exports = {
   // find all hijos
   findAll: (req, res) => {
     db.hijos
-      .find(req.query)
+      .find()
       .sort({ date: 1 })
       .then(dbHijos => res.json(dbHijos))
       .catch(err => res.status(422).json(err));
@@ -42,10 +44,52 @@ module.exports = {
   // create one hijo
   create: (req, res) => {
     const hijo = req.body;
+    const {
+      edad,
+      genero,
+      peso,
+      talla,
+      noDificultadComp,
+      noLleva,
+      explosivoAgresivo,
+      noDificultadEnt,
+      usuario
+    } = req.body;
 
-    db.hijos
-      .create(hijo)
-      .then(dbHijos => res.json(dbHijos))
+    const newHijo = new Hijo({
+      edad: edad,
+      genero: genero,
+      peso: peso,
+      talla: talla,
+      noDificultadComp: noDificultadComp,
+      noLleva: noLleva,
+      explosivoAgresivo: explosivoAgresivo,
+      noDificultadEnt: noDificultadEnt,
+      usuario: usuario
+    });
+
+    newHijo
+      .save()
+      .then(newHijo => {
+        db.usuarios
+          .updateOne(
+            { _id: req.params.parentID },
+            { $push: { hijos: newHijo._id } }
+          )
+          .then(parent => res.json(parent))
+          .catch(err => res.status(422).json(err));
+        // res.json(newHijo);
+      })
       .catch(err => res.status(422).json(err));
+
+    // db.hijos
+    //   .create(hijo)
+    //   .then(dbHijos => {
+    //     console.log(dbHijos);
+
+    //     return res.json(dbHijos);
+    //   })
+    //   .catch(err => res.status(422).json(err));
+    // .then(d => {
   }
 };

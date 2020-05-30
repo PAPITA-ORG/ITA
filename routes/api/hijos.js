@@ -22,6 +22,6 @@ router.route("/:id").delete(hijoController.deleteOne);
 router.route("/:id").put(hijoController.updateOne);
 
 // create one hijo
-router.route("/").post(hijoController.create);
+router.route("/:parentID").post(hijoController.create);
 
 module.exports = router;
