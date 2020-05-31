@@ -10,11 +10,11 @@ block content
                     div(id="fuel-gauge-control")
 
         div(class="container col-md-12 center" style="margin-top: 20px" id="start-bottom-container")
-            
+      
+        div(class='center')
+            button(type='button' class='btn btn-success' id='btn-logout') Bye!
+
         script.
             let userId = !{JSON.stringify(id)}
 
-        div(class='center')
-            button(type='button' class='btn btn-success' id='btn-logout') Bye!
-        
         script(src="/js/start.js")

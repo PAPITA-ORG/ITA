@@ -1,5 +1,6 @@
 $(document).ready(function () {
   let tutorialContainer = $("#tutorial-main-container");
+  let hijos = [];
    
   //initialize swiper     
   var mySwiper = new Swiper ('.swiper-container', {
@@ -57,7 +58,7 @@ $(document).ready(function () {
     let edadLabel = $("<label>", {
       for: "tutorial-form-edad",
       class: "col-sm-3 col-form-label" 
-    }).text("Edad");
+    }).text("Fecha nacimiento");
 
     let edadInput = $("<input>", {
       class: "form-control",
@@ -190,18 +191,61 @@ $(document).ready(function () {
   $("#btn-child-form").on("click", () => {
     e.preventDefault();
 
-    /*axios
-        .post("/api/usuarios/register", usuarioRegistro)
-        .then(res => res)
-        .catch(err => err);*/
+    let genero = generoList.filter(d => {
+      return d.nombre === generoInput.val();  
+    });
+
+    let hijo = {
+      edad: edadInput.val(),
+      genero: Number(genero[0].genero),
+      peso: Number(pesoInput.val()),
+      talla: Number(tallaInput.val()),
+      noDificultadComp: Number($("#range0").val()),
+      noLleva: Number($("#range1").val()),
+      explosivoAgresivo: Number($("#range2").val()),
+      noDificultadEnt: Number($("#range3").val()),
+      usuario: userId
+    };
+
+    hijos.push(hijo);
+
+    let bulkHijos = {
+      data: hijos      
+    };
+
+    axios
+        .post("/api/hijos/:userId", bulkHijos)
+        .then(res => {
+          window.location.href = "start";
+        })
+        .catch(err => err);
 
     window.location.href = "start";
   });
 
   $("#btn-child-form-2").on("click", () => {
     e.preventDefault();
+    let genero = generoList.filter(d => {
+      return d.nombre === generoInput.val();  
+    });
+
+    let hijo = {
+      edad: edadInput.val(),
+      genero: Number(genero[0].genero),
+      peso: Number(pesoInput.val()),
+      talla: Number(tallaInput.val()),
+      noDificultadComp: Number($("#range0").val()),
+      noLleva: Number($("#range1").val()),
+      explosivoAgresivo: Number($("#range2").val()),
+      noDificultadEnt: Number($("#range3").val()),
+      usuario: userId
+    };
+
+    hijos.push(hijo);
     childUserForm();
   });
+
+  // this button just append the first child form
 
   $("#btn-finish").on("click", () => {
     childUserForm();
