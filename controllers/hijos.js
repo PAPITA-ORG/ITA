@@ -43,53 +43,21 @@ module.exports = {
   },
   // create one hijo
   create: (req, res) => {
-    const hijo = req.body;
-    const {
-      edad,
-      genero,
-      peso,
-      talla,
-      noDificultadComp,
-      noLleva,
-      explosivoAgresivo,
-      noDificultadEnt,
-      usuario
-    } = req.body;
+    db.hijos
+      .insertMany(req.body.data)
+      .then(hijos => {
+        let ids = hijos.map(hijo => {
+          return hijo._id;
+        });
 
-    const newHijo = new Hijo({
-      edad: edad,
-      genero: genero,
-      peso: peso,
-      talla: talla,
-      noDificultadComp: noDificultadComp,
-      noLleva: noLleva,
-      explosivoAgresivo: explosivoAgresivo,
-      noDificultadEnt: noDificultadEnt,
-      usuario: usuario
-    });
-
-    newHijo
-      .save()
-      .then(newHijo => {
         db.usuarios
           .updateOne(
             { _id: req.params.parentID },
-            { $push: { hijos: newHijo._id } }
+            { $push: { hijos: { $each: ids } } }
           )
           .then(parent => res.json(parent))
           .catch(err => res.status(422).json(err));
-        // res.json(newHijo);
       })
       .catch(err => res.status(422).json(err));
-
-    // db.hijos
-    //   .create(hijo)
-    //   .then(dbHijos => {
-    //     console.log(dbHijos);
-
-    //     return res.json(dbHijos);
-    //   })
-    //   .catch(err => res.status(422).json(err));
-    // .then(d => {
   }
 };
