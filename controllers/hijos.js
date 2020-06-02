@@ -1,5 +1,6 @@
 // import database models and store in a variable
 const db = require("../models");
+const bcrypt = require("bcryptjs");
 
 const Hijo = db.hijos;
 
@@ -43,8 +44,14 @@ module.exports = {
   },
   // create one hijo
   create: (req, res) => {
+    let encryptedChildren = req.body.data.map(child => {
+      let hash = bcrypt.hashSync(child.nombre, 10);
+      child.nombre = hash;
+      return child;
+    });
+
     db.hijos
-      .insertMany(req.body.data)
+      .insertMany(encryptedChildren)
       .then(hijos => {
         let ids = hijos.map(hijo => {
           return hijo._id;
