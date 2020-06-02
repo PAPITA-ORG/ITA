@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const Hijos = Schema({
+  nombre: { type: Schema.Types.String, required: true },
   edad: { type: Schema.Types.String, required: true },
   genero: { type: Schema.Types.Number, required: true },
   peso: { type: Schema.Types.Number, required: true },
