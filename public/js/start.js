@@ -3,7 +3,7 @@ $(document).ready(() => {
     window.location.href = "/";
   });
 
-   axios
+  axios
     .get(`/api/usuarios/${userId}`)
     .then(res => {
       const usuario = res.data[0];
@@ -249,7 +249,7 @@ $(document).ready(() => {
           .then(res => {
             const displayActivities = () => {
               let randomActivities = [];
-              
+
               // empty activityContainer startBottomContainer
               $("#actividades-container").empty();
 
@@ -591,7 +591,6 @@ $(document).ready(() => {
         setTimeout(function() {
           body(usuario, topicoCod);
         }, 3000);
-
       });
 
       $("#btn-diet").on("click", e => {
