@@ -263,6 +263,7 @@ strong {
 .swiper-container {
   width:375px;
   height: 450px;
+  padding: 5px;
 }
 
 .vertical-center {

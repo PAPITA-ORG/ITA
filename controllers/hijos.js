@@ -1,12 +1,15 @@
 // import database models and store in a variable
 const db = require("../models");
+const bcrypt = require("bcryptjs");
+
+const Hijo = db.hijos;
 
 // define methods for the hijos controller
 module.exports = {
   // find all hijos
   findAll: (req, res) => {
     db.hijos
-      .find(req.query)
+      .find()
       .sort({ date: 1 })
       .then(dbHijos => res.json(dbHijos))
       .catch(err => res.status(422).json(err));
@@ -41,11 +44,27 @@ module.exports = {
   },
   // create one hijo
   create: (req, res) => {
-    const hijo = req.body;
+    let encryptedChildren = req.body.data.map(child => {
+      let hash = bcrypt.hashSync(child.nombre, 10);
+      child.nombre = hash;
+      return child;
+    });
 
     db.hijos
-      .create(hijo)
-      .then(dbHijos => res.json(dbHijos))
+      .insertMany(encryptedChildren)
+      .then(hijos => {
+        let ids = hijos.map(hijo => {
+          return hijo._id;
+        });
+
+        db.usuarios
+          .updateOne(
+            { _id: req.params.parentID },
+            { $push: { hijos: { $each: ids } } }
+          )
+          .then(parent => res.json(parent))
+          .catch(err => res.status(422).json(err));
+      })
       .catch(err => res.status(422).json(err));
   }
 };

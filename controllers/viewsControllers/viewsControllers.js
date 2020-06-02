@@ -14,4 +14,7 @@ module.exports = {
   tutorialView: (req, res) => {
     res.render("tutorial", { id: req.session.passport.user });
   },
+  notfoundView: (req, res) => {
+    res.render("notfound");
+  },
 };

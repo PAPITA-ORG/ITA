@@ -15,8 +15,9 @@ const Usuarios = Schema({
   i4: { type: Schema.Types.Number, required: true },
   i5: { type: Schema.Types.Number, required: true },
   af_0: { type: Schema.Types.Number, required: true },
-  tutorial: { type: Schema.Types.Number},
-  historial: [{ type: Schema.Types.ObjectId, ref: "Historial" }]
+  tutorial: { type: Schema.Types.Number },
+  historial: [{ type: Schema.Types.ObjectId, ref: "Historial" }],
+  hijos: [{ type: Schema.Types.ObjectId, ref: "Hijo" }]
 });
 
 const Usuario = mongoose.model("Usuario", Usuarios);
