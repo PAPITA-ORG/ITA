@@ -249,7 +249,7 @@ $(document).ready(() => {
           .then(res => {
             const displayActivities = () => {
               let randomActivities = [];
-
+              
               // empty activityContainer startBottomContainer
               $("#actividades-container").empty();
 
@@ -591,6 +591,7 @@ $(document).ready(() => {
         setTimeout(function() {
           body(usuario, topicoCod);
         }, 3000);
+
       });
 
       $("#btn-diet").on("click", e => {
