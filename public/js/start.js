@@ -3,7 +3,7 @@ $(document).ready(() => {
     window.location.href = "/";
   });
 
-  axios
+   axios
     .get(`/api/usuarios/${userId}`)
     .then(res => {
       const usuario = res.data[0];
@@ -357,7 +357,23 @@ $(document).ready(() => {
 
         let rateChildLabel = $("<label>", {
           for: "rate-child-div"
-        }).text("Te gusto la actividad a tu niño o niña?");
+        }).text("Te gusto la actividad a tu niño(s) y/o niña(s)?");
+
+        // child drop down
+
+        let rateChildDrop = $("<select>", {
+          multiple: "multiple",
+          id: "child-drop"
+        }).multiselect();
+
+        let child0 = $("<option>", {
+          option: ""
+        });
+
+        rateChildDrop.append(child0);
+        rateChildDiv.append(rateChildDrop);
+
+        // ALBERTO ME VA A AYUDAR A HACER ESTO EN UNA FUNCION
 
         let rateChild = $("<div>", {
           id: "rate-child",

@@ -49,7 +49,7 @@ $(document).ready(function() {
     });
     childForm.append(formGroup);
 
-    let formGroupNombre = $(`<div>`, { class: "col-sm-6" });
+    let formGroupNombre = $(`<div>`, { class: "col-sm-3" });
     let formGroupEdad = $(`<div>`, { class: "col-sm-3" });
     let formGroupGenero = $(`<div>`, { class: "col-sm-3" });
     let formGroupPeso = $(`<div>`, { class: "col-sm-3" });
@@ -64,7 +64,6 @@ $(document).ready(function() {
       class: "form-control",
       id: "tutorial-form-nombre",
     }).css("margin-bottom", "10px");
-
 
     let edadLabel = $("<label>", {
       for: "tutorial-form-edad",
