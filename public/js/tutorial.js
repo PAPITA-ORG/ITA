@@ -49,10 +49,22 @@ $(document).ready(function() {
     });
     childForm.append(formGroup);
 
+    let formGroupNombre = $(`<div>`, { class: "col-sm-6" });
     let formGroupEdad = $(`<div>`, { class: "col-sm-3" });
     let formGroupGenero = $(`<div>`, { class: "col-sm-3" });
     let formGroupPeso = $(`<div>`, { class: "col-sm-3" });
     let formGroupTalla = $(`<div>`, { class: "col-sm-3" });
+
+    let nombreLabel = $("<label>", {
+      for: "tutorial-form-nombre",
+      class: "col-sm-3 col-form-label"
+    }).text("Apodo");
+
+    let nombreInput = $("<input>", {
+      class: "form-control",
+      id: "tutorial-form-nombre",
+    }).css("margin-bottom", "10px");
+
 
     let edadLabel = $("<label>", {
       for: "tutorial-form-edad",
@@ -105,11 +117,14 @@ $(document).ready(function() {
       id: "tutorial-form-peso"
     }).css("margin-bottom", "10px");
 
+    formGroupNombre.append(nombreInput);
     formGroupEdad.append(edadInput);
     formGroupGenero.append(generoInput);
     formGroupPeso.append(pesoInput);
     formGroupTalla.append(tallaInput);
 
+    formGroup.append(nombreLabel);
+    formGroup.append(formGroupNombre);
     formGroup.append(edadLabel);
     formGroup.append(formGroupEdad);
     formGroup.append(generoLabel);
@@ -195,6 +210,7 @@ $(document).ready(function() {
       });
 
       let hijo = {
+        nombre: nombreInput.val(),
         edad: edadInput.val(),
         genero: Number(genero[0].genero),
         peso: Number(pesoInput.val()),
@@ -228,6 +244,7 @@ $(document).ready(function() {
       });
 
       let hijo = {
+        nombre: nombreInput.val(),
         edad: edadInput.val(),
         genero: Number(genero[0].genero),
         peso: Number(pesoInput.val()),
