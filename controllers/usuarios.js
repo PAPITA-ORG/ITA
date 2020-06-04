@@ -92,5 +92,40 @@ module.exports = {
       .updateOne({ _id: req.params.id }, req.body)
       .then(dbUsuarios => res.json(dbUsuarios))
       .catch(err => res.status(422).json(err));
+  },
+  changePassword: (req, res) => {
+    // validate email is actually registered in database
+    db.usuarios
+      .find({ correo: req.body.correo })
+      .then(usuario => {
+        // if no user is found...
+        if (usuario.length === 0) {
+          res.render("registro", {
+            correo_err: "Lo sentimos, su cuenta aun no esta registrada"
+          });
+        } else if (req.body.password.length < 6) {
+          res.render("registro", {
+            correo_err:
+              "Lo sentimos, su contraseña debe ser al menos 6 caracteres"
+          });
+        } else {
+          // hash password from request body
+          bcrypt.genSalt(10, (err, salt) => {
+            if (err) throw err;
+            return bcrypt.hash(req.body.password, salt, (err, hash) => {
+              if (err) throw err;
+              db.usuarios
+                .updateOne({ correo: req.body.correo }, { password: hash })
+                .then(dbUsuarios => {
+                  res.render("registro", {
+                    correo_success: "Enhorabuena! su contraseña ha cambiado"
+                  });
+                })
+                .catch(err => res.status(422).json(err));
+            });
+          });
+        }
+      })
+      .catch(err => res.status(422).json(err));
   }
 };

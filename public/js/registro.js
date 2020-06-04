@@ -1,22 +1,27 @@
 $(document).ready(() => {
+  let pass;
   $("input[type=password]").on("keyup", () => {
-    var pass = $('#pw.form-control').val();   
-    var repass = $('#pw2.form-control').val();
-    var largo = $('#pw2.form-control').val().length ; 
+    pass = $("#pw.form-control").val();
+    let repass = $("#pw2.form-control").val();
+    let largo = $("#pw2.form-control").val().length;
+
     // condicion contraseñas iguales y espacio no en blanco
-    if(pass == repass && largo > 1){ 
-      $('#btn-registro-enviar').removeAttr('disabled');
-    }else{
-      $('#btn-registro-enviar').attr('disabled', 'disabled');
+    if (pass === repass && largo > 1) {
+      $("#btn-registro-enviar").removeAttr("disabled");
     }
   });
-  // condicion boton enviar
-  $("#btn-registro-enviar").on("click", () => {
-  /*  axios
-          .post("/api/usuarios/register", usuarioRegistro)
-          .then(res => res)
-          .catch(err => err);
-  */       
-    window.location.href = "/";    
-  });
+  // $("#btn-registro-enviar").on("click", e => {
+  //   let requestBody = {
+  //     correo: $("#email").val(),
+  //     password: pass
+  //   };
+
+  //   axios
+  //     .post("/api/usuarios/changePassword", requestBody)
+  //     .then(res => {
+  //       console.log(res);
+  //       // window.location.href = "/";
+  //     })
+  //     .catch(err => err);
+  // });
 });
