@@ -17,7 +17,7 @@ $(document).ready(() => {
   });
 
   $("#btn-password").on("click", () => {
-    passwordChange();
+    window.location.href = "registro";
   });
 
   $("#btn-team").on("click", () => {
