@@ -12,7 +12,8 @@ block content
         div(class="container col-md-12 center" style="margin-top: 20px" id="start-bottom-container")
       
         div(class='center')
-            button(type='button' class='btn btn-success' id='btn-logout') Bye!
+            form(action='/api/usuarios/logout', method='post')
+                button(type='submit' class='btn btn-success' ) Bye!
 
         script.
             let userId = !{JSON.stringify(id)}

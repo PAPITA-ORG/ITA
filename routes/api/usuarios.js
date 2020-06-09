@@ -147,4 +147,7 @@ router.post(
   }
 );
 
+// Logout Handler
+router.route("/logout").post(usuariosController.logout);
+
 module.exports = router;

@@ -14,11 +14,13 @@ block content
               |, tu compania virtual 
               | para actividades infantiles saludables.
                     
-            if error_msg!= ''
-              div.alert.alert-warning.alert-dismissible.fade.show(role="alert")=error_msg
-                button.close(type="button" data-dismiss='alert' aria-label='Close')
-                  span(aria-hidden='true') &times;
+            
+
             form(action="/api/usuarios/login", method='post')
+              if error_msg!= ''
+                div.alert.alert-warning.alert-dismissible.fade.show(role="alert")=error_msg
+                  button.close(type="button" data-dismiss='alert' aria-label='Close')
+                    span(aria-hidden='true') &times;
               div.label Ingresa a tu cuenta
               div.username
                 input(type="text" placeholder="correo electronico" name='correo')

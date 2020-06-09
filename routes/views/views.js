@@ -1,3 +1,4 @@
+const { ensureAuthenticated } = require("../../config/auth");
 // start express router
 const router = require("express").Router();
 
@@ -11,16 +12,17 @@ router.route("/").get(viewsController.login);
 router.route("/sobre").get(viewsController.sobreView);
 
 // start view
-router.route("/start").get(viewsController.startView);
+router.route("/start").get(ensureAuthenticated, viewsController.startView);
 
 // not found view
 router.route("/notfound").get(viewsController.notfoundView);
-
 
 // get registro view
 router.route("/registro").get(viewsController.registro);
 
 // selector view
-router.route("/tutorial").get(viewsController.tutorialView);
+router
+  .route("/tutorial")
+  .get(ensureAuthenticated, viewsController.tutorialView);
 
 module.exports = router;

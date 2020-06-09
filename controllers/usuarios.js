@@ -92,5 +92,9 @@ module.exports = {
       .updateOne({ _id: req.params.id }, req.body)
       .then(dbUsuarios => res.json(dbUsuarios))
       .catch(err => res.status(422).json(err));
+  },
+  logout: (req, res) => {
+    req.logout();
+    res.redirect("/");
   }
 };

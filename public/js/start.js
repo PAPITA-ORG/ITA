@@ -1,11 +1,15 @@
 $(document).ready(() => {
-  $("#btn-logout").on("click", () => {
-    window.location.href = "/";
-  });
-
   axios
     .get(`/api/usuarios/${userId}`)
     .then(res => {
+      // click handler for logout
+      // $("#btn-logout").click(e => {
+      //   e.preventDefault();
+      //   axios
+      //     .get(`/api/usuarios/logout`)
+      //     .then(res => res.status)
+      //     .catch(err => err);
+      // });
       const usuario = res.data[0];
       let topicoCod;
 
@@ -249,7 +253,7 @@ $(document).ready(() => {
           .then(res => {
             const displayActivities = () => {
               let randomActivities = [];
-              
+
               // empty activityContainer startBottomContainer
               $("#actividades-container").empty();
 
@@ -359,7 +363,6 @@ $(document).ready(() => {
           for: "rate-child-div"
         }).text("Le gusto la actividad a tu niño(s) y/o niña(s)?");
 
- 
         // ALBERTO ME VA A AYUDAR A HACER ESTO EN UNA FUNCION
 
         let rateChild = $("<div>", {
@@ -591,7 +594,6 @@ $(document).ready(() => {
         setTimeout(function() {
           body(usuario, topicoCod);
         }, 3000);
-
       });
 
       $("#btn-diet").on("click", e => {
