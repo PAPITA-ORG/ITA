@@ -3,7 +3,7 @@ $(document).ready(() => {
   let comunasList = {};
 
   let sobreContainer = $("#sobre-main-container");
-  $("#btn-sig").click(e => {
+  $("#sobreSiguienteBtn").click(e => {
     e.preventDefault();
     axios
     .get("/api/comunas")

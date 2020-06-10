@@ -1,5 +1,5 @@
 $(document).ready(() => {
-  $("#btn-logout").on("click", () => {
+  $("#startLogoutBtn").on("click", () => {
     window.location.href = "/";
   });
 

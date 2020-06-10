@@ -2,25 +2,25 @@ $(document).ready(() => {
 
   let pass;
   $("input[type=password]").on("keyup", () => {
-    pass = $("#pw.form-control").val();
-    let repass = $("#pw2.form-control").val();
-    let largo = $("#pw2.form-control").val().length;
+    pass = $("#controlFormPw").val();
+    let repass = $("#controlFormPw2").val();
+    let large = $("#controlFormPw2").val().length;
 
     // condicion contraseñas iguales y espacio no en blanco
-    if (pass === repass && largo > 1) {
-      $("#btn-registro-enviar").removeAttr("disabled");
+    if (pass === repass && large > 1) {
+      $("#registroFormBtn").removeAttr("disabled");
     }
   });
 
-  $("#btn-si").on("click", () => {
+  $("#indexSiBtn").on("click", () => {
     window.location.href = "sobre";
   });
 
-  $("#btn-password").on("click", () => {
+  $("#indexPasswordBtn").on("click", () => {
     window.location.href = "registro";
   });
 
-  $("#btn-team").on("click", () => {
+  $("#indexTeamBtn").on("click", () => {
     firstTime = false;
     window.open("https://www.papita.org", '_blank');
   });
