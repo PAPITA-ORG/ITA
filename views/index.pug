@@ -14,8 +14,6 @@ block content
               |, tu compania virtual 
               | para actividades infantiles saludables.
                     
-            
-
             form(action="/api/usuarios/login", method='post')
               if error_msg!= ''
                 div.alert.alert-warning.alert-dismissible.fade.show(role="alert")=error_msg
@@ -51,5 +49,4 @@ block content
               | Quieres saber mas?    
               button(type='button' class='btn btn-success' id='btn-team') Papita CORP  
 
-          script(src="/js/index.js")
-    
+        script(src="/js/index.js")

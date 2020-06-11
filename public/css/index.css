@@ -5,10 +5,23 @@
 
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
+/* -------------------------------- 
+Globals
+---------------------------------*/
+
+.display-none {
+  display: none;
+}
+@media (max-width: 992px) {
+  .mobile-display-none {
+    display: none;
+  }
+}
+
 body {
   padding: 0;
   margin: 0px;
-  font-family: 'Gabriola', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Gabriola", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 15px;
 }
 
@@ -19,27 +32,29 @@ body {
   height: 100vh;
 }
 
-.starrating > input {display: none;}  /* Remove radio buttons */
+.starrating > input {
+  display: none;
+} /* Remove radio buttons */
 
-.starrating > label:before { 
+.starrating > label:before {
   content: "\f004"; /* Star */
   margin: 2px;
   font-size: 2em;
   font-family: FontAwesome;
-  display: inline-block; 
+  display: inline-block;
 }
 
-.starrating > label
-{
+.starrating > label {
   color: #409b03; /* Start color when not clicked */
 }
 
-.starrating > input:checked ~ label
-{ color: #b10c1a ; } /* Set yellow color when star checked */
+.starrating > input:checked ~ label {
+  color: #b10c1a;
+} /* Set yellow color when star checked */
 
-.starrating > input:hover ~ label
-{ color: #ffca08 ;  } /* Set yellow color when star hover */
-
+.starrating > input:hover ~ label {
+  color: #ffca08;
+} /* Set yellow color when star hover */
 
 .center {
   text-align: center;
@@ -158,7 +173,7 @@ label {
   text-align: center;
 }
 
-@media(max-width:610px) {
+@media (max-width: 610px) {
   form {
     width: 100%;
   }
@@ -168,7 +183,7 @@ label {
   }
 }
 
-@media(max-width:420px) {
+@media (max-width: 420px) {
   form {
     width: 100%;
   }
@@ -202,21 +217,21 @@ strong {
 }
 
 /* Popup box BEGIN */
-.hover_bkgr_fricc{
-  background:rgba(0,0,0,.4);
-  cursor:pointer;
-  display:none;
-  height:100%;
-  position:fixed;
-  text-align:center;
-  top:0;
-  width:100%;
-  z-index:10000;
+.hover_bkgr_fricc {
+  background: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  display: none;
+  height: 100%;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  z-index: 10000;
 }
-.hover_bkgr_fricc .helper{
-  display:inline-block;
-  height:100%;
-  vertical-align:middle;
+.hover_bkgr_fricc .helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
 }
 .hover_bkgr_fricc > div {
   background-color: #fff;
@@ -261,7 +276,7 @@ strong {
 /* Popup box END */
 
 .swiper-container {
-  width:375px;
+  width: 375px;
   height: 450px;
   padding: 5px;
 }
@@ -276,4 +291,38 @@ strong {
 
 #start-top-container {
   padding: 0 20px;
+}
+
+/* Efficacies Sliders */
+
+.efficacies-range {
+  -webkit-appearance: none;
+  width: 50%;
+  margin-left: 20px;
+  height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.efficacies-range:hover {
+  opacity: 1;
+}
+
+.efficacies-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #087e8b;
+  cursor: pointer;
+}
+
+.efficacies-range::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #087e8b;
+  cursor: pointer;
 }

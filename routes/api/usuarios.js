@@ -27,8 +27,6 @@ router.route("/:id").delete(usuariosController.deleteOne);
 // update one usuario
 router.route("/:id").put(usuariosController.updateOne);
 
-// create one usuario
-// router.route("/register").post(usuariosController.create);
 router.post("/register", (req, res) => {
   const {
     correo,
@@ -41,10 +39,10 @@ router.post("/register", (req, res) => {
     i2,
     i3,
     i4,
-    i5,
-    af_0,
-    tutorial
+    i5
   } = req.body;
+
+  console.log(req.body);
 
   // validate creation of usuario
 
@@ -61,8 +59,7 @@ router.post("/register", (req, res) => {
     !i2 ||
     !i3 ||
     !i4 ||
-    !i5 ||
-    !af_0
+    !i5
   ) {
     errors.push({ msg: "Por favor procure llenar el formulario completo" });
   }
@@ -74,7 +71,11 @@ router.post("/register", (req, res) => {
 
   if (errors.length > 0) {
     console.log(errors);
-    res.status(422).json(errors);
+
+    let err_msgs = errors.map(err => err.msg);
+    // res.status(422).json(errors);
+    // res.render('/sobre', )
+    done(errors);
   } else {
     // Validation passed
     Usuario.findOne({ correo: correo })
@@ -91,15 +92,15 @@ router.post("/register", (req, res) => {
           const newUsuario = new Usuario({
             correo: correo,
             password: password,
-            edad: edad,
+            edad: Number(edad),
             genero: genero,
             parentesco: parentesco,
             comunaCod: comunaCod,
-            i1: i1,
-            i2: i2,
-            i3: i3,
-            i4: i4,
-            i5: i5,
+            i1: Number(i1),
+            i2: Number(i2),
+            i3: Number(i3),
+            i4: Number(i4),
+            i5: Number(i5),
             af_0: af_0,
             tutorial: tutorial
           });
@@ -149,5 +150,7 @@ router.post(
 
 // Logout Handler
 router.route("/logout").post(usuariosController.logout);
+// change password
+router.route("/changePassword").post(usuariosController.changePassword);
 
 module.exports = router;

@@ -6,7 +6,7 @@ module.exports = {
   // find all comunas
   findAll: (req, res) => {
     db.comunas
-      .find(req.query)
+      .find()
       .sort({ date: 1 })
       .then(dbComunas => res.json(dbComunas))
       .catch(err => res.status(422).json(err));

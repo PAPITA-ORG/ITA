@@ -3,7 +3,7 @@ extends layout
 block content
 
     div(class="container")
-        div(class='row align-items-center' style="margin-top: 20px")
+        div(class='d-flex justify-content-center' style="margin-top: 20px")
             div(class="col-sm-12 justify-content-center center" id='sobre-main-container')
               img(src="/images/ita3d_1.png" width="150px" height="180px")
               br 
@@ -33,23 +33,6 @@ block content
                 |  en que las cosas están siendo un poco más complejas.  
 
               button(type='button' class='btn btn-success' id='btn-sig') Siguiente
-
-            div(class="col-sm-12 justify-content-center center" id='sobre-form-container')
-              form(id='sobre-form' action='/api/usuarios/register')
-                div.form-group
-                  label(for='sobre-form-email') Ingresa tus datos
-                  input.form-control#sobre-form-email(type='email' placeholder='correo')
-                  input.form-control#sobre-form-password(type='password' placeholder='contraseña')
-                  input.checkbox#sobre-checkbox(type="checkbox")
-                  label(for='sobre-checkbox') Acepto los terminos y condiciones.
-                button.btn.btn-success#sobre-form-btn(aria-disabled="true")
-                div.form-group
-                  label(for='form-group-row') Cuentanos mas de ti
-                  div.form-group.row
-                    each field in textInputs
-                      label.col-sm-3.col-form-label= field.label
-                      input.col-sm-3.form-control(type='text')
-
-                  
+        
             
             script(src="/js/sobre.js")

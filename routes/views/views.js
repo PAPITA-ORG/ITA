@@ -11,6 +11,9 @@ router.route("/").get(viewsController.login);
 // sobre view
 router.route("/sobre").get(viewsController.sobreView);
 
+// subscribe view
+router.route("/subscribe").get(viewsController.subscribeView);
+
 // start view
 router.route("/start").get(ensureAuthenticated, viewsController.startView);
 

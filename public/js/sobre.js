@@ -3,21 +3,22 @@ $(document).ready(() => {
   let comunasList = {};
 
   let sobreContainer = $("#sobre-main-container");
+
   $("#btn-sig").click(e => {
     e.preventDefault();
-    axios
-      .get("/api/comunas")
-      .then(res => {
-        comunasList = res.data;
-        // call addForm function
-        addForm();
-      })
-      .catch(err => err);
+
+    // take user to get subscribed
+    subscribeViewHandler();
   });
 
-  function addForm() {
-    sobreContainer.empty();
+  function subscribeViewHandler() {
+    // sobreContainer.empty();
 
+    // $("#sobre-form").removeClass("display-none");
+    window.location.href = "/subscribe";
+  }
+
+  function addForm() {
     // create a form
     let sobreForm = $("<form>", {
       id: "sobre-form"
