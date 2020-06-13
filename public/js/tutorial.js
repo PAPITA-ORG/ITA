@@ -263,7 +263,7 @@ $(document).ready(function() {
 
   // this button just append the first child form
 
-  $("#btn-finish").on("click", () => {
+  $("#tutorialFinishBtn").on("click", () => {
     childUserForm();
   });
 });
