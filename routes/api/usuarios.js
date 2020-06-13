@@ -10,6 +10,9 @@ const Usuario = require("../../models").usuarios;
 // import usuarios controller
 const usuariosController = require("../../controllers").usuarios;
 
+// import subscribe form
+let subscribeForm = require("../../controllers/viewsControllers/controllerRenders");
+
 // match router with '/api/usuarios'
 
 // get all usuarios
@@ -28,7 +31,7 @@ router.route("/:id").delete(usuariosController.deleteOne);
 router.route("/:id").put(usuariosController.updateOne);
 
 router.post("/register", (req, res) => {
-  const {
+  let {
     correo,
     password,
     edad,
@@ -42,8 +45,16 @@ router.post("/register", (req, res) => {
     i5
   } = req.body;
 
-  console.log(req.body);
+  let efficacies = [i1, i2, i3, i4, i5].map(eff => Number(eff));
+  let af_0 = calculate_eff(efficacies);
 
+  function calculate_eff(efficacies) {
+    return sum_eff(efficacies) / efficacies.length;
+  }
+
+  function sum_eff(efficacies) {
+    return efficacies.reduce((a, b) => a + b);
+  }
   // validate creation of usuario
 
   // check required fields
@@ -70,12 +81,36 @@ router.post("/register", (req, res) => {
   }
 
   if (errors.length > 0) {
-    console.log(errors);
+    // fetch subscribe form 'comunas' fields and render view
 
-    let err_msgs = errors.map(err => err.msg);
-    // res.status(422).json(errors);
-    // res.render('/sobre', )
-    done(errors);
+    subscribeForm.findComunas(renderSubscribe);
+
+    function renderSubscribe(err, subscribeForm) {
+      if (err) {
+        res.json("RSRC", "Could not retrieve expected database resources");
+      } else {
+        subscribeForm.correo.value = correo;
+        subscribeForm.password.value = password;
+        subscribeForm.edad.value = edad;
+
+        parentesco = Number(parentesco);
+        edad = Number(edad);
+        genero = Number(genero);
+
+        subscribeForm.parentesco.selected =
+          subscribeForm.parentesco.options[parentesco - 1];
+
+        subscribeForm.genero.selected =
+          subscribeForm.genero.options[genero - 1];
+
+        subscribeForm.sliderInputs.map((efficacy, i) => {
+          efficacy.value = efficacies[i];
+        });
+
+        // console.log(subscribeForm.correo);
+        res.render("subscribe", { errors: errors, data: subscribeForm });
+      }
+    }
   } else {
     // Validation passed
     Usuario.findOne({ correo: correo })
@@ -93,16 +128,15 @@ router.post("/register", (req, res) => {
             correo: correo,
             password: password,
             edad: Number(edad),
-            genero: genero,
-            parentesco: parentesco,
+            genero: Number(genero),
+            parentesco: Number(parentesco),
             comunaCod: comunaCod,
             i1: Number(i1),
             i2: Number(i2),
             i3: Number(i3),
             i4: Number(i4),
             i5: Number(i5),
-            af_0: af_0,
-            tutorial: tutorial
+            af_0: af_0
           });
 
           // Hash Password

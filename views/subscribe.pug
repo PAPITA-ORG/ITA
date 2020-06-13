@@ -2,50 +2,53 @@ extends layout
 
 block content
 
-        div(class='d-flex justify-content-center mt-20')
-            div(class="col-sm-12 col-lg-8 justify-content-center center" id='sobre-form-container')
-                form(id='sobre-form' action='/api/usuarios/register' method='post').display-none
-                if error_msg.length > 0
-                    each msg in error_msg
-                    div.alert.alert-warning.alert-dismissible.fade.show(role="alert")=msg
-                        button.close(type="button" data-dismiss='alert' aria-label='Close')
-                        span(aria-hidden='true') &times;
-                div.form-group
-                    label(for='sobre-form-email') Ingresa tus datos
-                    input.form-control#sobre-form-email.mt-3(type='email' placeholder='correo' name='correo')
-                    input.form-control#sobre-form-password.mt-3(type='password' placeholder='contraseña' name='password')
-                    input.checkbox#sobre-checkbox(type="checkbox" required)
-                    label.mt-3.ml-1(for='sobre-checkbox') Acepto los terminos y condiciones.
-                button.btn.btn-success#sobre-form-btn(aria-disabled="true") Siguiente
-                div.form-group#expanded-form.display-none
-                    label.mt-4(for='form-group-row') Cuentanos mas de ti
-                    div.form-group.row
-                    label.col-sm-3.col-form-label.mt-3= edad.label  
-                    input.col-sm-3.form-control.mt-3(name=edad.name type='number' min='1' max='100')
-                    
-                    label.col-sm-3.col-form-label.mt-3= parentesco.label
-                    select.col-sm-3.form-control.mt-3(name=parentesco.name)
-                        each option, index in parentesco.options
-                            option(value=index+1)= option
+        div(class="container")
+            div(class='d-flex justify-content-center mt-20')
+                div(class="col-sm-12 col-lg-8 justify-content-center center" id='sobre-form-container')
+                    form(id='sobre-form' action='/api/usuarios/register' method='post') 
+                        if errors.length > 0
+                            each err in errors
+                                div.alert.alert-warning.alert-dismissible.fade.show(role="alert")=err.msg
+                                    button.close(type="button" data-dismiss='alert' aria-label='Close')
+                                        span(aria-hidden='true') &times; 
+                        div.form-group
+                            label(for='sobre-form-email') Ingresa tus datos
+                            input.form-control#sobre-form-email.mt-3(type='email' placeholder='correo' name=data.correo.name value=data.correo.value)
+                            input.form-control#sobre-form-password.mt-3(type='password' placeholder='contraseña' name=data.password.name value=data.password.value)
+                            input.checkbox#sobre-checkbox(type="checkbox" required)
+                            label.mt-3.ml-1(for='sobre-checkbox') Acepto los terminos y condiciones.
+                        button.btn.btn-success#sobre-form-btn(aria-disabled="true") Siguiente
+                        div.form-group#expanded-form.display-none
+                            label.mt-4(for='form-group-row') Cuentanos mas de ti
+                            div.form-group.row
+                                label.col-sm-3.col-form-label.mt-3= data.edad.label  
+                                input.col-sm-3.form-control.mt-3(name=data.edad.name type='number' min='1' max='100')                    
+                                label.col-sm-3.col-form-label.mt-3= data.parentesco.label
+                                select.col-sm-3.form-control.mt-3(name=data.parentesco.name)
+                                    each option, index in data.parentesco.options
+                                        if data.parentesco.options[index] == data.parentesco.selected
+                                            option(value=index+1 selected)= option
+                                        else
+                                            option(value=index+1)= option
 
-                    label.col-sm-3.col-form-label.mt-3= genero.label
-                    select.col-sm-3.form-control.mt-3(name=genero.name)
-                        each option, index in genero.options
-                            option(value=index+1)= option
-                    
-                    label.col-sm-3.col-form-label.mt-3= comuna.label
-                    select.col-sm-3.form-control.mt-3(name=comuna.name)
-                        each option, index in comuna.options
-                            option(value=option._id)= option.provincia
+                                label.col-sm-3.col-form-label.mt-3= data.genero.label
+                                select.col-sm-3.form-control.mt-3(name=data.genero.name)
+                                    each option, index in data.genero.options
+                                        option(value=index+1)= option
+                                
+                                label.col-sm-3.col-form-label.mt-3= data.comuna.label
+                                select.col-sm-3.form-control.mt-3(name=data.comuna.name)
+                                    each option, index in data.comuna.options
+                                        option(value=option._id)= option.provincia
 
-                    div.form-group.row#form-efficacies.mt-5
-                    each field in sliderInputs
-                        label.col-sm-4.col-form-label= field.label
-                        span.col-lg-2.mr-2.mt-2.mobile-display-none Desacuerdo
-                        div.col-sm-4
-                        span.col-lg-2.mr-2.mt-2 0  
-                        input.form-control.mb-3.efficacies-range(type='range' min="0" max="100" value="50" name=field.name)
-                        span.col-lg-1.ml-2.mt-2.mobile-display-none Acuerdo
-                        span.col-lg-2.mr-2.mt-2.display-none 100
-                    button.btn.btn-success(type='submit') Registrar
+                            div.form-group.row#form-efficacies.mt-5
+                                each field in data.sliderInputs
+                                    label.col-sm-4.col-form-label= field.label
+                                    span.col-lg-2.mr-2.mt-2.mobile-display-none Desacuerdo
+                                    div.col-sm-4.mt-2
+                                        //- span.col-lg-2.mr-2.mt-2 0  
+                                        input.form-control.mb-3.efficacies-range(type='range' min="0" max="100" value=field.value name=field.name)
+                                    span.col-lg-1.ml-2.mt-2.mobile-display-none Acuerdo
+                                    span.col-lg-2.mr-2.mt-2.display-none 100
+                            button.btn.btn-success(type='submit') Registrar
                 script(src="/js/subscribe.js")
