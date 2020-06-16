@@ -31,6 +31,7 @@ Alberto Vargas Marte
 ###### Clonar repositorio
 
 Instalar SSH keys: ssh-keygen -t rsa en Git Bash 
+Agregar SSH key en Github
 
 ###### ITA features
 
