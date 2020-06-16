@@ -25,7 +25,8 @@ module.exports = {
       .find({
         ["Topico"]: Number(req.params.topicoCod),
         ["Dificultad"]: {
-          ["$lte"]: Math.round(Number(req.params.af_0) / 20)
+          ["$lte"]: Math.round(Number(req.params.af_0) / 20),
+          ["$gte"]: 0
         }
       })
       .then(dbActividades => res.json(dbActividades))

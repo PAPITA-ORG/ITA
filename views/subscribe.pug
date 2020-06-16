@@ -39,7 +39,7 @@ block content
                                 label.col-sm-3.col-form-label.mt-3= data.comuna.label
                                 select.col-sm-3.form-control.mt-3(name=data.comuna.name)
                                     each option, index in data.comuna.options
-                                        option(value=option._id)= option.provincia
+                                        option(value=option._id)= option.comuna
 
                             div.form-group.row#form-efficacies.mt-5
                                 each field in data.sliderInputs
