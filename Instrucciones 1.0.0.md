@@ -28,6 +28,10 @@ Alberto Vargas Marte
 - COMUNITA, la comunidad de PAPITA.ORG:
   COMUNITA es una comunidad virtual organizada a través de canales moderados, con el fin de proveer información e interacción entre usuarios, con el fin de facilitar el acceso a recursos relativos a distintas necesidades de los cuidadores en el hogar.
 
+###### Clonar repositorio
+
+Instalar SSH keys: ssh-keygen -t rsa en Git Bash 
+
 ###### ITA features
 
 En la primera version de compilacion, se espera que ITA tenga las siguientes caracteristicas: 
