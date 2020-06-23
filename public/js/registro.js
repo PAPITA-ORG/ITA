@@ -8,6 +8,8 @@ $(document).ready(() => {
     // condicion contraseñas iguales y espacio no en blanco
     if (pass === repass && password_length > 1) {
       $("#btn-registro-enviar").removeAttr("disabled");
-    }
+    }else{
+      $('#btn-registro-enviar').attr('disabled', 'disabled');
+    }  
   });
 });
