@@ -1,12 +1,62 @@
+function renderContent(content_name) {
+  let content;
+  if (content_name === "index") {
+    content = {
+      home: [
+        {
+          icon_class: "fa fa-home icon-3x",
+          icon_id: "home",
+          href: "/"
+        },
+        {
+          icon_class: "fa fa-user-plus icon-3x",
+          icon_id: "user-plus",
+          href: "/sobre"
+        }
+      ]
+    };
+    return content;
+  } else if (content_name === "auth") {
+    content = {
+      auth: [
+        {
+          icon_class: "fa fa-user icon-3x",
+          icon_id: "user",
+          href: "/perfil"
+        },
+        {
+          icon_class: "fa fa-chart-line icon-3x",
+          icon_id: "chart-line",
+          href: "/stats"
+        },
+        {
+          icon_class: "fa fa-door-open icon-3x",
+          icon_id: "btn-logout"
+        },
+        {
+          icon_class: "fa fa-hiking icon-3x",
+          icon_id: "hiking",
+          href: "/start"
+        }
+      ]
+    };
+
+    return content;
+  }
+}
+
 module.exports = {
   login: (req, res) => {
-    res.render("index");
+    let index_data = renderContent("index");
+    res.render("index", { view_data: index_data });
   },
   sobreView: (req, res) => {
-    res.render("sobre");
+    let sobre_data = renderContent("index");
+    res.render("sobre", { view_data: sobre_data });
   },
   subscribeView: (req, res) => {
     let subscribeForm = require("./controllerRenders/");
+    let subscribe_view = renderContent("index");
 
     subscribeForm.findComunas(renderSubscribe);
 
@@ -14,18 +64,31 @@ module.exports = {
       if (err) {
         res.json("RSRC", "Could not retrieve expected database resources");
       } else {
-        res.render("subscribe", { data: subscribeForm, errors: [] });
+        res.render("subscribe", {
+          data: subscribeForm,
+          errors: [],
+          view_data: subscribe_view
+        });
       }
     }
   },
   startView: (req, res) => {
-    res.render("start", { id: req.session.passport.user });
+    let start_data = renderContent("auth");
+    res.render("start", {
+      id: req.session.passport.user,
+      view_data: start_data
+    });
   },
   registro: (req, res) => {
-    res.render("registro");
+    let registro_data = renderContent("index");
+    res.render("registro", { view_data: registro_data });
   },
   tutorialView: (req, res) => {
-    res.render("tutorial", { id: req.session.passport.user });
+    let tutorial_data = renderContent("auth");
+    res.render("tutorial", {
+      id: req.session.passport.user,
+      view_data: tutorial_data
+    });
   },
   notfoundView: (req, res) => {
     res.render("notfound");

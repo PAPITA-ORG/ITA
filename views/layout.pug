@@ -36,17 +36,17 @@ html(lang='es')
         script(src="/js/jquery.dynameter.js")
         link(rel="stylesheet" href="/css/jquery.dynameter.css")
 
+        //- Font Awesome Icons
+        script(src="https://kit.fontawesome.com/8d8dae3d22.js" crossorigin="anonymous")
+
 
     body
+        
+        
         div(class="header") 
         block content
-        br
-        hr
-        div(class="footer")
-            p Copyright &copy; 2020 PapitaCORP.   
-             |   Necesitas ayuda?  
-             a(href='mailto:estoesla@papita.org')  Escribenos
-           
+        include partials/bottomNav.pug
+              
         script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js")
         script(src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous")
         script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous")

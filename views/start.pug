@@ -11,10 +11,8 @@ block content
 
         div(class="container col-md-12 center" style="margin-top: 20px" id="start-bottom-container")
       
-        div(class='center')
-            form(action='/api/usuarios/logout', method='post')
-                button(type='submit' class='btn btn-success' ) Bye!
-        include partials/bottomNav.pug
+      
+    include partials/bottomNav.pug
         script.
             let userId = !{JSON.stringify(id)}
 
