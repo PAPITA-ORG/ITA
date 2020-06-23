@@ -48,14 +48,15 @@ function renderContent(content_name) {
 module.exports = {
   login: (req, res) => {
     let index_data = renderContent("index");
-    res.render("index", index_data);
+    res.render("index", { view_data: index_data });
   },
   sobreView: (req, res) => {
     let sobre_data = renderContent("index");
-    res.render("sobre", sobre_data);
+    res.render("sobre", { view_data: sobre_data });
   },
   subscribeView: (req, res) => {
     let subscribeForm = require("./controllerRenders/");
+    let subscribe_view = renderContent("index");
 
     subscribeForm.findComunas(renderSubscribe);
 
@@ -63,7 +64,11 @@ module.exports = {
       if (err) {
         res.json("RSRC", "Could not retrieve expected database resources");
       } else {
-        res.render("subscribe", { data: subscribeForm, errors: [] });
+        res.render("subscribe", {
+          data: subscribeForm,
+          errors: [],
+          view_data: subscribe_view
+        });
       }
     }
   },
@@ -76,7 +81,7 @@ module.exports = {
   },
   registro: (req, res) => {
     let registro_data = renderContent("index");
-    res.render("registro", registro_data);
+    res.render("registro", { view_data: registro_data });
   },
   tutorialView: (req, res) => {
     let tutorial_data = renderContent("auth");
