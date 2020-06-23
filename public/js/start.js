@@ -1,15 +1,23 @@
 $(document).ready(() => {
+  // Logout Icon Handler
+  $("i#btn-logout").on("click", logoutHandler);
+
+  function logoutHandler() {
+    axios
+      .post(`/api/usuarios/logout`)
+      .then(res => {
+        if (res.status === 200) {
+          window.location.href = res.data.url;
+        }
+      })
+      .catch(err => err);
+  }
+
   axios
     .get(`/api/usuarios/${userId}`)
     .then(res => {
       // click handler for logout
-      // $("#btn-logout").click(e => {
-      //   e.preventDefault();
-      //   axios
-      //     .get(`/api/usuarios/logout`)
-      //     .then(res => res.status)
-      //     .catch(err => err);
-      // });
+
       const usuario = res.data[0];
       let topicoCod;
 

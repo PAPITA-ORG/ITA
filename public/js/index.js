@@ -1,5 +1,4 @@
 $(document).ready(() => {
-
   let pass;
   $("input[type=password]").on("keyup", () => {
     pass = $("#controlFormPw").val();
@@ -22,7 +21,12 @@ $(document).ready(() => {
 
   $("#indexTeamBtn").on("click", () => {
     firstTime = false;
-    window.open("https://www.papita.org", '_blank');
+    window.open("https://www.papita.org", "_blank");
   });
 
+  // $("#nav-toggle-content").on("show", handleToggleContent);
+
+  // function handleToggleContent() {
+  //   $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+  // }
 });

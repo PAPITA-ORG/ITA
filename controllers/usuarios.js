@@ -95,7 +95,7 @@ module.exports = {
   },
   logout: (req, res) => {
     req.logout();
-    res.redirect("/");
+    res.send({ url: "/" });
   },
   changePassword: (req, res) => {
     // validate email is actually registered in database
