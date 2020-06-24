@@ -1,3 +1,5 @@
+const controller_renders = require("./controllerRenders/");
+
 function renderContent(content_name) {
   let content;
   if (content_name === "index") {
@@ -55,10 +57,9 @@ module.exports = {
     res.render("sobre", { view_data: sobre_data });
   },
   subscribeView: (req, res) => {
-    let subscribeForm = require("./controllerRenders/");
     let subscribe_view = renderContent("index");
 
-    subscribeForm.findComunas(renderSubscribe);
+    controller_renders.findComunas(renderSubscribe);
 
     function renderSubscribe(err, subscribeForm) {
       if (err) {
@@ -78,6 +79,25 @@ module.exports = {
       id: req.session.passport.user,
       view_data: start_data
     });
+  },
+  encuestaActividadView: (req, res) => {
+    debugger;
+    let usuario_id = req.session.passport.user;
+    controller_renders.getUserInfo(userInfoHandler, {
+      _id: usuario_id
+    });
+
+    function userInfoHandler(err, usuario) {
+      if (err) res.json("ERR_USR", `Sorry, we couldn't get the requested user`);
+
+      let { hijos } = usuario;
+      let active_hijos = req.body.active_hijos;
+
+      // filter hijos from db based on ids from hijos from request body
+      hijos = hijos.filter(hijo => hijo._id === active_hijos);
+
+      res.render("encuesta-actividad", { usuario: usuario, hijos: hijos });
+    }
   },
   registro: (req, res) => {
     let registro_data = renderContent("index");

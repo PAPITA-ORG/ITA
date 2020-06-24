@@ -287,6 +287,9 @@ $(document).ready(() => {
                   e.currentTarget.id === "activity-0"
                     ? (historial["actividad"] = randomActivities[0]._id)
                     : (historial["actividad"] = randomActivities[1]._id);
+
+                  // TO DO
+                  // SEND USER TO /encuesta-actividad
                   startEndSurvey();
                 });
               });

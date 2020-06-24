@@ -1,5 +1,6 @@
-// import Comunas model
+// import Comunas, and usuario model
 const Comuna = require("../../../models").comunas;
+const Usuario = require("../../../models").usuarios;
 
 module.exports = {
   findComunas: cb => {
@@ -81,5 +82,20 @@ module.exports = {
         cb(null, subscribeForm);
       }
     });
+  },
+  getUserInfo: (cb, query) => {
+    Usuario.findOne(query)
+      .populate("hijos")
+      .exec(function(err, usuario) {
+        if (err) {
+          let usr_err = new Error(
+            "USR_ERR",
+            "Sorry, we failed to retrieve the user."
+          );
+          cb(usr_err);
+        } else {
+          cb(null, usuario);
+        }
+      });
   }
 };
