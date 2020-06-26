@@ -62,7 +62,7 @@ $(document).ready(function() {
 
     let nombreInput = $("<input>", {
       class: "form-control",
-      id: "tutorial-form-nombre",
+      id: "tutorial-form-nombre"
     }).css("margin-bottom", "10px");
 
     let edadLabel = $("<label>", {
@@ -73,7 +73,7 @@ $(document).ready(function() {
     let edadInput = $("<input>", {
       class: "form-control",
       id: "tutorial-form-edad",
-      placeholder: "mes/año"
+      type: "date"
     }).css("margin-bottom", "10px");
 
     let generoLabel = $("<label>", {
