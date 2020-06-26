@@ -107,8 +107,16 @@ router.post("/register", (req, res) => {
           efficacy.value = efficacies[i];
         });
 
+        let nav_content = require("../../controllers/viewsControllers/controllerRenders").renderNavContent(
+          "index"
+        );
+
         // console.log(subscribeForm.correo);
-        res.render("subscribe", { errors: errors, data: subscribeForm });
+        res.render("subscribe", {
+          errors: errors,
+          data: subscribeForm,
+          view_data: nav_content
+        });
       }
     }
   } else {
