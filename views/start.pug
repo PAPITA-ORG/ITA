@@ -4,15 +4,21 @@ block content
     
     div(class="container" id="start-main-container")
 
-        div(class='row align-items-center justify-content-center' id="start-top-container" style="margin-top: 20px") 
+        div.mt-2(class='row align-items-center justify-content-center' id="start-top-container") 
             div(id="fuel-row" class="row col-md-12 align-items-center justify-content-center")            
                 div(id="fuel-gauge")
                     div(id="fuel-gauge-control")
 
-        div(class="container col-md-12 center" style="margin-top: 20px" id="start-bottom-container")
+        div.container.col-md-12.center.mt-2
+            div.form-check.form-check.inline
+                h3 Con quien vas a participar?
+                each hijo in hijos
+                    input.form-check-input(type='checkbox' name='active_hijo')
+                    label.form-check-label #{hijo.edad}
+        div.mt-2(class="container col-md-12 center" id="start-bottom-container")
       
       
-    include partials/bottomNav.pug
+        include partials/bottomNav.pug
         script.
             let userId = !{JSON.stringify(id)}
 

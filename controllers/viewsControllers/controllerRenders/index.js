@@ -83,6 +83,52 @@ module.exports = {
       }
     });
   },
+  renderNavContent: content_name => {
+    let content;
+    if (content_name === "index") {
+      content = {
+        home: [
+          {
+            icon_class: "fa fa-home icon-3x",
+            icon_id: "home",
+            href: "/"
+          },
+          {
+            icon_class: "fa fa-user-plus icon-3x",
+            icon_id: "user-plus",
+            href: "/sobre"
+          }
+        ]
+      };
+      return content;
+    } else if (content_name === "auth") {
+      content = {
+        auth: [
+          {
+            icon_class: "fa fa-user icon-3x",
+            icon_id: "user",
+            href: "/perfil"
+          },
+          {
+            icon_class: "fa fa-chart-line icon-3x",
+            icon_id: "chart-line",
+            href: "/stats"
+          },
+          {
+            icon_class: "fa fa-door-open icon-3x",
+            icon_id: "btn-logout"
+          },
+          {
+            icon_class: "fa fa-hiking icon-3x",
+            icon_id: "hiking",
+            href: "/start"
+          }
+        ]
+      };
+
+      return content;
+    }
+  },
   getUserInfo: (cb, query) => {
     Usuario.findOne(query)
       .populate("hijos")

@@ -16,8 +16,6 @@ $(document).ready(() => {
   axios
     .get(`/api/usuarios/${userId}`)
     .then(res => {
-      // click handler for logout
-
       const usuario = res.data[0];
       let topicoCod;
 
