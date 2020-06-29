@@ -44,14 +44,10 @@ module.exports = {
   },
   // create one hijo
   create: (req, res) => {
-    let encryptedChildren = req.body.data.map(child => {
-      let hash = bcrypt.hashSync(child.nombre, 10);
-      child.nombre = hash;
-      return child;
-    });
+    let { data } = req.body;
 
     db.hijos
-      .insertMany(encryptedChildren)
+      .insertMany(data)
       .then(hijos => {
         let ids = hijos.map(hijo => {
           return hijo._id;
