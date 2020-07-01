@@ -92,5 +92,12 @@ module.exports = {
   },
   notfoundView: (req, res) => {
     res.render("notfound");
-  }
+  },
+  statsView: (req, res) => {
+    let stats_data = renderContent("auth");
+    res.render("stats", {
+      id: req.session.passport.user,
+      view_data: stats_data
+    });
+  },
 };

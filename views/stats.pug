@@ -1,0 +1,12 @@
+extends layout
+
+block content
+
+   div(class="container") Hola
+
+   include partials/bottomNav.pug
+      script.
+         let userId = !{JSON.stringify(id)}
+
+      script(src="/js/stats/stats.js")
+      script(src="/js/stats/charts/linechart.js")

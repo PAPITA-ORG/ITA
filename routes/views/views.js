@@ -23,6 +23,9 @@ router.route("/notfound").get(viewsController.notfoundView);
 // get registro view
 router.route("/registro").get(viewsController.registro);
 
+// get stats view
+router.route("/stats").get(viewsController.statsView);
+
 // selector view
 router
   .route("/tutorial")
