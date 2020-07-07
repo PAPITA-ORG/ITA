@@ -7,6 +7,7 @@ const Historiales = Schema({
   af2: { type: Schema.Types.Number },
   disfruta: { type: Schema.Types.Number },
   ratingHijos: [{ type: Schema.Types.ObjectId, ref: "RatingHijo" }],
+  ratingMensajes: [{ type: Schema.Types.ObjectId, ref: "RatingMensaje" }],
   loginTime: { type: Schema.Types.Number },
   logoutTime: { type: Schema.Types.Number },
   random: { type: Schema.Types.Number },
