@@ -1,6 +1,11 @@
 $(document).ready(() => {
+  let avatar_opacity = $("img.avatar").css("opacity");
+  let is_clicked = false;
   // Logout Icon Handler
   $("i#btn-logout").on("click", logoutHandler);
+
+  $("img.avatar").on("click", avatarClickHandler);
+  $("img.avatar").on("hover", avatarHoverHandler);
 
   function logoutHandler() {
     axios
@@ -11,6 +16,30 @@ $(document).ready(() => {
         }
       })
       .catch(err => err);
+  }
+
+  function avatarClickHandler() {
+    if (avatar_opacity === "0.5") {
+      avatar_opacity = "1";
+      $("img.avatar").css("opacity", avatar_opacity);
+      is_clicked = !is_clicked;
+    } else {
+      avatar_opacity = "0.5";
+      $("img.avatar").css("opacity", avatar_opacity);
+      is_clicked = !is_clicked;
+    }
+  }
+
+  function avatarHoverHandler() {
+    if (avatar_opacity === "1" && is_clicked) {
+      return;
+    } else if (avatar_opacity === "1" && !is_clicked) {
+      avatar_opacity = "0.5";
+      $("img.avatar").css("opacity", avatar_opacity);
+    } else {
+      avatar_opacity = "1";
+      $("img.avatar").css("opacity", avatar_opacity);
+    }
   }
 
   axios

@@ -318,3 +318,19 @@ strong {
 /* Index View */
 /* #forgot-password {
 } */
+
+img.avatar {
+  width: 30%;
+  opacity: 50%;
+  transition: opacity 0.5s ease-in-out;
+}
+
+img.avatar:hover {
+  opacity: 100%;
+}
+
+@media (min-width: 610px) {
+  img.avatar {
+    width: 10%;
+  }
+}
