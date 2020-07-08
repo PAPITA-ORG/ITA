@@ -18,6 +18,7 @@ module.exports = {
   findByID: (req, res) => {
     db.usuarios
       .find({ _id: req.params.id })
+      .populate("hijos")
       .populate("historials")
       .then(dbUsuarios => res.json(dbUsuarios))
       .catch(err => res.status(422).json(err));
