@@ -22,7 +22,7 @@ function renderContent(content_name) {
         {
           icon_class: "fa fa-user icon-3x",
           icon_id: "user",
-          href: "/perfil"
+          href: "/account"
         },
         {
           icon_class: "fa fa-chart-line icon-3x",
@@ -92,5 +92,12 @@ module.exports = {
   },
   notfoundView: (req, res) => {
     res.render("notfound");
+  },
+  accountView: (req, res) => {
+    let account_data = renderContent("auth");
+    res.render("userAccount", {
+      id: req.session.passport.user,
+      view_data: account_data
+    });
   }
 };

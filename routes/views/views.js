@@ -28,4 +28,7 @@ router
   .route("/tutorial")
   .get(ensureAuthenticated, viewsController.tutorialView);
 
+// user account view
+router.route("/account").get(ensureAuthenticated, viewsController.accountView);
+
 module.exports = router;
