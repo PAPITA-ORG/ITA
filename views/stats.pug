@@ -2,11 +2,40 @@ extends layout
 
 block content
 
-   div(class="container") Hola
+   div(class="container")
+      div(class="row")
+         div(class="col-md-8")
+            h1 Tu progreso semanal
+            div(class="tabs")
+               div(class="tab")
+                  input(type="radio" name="css-tabs" id="tab-1" checked class="tab-switch")
+                  label(for="tab-1" class="tab-label") Energía
+                     img(src="icons/bolt.svg" alt="" width="20px" height="20px")
+                  div(class="tab-content")
+                     div(class="row")
+                        div(class="col-md-12")
+                           h4 Nivel de energía
+                        div(class="offset-sm-1 col-md-6 mt-4")
+                           div(class="row")
+                              div(class="col-xs-2")
+                                 input(type="checkbox" class="checkbox-switch" id="switch-previo")
+                              div(class="offset-sm-1 col-xs-3")
+                                 h5 Previo
+                        div(class="offset-sm-1 col-md-6 mt-4")
+                           div(class="row")
+                              div(class="col-xs-2")
+                                 input(type="checkbox" class="checkbox-switch" id="switch-despues")
+                              div(class="offset-sm-1 col-xs-3")
+                                 h5 Posterior
+                        div(class="col-lg-12 mt-4" id="mainChart")
+
+               //- div(class="tab")
+               //- div(class="tab")
 
    include partials/bottomNav.pug
       script.
          let userId = !{JSON.stringify(id)}
-
-      script(src="/js/stats/stats.js")
+         
       script(src="/js/stats/charts/linechart.js")
+      script(src="/js/stats/stats.js")
+      
