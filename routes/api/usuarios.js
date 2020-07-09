@@ -87,7 +87,9 @@ router.post("/register", (req, res) => {
 
     function renderSubscribe(err, subscribeForm) {
       if (err) {
-        res.json("RSRC", "Could not retrieve expected database resources");
+        res
+          .status(422)
+          .json("RSRC", err, "Could not retrieve expected database resources");
       } else {
         subscribeForm.correo.value = correo;
         subscribeForm.password.value = password;
@@ -102,6 +104,10 @@ router.post("/register", (req, res) => {
 
         subscribeForm.genero.selected =
           subscribeForm.genero.options[genero - 1];
+
+        subscribeForm.comuna.selected = subscribeForm.comuna.options.filter(
+          comuna => comuna.id === comunaCod
+        )[0].id;
 
         subscribeForm.sliderInputs.map((efficacy, i) => {
           efficacy.value = efficacies[i];
