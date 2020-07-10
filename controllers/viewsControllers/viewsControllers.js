@@ -45,11 +45,12 @@ module.exports = {
     }
   },
   encuestaActividadView: (req, res) => {
-    debugger;
     let usuario_id = req.session.passport.user;
     controller_renders.getUserInfo(userInfoHandler, {
       _id: usuario_id
     });
+
+    let endsurvey_data = controller_renders.renderNavContent("auth");
 
     function userInfoHandler(err, usuario) {
       if (err) res.json("ERR_USR", `Sorry, we couldn't get the requested user`);
@@ -58,9 +59,13 @@ module.exports = {
       let active_hijos = req.body.active_hijos;
 
       // filter hijos from db based on ids from hijos from request body
-      hijos = hijos.filter(hijo => hijo._id === active_hijos);
+      hijos = hijos.filter((hijo, i) => hijo._id === active_hijos[i]._id);
 
-      res.render("encuesta-actividad", { usuario: usuario, hijos: hijos });
+      res.render("endsurvey", {
+        usuario: usuario,
+        hijos: hijos,
+        view_data: endsurvey_data
+      });
     }
   },
   registro: (req, res) => {
