@@ -14,7 +14,7 @@ module.exports = {
   // find actividad by id
   findByID: (req, res) => {
     db.actividades
-      .find({ _id: req.params.actividadID })
+      .find({ _id: req.params.id })
       .then(dbActividades => res.json(dbActividades))
       .catch(err => res.status(422).json(err));
   },

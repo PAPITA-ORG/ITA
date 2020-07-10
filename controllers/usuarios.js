@@ -122,8 +122,12 @@ module.exports = {
               db.usuarios
                 .updateOne({ correo: req.body.correo }, { password: hash })
                 .then(dbUsuarios => {
+                  let view_data = require("./viewsControllers/controllerRenders").renderNavContent(
+                    "index"
+                  );
                   res.render("registro", {
-                    correo_success: "Enhorabuena! su contraseña ha cambiado"
+                    correo_success: "Enhorabuena! su contraseña ha cambiado",
+                    view_data: view_data
                   });
                 })
                 .catch(err => res.status(422).json(err));
