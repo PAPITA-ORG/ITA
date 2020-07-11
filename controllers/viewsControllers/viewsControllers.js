@@ -33,10 +33,10 @@ module.exports = {
     controller_renders.getUserInfo(userInfoHandler, { _id: usuario_id });
 
     function userInfoHandler(err, usuario) {
-      if (err) res.json("ERR_USR", `Sorry, we couldn't get the requested user`);
+      if (err) res.json("ERR_USR", `Perdona, no hemos podido encontrar este usuario.`);
 
       let { hijos } = usuario;
-
+      console.log(usuario);
       res.render("start", {
         id: usuario._id,
         view_data: start_data,
@@ -81,5 +81,13 @@ module.exports = {
   },
   notfoundView: (req, res) => {
     res.render("notfound");
+  },
+  accountView: (req, res) => {
+    let account_data = controller_renders.renderNavContent("auth");
+    res.render("userAccount", {
+      id: req.session.passport.user,
+      view_data: account_data,
+      usuario: usuario
+    });
   }
 };
