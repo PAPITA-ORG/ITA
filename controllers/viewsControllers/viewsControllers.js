@@ -75,6 +75,13 @@ module.exports = {
     });
   },
   notfoundView: (req, res) => {
-    res.render("notfound");
+    let notfound_data = req.session.passport.user? 
+    (controller_renders.renderNavContent("auth")):
+    (controller_renders.renderNavContent("index"))
+    res.render("notfound",{ 
+      view_data: notfound_data, 
+      id: req.session.passport.user 
+    });
+    
   }
 };

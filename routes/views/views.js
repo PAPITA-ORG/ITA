@@ -22,7 +22,7 @@ router
   .route("/encuesta-actividad")
   .get(ensureAuthenticated, viewsController.encuestaActividadView);
 // not found view
-router.route("/notfound").get(viewsController.notfoundView);
+router.route("/*").get(viewsController.notfoundView);
 
 // get registro view
 router.route("/registro").get(viewsController.registro);
