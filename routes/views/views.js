@@ -19,8 +19,8 @@ router.route("/start").get(ensureAuthenticated, viewsController.startView);
 
 // encuesta-acitividad view
 router
-  .route("/encuesta-actividad")
-  .get(ensureAuthenticated, viewsController.encuestaActividadView);
+  .route("/endsurvey")
+  .post(ensureAuthenticated, viewsController.encuestaActividadView);
 // not found view
 router.route("/*").get(viewsController.notfoundView);
 

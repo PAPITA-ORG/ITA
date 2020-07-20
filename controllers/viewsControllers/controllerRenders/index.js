@@ -148,7 +148,7 @@ module.exports = {
         if (err) {
           let usr_err = new Error(
             "USR_ERR",
-            "Sorry, we failed to retrieve the user."
+            "Perdona, no hemos podido encontrar este usuario."
           );
           cb(usr_err);
         } else {

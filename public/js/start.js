@@ -1,5 +1,6 @@
 $(document).ready(() => {
   let avatar_opacity = $("img.avatar").css("opacity");
+  let avatar = $("img.avatar");
   let is_clicked = false;
   // Logout Icon Handler
   $("i#btn-logout").on("click", logoutHandler);
@@ -304,7 +305,17 @@ $(document).ready(() => {
 
                   // TO DO
                   // SEND USER TO /encuesta-actividad
-                  startEndSurvey();
+
+                  let active_hijos =
+                    avatar_opacity === "1" ? avatar.attr("value") : "";
+
+                  goToEndSurvey(active_hijos);
+                  function goToEndSurvey(active_hijos) {
+                    axios
+                      .post("/endsurvey", { active_hijos: active_hijos })
+                      .then(res => res)
+                      .catch(err => err);
+                  }
                 });
               });
             };
