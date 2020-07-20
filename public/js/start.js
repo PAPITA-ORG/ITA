@@ -68,7 +68,9 @@ $(document).ready(() => {
         });
       });
 
-      const startDashboard = () => {
+      startDashboard();
+
+      function startDashboard(){
         startBottomContainer.empty();
 
         let fuelGaugeDiv = $("#fuel-row");
@@ -165,9 +167,68 @@ $(document).ready(() => {
           $myFuelGauge.changeValue(e.currentTarget.valueAsNumber);
           historial["af1"] = e.currentTarget.valueAsNumber;
         });
+        var tour = new Tour({
+          //pasos del tour
+          steps: [
+          {
+            element: "#slider-af1",
+            title: "Barra de energía",
+            content: "Selector de nivel de energia para hacer actividades"
+          },
+          {
+            element: "#avatar-text",
+            title: "Iconos selección hijos",
+            content: "Selector de hijas/hijos que participaran de la actividad"
+          },
+          {
+            element: "#btn-stats",
+            title: "Estadísticas",
+            content: "Muestra las estadísticas obtenidas al realizar actividades"
+          },
+          {
+            element: "#btn-body",
+            title: "Actividades físicas",
+            content: "Muestra misiones relacionados a actividades fisicas"
+          },
+          {
+            element: "#btn-diet",
+            title: "Actividades alimenticias",
+            content: "Muestra misiones relacionados a actividades alimentarias"
+          },
+          {
+            element: "#btn-mind",
+            title: "Actividades mentales",
+            content: "Muestra misiones relacionados a actividades para la mente"
+          },
+          {
+            element: "#user",
+            title: "Perfil",
+            content: "Muestra la pestaña de perfil de usuario"
+          },
+          {
+            element: "#chart-line",
+            title: "Estadísticas",
+            content: "Muestra las estadísticas obtenidas al realizar actividades"
+          },
+          {
+            element: "#btn-logout",
+            title: "Cerrar sesión",
+            content: "Salir de la sesión actual"
+          },
+          {
+            element: "#hiking",
+            title: "Ir a inicio",
+            content: "LLeva al selector de actividades inicial"
+          },
+        ]});
+        
+        // Initialize the tour
+        tour.init();
+        if(usuario.tutorial===1){
+          // Start the tour
+          tour.start();
+        }
       };
-
-      startDashboard();
 
       // loading screen
 
@@ -327,6 +388,7 @@ $(document).ready(() => {
               historial["random"] = historial["random"] + 1;
               displayActivities();
             });
+            
           })
           .catch(err => err);
       };

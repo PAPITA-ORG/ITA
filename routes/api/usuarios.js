@@ -182,11 +182,7 @@ router.post(
     failureRedirect: "/"
   }),
   (req, res) => {
-    if (req.user.tutorial == 1) {
-      res.redirect("/tutorial");
-    } else {
-      res.redirect("/start");
-    }
+    res.redirect("/start");
   }
 );
 
