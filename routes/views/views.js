@@ -17,8 +17,12 @@ router.route("/subscribe").get(viewsController.subscribeView);
 // start view
 router.route("/start").get(ensureAuthenticated, viewsController.startView);
 
+// encuesta-acitividad view
+router
+  .route("/endsurvey")
+  .post(ensureAuthenticated, viewsController.encuestaActividadView);
 // not found view
-router.route("/notfound").get(viewsController.notfoundView);
+router.route("/*").get(viewsController.notfoundView);
 
 // get registro view
 router.route("/registro").get(viewsController.registro);
