@@ -135,5 +135,8 @@ module.exports = {
         }
       })
       .catch(err => res.status(422).json(err));
+  },
+  chooseActivity: (req, res, next) => {
+    console.log("activity chosen", req.params, req.body);
   }
 };

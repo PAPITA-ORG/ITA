@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    
+
     div(class="container" id="start-main-container")
 
         div.mt-2(class='row align-items-center justify-content-center' id="start-top-container") 
@@ -11,14 +11,22 @@ block content
 
         div.container.col-md-12.center.mt-2
             div.form-check.form-check.inline
-                h3.text-dark Con quien vas a participar?
-                each hijo in hijos
-                    img.avatar.img-responsive(src=`https://avatars.dicebear.com/api/bottts/${hijo.id}.svg?mood[]=happy` value=`${hijo.id}`)
-                    
-
-        div.mt-2(class="container col-md-12 center" id="start-bottom-container")
-      
-      
+                form(method='POST' action='/api/usuarios/chooseActivity')
+                        input.form-control.mb-3.efficacies-range#activity-efficacy(type='range' min="0" max="100" value=af_0 name='af_0')
+                        label.pull-right#eficacia-label
+                        h3.text-dark Con quien vas a participar?
+                        if hijos
+                            each hijo in hijos
+                                img.avatar.img-responsive(src=`https://avatars.dicebear.com/api/bottts/${hijo.id}.svg?mood[]=happy` value=`${hijo.id}`)
+                        
+                        div.mt-2(class="container col-md-12 center" id="start-bottom-container")
+                            div.row
+                                each btn, i in activity_content.activity_btns
+                                    div.mt-4(class=`col-md-3 ${i%2 ==0? 'offset-md-3': ''}`)
+                                        input#input-topicoCod(type='hidden')
+                                        button(class='form-activity-btn' type='submit' formaction=`/api/usuarios/chooseActivity/${btn.data_value}` value=btn.data_value)
+                                            img.img-responsive(src=btn.src class=activity_content.attrs.class_name)
+    
         include partials/bottomNav.pug
         script.
             let userId = !{JSON.stringify(id)}

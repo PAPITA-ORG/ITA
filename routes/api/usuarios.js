@@ -195,4 +195,9 @@ router.route("/logout").post(usuariosController.logout);
 // change password
 router.route("/changePassword").post(usuariosController.changePassword);
 
+// choose an activity
+router
+  .route("/chooseActivity/:topicoCod")
+  .post(usuariosController.chooseActivity);
+
 module.exports = router;

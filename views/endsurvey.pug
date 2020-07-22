@@ -2,3 +2,7 @@ extends layout
 
 block content
     h1 Hello there
+
+    include partials/bottomNav.pug
+    script.
+        let userId = !{JSON.stringify(id)}
