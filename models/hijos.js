@@ -12,7 +12,8 @@ const Hijos = Schema({
   noLleva: { type: Schema.Types.Number, required: true },
   explosivoAgresivo: { type: Schema.Types.Number, required: true },
   noDificultadEnt: { type: Schema.Types.Number, required: true },
-  usuario: { type: Schema.Types.ObjectId, ref: "Usuario", required: true }
+  usuario: { type: Schema.Types.ObjectId, ref: "Usuario", required: true },
+  avatarUrl: { type: Schema.Types.String, required: true }
 });
 
 const Hijo = mongoose.model("Hijo", Hijos);
