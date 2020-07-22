@@ -1,7 +1,8 @@
 
 // General
 let margin = { top: 20, right: 50, bottom: 30, left: 50 },
-   width = 630 - margin.left - margin.right,
+   margin2 = { top: 50, right: 25, bottom: 30, left: 30 },
+   width = 630 - margin.left - margin.right, // default width
    height = 400 - margin.top - margin.bottom,
    color1 = "#69D2E7",
    color2 = "#FA6900";
@@ -13,71 +14,76 @@ let data = [],
 let formatTime = d3.timeParse("%d-%b-%y")
 
 for (let i = 0; i < 7; i++) {
-   data.push({ date: formatTime(+(i + 1) + "-Jun-20"), value: getRandomInt(100) })
-   data2.push({ date: formatTime(+(i + 1) + "-Jun-20"), value: getRandomInt(100) })
+   data.push({ date: formatTime(+(i + 1) + "-Jul-20"), value: getRandomInt(100) })
+   data2.push({ date: formatTime(+(i + 1) + "-Jul-20"), value: getRandomInt(100) })
 }
 
-let optionsObject = {
-   mainContainerId: "mainChart",
-   switchesContainerId: "energySwitches",
+// Line chart
+let lineChartOptions = {
+   mainContainerId: "energy-line-chart",
+   parentContainerId: "dashboard-tabs",
+   chartTitle: "Nivel de energía",
+   chartLegend: "",
    margin: margin,
    width: width,
    height: height
 }
 
-let chart1 = {
+let switches = [
+   {
+      containerId: "switch-previous-container",
+      switchId: "switch-previous",
+      lineId: "energy-before"
+   },
+   {
+      containerId: "switch-after-container",
+      switchId: "switch-after",
+      lineId: "energy-after"
+   }]
+
+let line1 = {
    id: "energy-before",
    data: data,
-   color: color1
+   color: color1,
+   label: "Antes"
 }
 
-let chart2 = {
+let line2 = {
    id: "energy-after",
    data: data2,
-   color: color2
+   color: color2,
+   label: "Después"
 }
 
 // Call line chart function
-lineChart({ options: optionsObject, charts: [chart1, chart2] })
+LineChart({ options: lineChartOptions, charts: [line1, line2], switches: switches, event: 'create' })
 
-// // Manage switches
-// let el1 = document.querySelector('#switch-previo');
-// let mySwitch1 = new Switch(el1,
-//    {
-//       checked: true,
-//       onSwitchColor: color1,
-//       onChange: function () {
-//          toggleLine("first", this.getChecked())
-//       }
-//    })
+// Bar chart
 
-// let el2 = document.querySelector('#switch-despues');
-// let mySwitch2 = new Switch(el2,
-//    {
-//       checked: true,
-//       onSwitchColor: color2,
-//       onChange: function () {
-//          toggleLine("second", this.getChecked())
-//       }
+barChartOptions = {
+   mainContainerId: "activity-time-chart",
+   parentContainerId: "dashboard-tabs",
+   chartTitle: "Nivel de energía",
+   chartLegend: "",
+   margin: margin2,
+   width: width,
+   height: height,
+   color: color1,
+   legend: "Minutos"
+}
 
-//    });
+BarChart({ options: barChartOptions, data: data })
+
+
+
+// Resize charts
+window.addEventListener('resize', function (event) {
+   LineChart({ options: lineChartOptions, charts: [line1, line2], switches: switches, event: 'resize' })
+   BarChart({ options: barChartOptions, data: data })
+});
+
+
 
 function getRandomInt(max) {
    return Math.floor(Math.random() * Math.floor(max));
 }
-
-// function toggleLine(lineId, toggle) {
-//    d3.select("#" + lineId + "Line")
-//       .transition()
-//       .duration(200)
-//       .style("opacity", function () {
-//          return toggle ? 1 : 0
-//       })
-
-//    d3.selectAll("." + lineId + ".dot")
-//       .transition()
-//       .duration(200)
-//       .style("opacity", function () {
-//          return toggle ? 1 : 0
-//       })
-// }

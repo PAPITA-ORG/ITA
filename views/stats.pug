@@ -6,7 +6,7 @@ block content
       div(class="row")
          div(class="col-md-8")
             h1 Tu progreso semanal
-            div(class="tabs")
+            div(class="tabs" id="dashboard-tabs")
                div(class="tab")
                   input(type="radio" name="css-tabs" id="tab-1" checked class="tab-switch")
                   label(for="tab-1" class="tab-label") Energía
@@ -15,27 +15,33 @@ block content
                      div(class="row")
                         div(class="col-md-12")
                            h4 Nivel de energía
-                        div(class="offset-sm-1 col-md-6 mt-4")
+                        div(class="offset-sm-1 col-md-11 mt-4")
                            div(class="row")
-                              div(class="col-xs-2")
-                                 input(type="checkbox" class="checkbox-switch" id="switch-previo")
-                              div(class="offset-sm-1 col-xs-3")
+                              div(class="col-xs-2" id="switch-previous-container")
+                                 input(type="checkbox" class="checkbox-switch" id="switch-previous")
+                              div(class="col-xs-2" style="margin-top: 5px; margin-left: 8px;")
                                  h5 Previo
-                        div(class="offset-sm-1 col-md-6 mt-4")
-                           div(class="row")
-                              div(class="col-xs-2")
-                                 input(type="checkbox" class="checkbox-switch" id="switch-despues")
-                              div(class="offset-sm-1 col-xs-3")
+                              div(class="col-xs-2" style="min-width: 20px;")
+                              div(class="col-xs-2" id="switch-after-container")
+                                 input(type="checkbox" class="checkbox-switch" id="switch-after")
+                              div(class="col-xs-2" style="margin-top: 5px; margin-left: 8px;")
                                  h5 Posterior
-                        div(class="col-lg-12 mt-4" id="mainChart")
+                        div(class="col-lg-12 mt-4" id="energy-line-chart")
 
-               //- div(class="tab")
-               //- div(class="tab")
+               div(class="tab")
+                  input(type="radio" name="css-tabs" id="tab-2" class="tab-switch")
+                  label(for="tab-2" class="tab-label") Uso
+                  div(class="tab-content")
+                     div(class="row")
+                        div(class="col-md-12")
+                           h4 Tiempo de actividades por día
+                        div(class="col-lg-12 mt-2" id="activity-time-chart")
 
    include partials/bottomNav.pug
       script.
          let userId = !{JSON.stringify(id)}
          
       script(src="/js/stats/charts/linechart.js")
+      script(src="/js/stats/charts/barchart.js")
       script(src="/js/stats/stats.js")
       

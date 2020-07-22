@@ -1,4 +1,6 @@
-function lineChart(params) {
+// const { param } = require("../../../../routes/views/views");
+
+function LineChart(params) {
 
    // Params validation
    try {
@@ -9,20 +11,32 @@ function lineChart(params) {
       console.log(e)
    }
 
-   let margin, width, height, mainContainerId;
+   let margin, width, height, mainContainerId, parentContainerId, chartTitle, switches;
 
-   if (params.options) { // If no options passed, set default values
+   if (params.options) {
       margin = params.options.margin
       width = params.options.width
       height = params.options.height
       mainContainerId = params.options.mainContainerId
+      parentContainerId = params.options.parentContainerId
+      chartTitle = params.options.chartTitle
+      switches = params.switches
    } else {
+      // If no options passed, set default values
       margin = { top: 20, right: 50, bottom: 30, left: 50 }
       width = 630 - margin.left - margin.right
       height = 400 - margin.top - margin.bottom
       mainContainerId = "mainChart"
+      chartTitle = "(Insert chart title)"
    }
 
+
+   // Get container width dynamically
+   var parentContainer = document.getElementById(parentContainerId)
+
+   if (parentContainer) {
+      width = parentContainer.getBoundingClientRect().width - margin.left - margin.right
+   }
    // Find max values between the datasets
    let maxValue = 0, minDates = [], maxDates = [], datalength = 0
 
@@ -72,25 +86,34 @@ function lineChart(params) {
    // .curve(d3.curveMonotoneX) // this makes the lines 'curvy', leave commented for straight lines
 
    // Add main SVG
-   let svg = d3.select("#" + mainContainerId).append("svg")
+   let mainContainer = d3.select("#" + mainContainerId)
+
+   let svg = mainContainer.selectAll("svg#" + mainContainerId + "_chart").data([params.charts])
+      .join("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      .attr("id", mainContainerId + "_chart");
+
+   let g = svg.selectAll("g#mainGroup").data([params.charts])
+      .join("g")
+      .attr("id", "mainGroup")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
    // Append axis
-   let horizontalAxis = svg.append("g")
+   let horizontalAxis = g.selectAll("g#xAxisGroup").data([params.charts])
+      .join("g")
       .attr("class", "x axis")
+      .attr("id", "xAxisGroup")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
 
-   let verticalAxis = svg.append("g")
+   let verticalAxis = g.selectAll("g#yAxisGroup").data([params.charts])
+      .join("g")
       .attr("class", "y axis")
-      .call(yAxis);
+      .attr("id", "yAxisGroup")
+      .call(yAxis)
 
    // Add horizontal grid lines and correct positions of axes ticks
-   // svg.append("g").attr("class", "gridlines")
-
    verticalAxis.selectAll("g.tick").each(function (d) {
 
       let thisTick = d3.select(this)
@@ -110,35 +133,23 @@ function lineChart(params) {
       d3.select(this).attr("y", 15)
    })
 
-
-   // Append groups
-   // svg.selectAll("g.chartgroup")
-   //    .data([1, 2])
-   //    .enter().append("g")
-   //    .attr("class", "chartgroup");
-
    let lines = [], circles = [] // These will be used for animations
 
    // Append lines and circles
    params.charts.forEach(function (chart) {
 
-      let path = svg.selectAll("path.line." + chart.id).data([chart.data]);
-
-      path = path
-         .enter()
-         .append("path")
-         .attr("id", "firstLine")
+      let path = g.selectAll("path.line." + chart.id).data([chart.data])
+         .join("path")
+         .attr("id", chart.id)
          .attr("class", "line " + chart.id)
          .attr("d", function (d) { return line(d); })
          .style("stroke", chart.color);
 
       lines.push(path)
 
-      // // Append circles for each data point
-      let circle = svg.selectAll(chart.id + ".dot").data(chart.data)
-
-      circle = circle
-         .enter().append("circle")
+      // Append circles for each data point
+      let circle = g.selectAll("." + chart.id + ".dot").data(chart.data)
+         .join("circle")
          .attr("class", chart.id + " dot")
          .attr("cx", function (d) { return x(d.date) })
          .attr("cy", function (d) { return y(d.value) })
@@ -146,91 +157,93 @@ function lineChart(params) {
          .attr("fill", chart.color)
          .attr("stroke", "#fff")
          .attr("stroke-width", "2px")
-         .attr("opacity", 0)
-      // .on("mouseover", function (a, b, c) {
-      // 	console.log(a)
-      // 	this.attr('class', 'focus')
-      // })
-      // .on("mouseout", function () { })
+         .attr("opacity", () => {
+            if (params.event === 'create') return 0
+            else return 100
+         })
 
       circles.push(circle)
-
    })
 
-   // Animate lines
-   lines.forEach(line => {
-      let totalLength = line._groups[0][0].getTotalLength()
+   if (params.event === 'create') {
+      // Animate lines
+      lines.forEach(l => {
+         let totalLength = l._groups[0][0].getTotalLength()
 
-      d3.select(line._groups[0][0])
-         .attr("stroke-dasharray", totalLength + " " + totalLength)
-         .attr("stroke-dashoffset", totalLength)
-         .transition()
-         .duration(2000)
-         .ease(d3.easeLinear)
-         .attr("stroke-dashoffset", 0);
-   })
+         d3.select(l._groups[0][0])
+            .attr("stroke-dasharray", totalLength + " " + totalLength)
+            .attr("stroke-dashoffset", totalLength)
+            .transition()
+            .duration(2000)
+            .ease(d3.easeLinear)
+            .attr("stroke-dashoffset", 0);
+      })
 
-   // Animate circles
-   let counter = 0;
-   const intervalId = setInterval(() => {
+      // Animate circles
+      let counter = 0;
+      const intervalId = setInterval(() => {
 
-      circles.forEach(circle => {
-         circle.each(function (d, i) {
-            if (i === counter) {
-               d3.select(this)
-                  .transition()
-                  .duration(1000)
-                  .attr("opacity", 100)
+         circles.forEach(circle => {
+            circle.each(function (d, i) {
+               if (i === counter) {
+                  d3.select(this)
+                     .transition()
+                     .duration(1000)
+                     .attr("opacity", 100)
+               }
+            })
+         })
+
+         counter += 1;
+         if (counter === datalength) {
+            clearInterval(intervalId);
+         }
+      }, 2000 / datalength);
+
+   } else if (params.event === 'resize') {
+      lines.forEach(l => {
+         let totalLength = l._groups[0][0].getTotalLength()
+
+         d3.select(l._groups[0][0])
+            .attr("stroke-dasharray", totalLength + " " + totalLength)
+            .attr("stroke-dashoffset", 0);
+      })
+   }
+
+   // Manage switches that toggle lines, if any
+   if (switches.length > 0) {
+
+      params.charts.forEach(chart => {
+         switches.forEach(sw => {
+            if (sw.lineId === chart.id) {
+               let lineSwitchDOM = document.querySelector('#' + sw.switchId)
+
+               let lineSwitch = new Switch(lineSwitchDOM,
+                  {
+                     checked: true,
+                     onSwitchColor: chart.color,
+                     onChange: function () {
+                        toggleLine(chart.id, this.getChecked())
+                     }
+                  })
             }
          })
       })
+   }
 
-      counter += 1;
-      if (counter === datalength) {
-         clearInterval(intervalId);
-      }
-   }, 2000 / datalength);
+   function toggleLine(lineId, toggle) {
+      svg.select("#" + lineId)
+         .transition()
+         .duration(200)
+         .style("opacity", function () {
+            return toggle ? 1 : 0
+         })
 
-   // Manage switches that toggle lines
-   // params.charts.forEach(chart => {
-   //    let switchId = '#switch-' + chart.id
-   // })
-
-   // let el1 = document.querySelector('#switch-previo');
-   // let mySwitch1 = new Switch(el1,
-   //    {
-   //       checked: true,
-   //       onSwitchColor: color1,
-   //       onChange: function () {
-   //          toggleLine("first", this.getChecked())
-   //       }
-   //    })
-
-   // let el2 = document.querySelector('#switch-despues');
-   // let mySwitch2 = new Switch(el2,
-   //    {
-   //       checked: true,
-   //       onSwitchColor: color2,
-   //       onChange: function () {
-   //          toggleLine("second", this.getChecked())
-   //       }
-
-   //    });
-
-
-   // function toggleLine(lineId, toggle) {
-   //    d3.select("#" + lineId + "Line")
-   //       .transition()
-   //       .duration(200)
-   //       .style("opacity", function () {
-   //          return toggle ? 1 : 0
-   //       })
-
-   //    d3.selectAll("." + lineId + ".dot")
-   //       .transition()
-   //       .duration(200)
-   //       .style("opacity", function () {
-   //          return toggle ? 1 : 0
-   //       })
-   // }
+      svg.selectAll("." + lineId + ".dot")
+         .transition()
+         .duration(200)
+         .style("opacity", function () {
+            return toggle ? 1 : 0
+         })
+   }
 }
