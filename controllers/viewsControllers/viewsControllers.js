@@ -81,15 +81,20 @@ module.exports = {
     });
   },
   notfoundView: (req, res) => {
-    let notfound_data = req.session.passport.user
-      ? controller_renders.renderNavContent("auth")
-      : controller_renders.renderNavContent("index");
-    res.render("notfound", {
-      view_data: notfound_data,
-      id: req.session.passport.user
-    });
+    let notfound_data;
+    if (req.session.passport.user) {
+      notfound_data = controller_renders.renderNavContent("auth");
 
-    res.render("notfound");
+      res.render("notfound", {
+        view_data: notfound_data,
+        id: req.session.passport.user
+      });
+    } else {
+      notfound_data = controller_renders.renderNavContent("index");
+      res.render("notfound", {
+        view_data: notfound_data
+      });
+    }
   },
   accountView: (req, res) => {
     let account_data = controller_renders.renderNavContent("auth");

@@ -46,6 +46,14 @@ block content
                                             option(value=option._id selected)= option.comuna
                                         else
                                             option(value=option._id)= option.comuna
+                                
+                                label.col-sm-3.col-form-label.mt-3= data.educacion.label
+                                select.col-sm-3.form-control.mt-3(name=data.educacion.name)
+                                    each option, index in data.educacion.options
+                                        if data.educacion.options[index] == data.educacion.selected
+                                            option(value=index+1 selected)= option
+                                        else
+                                            option(value=index+1)= option
 
                             div.form-group.row#form-efficacies.mt-5
                                 each field in data.sliderInputs

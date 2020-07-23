@@ -21,8 +21,6 @@ router.route("/start").get(ensureAuthenticated, viewsController.startView);
 router
   .route("/endsurvey")
   .post(ensureAuthenticated, viewsController.encuestaActividadView);
-// not found view
-router.route("/*").get(viewsController.notfoundView);
 
 // get registro view
 router.route("/registro").get(viewsController.registro);
@@ -31,5 +29,8 @@ router.route("/registro").get(viewsController.registro);
 router
   .route("/tutorial")
   .get(ensureAuthenticated, viewsController.tutorialView);
+
+// not found view
+router.route("/*").get(viewsController.notfoundView);
 
 module.exports = router;

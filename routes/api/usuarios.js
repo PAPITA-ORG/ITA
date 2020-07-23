@@ -35,6 +35,7 @@ router.post("/register", (req, res) => {
     correo,
     password,
     edad,
+    educacion,
     genero,
     parentesco,
     comunaCod,
@@ -63,6 +64,7 @@ router.post("/register", (req, res) => {
     !correo ||
     !password ||
     !edad ||
+    !educacion ||
     !genero ||
     !parentesco ||
     !comunaCod ||
@@ -105,6 +107,9 @@ router.post("/register", (req, res) => {
         subscribeForm.genero.selected =
           subscribeForm.genero.options[genero - 1];
 
+        subscribeForm.educacion.selected =
+          subscribeForm.educacion.options[educacion - 1];
+
         subscribeForm.comuna.selected = subscribeForm.comuna.options.filter(
           comuna => comuna.id === comunaCod
         )[0].id;
@@ -142,6 +147,7 @@ router.post("/register", (req, res) => {
             correo: correo,
             password: password,
             edad: Number(edad),
+            educacion: educacion,
             genero: Number(genero),
             parentesco: Number(parentesco),
             comunaCod: comunaCod,
