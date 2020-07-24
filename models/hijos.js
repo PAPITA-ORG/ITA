@@ -15,6 +15,7 @@ const Hijos = Schema({
   e5: { type: Schema.Types.Number, required: true },
   cd: { type: Schema.Types.Boolean, required: true, default: 0 },
   ce: { type: Schema.Types.Boolean, required: true, default: 0 },
+  frecuencia_actividad: { type: Schema.Types.Number, required: true },
   usuario: { type: Schema.Types.ObjectId, ref: "Usuario", required: true },
   avatarUrl: { type: Schema.Types.String, required: true }
 });

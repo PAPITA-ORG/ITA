@@ -38,12 +38,10 @@ module.exports = {
           parentesco: {
             label: "Parentesco",
             options: [
-              "mama",
-              "papa",
-              "abuelo",
-              "abuela",
-              "otro familiar",
-              "otro no familiar"
+              "Cuidador principal",
+              "Cuidador secundario",
+              "Otro familiar",
+              "Otro no familiar"
             ],
             name: "parentesco",
             type: "select",
