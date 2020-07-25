@@ -4,6 +4,8 @@ const db = require("../models");
 const LocalStrategy = require("passport-local");
 const bcrypt = require("bcryptjs");
 
+const controllerRenders = require("./viewsControllers/controllerRenders");
+
 // define methods for the usuarios controller
 module.exports = {
   // find all usuarios
@@ -138,5 +140,21 @@ module.exports = {
   },
   chooseActivity: (req, res, next) => {
     console.log("activity chosen", req.params, req.body);
+    let usuario_id = req.session.passport.user;
+
+    let start_data = controllerRenders.renderNavContent("auth");
+
+    let fetchActivities = require("./actividades").findByCategories;
+    fetchActivities(handleFetchActivities, req.params.topicoCod, req.body.af_0);
+
+    function handleFetchActivities(err, data) {
+      if (err) return res.json(err);
+
+      res.render("start", {
+        id: usuario_id,
+        view_data: start_data,
+        activity_content: data
+      });
+    }
   }
 };
