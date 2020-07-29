@@ -71,6 +71,7 @@ function LineChart(params) {
       .range([height, 0]);
 
    let xAxis = d3.axisBottom(x)
+      .tickFormat(function (d) {  return String(d).split(" ")[0] })
       .ticks(5)
       .tickSize(0)
 

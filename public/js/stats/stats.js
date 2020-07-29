@@ -1,6 +1,6 @@
 
 // General
-let margin = { top: 20, right: 50, bottom: 30, left: 50 },
+let margin = { top: 20, right: 50, bottom: 50, left: 50 },
    margin2 = { top: 50, right: 25, bottom: 30, left: 30 },
    width = 630 - margin.left - margin.right, // default width
    height = 400 - margin.top - margin.bottom,
