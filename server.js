@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Parse json request bodies
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 // Express Session
 app.use(

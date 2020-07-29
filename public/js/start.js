@@ -2,6 +2,8 @@ $(document).ready(() => {
   let avatar_opacity = $("img.avatar").css("opacity");
   let is_clicked = false;
 
+  console.log("hello");
+
   // Logout Icon Handler
   $("i#btn-logout").on("click", logoutHandler);
 
@@ -25,6 +27,19 @@ $(document).ready(() => {
       avatar_opacity = "1";
       $(e.target).css("opacity", avatar_opacity);
       is_clicked = !is_clicked;
+
+      let hijo_id = $(e.target).attr("value");
+      let target_id = $(e.target).attr("id");
+      let hijo_number = target_id.split("_");
+      console.log(
+        hijo_id,
+        hijo_number[hijo_number.length - 1],
+        $(`#hijo_${0}`)
+      );
+      $(`input[type=hidden]#hijo_` + hijo_number[hijo_number.length - 1]).attr(
+        "value",
+        hijo_id
+      );
     } else {
       avatar_opacity = "0.5";
       $(e.target).css("opacity", avatar_opacity);

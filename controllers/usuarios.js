@@ -139,7 +139,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   chooseActivity: (req, res, next) => {
-    console.log("activity chosen", req.params, req.body);
+    console.log("\n\n", this);
     let usuario_id = req.session.passport.user;
 
     let start_data = controllerRenders.renderNavContent("auth");
@@ -150,10 +150,16 @@ module.exports = {
     function handleFetchActivities(err, data) {
       if (err) return res.json(err);
 
+      console.log(data);
+
       res.render("start", {
         id: usuario_id,
         view_data: start_data,
-        activity_content: data
+        activities: data,
+        action: "choose-activity",
+        topico: req.params.topicoCod,
+        af_0: req.body.af_0,
+        hijos: req.body.hijos
       });
     }
   }
