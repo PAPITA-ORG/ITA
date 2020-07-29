@@ -73,7 +73,14 @@ module.exports = {
       if (err) {
         throw err;
       }
-      res.json(historial);
+
+      db.usuarios
+        .updateOne(
+          { _id: req.body.usuario },
+          { $push: { historial: historial._id } }
+        )
+        .then(parent => res.json(parent))
+        .catch(err => res.status(422).json(err));
     });
   }
 };

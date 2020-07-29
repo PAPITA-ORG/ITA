@@ -158,7 +158,7 @@ module.exports = {
   },
   getUserInfo: (cb, query) => {
     Usuario.findOne(query)
-      .populate("hijos")
+      .populate("historial")
       .exec(function(err, usuario) {
         if (err) {
           let usr_err = new Error(
@@ -167,7 +167,14 @@ module.exports = {
           );
           cb(usr_err);
         } else {
-          cb(null, usuario);
+          console.log(usuario);
+          // usuario
+          //   .populate("historials")
+          //   .execPopulate()
+          //   .then(res => {
+          return cb(null, usuario);
+          // })
+          // .catch(err => res.json(err));
         }
       });
   }

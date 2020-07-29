@@ -98,10 +98,23 @@ module.exports = {
   },
   accountView: (req, res) => {
     let account_data = controller_renders.renderNavContent("auth");
-    res.render("userAccount", {
-      id: req.session.passport.user,
-      view_data: account_data,
-      usuario: usuario
-    });
+
+    controller_renders.getUserInfo(
+      function(err, usuario) {
+        let filtered = {};
+        let usuario_keys = ["edad", "parentesco", "af_0", "correo"];
+
+        usuario_keys.map(key => (filtered[key] = usuario[key]));
+
+        res.render("userAccount", {
+          id: req.session.passport.user,
+          view_data: account_data,
+          usuario: filtered
+        });
+      },
+      {
+        _id: req.session.passport.user
+      }
+    );
   }
 };
