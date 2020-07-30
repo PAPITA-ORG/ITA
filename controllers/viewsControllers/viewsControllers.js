@@ -29,7 +29,7 @@ module.exports = {
   startView: (req, res) => {
     let start_data = controller_renders.renderNavContent("auth");
     let usuario_id = req.session.passport.user;
-
+    console.log(req.app.locals.usuario, "hiiiiii");
     controller_renders.getUserInfo(userInfoHandler, { _id: usuario_id });
 
     function userInfoHandler(err, usuario) {

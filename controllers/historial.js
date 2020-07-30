@@ -45,42 +45,25 @@ module.exports = {
   },
   // create one historial
   create: (req, res) => {
-    const {
-      af1,
-      af2,
-      disfruta,
-      disfrutaNino,
-      loginTime,
-      logoutTime,
-      random,
-      usuario,
-      actividad
-    } = req.body;
+    db.historial
+      .create(req.body)
+      .then(historial => {
+        let historial_filtro = {
+          loginTime: historial.loginTime,
+          logoutTime: historial.logoutTime,
+          disfruta: historial.disfruta,
+          // ratingHijos: historial.ratingHijos,
+          actividad: historial.actividad
+        };
 
-    const newHistorial = new Historial({
-      af1: af1,
-      af2: af2,
-      disfruta: disfruta,
-      disfrutaNino: disfrutaNino,
-      loginTime: loginTime,
-      logoutTime: logoutTime,
-      random: random,
-      usuario: usuario,
-      actividad: actividad
-    });
-
-    newHistorial.save(function(err, historial) {
-      if (err) {
-        throw err;
-      }
-
-      db.usuarios
-        .updateOne(
-          { _id: req.body.usuario },
-          { $push: { historial: historial._id } }
-        )
-        .then(parent => res.json(parent))
-        .catch(err => res.status(422).json(err));
-    });
+        db.usuarios
+          .updateOne(
+            { _id: historial.usuario },
+            { $push: { historial: historial._id } }
+          )
+          .then(parent => res.json(parent))
+          .catch(err => res.status(422).json(err));
+      })
+      .catch(err => res.status(422).json(err));
   }
 };

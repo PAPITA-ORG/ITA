@@ -197,6 +197,7 @@ router.post(
     if (req.user.tutorial == 1) {
       res.redirect("/tutorial");
     } else {
+      req.app.locals["usuario"] = req.user;
       res.redirect("/start");
     }
   }
