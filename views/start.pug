@@ -10,7 +10,7 @@ block content
                     div(id="fuel-gauge")
                         div(id="fuel-gauge-control")
 
-        div.container.col-md-12.center.mt-2
+        div.container.col-md-12.center.mt-2#start-main-container
             div.form-check.form-check.inline
                     form(method='POST' action='/api/usuarios/chooseActivity')
                         if !action
@@ -19,7 +19,7 @@ block content
                             h3.text-dark Con quien vas a participar?
                             if hijos
                                 each hijo, i in hijos
-                                    input.hijo(name='hijos[]' type='hidden' id=`hijo_${i}`)
+                                    input.hijo(name='hijos[]' type='hidden' id=`hijo_${i}` value=hijo)
                                     img.avatar.img-responsive(src=`https://avatars.dicebear.com/api/bottts/${hijo.id}.svg?mood[]=happy` id=`avatar_${i}` value=`${hijo.id}`)
                             
                             div.mt-2(class="container col-md-12 center" id="start-bottom-container")

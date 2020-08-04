@@ -198,6 +198,6 @@ router.route("/changePassword").post(usuariosController.changePassword);
 // choose an activity
 router
   .route("/chooseActivity/:topicoCod")
-  .post(usuariosController.chooseActivity);
+  .post(usuariosController.chooseRandomActivities);
 
 module.exports = router;

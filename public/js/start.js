@@ -4,12 +4,16 @@ $(document).ready(() => {
 
   console.log("hello");
 
+  // Click Handlers
+
   // Logout Icon Handler
   $("i#btn-logout").on("click", logoutHandler);
 
   $("img.avatar").on("click", avatarClickHandler);
 
   $("#activity-efficacy").on("change", onSliderChange);
+
+  $(".form-activity-btn").on("click", onChooseActivity);
 
   function logoutHandler() {
     axios
@@ -23,14 +27,15 @@ $(document).ready(() => {
   }
 
   function avatarClickHandler(e) {
+    let hijo_id = $(e.target).attr("value");
+    let target_id = $(e.target).attr("id");
+    let hijo_number = target_id.split("_");
+
     if (avatar_opacity === "0.5") {
       avatar_opacity = "1";
       $(e.target).css("opacity", avatar_opacity);
       is_clicked = !is_clicked;
 
-      let hijo_id = $(e.target).attr("value");
-      let target_id = $(e.target).attr("id");
-      let hijo_number = target_id.split("_");
       console.log(
         hijo_id,
         hijo_number[hijo_number.length - 1],
@@ -44,11 +49,83 @@ $(document).ready(() => {
       avatar_opacity = "0.5";
       $(e.target).css("opacity", avatar_opacity);
       is_clicked = !is_clicked;
+      $(`input[type=hidden]#hijo_` + hijo_number[hijo_number.length - 1]).attr(
+        "value",
+        ""
+      );
     }
   }
 
   function onSliderChange(e) {
     $("#eficacia-label").html(e.target.value);
+  }
+
+  function onChooseActivity(e) {
+    e.preventDefault();
+
+    let topicoCod = $(e.target)
+      .parent()
+      .val();
+    let af_0 = $("#activity-efficacy").val();
+    let hijos = [];
+    $(`img.avatar[style="opacity: 1;"]`).each(function() {
+      hijos.push($(this).attr("value"));
+    });
+
+    axios
+      .post(`/api/usuarios/chooseActivity/${topicoCod}`, {
+        af_0: af_0,
+        hijos: hijos
+      })
+      .then(res => {
+        console.log(res.data);
+        let mainContainer = $("#start-main-container").empty();
+
+        // loading screen
+        loading();
+
+        function loading() {
+          mainContainer.empty();
+
+          let startMessage = $("<div>", {
+            style: "margin-top: 20px",
+            class: "col-sm-12 form-group justify-center center",
+            id: "start-message"
+          });
+
+          let startIta = $("<img>", {
+            src: "/images/ita3d_1.png",
+            class: "center"
+          })
+            .width(200)
+            .height(240);
+
+          let startRandomMessage = $("<label>", {
+            for: "start-random-message"
+            //MAKE MESSAGE RANDOM FROM MESSAGES COLLECTION
+          }).text("Practica, Practica, Practica");
+
+          let progressRow = $("<div>", {
+            //style: "margin-top: 20px",
+            //class: "col-sm-12 form-group justify-center center",
+            id: "myProgress"
+          });
+
+          let barRow = $("<div>", {
+            //style: "margin-top: 20px",
+            //class: "col-sm-12 form-group justify-center center",
+            id: "myBar"
+          });
+
+          startMessage.append(startIta);
+          startMessage.append(startRandomMessage);
+          mainContainer.append(startMessage);
+          progressRow.append(barRow);
+          mainContainer.append(progressRow);
+          move();
+        }
+      })
+      .catch(err => console.error(err));
   }
 
   axios
@@ -64,49 +141,6 @@ $(document).ready(() => {
 
       let startContainer = $("#start-main-container");
       let startTopContainer = $("#start-top-container");
-
-      // loading screen
-
-      const loading = () => {
-        startContainer.empty();
-
-        let startMessage = $("<div>", {
-          style: "margin-top: 20px",
-          class: "col-sm-12 form-group justify-center center",
-          id: "start-message"
-        });
-
-        let startIta = $("<img>", {
-          src: "/images/ita3d_1.png",
-          class: "center"
-        })
-          .width(200)
-          .height(240);
-
-        let startRandomMessage = $("<label>", {
-          for: "start-random-message"
-          //MAKE MESSAGE RANDOM FROM MESSAGES COLLECTION
-        }).text("Practica, Practica, Practica");
-
-        let progressRow = $("<div>", {
-          //style: "margin-top: 20px",
-          //class: "col-sm-12 form-group justify-center center",
-          id: "myProgress"
-        });
-
-        let barRow = $("<div>", {
-          //style: "margin-top: 20px",
-          //class: "col-sm-12 form-group justify-center center",
-          id: "myBar"
-        });
-
-        startMessage.append(startIta);
-        startMessage.append(startRandomMessage);
-        startContainer.append(startMessage);
-        progressRow.append(barRow);
-        startContainer.append(progressRow);
-        move();
-      };
 
       function startEndSurvey() {
         startContainer.empty();
