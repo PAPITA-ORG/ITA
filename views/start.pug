@@ -30,6 +30,12 @@ block content
                                                 input#input-topicoCod(type='hidden')
                                                 button(class='form-activity-btn' type='submit' formaction=`/api/usuarios/chooseActivity/${btn.data_value}` value=btn.data_value)
                                                     img.img-responsive(src=btn.src class=activity_content.attrs.class_name)
+    div.mt-2.d-none(class="container col-md-12 center" id="start-activity-container")
+        h3.text-dark Elige tu actividad!
+        div.mt-2#activities
+        div.mt-4#random-btn
+            button.btn.btn-success#start-random-btn.d-none(value=`/api/usuarios/chooseActivity/${topico}`) Cambia mis actividades!
+
                         if action == 'choose-activity'
                             h3.text-dark Elige tu actividad!
                             div.mt-2(class="container col-md-12 center" id="start-bottom-container")

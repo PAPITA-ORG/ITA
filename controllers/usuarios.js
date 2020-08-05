@@ -155,7 +155,8 @@ module.exports = {
       return res.json({
         activities: data,
         topicoCod: req.params.topicoCod,
-        hijos: req.body.hijos
+        hijos: req.body.hijos,
+        af_0: req.body.af_0
       });
 
       // res.render("start", {
