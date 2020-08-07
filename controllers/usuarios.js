@@ -139,18 +139,11 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   chooseRandomActivities: (req, res, next) => {
-    console.log("\n\n", this);
-    let usuario_id = req.session.passport.user;
-
-    let start_data = controllerRenders.renderNavContent("auth");
-
     let fetchActivities = require("./actividades").findByCategories;
     fetchActivities(handleFetchActivities, req.params.topicoCod, req.body.af_0);
 
     function handleFetchActivities(err, data) {
       if (err) return res.json(err);
-
-      console.log(req.body);
 
       return res.json({
         activities: data,
@@ -158,16 +151,6 @@ module.exports = {
         hijos: req.body.hijos,
         af_0: req.body.af_0
       });
-
-      // res.render("start", {
-      //   id: usuario_id,
-      //   view_data: start_data,
-      //   activities: data,
-      //   action: "choose-activity",
-      //   topico: req.params.topicoCod,
-      //   af_0: req.body.af_0,
-      //   hijos: req.body.hijos
-      // });
     }
   }
 };
