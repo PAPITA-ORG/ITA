@@ -1,6 +1,10 @@
+let start_data;
 $(document).ready(() => {
   // Initialize some variables
   let mainContainer;
+
+  let af_0 = $("#activity-efficacy").val();
+  let hijos = [];
 
   let avatar_opacity = $("img.avatar").css("opacity");
   let is_clicked = false;
@@ -59,6 +63,7 @@ $(document).ready(() => {
 
   function onSliderChange(e) {
     $("#eficacia-label").html(e.target.value);
+    af_0 = $("#activity-efficacy").val();
   }
 
   function onChooseActivity(e) {
@@ -67,8 +72,7 @@ $(document).ready(() => {
     let topicoCod = $(e.target)
       .parent()
       .val();
-    let af_0 = $("#activity-efficacy").val();
-    let hijos = [];
+
     $(`img.avatar[style="opacity: 1;"]`).each(function() {
       hijos.push($(this).attr("value"));
     });
@@ -83,7 +87,8 @@ $(document).ready(() => {
         hijos: hijos
       })
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
+        start_data = res.data;
         mainContainer = $("#start-main-container");
 
         var intro =   new Anno([
@@ -164,7 +169,7 @@ $(document).ready(() => {
           progressRow.append(barRow);
           mainContainer.append(progressRow);
 
-          move(res.data);
+          move(start_data);
 
           // TO DO -- append buttons for random activities with appropriate attributes
         }
@@ -212,12 +217,17 @@ function displayActivities(data) {
     });
 
     data.activities.map(activity => {
-      let activityBtn = $("<button>", {
-        class: "activity-btn btn btn-success btn-block",
-        "data-url": activity.Link
-      }).text(activity.Descriptor);
+      let activityCard = $("<div>", {
+        class: "activity-card card mt-5"
+      }).html(`
+        <h5 class='card-title' data-url=${activity.Link}>
+          ${activity.Descriptor}
+        </h5>
+        <p class='card-text'>Duración: ${activity.Duracion} minutos</p>
+        <h6 class='card-subtitle'>Edades: ${activity.Edad_desde}-${activity.Edad_hasta} años</h6>
+      `);
 
-      activityDiv.append(activityBtn);
+      activityDiv.append(activityCard);
     });
 
     startContainer.prepend(activityDiv);
@@ -227,4 +237,21 @@ function displayActivities(data) {
 $("#start-random-btn").on("click", function() {
   // TODO -- axios post request to /api/usuarios/chooseActivity/:topicoCod
   // then invoke displayActivities passing res.data as argument
+  axios
+    .post(`/api/usuarios/chooseActivity/${start_data.topicoCod}`, {
+      af_0: start_data.af_0,
+      hijos: start_data.hijos
+    })
+    .then(res => {
+      // console.log(res.data);
+      $(".card-title").each(function(i) {
+        $(this).html(`${res.data.activities[i].Descriptor}`);
+        $(this).attr("data-url", res.data.activities[i].Link);
+        start_data = res.data;
+      });
+    })
+    .catch(err => {
+      return err;
+    });
+  // console.log($(this));
 });
