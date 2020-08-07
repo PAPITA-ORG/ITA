@@ -16,7 +16,7 @@ block content
                         if !action
                             input.form-control.mb-3.efficacies-range#activity-efficacy(type='range' min="0" max="100" value=af_0 name='af_0')
                             label.pull-right#eficacia-label
-                            h3.text-dark Con quien vas a participar?
+                            h3.text-dark#avatar-text Con quien vas a participar?
                             if hijos
                                 each hijo, i in hijos
                                     input.hijo(name='hijos[]' type='hidden' id=`hijo_${i}` value=hijo)
