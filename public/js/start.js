@@ -15,43 +15,7 @@ $(document).ready(() => {
   $("#activity-efficacy").on("change", onSliderChange);
 
   $(".form-activity-btn").on("click", onChooseActivity);
-  if (req.user.tutorial == 1){
-    var intro =   new Anno([
-      //pasos del tour
-      {
-        target: "#activity-efficacy",
-        content: "Selector de nivel de energia para hacer actividades",
-        position: "center-bottom"
-      },
-      {
-        target: "#avatar-text",
-        content: "Selector de hijas/hijos que participaran de la actividad",
-        position: "center-bottom",
-        buttons: [AnnoButton.BackButton, AnnoButton.NextButton],
 
-      },
-      {
-        target: "#activity-1",
-        content: "Muestra misiones relacionados a actividades fisicas",
-        position: "right",
-        buttons: [AnnoButton.BackButton, AnnoButton.NextButton],
-        
-      },
-      {
-        target: "#activity-2",
-        content: "Muestra misiones relacionados a actividades alimentarias",
-        position: "left",
-        buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
-      },
-      {
-        target: "#activity-3",
-        content: "Muestra misiones relacionados a actividades para la mente",
-        position: "right",
-        buttons: [AnnoButton.BackButton, AnnoButton.NextButton],
-      },
-    ]);
-    intro.show();
-  }
   function logoutHandler() {
     axios
       .post(`/api/usuarios/logout`)
@@ -108,6 +72,10 @@ $(document).ready(() => {
     $(`img.avatar[style="opacity: 1;"]`).each(function() {
       hijos.push($(this).attr("value"));
     });
+
+    
+    
+  
 
     axios
       .post(`/api/usuarios/chooseActivity/${topicoCod}`, {
@@ -166,6 +134,41 @@ $(document).ready(() => {
         }
       })
       .catch(err => console.error(err));
+      var intro =   new Anno([
+        //pasos del tour
+        {
+          target: "#activity-efficacy",
+          content: "Selector de nivel de energia para hacer actividades",
+          position: "center-bottom"
+        },
+        {
+          target: "#avatar-text",
+          content: "Selector de hijas/hijos que participaran de la actividad",
+          position: "center-bottom",
+          buttons: [AnnoButton.BackButton, AnnoButton.NextButton],
+  
+        },
+        {
+          target: "#activity-1",
+          content: "Muestra misiones relacionados a actividades fisicas",
+          position: "right",
+          buttons: [AnnoButton.BackButton, AnnoButton.NextButton],
+          
+        },
+        {
+          target: "#activity-2",
+          content: "Muestra misiones relacionados a actividades alimentarias",
+          position: "left",
+          buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
+        },
+        {
+          target: "#activity-3",
+          content: "Muestra misiones relacionados a actividades para la mente",
+          position: "right",
+          buttons: [AnnoButton.BackButton, AnnoButton.NextButton],
+        },
+      ]);
+      intro.show();
   }
 });
 var i = 0;
