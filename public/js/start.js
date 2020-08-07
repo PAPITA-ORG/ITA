@@ -86,6 +86,42 @@ $(document).ready(() => {
         console.log(res.data);
         mainContainer = $("#start-main-container");
 
+        var intro =   new Anno([
+          //pasos del tour
+          {
+            target: "#activity-efficacy",
+            content: "Selector de nivel de energia para hacer actividades",
+            position: "center-bottom"
+          },
+          {
+            target: "#avatar-text",
+            content: "Selector de hijas/hijos que participaran de la actividad",
+            position: "center-bottom",
+            buttons: [AnnoButton.BackButton, AnnoButton.NextButton],
+    
+          },
+          {
+            target: "#activity-1",
+            content: "Muestra misiones relacionados a actividades fisicas",
+            position: "right",
+            buttons: [AnnoButton.BackButton, AnnoButton.NextButton],
+            
+          },
+          {
+            target: "#activity-2",
+            content: "Muestra misiones relacionados a actividades alimentarias",
+            position: "left",
+            buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
+          },
+          {
+            target: "#activity-3",
+            content: "Muestra misiones relacionados a actividades para la mente",
+            position: "right",
+            buttons: [AnnoButton.BackButton, AnnoButton.NextButton],
+          },
+        ]);
+        intro.show();
+
         // loading screen
         loading();
 
@@ -134,41 +170,7 @@ $(document).ready(() => {
         }
       })
       .catch(err => console.error(err));
-      var intro =   new Anno([
-        //pasos del tour
-        {
-          target: "#activity-efficacy",
-          content: "Selector de nivel de energia para hacer actividades",
-          position: "center-bottom"
-        },
-        {
-          target: "#avatar-text",
-          content: "Selector de hijas/hijos que participaran de la actividad",
-          position: "center-bottom",
-          buttons: [AnnoButton.BackButton, AnnoButton.NextButton],
-  
-        },
-        {
-          target: "#activity-1",
-          content: "Muestra misiones relacionados a actividades fisicas",
-          position: "right",
-          buttons: [AnnoButton.BackButton, AnnoButton.NextButton],
-          
-        },
-        {
-          target: "#activity-2",
-          content: "Muestra misiones relacionados a actividades alimentarias",
-          position: "left",
-          buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
-        },
-        {
-          target: "#activity-3",
-          content: "Muestra misiones relacionados a actividades para la mente",
-          position: "right",
-          buttons: [AnnoButton.BackButton, AnnoButton.NextButton],
-        },
-      ]);
-      intro.show();
+      
   }
 });
 var i = 0;
