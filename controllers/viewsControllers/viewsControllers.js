@@ -105,5 +105,13 @@ module.exports = {
       view_data: account_data,
       usuario: usuario
     });
+  },
+  endSurvey: (req, res) => {
+    let endsurvey_data = controller_renders.renderNavContent("auth");
+
+    res.render("endsurvey", {
+      id: req.session.passport.user,
+      endsurvey_data: endsurvey_data
+    });
   }
 };

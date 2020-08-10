@@ -8,9 +8,13 @@ const routes = require("./routes");
 const passport = require("passport");
 const session = require("express-session");
 const flash = require("express-flash");
+const helmet = require("helmet");
 
 // initialize express app
 const app = express();
+
+// Use helmet
+app.use(helmet.frameguard());
 
 // passport config
 require("./config/passport")(passport);

@@ -152,5 +152,20 @@ module.exports = {
         af_0: req.body.af_0
       });
     }
+  },
+  download: (req, res) => {
+    let download = require("download-pdf");
+
+    let pdf = req.body.pdf;
+
+    let options = {
+      directory: "",
+      filename: "test.pdf"
+    };
+
+    download(pdf, options, function(err) {
+      if (err) return err;
+      res.json("downloading!");
+    });
   }
 };

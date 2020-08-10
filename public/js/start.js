@@ -175,9 +175,11 @@ function displayActivities(data) {
       class: "mt-4 col-sm-12 justify-center center"
     });
 
-    data.activities.map(activity => {
+    data.activities.map((activity, i) => {
       let activityCard = $("<div>", {
-        class: "activity-card card mt-5"
+        class: "activity-card card mt-5",
+        id: `activity-${i}`,
+        value: i
       }).html(`
         <h5 class='card-title' data-url=${activity.Link}>
           ${activity.Descriptor}
@@ -190,6 +192,33 @@ function displayActivities(data) {
     });
 
     startContainer.prepend(activityDiv);
+
+    // when an activity is clicked...
+    $(".activity-card").on("click", function(e) {
+      // startContainer.empty();
+
+      let to_do = start_data.activities[Number($(this).attr("value"))].Link;
+
+      let embed = $("<div>", {
+        class: "activity-video video mt-5"
+      }).html(`
+
+        <iframe src=${to_do} width='500' height='500'>
+        
+        </iframe>
+
+      `);
+
+      startContainer.empty();
+      startContainer.append(embed);
+
+      // axios
+      //   .post("/api/usuarios/activity/pdf", { pdf: to_do })
+      //   .then(res => {
+      //     console.log(res.status);
+      //   })
+      //   .catch(err => console.log(err));
+    });
   }
 }
 
