@@ -18,7 +18,7 @@ $(document).ready(() => {
       position: "center-bottom"
     },
     {
-      target: "#avatar_0",
+      target: "#avatar-text",
       content: "Selector de hijas/hijos que participaran de la actividad",
       position: "center-bottom",
       buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
@@ -60,7 +60,7 @@ $(document).ready(() => {
       buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
     },
     {
-      target: "#activity-1",
+      target: "#user",
       content: "Muestra misiones relacionados a actividades para la mente",
       position: "top",
       buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
