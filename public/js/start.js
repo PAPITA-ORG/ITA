@@ -60,11 +60,28 @@ $(document).ready(() => {
       buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
     },
     {
-      target: "#user",
+      target: "#link-user",
+      content: "Muestra misiones relacionados a actividades para la mente",
+      buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
+    },
+    {
+      target: "#link-chart-line",
       content: "Muestra misiones relacionados a actividades para la mente",
       position: "top",
       buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
-    }
+    },
+    {
+      target: "#link-btn-logout",
+      content: "Muestra misiones relacionados a actividades para la mente",
+      position: "top",
+      buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
+    },
+    {
+      target: "#link-hiking",
+      content: "Muestra misiones relacionados a actividades para la mente",
+      position: "top",
+      buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
+    },
   ]);
   intro.show();
   // Logout Icon Handler
