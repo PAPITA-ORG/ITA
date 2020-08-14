@@ -27,7 +27,7 @@ block content
                                         each btn, i in activity_content.activity_btns
                                             div.mt-4(class=`col-md-3 ${i%2 ==0? 'offset-md-3': ''}`)
                                                 input#input-topicoCod(type='hidden')
-                                                button(disabled id=`activity-${btn.data_value}` class='form-activity-btn' type='submit' formaction=`/api/usuarios/chooseActivity/${btn.data_value}` value=btn.data_value)
+                                                button(id=`activity-${btn.data_value}` class='form-activity-btn' type='submit' formaction=`/api/usuarios/chooseActivity/${btn.data_value}` value=btn.data_value)
                                                     img.img-responsive(src=btn.src class=activity_content.attrs.class_name)
     div.mt-2.d-none(class="container col-md-12 center" id="start-activity-container")
         h3.text-dark Elige tu actividad!

@@ -15,12 +15,14 @@ $(document).ready(() => {
     {
       target: "#activity-efficacy",
       content: "Selector de nivel de energia para hacer actividades",
-      position: "center-bottom"
+      position: "center-bottom",
+      className: 'anno-width-200'
     },
     {
       target: "#avatar-text",
       content: "Selector de hijas/hijos que participaran de la actividad",
       position: "center-bottom",
+      className: 'anno-width-200',
       buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
 
     },
@@ -28,62 +30,53 @@ $(document).ready(() => {
       target: "#activity-3",
       content: "Muestra misiones relacionados a actividades fisicas",
       position: "top",
+      className: 'anno-width-200',
       buttons: [AnnoButton.BackButton, AnnoButton.NextButton],
-      onShow: function (anno, $target, $annoElem) {
-        var handler = function(e){
-          var btn_class=$(e.target).attr("class")
-          if($(e.currentTarget).attr("class") === 'form-activity-btn')$(e.currentTarget).stopPropagation()
-          if(btn_class.includes("activity-img")){
-            
-            //$(e.target).parent().stopPropagation();
-            e.stopPropagation()
-          }
-        }
-        $target[0].addEventListener('click', handler, true) // `true` is essential
-        return handler
-      },
-      onHide: function(anno, $target, $annoElem, handler) {
-        $target[0].removeEventListener('click', handler, true)
-      }
-      
     },
     {
       target: "#activity-2",
       content: "Muestra misiones relacionados a actividades alimentarias",
       position: "top",
+      className: 'anno-width-200',
       buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
     },
     {
       target: "#activity-1",
       content: "Muestra misiones relacionados a actividades para la mente",
       position: "top",
-      buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
+      className: 'anno-width-200',
+      buttons: [AnnoButton.BackButton, AnnoButton.DoneButton]
     },
     {
       target: "#link-user",
       content: "Muestra misiones relacionados a actividades para la mente",
-      buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
+      position: "top",
+      className: 'anno-width-200',
+      buttons: [AnnoButton.BackButton, AnnoButton.DoneButton, AnnoButton.NextButton]
     },
     {
       target: "#link-chart-line",
       content: "Muestra misiones relacionados a actividades para la mente",
       position: "top",
-      buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
+      className: 'anno-width-200',
+      buttons: [AnnoButton.BackButton, AnnoButton.DoneButton, AnnoButton.NextButton]
     },
     {
       target: "#link-btn-logout",
       content: "Muestra misiones relacionados a actividades para la mente",
       position: "top",
-      buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
+      className: 'anno-width-200',
+      buttons: [AnnoButton.BackButton, AnnoButton.DoneButton, AnnoButton.NextButton]
     },
     {
       target: "#link-hiking",
       content: "Muestra misiones relacionados a actividades para la mente",
       position: "top",
-      buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
-    },
+      className: 'anno-width-200',
+      buttons: [AnnoButton.BackButton, AnnoButton.DoneButton, AnnoButton.NextButton]
+    }
   ]);
-  intro.show();
+  
   // Logout Icon Handler
   $("i#btn-logout").on("click", logoutHandler);
 
@@ -140,6 +133,7 @@ $(document).ready(() => {
   }
 
 
+  intro.show();
 
   function onChooseActivity(e) {
     e.preventDefault();

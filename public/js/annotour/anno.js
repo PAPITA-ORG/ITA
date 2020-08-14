@@ -169,7 +169,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      console.warn(("Anno elem for '" + this.target + "' has already been ") + "generated.  Did you call show() twice?");
 	    }
 	    this._annoElem = this.annoElem();
-	    this.emphasiseTarget();
+	    //this.emphasiseTarget(); //comentado para que no emfatize los target y asi no sean clickeables
 	    this.showOverlay();
 	    $target.after(this._annoElem);
 	    this._annoElem.addClass('anno-target-' + this.arrowPositionFn());
