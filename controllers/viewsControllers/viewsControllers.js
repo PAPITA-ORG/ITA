@@ -106,12 +106,24 @@ module.exports = {
       usuario: usuario
     });
   },
-  endSurvey: (req, res) => {
-    let endsurvey_data = controller_renders.renderNavContent("auth");
+  prepareEndSurvey: (req, res) => {
+    controller_renders.endsurveyContent(
+      req.body.hijos,
+      req.session.passport.user,
+      function(err, data) {
+        if (err) return err;
 
-    res.render("endsurvey", {
+        req.session["data"] = data;
+        res.redirect("endsurvey");
+      }
+    );
+  },
+  showEndSurvey: (req, res) => {
+    let endsurvey_data = controller_renders.renderNavContent("auth");
+    return res.render("endsurvey", {
       id: req.session.passport.user,
-      endsurvey_data: endsurvey_data
+      endsurvey_data: endsurvey_data,
+      survey_people: req.session.data
     });
   }
 };

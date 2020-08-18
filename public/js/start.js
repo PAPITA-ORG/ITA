@@ -172,7 +172,7 @@ function displayActivities(data) {
     }
 
     let activityDiv = $("<div>", {
-      class: "mt-4 col-sm-12 justify-center center"
+      class: "mt-4 col-sm-12 justify-center center activity-div"
     });
 
     data.activities.map((activity, i) => {
@@ -203,14 +203,38 @@ function displayActivities(data) {
         class: "activity-video video mt-5"
       }).html(`
 
-        <iframe src=${to_do} width='500' height='500'>
+        <iframe src=${to_do} width='100%' height='100%'>
         
         </iframe>
 
       `);
 
-      startContainer.empty();
-      startContainer.append(embed);
+      let finishButton = $("<button>", {
+        class: "btn btn-success"
+      }).text("Acabamos nuestra actividad!");
+
+      $(".activity-div").empty();
+      $("#random-btn").empty();
+
+      $(".activity-div").append(embed);
+      $("#random-btn").append(finishButton);
+
+      finishButton.click(function(e) {
+        e.preventDefault();
+        axios
+          .post(`/endsurvey`, {
+            hijos: start_data.hijos
+          })
+          .then(res => {
+            if (res.status === 200) {
+              // let newDoc = document.open("text/html", "replace");
+              // newDoc.write(res.data);
+              // newDoc.close();
+              window.location.href = "/endsurvey";
+            }
+          })
+          .catch(err => console.log(err));
+      });
 
       // axios
       //   .post("/api/usuarios/activity/pdf", { pdf: to_do })

@@ -169,5 +169,24 @@ module.exports = {
     };
 
     return content;
+  },
+  endsurveyContent: (hijos, userID, cb) => {
+    // create tabs for user and all participating children
+    // console.log(req.query);
+    return module.exports.getUserInfo(
+      function(err, usuario) {
+        if (err) return cb(`Error: ${err}`);
+
+        let nombres = usuario.hijos.map((hijo, i) => {
+          if (hijo.id === hijos[i]) return hijo.nombre;
+          return;
+        });
+
+        nombres.push(usuario.correo);
+
+        return cb(null, nombres);
+      },
+      { _id: userID }
+    );
   }
 };

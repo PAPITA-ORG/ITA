@@ -140,6 +140,7 @@ module.exports = {
   },
   chooseRandomActivities: (req, res, next) => {
     let fetchActivities = require("./actividades").findByCategories;
+
     fetchActivities(handleFetchActivities, req.params.topicoCod, req.body.af_0);
 
     function handleFetchActivities(err, data) {

@@ -21,7 +21,12 @@ router.route("/subscribe").get(viewsController.subscribeView);
 router.route("/start").get(ensureAuthenticated, viewsController.startView);
 
 // endsurvey view
-router.route("/endsurvey").get(ensureAuthenticated, viewsController.endSurvey);
+router
+  .route("/endsurvey")
+  .post(ensureAuthenticated, viewsController.prepareEndSurvey);
+router
+  .route("/endsurvey")
+  .get(ensureAuthenticated, viewsController.showEndSurvey);
 
 // not found view
 router.route("/notfound").get(viewsController.notfoundView);

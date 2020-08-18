@@ -1,7 +1,10 @@
 extends layout
 
 block content
-    h1 Hello there
+    div(class="container" id="start-main-container")
+        form(action='endsurvey' method='post')
+            each person in survey_people
+                p=person
 
     include partials/bottomNav.pug
     script.
