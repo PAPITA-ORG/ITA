@@ -16,12 +16,14 @@ $(document).ready(() => {
       target: "#activity-efficacy",
       content: "Selector de nivel de energia para hacer actividades",
       position: "center-bottom",
+      arrowPosition: 'center-top',
       className: 'anno-width-200'
     },
     {
       target: "#avatar-text",
       content: "Selector de hijas/hijos que participaran de la actividad",
       position: "center-bottom",
+      arrowPosition: 'center-top',
       className: 'anno-width-200',
       buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
 
@@ -30,6 +32,7 @@ $(document).ready(() => {
       target: "#activity-3",
       content: "Muestra misiones relacionados a actividades fisicas",
       position: "top",
+      arrowPosition: 'center-bottom',
       className: 'anno-width-200',
       buttons: [AnnoButton.BackButton, AnnoButton.NextButton],
     },
@@ -37,6 +40,7 @@ $(document).ready(() => {
       target: "#activity-2",
       content: "Muestra misiones relacionados a actividades alimentarias",
       position: "top",
+      arrowPosition: 'center-bottom',
       className: 'anno-width-200',
       buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
     },
@@ -44,36 +48,44 @@ $(document).ready(() => {
       target: "#activity-1",
       content: "Muestra misiones relacionados a actividades para la mente",
       position: "top",
+      arrowPosition: 'center-bottom',
       className: 'anno-width-200',
-      buttons: [AnnoButton.BackButton, AnnoButton.DoneButton]
+      buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
     },
     {
-      target: "#link-user",
-      content: "Muestra misiones relacionados a actividades para la mente",
+      target: "#user",
+      content: "Usuario",
       position: "top",
       className: 'anno-width-200',
       buttons: [AnnoButton.BackButton, AnnoButton.DoneButton, AnnoButton.NextButton]
     },
     {
-      target: "#link-chart-line",
-      content: "Muestra misiones relacionados a actividades para la mente",
+      target: "#chart-line",
+      content: "Estadisticas",
       position: "top",
       className: 'anno-width-200',
       buttons: [AnnoButton.BackButton, AnnoButton.DoneButton, AnnoButton.NextButton]
     },
     {
-      target: "#link-btn-logout",
-      content: "Muestra misiones relacionados a actividades para la mente",
+      target: "#btn-logout",
+      content: "salir",
       position: "top",
       className: 'anno-width-200',
-      buttons: [AnnoButton.BackButton, AnnoButton.DoneButton, AnnoButton.NextButton]
+      buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
     },
     {
-      target: "#link-hiking",
+      target: "#hiking",
       content: "Muestra misiones relacionados a actividades para la mente",
       position: "top",
+      arrowPosition: 'center-right',
       className: 'anno-width-200',
-      buttons: [AnnoButton.BackButton, AnnoButton.DoneButton, AnnoButton.NextButton]
+      buttons: [AnnoButton.BackButton, {
+        text: 'Listo',
+        click: function(anno, evt){
+        alert("cambio de variable de tutorial")
+      }
+
+      }]
     }
   ]);
   

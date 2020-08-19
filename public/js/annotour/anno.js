@@ -325,8 +325,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  Anno.prototype.overlayClassName = '';
 
-	  Anno.prototype.overlayClick = function(anno, evt) {
-	    return anno.hide();
+	  Anno.prototype.overlayClick = function(anno, evt) { //cuando se hace click fuera del tour
+		alert("Para volver a ver el tutorial ve a la ventana de usuario") 
+		return anno.hide();
 	  };
 
 	  Anno.prototype.hideOverlay = function() {
@@ -678,9 +679,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (this.text != null) {
 	      return this.text;
 	    } else if (anno._chainNext != null) {
-	      return 'Next';
+	      return 'siguiente';
 	    } else {
-	      return 'Done';
+	      return 'listo';
 	    }
 	  };
 
@@ -697,21 +698,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	  };
 
 	  AnnoButton.NextButton = new AnnoButton({
-	    text: 'Next',
+	    text: 'siguiente',
 	    click: function() {
 	      return this.switchToChainNext();
 	    }
 	  });
 
 	  AnnoButton.DoneButton = new AnnoButton({
-	    text: 'Done',
+	    text: 'listo',
 	    click: function() {
-	      return this.hide();
+		  		
+		  return this.hide();
+		  
 	    }
 	  });
 
 	  AnnoButton.BackButton = new AnnoButton({
-	    text: 'Back',
+	    text: 'atras',
 	    className: 'anno-btn-low-importance',
 	    click: function() {
 	      return this.switchToChainPrev();
