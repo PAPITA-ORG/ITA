@@ -170,6 +170,8 @@ router.post("/register", (req, res) => {
                     "success_msg",
                     "Tu registracion esta completa! Continua con tu login."
                   );
+                  // acá post request 
+                  
                   res.redirect("/");
                 })
                 .catch(err => res.status(422).json(err));
