@@ -330,3 +330,9 @@ img.avatar {
     width: 10%;
   }
 }
+
+/* Start View */
+img.activity-img {
+  width: 130px;
+  height: auto;
+}

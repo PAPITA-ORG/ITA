@@ -20,17 +20,30 @@ module.exports = {
   },
 
   // find actividad by topic and difficulty
-  findByCategories: (req, res) => {
+  findByCategories: (cb, topicoCod, af_0) => {
     db.actividades
       .find({
-        ["Topico"]: Number(req.params.topicoCod),
+        ["Topico"]: Number(topicoCod),
         ["Dificultad"]: {
-          ["$lte"]: Math.round(Number(req.params.af_0) / 20),
+          ["$lte"]: Math.round(Number(af_0) / 20),
           ["$gte"]: 0
         }
       })
-      .then(dbActividades => res.json(dbActividades))
-      .catch(err => res.status(422).json(err));
+      .exec(function(err, actividades) {
+        if (err) cb(`Error: ${err} : No se pudieron retribuir actividades`);
+
+        let random_activites = [];
+        let i = 0;
+
+        while (i < 2) {
+          random_activites.push(
+            actividades[Math.floor(Math.random() * actividades.length)]
+          );
+
+          i++;
+        }
+        cb(null, random_activites);
+      });
   },
   // delete one actividad
   deleteOne: (req, res) => {
