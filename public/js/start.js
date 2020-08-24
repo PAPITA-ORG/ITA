@@ -53,38 +53,90 @@ $(document).ready(() => {
       buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
     },
     {
-      target: "#user",
+      target: "#chart-line",
       content: "Usuario",
       position: "top",
-      className: 'anno-width-200',
-      buttons: [AnnoButton.BackButton, AnnoButton.DoneButton, AnnoButton.NextButton]
+      className: 'anno-width-250',
+      buttons: [{
+        text: "atras",
+        click: function(anno, evt){
+          anno.switchToChainPrev();
+        }
+
+      },{
+        text: "sgte",
+        click: function(anno, evt){
+          anno.switchToChainNext();
+        }
+      },{
+        text: 'Fin',
+        click: function(anno, evt){
+          anno.hide()
+        }
+      }]
     },
     {
       target: "#chart-line",
-      content: "Estadisticas",
+      content: "Estadísticas",
       position: "top",
-      className: 'anno-width-200',
-      buttons: [AnnoButton.BackButton, AnnoButton.DoneButton, AnnoButton.NextButton]
+      className: 'anno-width-250',
+      buttons: [{
+        text: "atras",
+        click: function(anno, evt){
+          anno.switchToChainPrev();
+        }
+
+      },{
+        text: "sgte",
+        click: function(anno, evt){
+          anno.switchToChainNext();
+        }
+      },{
+        text: 'Fin',
+        click: function(anno, evt){
+          anno.hide()
+        }
+      }]
     },
     {
-      target: "#btn-logout",
+      target: "#chart-line",
       content: "salir",
       position: "top",
-      className: 'anno-width-200',
-      buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
+      className: 'anno-width-250',
+      buttons: [{
+        text: "atras",
+        click: function(anno, evt){
+          anno.switchToChainPrev();
+        }
+
+      },{
+        text: "sgte",
+        click: function(anno, evt){
+          anno.switchToChainNext();
+        }
+      },{
+        text: 'Fin',
+        click: function(anno, evt){
+          anno.hide()
+        }
+      }]
     },
     {
-      target: "#hiking",
-      content: "Muestra misiones relacionados a actividades para la mente",
+      target: "#chart-line",
+      content: "Inicio",
       position: "top",
-      arrowPosition: 'center-right',
-      className: 'anno-width-200',
-      buttons: [AnnoButton.BackButton, {
-        text: 'Listo',
+      className: 'anno-width-250',
+      buttons: [{
+        text: "atras",
         click: function(anno, evt){
-        alert("cambio de variable de tutorial")
-      }
+          anno.switchToChainPrev();
+        }
 
+      },{
+        text: 'Fin',
+        click: function(anno, evt){
+          anno.hide()
+        }
       }]
     }
   ]);
