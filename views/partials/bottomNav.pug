@@ -1,13 +1,15 @@
 nav.fixed-bottom.navbar.navbar-dark.bg-dark
-    button.navbar-toggler(type='button' data-toggle='collapse' data-target='#nav-toggle-content' aria-controls="nav-toggle-content" aria-expanded="false" aria-label="Toggle navigation")
+    div
+        button.navbar-toggler(type='button' data-toggle='collapse' data-target='#nav-toggle-content' aria-controls="nav-toggle-content" aria-expanded="false" aria-label="Toggle navigation")
 
-        span.navbar-toggler-icon
+            span.navbar-toggler-icon
     
 
     if id == undefined
-        each icon in view_data.home
-            a(href=icon.href)
-                i(id= icon.icon_id class=`${icon.icon_class} mr-3` style={color: 'red', "font-size": "2.5rem"})
+        div
+            each icon in view_data.home
+                a(href=icon.href)
+                    i(id= icon.icon_id class=`${icon.icon_class} mr-3` style={color: 'red', "font-size": "2.5rem"})
     else
             if view_data
                 

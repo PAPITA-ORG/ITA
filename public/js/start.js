@@ -428,9 +428,9 @@ $(document).ready(() => {
     af_0 = $("#activity-efficacy").val();
   }
 
-  //if (tutorial_on && tutorial_on === 1) {
+  if (tutorial_on && tutorial_on === 1) {
     intro.show();
-  //}
+  }
 
   function onChooseActivity(e) {
     e.preventDefault();
