@@ -326,7 +326,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  Anno.prototype.overlayClassName = '';
 
 	  Anno.prototype.overlayClick = function(anno, evt) { //cuando se hace click fuera del tour
-		alert("Para volver a ver el tutorial ve a la ventana de usuario") 
+		alert("Te has salido del tutorial, para no ver mas el tutorial presiona el boton 'Fin'") 
 		return anno.hide();
 	  };
 
