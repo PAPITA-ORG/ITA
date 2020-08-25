@@ -2,10 +2,27 @@ extends layout
 
 block content
     div(class="container" id="start-main-container")
-        form(action='endsurvey' method='post')
+        form(action='/endsurvey' method='post')
+            h1 Cuentanos tu experiencia!
             each person in survey_people
-                p=person
+                div.tab=`${person}:`
+                    p Le gusto la actividad?
+                    div.starrating.risingstar.d-flex.justify-content-center.flex-row
+                        each value in [1,2,3,4,5]
+                            input.rating(type='radio' value=value)
+                            label
+            div.form-nav
+                button.prevBtn.prevNext(value=-1) Previo
+                button.nextBtn.prevNext(value=1) Siguiente
+                button.btn.btn-success.d-none.finishBtn(type='submit') Finalizar!
+
+            div.step.mt-4
+                each person in survey_people
+                    span.step
+
+
 
     include partials/bottomNav.pug
     script.
         let userId = !{JSON.stringify(id)}
+    script(src='/js/endsurvey.js')
