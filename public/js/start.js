@@ -54,9 +54,18 @@ $(document).ready(() => {
     },
     {
       target: "#chart-line",
-      content: "Usuario",
+      content: "Muestra la pestaña de perfil de usuario",
       position: "top",
       className: 'anno-width-250',
+      onShow: function (anno, $target, $annoElem) {
+        
+        let iconTour = $("<img>", {
+          class: "fa fa-chart-line icon-3x",
+          style: "font-size: 1.5rem;",
+        });
+        $( ".anno-content" ).append(iconTour);  
+ 
+      },
       buttons: [{
         text: "atras",
         click: function(anno, evt){
@@ -77,9 +86,16 @@ $(document).ready(() => {
     },
     {
       target: "#chart-line",
-      content: "Estadísticas",
+      content: "Muestra las estadisticas obtenidas al realizar actividades",
       position: "top",
       className: 'anno-width-250',
+      /*onShow: function (anno, $target, $annoElem) {
+        let iconTour = $("<i>", {
+          class: "fa fa-chart-line icon-3x",
+          style: "color:red;font-size: 1.5rem;"
+        });
+        $( ".anno-content" ).append(iconTour);
+      },*/
       buttons: [{
         text: "atras",
         click: function(anno, evt){
@@ -100,9 +116,16 @@ $(document).ready(() => {
     },
     {
       target: "#chart-line",
-      content: "salir",
+      content: "Salir de la sesión actual ",
       position: "top",
       className: 'anno-width-250',
+      /*onShow: function (anno, $target, $annoElem) {
+        let iconTour = $("<i>", {
+          class: "fa fa-door-open icon-3x",
+          style: "color:red;font-size: 1.5rem;"
+        });
+        $( ".anno-content" ).append(iconTour);
+      },*/
       buttons: [{
         text: "atras",
         click: function(anno, evt){
@@ -123,9 +146,16 @@ $(document).ready(() => {
     },
     {
       target: "#chart-line",
-      content: "Inicio",
+      content: "LLeva al selector de actividades inicial",
       position: "top",
       className: 'anno-width-250',
+      /*onShow: function (anno, $target, $annoElem) {
+        let iconTour = $("<i>", {
+          class: "fa fa-hiking icon-3x",
+          style: "color:red;font-size: 1.5rem;"
+        });
+        $( ".anno-content" ).append(iconTour);
+      },*/
       buttons: [{
         text: "atras",
         click: function(anno, evt){
