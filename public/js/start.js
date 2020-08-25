@@ -10,85 +10,85 @@ $(document).ready(() => {
   let is_clicked = false;
 
   // Click Handlers
-  var intro =   new Anno([
+  var intro = new Anno([
     //pasos del tour
     {
       target: "#activity-efficacy",
       content: "Selector de nivel de energia para hacer actividades",
       position: "center-bottom",
-      arrowPosition: 'center-top',
-      className: 'anno-width-200'
+      arrowPosition: "center-top",
+      className: "anno-width-200"
     },
     {
       target: "#avatar-text",
       content: "Selector de hijas/hijos que participaran de la actividad",
       position: "center-bottom",
-      arrowPosition: 'center-top',
-      className: 'anno-width-200',
+      arrowPosition: "center-top",
+      className: "anno-width-200",
       buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
-
     },
     {
       target: "#activity-3",
       content: "Muestra misiones relacionados a actividades fisicas",
       position: "top",
-      arrowPosition: 'center-bottom',
-      className: 'anno-width-200',
-      buttons: [AnnoButton.BackButton, AnnoButton.NextButton],
+      arrowPosition: "center-bottom",
+      className: "anno-width-200",
+      buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
     },
     {
       target: "#activity-2",
       content: "Muestra misiones relacionados a actividades alimentarias",
       position: "top",
-      arrowPosition: 'center-bottom',
-      className: 'anno-width-200',
+      arrowPosition: "center-bottom",
+      className: "anno-width-200",
       buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
     },
     {
       target: "#activity-1",
       content: "Muestra misiones relacionados a actividades para la mente",
       position: "top",
-      arrowPosition: 'center-bottom',
-      className: 'anno-width-200',
+      arrowPosition: "center-bottom",
+      className: "anno-width-200",
       buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
     },
     {
-      target: "#chart-line",
+      target: ".navbar",
       content: "Muestra la pestaña de perfil de usuario",
       position: "top",
-      className: 'anno-width-250',
-      onShow: function (anno, $target, $annoElem) {
-        
-        let iconTour = $("<img>", {
+      className: "anno-width-250",
+      onShow: function(anno, $target, $annoElem) {
+        let iconTour = $("<i>", {
           class: "fa fa-chart-line icon-3x",
-          style: "font-size: 1.5rem;",
+          style: "font-size: 1.5rem;"
         });
-        $( ".anno-content" ).append(iconTour);  
- 
+        $(".anno-content").append(iconTour);
       },
-      buttons: [{
-        text: "atras",
-        click: function(anno, evt){
-          anno.switchToChainPrev();
+      buttons: [
+        {
+          text: "atras",
+          click: function(anno, evt) {
+            anno.switchToChainPrev();
+          }
+        },
+        {
+          text: "sgte",
+          click: function(anno, evt) {
+            anno.switchToChainNext();
+          }
+        },
+        {
+          text: "Fin",
+          click: function(anno, evt) {
+            anno.hide();
+          }
         }
-
-      },{
-        text: "sgte",
-        click: function(anno, evt){
-          anno.switchToChainNext();
-        }
-      },{
-        text: 'Fin',
-        click: function(anno, evt){
-          anno.hide()
-        }
-      }]
+      ]
     },
     {
-      target: "#chart-line",
+      target: ".navbar",
       content: "Muestra las estadisticas obtenidas al realizar actividades",
       position: "top",
-      className: 'anno-width-250',
+      className: "anno-width-250",
       /*onShow: function (anno, $target, $annoElem) {
         let iconTour = $("<i>", {
           class: "fa fa-chart-line icon-3x",
@@ -96,29 +96,32 @@ $(document).ready(() => {
         });
         $( ".anno-content" ).append(iconTour);
       },*/
-      buttons: [{
-        text: "atras",
-        click: function(anno, evt){
-          anno.switchToChainPrev();
+      buttons: [
+        {
+          text: "atras",
+          click: function(anno, evt) {
+            anno.switchToChainPrev();
+          }
+        },
+        {
+          text: "sgte",
+          click: function(anno, evt) {
+            anno.switchToChainNext();
+          }
+        },
+        {
+          text: "Fin",
+          click: function(anno, evt) {
+            anno.hide();
+          }
         }
-
-      },{
-        text: "sgte",
-        click: function(anno, evt){
-          anno.switchToChainNext();
-        }
-      },{
-        text: 'Fin',
-        click: function(anno, evt){
-          anno.hide()
-        }
-      }]
+      ]
     },
     {
-      target: "#chart-line",
+      target: ".navbar",
       content: "Salir de la sesión actual ",
       position: "top",
-      className: 'anno-width-250',
+      className: "anno-width-250",
       /*onShow: function (anno, $target, $annoElem) {
         let iconTour = $("<i>", {
           class: "fa fa-door-open icon-3x",
@@ -126,29 +129,32 @@ $(document).ready(() => {
         });
         $( ".anno-content" ).append(iconTour);
       },*/
-      buttons: [{
-        text: "atras",
-        click: function(anno, evt){
-          anno.switchToChainPrev();
+      buttons: [
+        {
+          text: "atras",
+          click: function(anno, evt) {
+            anno.switchToChainPrev();
+          }
+        },
+        {
+          text: "sgte",
+          click: function(anno, evt) {
+            anno.switchToChainNext();
+          }
+        },
+        {
+          text: "Fin",
+          click: function(anno, evt) {
+            anno.hide();
+          }
         }
-
-      },{
-        text: "sgte",
-        click: function(anno, evt){
-          anno.switchToChainNext();
-        }
-      },{
-        text: 'Fin',
-        click: function(anno, evt){
-          anno.hide()
-        }
-      }]
+      ]
     },
     {
-      target: "#chart-line",
+      target: ".navbar",
       content: "LLeva al selector de actividades inicial",
       position: "top",
-      className: 'anno-width-250',
+      className: "anno-width-250",
       /*onShow: function (anno, $target, $annoElem) {
         let iconTour = $("<i>", {
           class: "fa fa-hiking icon-3x",
@@ -156,21 +162,31 @@ $(document).ready(() => {
         });
         $( ".anno-content" ).append(iconTour);
       },*/
-      buttons: [{
-        text: "atras",
-        click: function(anno, evt){
-          anno.switchToChainPrev();
+      buttons: [
+        {
+          text: "atras",
+          click: function(anno, evt) {
+            anno.switchToChainPrev();
+          }
+        },
+        {
+          text: "Fin",
+          click: function(anno, evt) {
+            anno.hide();
+            axios
+              .put(`/api/usuarios/${userId}`, { tutorial: 0 })
+              .then(res => {
+                console.log(res.status);
+              })
+              .catch(err => {
+                console.log(`Error: status: ${res.status}, mensaje: ${err}`);
+              });
+          }
         }
-
-      },{
-        text: 'Fin',
-        click: function(anno, evt){
-          anno.hide()
-        }
-      }]
+      ]
     }
   ]);
-  
+
   // Logout Icon Handler
   $("i#btn-logout").on("click", logoutHandler);
 
@@ -226,8 +242,9 @@ $(document).ready(() => {
     af_0 = $("#activity-efficacy").val();
   }
 
-
-  intro.show();
+  if (tutorial_on && tutorial_on === 1) {
+    intro.show();
+  }
 
   function onChooseActivity(e) {
     e.preventDefault();
@@ -239,10 +256,6 @@ $(document).ready(() => {
     $(`img.avatar[style="opacity: 1;"]`).each(function() {
       hijos.push($(this).attr("value"));
     });
-
-    
-    
-  
 
     axios
       .post(`/api/usuarios/chooseActivity/${topicoCod}`, {
@@ -302,9 +315,7 @@ $(document).ready(() => {
         }
       })
       .catch(err => console.error(err));
-      
   }
-
 });
 
 var i = 0;
