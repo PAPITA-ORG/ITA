@@ -28,11 +28,11 @@ router
   .route("/endsurvey")
   .get(ensureAuthenticated, viewsController.showEndSurvey);
 
-// not found view
-router.route("/*").get(viewsController.notfoundView);
-
 // get registro view
 router.route("/registro").get(viewsController.registro);
+
+// not found view
+router.route("/*").get(viewsController.notfoundView);
 
 // selector view
 router

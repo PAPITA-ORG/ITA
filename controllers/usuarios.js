@@ -104,15 +104,19 @@ module.exports = {
     db.usuarios
       .find({ correo: req.body.correo })
       .then(usuario => {
+        let view_data = require("./viewsControllers/controllerRenders").renderNavContent(
+          "index"
+        );
         // if no user is found...
         if (usuario.length === 0) {
           res.render("registro", {
-            correo_err: "Lo sentimos, su cuenta aun no esta registrada"
+            correo_err: "Lo sentimos, su cuenta aun no esta registrada",
+            view_data: view_data
           });
         } else if (req.body.password.length < 6) {
           res.render("registro", {
-            correo_err:
-              "Lo sentimos, su contraseña debe ser al menos 6 caracteres"
+            correo_err: "Lo sentimos, su contraseña debe ser al menos 6 caracteres",
+            view_data: view_data
           });
         } else {
           // hash password from request body
@@ -126,6 +130,7 @@ module.exports = {
                   let view_data = require("./viewsControllers/controllerRenders").renderNavContent(
                     "index"
                   );
+                  // todo: acá enviar mail
                   res.render("registro", {
                     correo_success: "Enhorabuena! su contraseña ha cambiado",
                     view_data: view_data
