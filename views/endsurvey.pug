@@ -6,16 +6,16 @@ block content
             h1 Cuentanos tu experiencia!
             each person in survey_people
                 div.tab=`${person}:`
+                    input(type="hidden", name="people[]")
                     p Le gusto la actividad?
                     div.starrating.risingstar.d-flex.justify-content-center.flex-row
                         each value in [1,2,3,4,5]
-                            input(type="hidden", name="people[]")
                             i.fa.fa-heart.icon-3x.mr-2(value=value)
                             
-            div.form-nav
-                button.prevBtn.prevNext(value=-1) Previo
+            div.form-nav.mt-5
+                button.prevBtn.prevNext.mr-4(value=-1) Previo
                 button.nextBtn.prevNext(value=1) Siguiente
-                button.btn.btn-success.d-none.finishBtn(type='submit') Finalizar!
+                button.finishBtn(type='submit') Finalizar!
 
             div.step.mt-4
                 each person in survey_people
