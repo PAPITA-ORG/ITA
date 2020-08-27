@@ -32,12 +32,12 @@ body {
   height: 100vh;
 }
 
-.starrating > input {
+/* .starrating > input {
   display: none;
-} /* Remove radio buttons */
+} 
 
 .starrating > label:before {
-  content: "\f004"; /* Star */
+  content: "\f004"; 
   margin: 2px;
   font-size: 2em;
   font-family: FontAwesome;
@@ -45,16 +45,24 @@ body {
 }
 
 .starrating > label {
-  color: #409b03; /* Start color when not clicked */
+  color: #409b03; 
+}
+*/
+/* .starrating > input:checked ~ label {
+  color: #b10c1a;
+}  */
+
+.starrating {
+  font-size: 2.5rem;
 }
 
-.starrating > input:checked ~ label {
-  color: #b10c1a;
-} /* Set yellow color when star checked */
+.starrating > i {
+  color: #409b03;
+}
 
-.starrating > input:hover ~ label {
+.starrating > span:hover ~ span {
   color: #ffca08;
-} /* Set yellow color when star hover */
+}
 
 .center {
   text-align: center;
@@ -139,7 +147,11 @@ h3 {
   font-size: 16px;
 }
 
-a {
+.starrating {
+  font-size: 30px;
+}
+
+.starrating a {
   padding-left: 5px;
   text-decoration: none;
   color: #2214e0;
@@ -338,7 +350,7 @@ img.activity-img {
 }
 
 /* End Survey */
-.tab,
+/* .tab,
 .finishBtn {
   display: none;
-}
+} */

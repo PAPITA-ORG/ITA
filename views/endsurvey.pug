@@ -9,8 +9,9 @@ block content
                     p Le gusto la actividad?
                     div.starrating.risingstar.d-flex.justify-content-center.flex-row
                         each value in [1,2,3,4,5]
-                            input.rating(type='radio' value=value)
-                            label
+                            input(type="hidden", name="people[]")
+                            i.fa.fa-heart.icon-3x.mr-2(value=value)
+                            
             div.form-nav
                 button.prevBtn.prevNext(value=-1) Previo
                 button.nextBtn.prevNext(value=1) Siguiente
