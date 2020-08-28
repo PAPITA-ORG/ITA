@@ -25,6 +25,9 @@ block content
                                     input(type='hidden' name="af1" value=af1)
                                     h3.text-dark Cual es tu nivel de energía ahora?
                                     input#slider-af2.mt-2.efficacies-range.efficacies-range-endsurvey(type='range' min='0' max="100" value=af1 name="af2")
+                                div.col-sm-6.mt-5
+                                    h3.text-dark Que tan dificil te encontraste la actividad?
+                                    input#slider-dificultad.mt-2.efficacies-range.efficacies-range-endsurvey(type='range' min='0' max="100" value="50" name="dificultad")
                                     
                     div.form-nav.mt-5
                         button.prevBtn.prevNext.mr-4(value=-1) Previo
