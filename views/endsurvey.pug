@@ -2,24 +2,38 @@ extends layout
 
 block content
     div(class="container" id="start-main-container")
-        form(action='/endsurvey' method='post')
-            h1 Cuentanos tu experiencia!
-            each person in survey_people
-                div.tab=`${person}:`
-                    input(type="hidden", name="people[]")
-                    p Le gusto la actividad?
-                    div.starrating.risingstar.d-flex.justify-content-center.flex-row
-                        each value in [1,2,3,4,5]
-                            i.fa.fa-heart.icon-3x.mr-2(value=value)
-                            
-            div.form-nav.mt-5
-                button.prevBtn.prevNext.mr-4(value=-1) Previo
-                button.nextBtn.prevNext(value=1) Siguiente
-                button.finishBtn(type='submit') Finalizar!
+        if success_msg!= ''
+            div.alert.alert-success.alert-dismissible.fade.show(role="alert")=success_msg
+                button.close(type="button" data-dismiss='alert' aria-label='Close')
+                    span(aria-hidden='true') &times;
+            div
+                a.btn.btn-info(href='/start') Llevame hacia mas actividades
+        else
+            form(action='/api/historial' method='post')
+                div.form-err
+                h1#form-header Cuentanos tu experiencia!
+                if survey_people
+                    each person, i in survey_people
+                        div.tab=`${person}:`
+                            input.tab-input(type="hidden", name="people[]")
+                            p Le gusto la actividad?
+                            div.starrating.risingstar.d-flex.justify-content-center.flex-row
+                                each value in [1,2,3,4,5]
+                                    i.fa.fa-heart.icon-3x.mr-2(value=value)
+                            if i == survey_people.length - 1
+                                div.col-sm-6.mt-5
+                                    input(type='hidden' name="af1" value=af1)
+                                    h3.text-dark Cual es tu nivel de energía ahora?
+                                    input#slider-af2.mt-2.efficacies-range.efficacies-range-endsurvey(type='range' min='0' max="100" value=af1 name="af2")
+                                    
+                    div.form-nav.mt-5
+                        button.prevBtn.prevNext.mr-4(value=-1) Previo
+                        button.nextBtn.prevNext(value=1) Siguiente
+                        button.finishBtn(type='submit') Finalizar!
 
-            div.step.mt-4
-                each person in survey_people
-                    span.step
+                    div.step.mt-4
+                        each person in survey_people
+                            span.step
 
 
 

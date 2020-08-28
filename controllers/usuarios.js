@@ -139,6 +139,8 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   chooseRandomActivities: (req, res, next) => {
+    req.session["af1"] = req.body.af_0;
+
     let fetchActivities = require("./actividades").findByCategories;
 
     fetchActivities(handleFetchActivities, req.params.topicoCod, req.body.af_0);

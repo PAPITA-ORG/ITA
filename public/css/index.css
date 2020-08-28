@@ -327,6 +327,11 @@ strong {
   cursor: pointer;
 }
 
+.efficacies-range-endsurvey {
+  margin: 0;
+  width: 100%;
+}
+
 /* Index View */
 /* #forgot-password {
 } */

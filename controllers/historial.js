@@ -45,35 +45,45 @@ module.exports = {
   },
   // create one historial
   create: (req, res) => {
-    const {
-      af1,
-      af2,
-      disfruta,
-      disfrutaNino,
-      loginTime,
-      logoutTime,
-      random,
-      usuario,
-      actividad
-    } = req.body;
+    console.log(req.body);
+    req.flash(
+      "success_msg",
+      "Gracias por participar! Ahora a participar de nuevo"
+    );
 
-    const newHistorial = new Historial({
-      af1: af1,
-      af2: af2,
-      disfruta: disfruta,
-      disfrutaNino: disfrutaNino,
-      loginTime: loginTime,
-      logoutTime: logoutTime,
-      random: random,
-      usuario: usuario,
-      actividad: actividad
+    res.render("endsurvey", {
+      id: req.session.passport.user,
+      success_msg: "Gracias por participar! Ahora a participar de nuevo"
     });
+    // const {
+    //   af1,
+    //   af2,
+    //   disfruta,
+    //   disfrutaNino,
+    //   loginTime,
+    //   logoutTime,
+    //   random,
+    //   usuario,
+    //   actividad
+    // } = req.body;
 
-    newHistorial.save(function(err, historial) {
-      if (err) {
-        throw err;
-      }
-      res.json(historial);
-    });
+    // const newHistorial = new Historial({
+    //   af1: af1,
+    //   af2: af2,
+    //   disfruta: disfruta,
+    //   disfrutaNino: disfrutaNino,
+    //   loginTime: loginTime,
+    //   logoutTime: logoutTime,
+    //   random: random,
+    //   usuario: usuario,
+    //   actividad: actividad
+    // });
+
+    // newHistorial.save(function(err, historial) {
+    //   if (err) {
+    //     throw err;
+    //   }
+    //   res.json(historial);
+    // });
   }
 };

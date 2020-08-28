@@ -123,7 +123,8 @@ module.exports = {
     return res.render("endsurvey", {
       id: req.session.passport.user,
       endsurvey_data: endsurvey_data,
-      survey_people: req.session.data
+      survey_people: req.session.data,
+      af1: req.session.af1
     });
   }
 };
