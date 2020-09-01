@@ -5,7 +5,43 @@ $(document).ready(() => {
   let sobreContainer = $("#sobre-main-container");
 
   $("#btn-sig").click(e => {
+    sobreContainer.empty();
+    let sobreVideoForm = $("<form>", {
+      id: "sobre-video-form"
+    });
+
+    let formVideoGroup = $("<div>", {
+      class: "form-group"
+    });
+    
+    let videoConteiner =$("<video controls autoplay>", {
+      width :"720",
+      height:"480"
+      
+    });
+
+    let sourceContainer =$("<source>",{
+      src :"/video/Hola_720x480.mp4",
+      type :"video/mp4"
+
+    });
+
+    let nextVideoButton = $("<button>" ,{
+      class :"btn btn-success",
+      id :"btn-sig-video"
+    }).text("Siguiente");
+
+    videoConteiner.append(sourceContainer);
+    formVideoGroup.append(videoConteiner);
+    sobreVideoForm.append(formVideoGroup);
+    sobreVideoForm.append(nextVideoButton);
+    sobreContainer.append(sobreVideoForm);
+  });
+  
+
+  $("#btn-sig-video").click(e => {
     e.preventDefault();
+    
 
     // take user to get subscribed
     subscribeViewHandler();
