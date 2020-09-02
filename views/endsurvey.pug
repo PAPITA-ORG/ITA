@@ -2,20 +2,20 @@ extends layout
 
 block content
     div(class="container" id="start-main-container")
-        if success_msg!= ''
-            div.alert.alert-success.alert-dismissible.fade.show(role="alert")=success_msg
-                button.close(type="button" data-dismiss='alert' aria-label='Close')
-                    span(aria-hidden='true') &times;
-            div
-                a.btn.btn-info(href='/start') Llevame hacia mas actividades
-        else
-            form(action='/api/historial' method='post')
-                div.form-err
+        form(action='/api/historial' method='post')
+            if success_msg!= ''
+                div.alert.alert-success.alert-dismissible.fade.show(role="alert")=success_msg
+                    button.close(type="button" data-dismiss='alert' aria-label='Close')
+                        span(aria-hidden='true') &times;
+                div
+                    a.btn.btn-info(href='/start') Llevame hacia mas actividades
+            else
                 h1#form-header Cuentanos tu experiencia!
                 if survey_people
                     each person, i in survey_people
+                        input.tab-input(type="hidden" name="encuestados[]" value=`${person}`)
                         div.tab=`${person}:`
-                            input.tab-input(type="hidden", name="people[]")
+                            input.tab-input-ratings(type="hidden", name="ratings[]")
                             p Le gusto la actividad?
                             div.starrating.risingstar.d-flex.justify-content-center.flex-row
                                 each value in [1,2,3,4,5]
