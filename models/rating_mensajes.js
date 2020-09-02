@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const RatingHijos = Schema({
-  hijo: { type: Schema.Types.ObjectId, ref: "Hijo" },
+const RatingMensajes = Schema({
+  mensaje: { type: Schema.Types.ObjectId, ref: "Mensaje" },
   historial: { type: Schema.Types.ObjectId, ref: "Historial" },
   rating: { type: Schema.Types.Number },
   fecha: { type: Schema.Types.Date, default: Date.now() }
 });
 
-const RatingHijo = mongoose.model("RatingHijo", RatingHijos);
+const RatingMensaje = mongoose.model("RatingMensaje", RatingMensajes);
 
-module.exports = RatingHijo;
+module.exports = RatingMensaje;

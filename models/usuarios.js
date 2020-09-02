@@ -6,6 +6,7 @@ const Usuarios = Schema({
   correo: { type: Schema.Types.String, required: true },
   password: { type: Schema.Types.String, required: true },
   edad: { type: Schema.Types.Number, required: true },
+  educacion: { type: Schema.Types.String, required: true },
   genero: { type: Schema.Types.Number, required: true },
   parentesco: { type: Schema.Types.Number, required: true },
   comunaCod: { type: Schema.Types.ObjectId, ref: "Comunas" },
@@ -16,6 +17,7 @@ const Usuarios = Schema({
   i5: { type: Schema.Types.Number, required: true },
   af_0: { type: Schema.Types.Number, required: true },
   tutorial: { type: Schema.Types.Number, default: 1 },
+  flags: [{ type: Schema.Types.ObjectId, ref: "Flag" }],
   historial: [{ type: Schema.Types.ObjectId, ref: "Historial" }],
   hijos: [{ type: Schema.Types.ObjectId, ref: "Hijo" }]
 });

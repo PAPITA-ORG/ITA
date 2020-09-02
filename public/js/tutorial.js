@@ -2,26 +2,9 @@ $(document).ready(function() {
   let tutorialContainer = $("#tutorial-main-container");
   let hijos = [];
 
-  //initialize swiper
-  var mySwiper = new Swiper(".swiper-container", {
-    // If we need pagination
-    pagination: {
-      el: ".swiper-pagination"
-    },
+  childUserForm();
 
-    // Navigation arrows
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev"
-    },
-
-    // And if we need scrollbar
-    scrollbar: {
-      el: ".swiper-scrollbar"
-    }
-  });
-
-  const childUserForm = () => {
+  function childUserForm() {
     tutorialContainer.empty();
 
     let childForm = $("<form>", {
@@ -140,10 +123,11 @@ $(document).ready(function() {
     childForm.append(formGroup2);
 
     let emotions = [
-      "No tiene dificultades para controlar su comportamiento",
-      "No se lleva bien con otros niños/as",
-      "Es explosivo/a o agresivo/a",
-      "No tiene dificultades para entender a otros"
+      "Mantengo mi calma fácilmente ",
+      "No soy paciente",
+      "Usualmente estoy de mal humor",
+      "Me siento calmad@ cuando las cosas son diferentes para mí",
+      "Usualmente estoy triste"
     ];
 
     let emotionsRow = $("<div>", {
@@ -259,11 +243,5 @@ $(document).ready(function() {
       console.log(hijos);
       childUserForm();
     });
-  };
-
-  // this button just append the first child form
-
-  $("#tutorialFinishBtn").on("click", () => {
-    childUserForm();
-  });
+  }
 });

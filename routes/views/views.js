@@ -39,4 +39,10 @@ router
   .route("/tutorial")
   .get(ensureAuthenticated, viewsController.tutorialView);
 
+// User Account
+router.route("/perfil").get(ensureAuthenticated, viewsController.accountView);
+
+// not found view
+router.route("/*").get(viewsController.notfoundView);
+
 module.exports = router;
