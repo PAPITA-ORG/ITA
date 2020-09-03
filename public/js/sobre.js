@@ -3,43 +3,36 @@ $(document).ready(() => {
   let comunasList = {};
 
   let sobreContainer = $("#sobre-main-container");
+  var dimension = window.innerWidth
+  if(dimension < 720){
+    let smallVideoForm =$("<video autoplay>",{
+      width:"320",
+      height:"240",
+      class: "video"
+    });
+    let smallSourceForm =$("<source>",{
+      src: "/video/Hola_320x240.mp4",
+      type:"video/mp4"
+    });
+    smallVideoForm.append(smallSourceForm);
+    $("#smallVideo").append(smallVideoForm);
+  }else{
+    let bigVideoForm =$("<video class='presentvideo' autoplay controls>",{
+      width:"720",
+      height:"480"
+    });
+    let bigSourceForm =$("<source>",{
+      src: "/video/Hola_720x480.mp4",
+      type:"video/mp4"
+    });
+    bigVideoForm.append(bigSourceForm);
+    $("#bigVideo").append(bigVideoForm);
+  };
+  $('.presentvideo').on('ended',function(){
+    $("#btn-sig").removeAttr("disabled");
+  });
 
   $("#btn-sig").click(e => {
-    sobreContainer.empty();
-    let sobreVideoForm = $("<form>", {
-      id: "sobre-video-form"
-    });
-
-    let formVideoGroup = $("<div>", {
-      class: "form-group"
-    });
-    
-    let videoConteiner =$("<video controls autoplay>", {
-      width :"720",
-      height:"480"
-      
-    });
-
-    let sourceContainer =$("<source>",{
-      src :"/video/Hola_720x480.mp4",
-      type :"video/mp4"
-
-    });
-
-    let nextVideoButton = $("<button>" ,{
-      class :"btn btn-success",
-      id :"btn-sig-video"
-    }).text("Siguiente");
-
-    videoConteiner.append(sourceContainer);
-    formVideoGroup.append(videoConteiner);
-    sobreVideoForm.append(formVideoGroup);
-    sobreVideoForm.append(nextVideoButton);
-    sobreContainer.append(sobreVideoForm);
-  });
-  
-
-  $("#btn-sig-video").click(e => {
     e.preventDefault();
     
 
