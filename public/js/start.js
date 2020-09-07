@@ -1,4 +1,7 @@
 let start_data;
+let randomClicks = 0,
+  logintime,
+  activityID;
 $(document).ready(() => {
   // Initialize some variables
   let mainContainer;
@@ -68,6 +71,8 @@ $(document).ready(() => {
 
   function onChooseActivity(e) {
     e.preventDefault();
+
+    loginTime = Date.now();
 
     let topicoCod = $(e.target)
       .parent()
@@ -193,10 +198,17 @@ function displayActivities(data) {
 
     startContainer.prepend(activityDiv);
 
+    // when we click the random button...
+    $("#start-random-btn").on("click", e => {
+      e.preventDefault();
+      randomClicks++;
+    });
+
     // when an activity is clicked...
     $(".activity-card").on("click", function(e) {
       // startContainer.empty();
 
+      activityID = start_data.activities[Number($(this).attr("value"))]._id;
       let to_do = start_data.activities[Number($(this).attr("value"))].Link;
 
       let embed = $("<div>", {
@@ -223,7 +235,11 @@ function displayActivities(data) {
         e.preventDefault();
         axios
           .post(`/endsurvey`, {
-            hijos: start_data.hijos
+            hijos: start_data.hijos,
+            loginTime: loginTime,
+            logoutTime: Date.now(),
+            random: randomClicks,
+            actividad: activityID
           })
           .then(res => {
             if (res.status === 200) {

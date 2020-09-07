@@ -6,9 +6,10 @@ nav.fixed-bottom.navbar.navbar-dark.bg-dark
 
     if id == undefined
         div
-            each icon in view_data.home
-                a(href=icon.href)
-                    i(id= icon.icon_id class=`${icon.icon_class} mr-3` style={color: 'red', "font-size": "2.5rem"})
+            if view_data
+                each icon in view_data.home
+                    a(href=icon.href)
+                        i(id= icon.icon_id class=`${icon.icon_class} mr-3` style={color: 'red', "font-size": "2.5rem"})
     else
         if view_data
             each icon in view_data.auth

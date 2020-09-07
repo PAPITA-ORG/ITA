@@ -140,7 +140,7 @@ module.exports = {
   },
   chooseRandomActivities: (req, res, next) => {
     req.session["af1"] = req.body.af_0;
-
+    req.session["hijos"] = req.body.hijos;
     let fetchActivities = require("./actividades").findByCategories;
 
     fetchActivities(handleFetchActivities, req.params.topicoCod, req.body.af_0);

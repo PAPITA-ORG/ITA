@@ -3,6 +3,7 @@ extends layout
 block content
     div(class="container" id="start-main-container")
         form(action='/api/historial' method='post')
+            div.form-err
             if success_msg!= ''
                 div.alert.alert-success.alert-dismissible.fade.show(role="alert")=success_msg
                     button.close(type="button" data-dismiss='alert' aria-label='Close')
@@ -11,6 +12,13 @@ block content
                     a.btn.btn-info(href='/start') Llevame hacia mas actividades
             else
                 h1#form-header Cuentanos tu experiencia!
+                input(type="hidden" name='usuario' value=id)
+                input(type="hidden" name='logoutTime' value=logoutTime)
+                input(type="hidden" name='loginTime' value=loginTime)
+                input(type="hidden" name='random' value=random)
+                input(type="hidden" name='actividad' value=actividad)
+                each hijo in hijos
+                    input(type="hidden" name='hijos[]' value=hijo)
                 if survey_people
                     each person, i in survey_people
                         input.tab-input(type="hidden" name="encuestados[]" value=`${person}`)
