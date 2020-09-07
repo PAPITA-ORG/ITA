@@ -34,12 +34,18 @@ block content
                                 label.col-sm-3.col-form-label.mt-3= data.genero.label
                                 select.col-sm-3.form-control.mt-3(name=data.genero.name)
                                     each option, index in data.genero.options
-                                        option(value=index+1)= option
+                                        if data.genero.options[index] == data.genero.selected
+                                            option(value=index+1 selected)= option
+                                        else
+                                            option(value=index+1)= option
                                 
                                 label.col-sm-3.col-form-label.mt-3= data.comuna.label
                                 select.col-sm-3.form-control.mt-3(name=data.comuna.name)
                                     each option, index in data.comuna.options
-                                        option(value=option._id)= option.comuna
+                                        if data.comuna.options[index]._id == data.comuna.selected
+                                            option(value=option._id selected)= option.comuna
+                                        else
+                                            option(value=option._id)= option.comuna
 
                             div.form-group.row#form-efficacies.mt-5
                                 each field in data.sliderInputs

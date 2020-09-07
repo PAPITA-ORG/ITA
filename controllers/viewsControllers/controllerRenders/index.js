@@ -23,6 +23,18 @@ module.exports = {
             label: "Edad",
             name: "edad"
           },
+          educacion: {
+            label: "Nivel Educativo",
+            options: [
+              "basica incompleta",
+              "basica completa",
+              "media incompleta",
+              "media completa",
+              "tecnico",
+              "profesional",
+              "postgrado"
+            ]
+          },
           parentesco: {
             label: "Parentesco",
             options: [
