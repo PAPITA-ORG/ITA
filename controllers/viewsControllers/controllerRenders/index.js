@@ -155,5 +155,31 @@ module.exports = {
           cb(null, usuario);
         }
       });
+  },
+  activityFormContent: () => {
+    let content = {
+      activity_btns: [
+        {
+          src: "/images/personaje-08.png",
+          data_value: "3"
+        },
+        {
+          src: "/images/personaje-07.png",
+          data_value: "2"
+        },
+        {
+          src: "/images/personaje-06.png",
+          data_value: "1"
+        },
+        {
+          src: "/images/stats.png"
+        }
+      ],
+      attrs: {
+        class_name: "activity-img"
+      }
+    };
+
+    return content;
   }
 };

@@ -1,4 +1,7 @@
 const { ensureAuthenticated } = require("../../config/auth");
+const {
+  onChooseActivity
+} = require("../../controllers/viewsControllers/controllerRenders");
 // start express router
 const router = require("express").Router();
 
@@ -20,7 +23,10 @@ router.route("/start").get(ensureAuthenticated, viewsController.startView);
 // encuesta-acitividad view
 router
   .route("/endsurvey")
-  .post(ensureAuthenticated, viewsController.encuestaActividadView);
+  .get(ensureAuthenticated, viewsController.encuestaActividadView);
+// .then(res => {})
+// .catch(err => err);
+
 // not found view
 router.route("/*").get(viewsController.notfoundView);
 

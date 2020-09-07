@@ -4,6 +4,8 @@ const db = require("../models");
 const LocalStrategy = require("passport-local");
 const bcrypt = require("bcryptjs");
 
+const controllerRenders = require("./viewsControllers/controllerRenders");
+
 // define methods for the usuarios controller
 module.exports = {
   // find all usuarios
@@ -135,5 +137,20 @@ module.exports = {
         }
       })
       .catch(err => res.status(422).json(err));
+  },
+  chooseRandomActivities: (req, res, next) => {
+    let fetchActivities = require("./actividades").findByCategories;
+    fetchActivities(handleFetchActivities, req.params.topicoCod, req.body.af_0);
+
+    function handleFetchActivities(err, data) {
+      if (err) return res.json(err);
+
+      return res.json({
+        activities: data,
+        topicoCod: req.params.topicoCod,
+        hijos: req.body.hijos,
+        af_0: req.body.af_0
+      });
+    }
   }
 };
