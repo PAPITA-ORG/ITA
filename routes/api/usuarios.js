@@ -194,7 +194,7 @@ router.post(
     failureRedirect: "/"
   }),
   (req, res) => {
-    if (req.user.tutorial == 1) {
+    if (req.user.hijos.length === 0) {
       res.redirect("/tutorial");
     } else {
       req.app.locals["usuario"] = req.user;

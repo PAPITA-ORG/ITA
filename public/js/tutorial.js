@@ -37,6 +37,7 @@ $(document).ready(function() {
     let formGroupGenero = $(`<div>`, { class: "col-sm-3" });
     let formGroupPeso = $(`<div>`, { class: "col-sm-3" });
     let formGroupTalla = $(`<div>`, { class: "col-sm-3" });
+    let formGroupFrecuencia = $(`<div>`, { class: "col-sm-3" });
 
     let nombreLabel = $("<label>", {
       for: "tutorial-form-nombre",
@@ -99,11 +100,24 @@ $(document).ready(function() {
       id: "tutorial-form-peso"
     }).css("margin-bottom", "10px");
 
+    let frecuenciaLabel = $("<label>", {
+      for: "tutorial-form-frecuencia",
+      class: "col-sm-3 col-form-label"
+    }).text("Numero de actividades saludables en la ultima semana");
+
+    let frecuenciaInput = $("<input>", {
+      type: "number",
+      step: "1",
+      class: "form-control",
+      id: "tutorial-form-frecuencia"
+    }).css("margin-bottom", "10px");
+
     formGroupNombre.append(nombreInput);
     formGroupEdad.append(edadInput);
     formGroupGenero.append(generoInput);
     formGroupPeso.append(pesoInput);
     formGroupTalla.append(tallaInput);
+    formGroupFrecuencia.append(frecuenciaInput);
 
     formGroup.append(nombreLabel);
     formGroup.append(formGroupNombre);
@@ -115,6 +129,8 @@ $(document).ready(function() {
     formGroup.append(formGroupPeso);
     formGroup.append(tallaLabel);
     formGroup.append(formGroupTalla);
+    formGroup.append(frecuenciaLabel);
+    formGroup.append(formGroupFrecuencia);
 
     let formGroup2 = $("<div>", {
       class:
@@ -198,10 +214,12 @@ $(document).ready(function() {
         genero: Number(genero[0].genero),
         peso: Number(pesoInput.val()),
         talla: Number(tallaInput.val()),
-        noDificultadComp: Number($("#range0").val()),
-        noLleva: Number($("#range1").val()),
-        explosivoAgresivo: Number($("#range2").val()),
-        noDificultadEnt: Number($("#range3").val()),
+        e1: Number($("#range0").val()),
+        e2: Number($("#range1").val()),
+        e3: Number($("#range2").val()),
+        e4: Number($("#range3").val()),
+        e5: Number($("#range4").val()),
+        frecuencia_actividad: Number(frecuenciaInput.val()),
         usuario: userId
       };
 
@@ -214,7 +232,7 @@ $(document).ready(function() {
       axios
         .post(`/api/hijos/${userId}`, bulkHijos)
         .then(res => {
-          window.location.href = "start";
+          if (res.staus === 200) window.location.href = "/start";
         })
         .catch(err => err);
     });
