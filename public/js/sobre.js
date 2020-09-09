@@ -5,7 +5,7 @@ $(document).ready(() => {
   let sobreContainer = $("#sobre-main-container");
   var dimension = window.innerWidth
   if(dimension < 720){
-    let smallVideoForm =$("<video autoplay>",{
+    let smallVideoForm =$("<video class='presentvideo' autoplay>",{
       width:"320",
       height:"240",
       class: "video"
@@ -17,9 +17,10 @@ $(document).ready(() => {
     smallVideoForm.append(smallSourceForm);
     $("#smallVideo").append(smallVideoForm);
   }else{
-    let bigVideoForm =$("<video class='presentvideo' autoplay controls>",{
+    let bigVideoForm =$("<video class='presentvideo' autoplay>",{
       width:"720",
-      height:"480"
+      height:"480",
+      class: "video"
     });
     let bigSourceForm =$("<source>",{
       src: "/video/Hola_720x480.mp4",
