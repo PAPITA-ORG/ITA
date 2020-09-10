@@ -56,6 +56,10 @@ $(document).ready(function() {
       $(".prevBtn").css("display", "none");
       $(".nextBtn").css("display", "inline");
     } else {
+      if (n < tabs.length - 1) {
+        $(".finishBtn").css("display", "none");
+        $(".nextBtn").css("display", "inline");
+      }
       $(".prevBtn").css("display", "inline");
     }
 

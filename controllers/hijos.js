@@ -45,6 +45,11 @@ module.exports = {
   create: (req, res) => {
     let { data } = req.body;
 
+    data.map(
+      hijo =>
+        (hijo.avatarUrl = `https://avatars.dicebear.com/api/bottts/${hijo.nombre}.svg?mood[]=happy`)
+    );
+
     db.hijos
       .insertMany(data)
       .then(hijos => {
@@ -57,7 +62,7 @@ module.exports = {
             { _id: req.params.parentID },
             { $push: { hijos: { $each: ids } } }
           )
-          .then(parent => res.json(parent))
+          .then(parent => res.redirect("/start"))
           .catch(err => res.status(422).json(err));
       })
       .catch(err => res.status(422).json(err));

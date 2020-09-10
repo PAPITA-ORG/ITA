@@ -3,7 +3,6 @@ extends layout
 block content
 
     div(class="container" id="start-main-container")
-        div=locals.usuario.tutorial
         div.mt-2(class='row align-items-center justify-content-center' id="start-top-container") 
             if !action
                 div(id="fuel-row" class="row col-md-12 align-items-center justify-content-center")            
@@ -16,6 +15,7 @@ block content
                         if !action
                             input.form-control.mb-3.efficacies-range#activity-efficacy(type='range' min="0" max="100" value=af_0 name='af_0')
                             label.pull-right#eficacia-label
+                            div.form-err.mt-3.mb-3
                             h3.text-dark Con quien vas a participar?
                             if hijos
                                 each hijo, i in hijos

@@ -1,3 +1,30 @@
+function buildHijo(inputObj) {
+  let {
+    nombreInput,
+    edadInput,
+    pesoInput,
+    tallaInput,
+    frecuenciaInput,
+    genero
+  } = inputObj;
+
+  let hijo = {
+    nombre: nombreInput.val(),
+    edad: edadInput.val(),
+    genero: Number(genero[0].genero),
+    peso: Number(pesoInput.val()),
+    talla: Number(tallaInput.val()),
+    e1: Number($("#range0").val()),
+    e2: Number($("#range1").val()),
+    e3: Number($("#range2").val()),
+    e4: Number($("#range3").val()),
+    e5: Number($("#range4").val()),
+    frecuencia_actividad: Number(frecuenciaInput.val()),
+    usuario: userId
+  };
+
+  return hijo;
+}
 $(document).ready(function() {
   let tutorialContainer = $("#tutorial-main-container");
   let hijos = [];
@@ -208,20 +235,16 @@ $(document).ready(function() {
         return d.nombre === generoInput.val();
       });
 
-      let hijo = {
-        nombre: nombreInput.val(),
-        edad: edadInput.val(),
-        genero: Number(genero[0].genero),
-        peso: Number(pesoInput.val()),
-        talla: Number(tallaInput.val()),
-        e1: Number($("#range0").val()),
-        e2: Number($("#range1").val()),
-        e3: Number($("#range2").val()),
-        e4: Number($("#range3").val()),
-        e5: Number($("#range4").val()),
-        frecuencia_actividad: Number(frecuenciaInput.val()),
-        usuario: userId
+      let inputObj = {
+        nombreInput: nombreInput,
+        edadInput: edadInput,
+        pesoInput: pesoInput,
+        tallaInput: tallaInput,
+        frecuenciaInput: frecuenciaInput,
+        genero: genero
       };
+
+      let hijo = buildHijo(inputObj);
 
       hijos.push(hijo);
 
@@ -244,21 +267,19 @@ $(document).ready(function() {
         return d.nombre === generoInput.val();
       });
 
-      let hijo = {
-        nombre: nombreInput.val(),
-        edad: edadInput.val(),
-        genero: Number(genero[0].genero),
-        peso: Number(pesoInput.val()),
-        talla: Number(tallaInput.val()),
-        noDificultadComp: Number($("#range0").val()),
-        noLleva: Number($("#range1").val()),
-        explosivoAgresivo: Number($("#range2").val()),
-        noDificultadEnt: Number($("#range3").val()),
-        usuario: userId
+      let inputObj = {
+        nombreInput: nombreInput,
+        edadInput: edadInput,
+        pesoInput: pesoInput,
+        tallaInput: tallaInput,
+        frecuenciaInput: frecuenciaInput,
+        genero: genero
       };
 
+      let hijo = buildHijo(inputObj);
+
       hijos.push(hijo);
-      console.log(hijos);
+
       childUserForm();
     });
   }
