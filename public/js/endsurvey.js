@@ -71,6 +71,13 @@ $(document).ready(function() {
     }
   }
 
+  function adjustProgress(n, tabLength) {
+    let percent = n === tabLength - 1 ? "95%" : `${(n / tabLength) * 100 + 5}%`;
+    $(".progress-bar-animated").css({
+      width: n === 0 ? "10%" : percent
+    });
+  }
+
   $(".prevNext").click(e => {
     e.preventDefault();
     let btnValue = Number($(e.target).attr("value"));
@@ -83,6 +90,8 @@ $(document).ready(function() {
     } else {
       nextPrev(btnValue);
     }
+
+    adjustProgress(currentTab, $(".tab").length);
   });
 
   function nextPrev(n) {
