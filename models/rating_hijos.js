@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 
 const RatingHijos = Schema({
   hijo: { type: Schema.Types.ObjectId, ref: "Hijo" },
-  historial: { type: Schema.Types.ObjectId, ref: "Historial" },
   rating: { type: Schema.Types.Number },
   fecha: { type: Schema.Types.Date, default: Date.now() }
 });
