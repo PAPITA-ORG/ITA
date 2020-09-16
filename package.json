@@ -25,7 +25,6 @@
     "express": "^4.17.1",
     "express-flash": "0.0.2",
     "express-session": "^1.17.1",
-    "froala-editor": "^3.2.1",
     "helmet": "^4.0.0",
     "jquery-popup-overlay": "^2.1.5",
     "lodash": "^4.17.19",
