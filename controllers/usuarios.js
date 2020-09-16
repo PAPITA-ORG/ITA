@@ -1,5 +1,6 @@
 // import database models and store in a variable
 const db = require("../models");
+const axios = require("axios");
 // import LocalStrategy from passport-local and bcrypt
 const LocalStrategy = require("passport-local");
 const bcrypt = require("bcryptjs");
@@ -130,7 +131,15 @@ module.exports = {
                   let view_data = require("./viewsControllers/controllerRenders").renderNavContent(
                     "index"
                   );
-                  // todo: acá enviar mail
+                  axios
+                    .post("/api/mailer/passwordChanged", { 'to': req.body.correo })
+                    .then(r => {
+                      console.log("Changed password email sent")
+                      return r;
+                    })
+                    .catch(error => {
+                      console.log("error, Changed password email not sent: " + error)
+                    });
                   res.render("registro", {
                     correo_success: "Enhorabuena! su contraseña ha cambiado",
                     view_data: view_data
@@ -169,7 +178,7 @@ module.exports = {
       filename: "test.pdf"
     };
 
-    download(pdf, options, function(err) {
+    download(pdf, options, function (err) {
       if (err) return err;
       res.json("downloading!");
     });

@@ -17,7 +17,7 @@ let transporter = nodemailer.createTransport({
 module.exports = {
    sendEmail: async (req, res) => {
       try {
-         const { from, to, subject } = req.body
+         const { from, to, subject, body } = req.body
 
          // send mail with defined transport object
          const msg = await transporter.sendMail({
@@ -25,7 +25,8 @@ module.exports = {
             to: to, // list of receivers
             subject: subject, // Subject line
             // text: "Hello world", // plain text body
-            html: "Hola, esto es un mensaje de <b>prueba</b>", // html body
+            // html: "Hola, esto es un mensaje de <b>prueba</b>", // html body
+            html: body,
             headers: {
                'From': MAIL_USER
             },
@@ -54,12 +55,11 @@ module.exports = {
    },
    sendWelcomeEmail: async (req, res) => {
       try {
-         const { from, to, subject } = req.body
-
+         const { to } = req.body
          const msg = await transporter.sendMail({
             from: '"ITA" ' + '<' + MAIL_USER + '>',
             to: to,
-            subject: subject, 
+            subject: "Bienvenido a ITA",
             headers: {
                'From': MAIL_USER
             },
@@ -67,6 +67,34 @@ module.exports = {
             <html>
                <body>
                   Bienvenido
+               </body>
+            </html>`
+         });
+         console.log(msg)
+         const info = await transporter.sendMail(msg)
+
+         console.log("Message sent: %s", info.messageId);
+
+         res.send('Email sent')
+      }
+      catch (err) {
+         throw (err);
+      }
+   },
+   sendPasswordChangedMail: async (req, res) => {
+      try {
+         const { to } = req.body
+         const msg = await transporter.sendMail({
+            from: '"ITA" ' + '<' + MAIL_USER + '>',
+            to: to,
+            subject: "Tu contraseña ha sido cambiada",
+            headers: {
+               'From': MAIL_USER
+            },
+            html: `<!doctype html>
+            <html>
+               <body>
+                  Tu contraseña ha sido cambiada exitosamente.
                </body>
             </html>`
          });

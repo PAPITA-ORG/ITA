@@ -6,5 +6,6 @@ const mailerController = require("../../controllers").mailer;
 
 router.route("/").post(mailerController.sendEmail);
 router.route("/welcome").post(mailerController.sendWelcomeEmail);
+router.route("/passwordChanged").post(mailerController.sendPasswordChangedMail);
 
 module.exports = router;

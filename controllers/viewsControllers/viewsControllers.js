@@ -133,5 +133,12 @@ module.exports = {
       endsurvey_data: endsurvey_data,
       survey_people: req.session.data
     });
+  },
+  mailer: (req, res) => {
+    let mailer_view_data = controller_renders.renderNavContent("auth");
+    res.render("mailer", {
+      id: req.session.passport.user,
+      view_data: mailer_view_data
+    });
   }
 };
