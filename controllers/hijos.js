@@ -45,6 +45,8 @@ module.exports = {
   create: (req, res) => {
     let { data } = req.body;
 
+    console.log(data);
+    data = data.filter(hije => hije !== null);
     data.map(
       hijo =>
         (hijo.avatarUrl = `https://avatars.dicebear.com/api/bottts/${hijo.nombre}.svg?mood[]=happy`)

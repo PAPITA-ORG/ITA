@@ -14,7 +14,7 @@ nav.fixed-bottom.navbar.navbar-dark.bg-dark
         if view_data
             each icon in view_data.auth
                 if icon.href
-                    a(href=icon.href)
+                    a(href=icon.href).d-none
                         i(id= icon.icon_id class=icon.icon_class style={color: 'red', "font-size": "2.5rem"})
                 else 
                     i(id=icon.icon_id class=icon.icon_class style={color: 'red', "font-size": "2.5rem"})

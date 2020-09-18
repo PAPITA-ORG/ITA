@@ -34,6 +34,8 @@ router.post("/register", (req, res) => {
   let {
     correo,
     password,
+    nombres,
+    apellidos,
     edad,
     educacion,
     genero,
@@ -63,6 +65,8 @@ router.post("/register", (req, res) => {
   if (
     !correo ||
     !password ||
+    !nombres ||
+    !apellidos ||
     !edad ||
     !educacion ||
     !genero ||
@@ -95,6 +99,10 @@ router.post("/register", (req, res) => {
       } else {
         subscribeForm.correo.value = correo;
         subscribeForm.password.value = password;
+
+        subscribeForm.nombres.value = nombres;
+        subscribeForm.apellidos.value = apellidos;
+
         subscribeForm.edad.value = edad;
 
         parentesco = Number(parentesco);
@@ -146,6 +154,8 @@ router.post("/register", (req, res) => {
           const newUsuario = new Usuario({
             correo: correo,
             password: password,
+            nombres: nombres,
+            apellidos: apellidos,
             edad: Number(edad),
             educacion: educacion,
             genero: Number(genero),

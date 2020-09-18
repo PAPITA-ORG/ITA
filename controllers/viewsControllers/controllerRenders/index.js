@@ -19,6 +19,14 @@ module.exports = {
             name: "password",
             label: "Correo"
           },
+          nombres: {
+            name: "nombres",
+            label: "Nombre(s)"
+          },
+          apellidos: {
+            name: "apellidos",
+            label: "Apellido(s)"
+          },
           edad: {
             label: "Edad",
             name: "edad"
@@ -150,7 +158,8 @@ module.exports = {
             icon_id: "hiking",
             href: "/start"
           }
-        ]
+        ],
+        contentRouteBlocked: true
       };
 
       return content;

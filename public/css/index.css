@@ -348,6 +348,10 @@ img.avatar {
   }
 }
 
+#btn-logout {
+  cursor: pointer;
+}
+
 /* Start View */
 img.activity-img {
   width: 130px;

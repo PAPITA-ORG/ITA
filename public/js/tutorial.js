@@ -8,22 +8,43 @@ function buildHijo(inputObj) {
     genero
   } = inputObj;
 
-  let hijo = {
-    nombre: nombreInput.val(),
-    edad: edadInput.val(),
-    genero: Number(genero[0].genero),
-    peso: Number(pesoInput.val()),
-    talla: Number(tallaInput.val()),
-    e1: Number($("#range0").val()),
-    e2: Number($("#range1").val()),
-    e3: Number($("#range2").val()),
-    e4: Number($("#range3").val()),
-    e5: Number($("#range4").val()),
-    frecuencia_actividad: Number(frecuenciaInput.val()),
-    usuario: userId
-  };
+  if (
+    nombreInput.val() == false ||
+    edadInput.val() === 0 ||
+    Number(pesoInput.val()) === 0
+  ) {
+    // validar campos relevantes en el formulario
+    $("div.form-alert").html(`
+    <div class= "alert alert-warning alert-dismissible fade show" role="alert">
+      Por favor asegurese de completar el formulario 
+      <button class= "close" type="button" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true"> &times; </span>
+      </button>
+    </div>
+    `);
+    return;
+  } else {
+    if ($("div.alert")) {
+      $(".alert").remove();
+    }
 
-  return hijo;
+    let hijo = {
+      nombre: nombreInput.val(),
+      edad: edadInput.val(),
+      genero: Number(genero[0].genero),
+      peso: Number(pesoInput.val()),
+      talla: Number(tallaInput.val()),
+      e1: Number($("#range0").val()),
+      e2: Number($("#range1").val()),
+      e3: Number($("#range2").val()),
+      e4: Number($("#range3").val()),
+      e5: Number($("#range4").val()),
+      frecuencia_actividad: Number(frecuenciaInput.val()),
+      usuario: userId
+    };
+
+    return hijo;
+  }
 }
 $(document).ready(function() {
   let tutorialContainer = $("#tutorial-main-container");
@@ -73,6 +94,9 @@ $(document).ready(function() {
 
     let nombreInput = $("<input>", {
       class: "form-control",
+      type: "text",
+      pattern: `"[A-Za-z\\s]*"`,
+      title: "Solo use letras alfabeticas",
       id: "tutorial-form-nombre"
     }).css("margin-bottom", "10px");
 
@@ -195,10 +219,10 @@ $(document).ready(function() {
 
       let formInput = $(`<input>`, {
         type: "range",
-        val: "0",
+        val: "50",
         min: "0",
         max: "100",
-        class: "form-control",
+        class: "form-control efficacies-range mr-1",
         id: `range${i}`
       }).css("margin-bottom", "10px");
 
@@ -245,6 +269,10 @@ $(document).ready(function() {
       };
 
       let hijo = buildHijo(inputObj);
+
+      if (hijo === null) {
+        return;
+      }
 
       hijos.push(hijo);
 
