@@ -45,7 +45,6 @@ module.exports = {
   create: (req, res) => {
     let { data } = req.body;
 
-    console.log(data);
     data = data.filter(hije => hije !== null);
     data.map(
       hijo =>
@@ -64,7 +63,11 @@ module.exports = {
             { _id: req.params.parentID },
             { $push: { hijos: { $each: ids } } }
           )
-          .then(parent => res.redirect("/start"))
+          .then(parent => {
+            // temporalmente para usuarios del preregistro, captamos que acaben de registrar a sus hijes
+            req.session["primer_login"] = true;
+            res.redirect("/");
+          })
           .catch(err => res.status(422).json(err));
       })
       .catch(err => res.status(422).json(err));

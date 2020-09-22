@@ -9,7 +9,7 @@ function buildHijo(inputObj) {
   } = inputObj;
 
   if (
-    nombreInput.val() == false ||
+    nombreInput.val() === "" ||
     edadInput.val() === 0 ||
     Number(pesoInput.val()) === 0
   ) {
@@ -270,22 +270,22 @@ $(document).ready(function() {
 
       let hijo = buildHijo(inputObj);
 
-      if (hijo === null) {
+      if (!hijo) {
         return;
+      } else {
+        hijos.push(hijo);
+
+        let bulkHijos = {
+          data: hijos
+        };
+
+        axios
+          .post(`/api/hijos/${userId}`, bulkHijos)
+          .then(res => {
+            if (res.status === 200) window.location.href = "/start";
+          })
+          .catch(err => err);
       }
-
-      hijos.push(hijo);
-
-      let bulkHijos = {
-        data: hijos
-      };
-
-      axios
-        .post(`/api/hijos/${userId}`, bulkHijos)
-        .then(res => {
-          if (res.staus === 200) window.location.href = "/start";
-        })
-        .catch(err => err);
     });
 
     // click handler to add next child

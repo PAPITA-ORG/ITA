@@ -2,7 +2,7 @@ extends layout
 
 block content
 
-    div.mt-5(class="container")
+    div.container-index(class="container")
         div(class='row align-items-center center' id='index-container')
           
           div(class="col-sm-12 center" style="margin-top: 20px")
@@ -16,6 +16,10 @@ block content
                     
             form(action="/api/usuarios/login", method='post')
               
+              if registro_msg
+                div.alert.alert-success.alert-dismissible.fade.show(role="alert")=registro_msg
+                  button.close(type="button" data-dismiss='alert' aria-label='Close')
+                    span(aria-hidden='true') &times;
               if success_msg!= ''
                 div.alert.alert-success.alert-dismissible.fade.show(role="alert")=success_msg
                   button.close(type="button" data-dismiss='alert' aria-label='Close')
@@ -29,9 +33,6 @@ block content
                 input(type="text" placeholder="correo electronico" name='correo')
               div.password
                 input(type="password" placeholder="contraseña" name='password')
-              div.checkbox
-                input(type='checkbox' name='agreement' checked)
-                |  Recuerdame
               button(type='submit' class='btn btn-success' id='btn-login') Siguiente
               div.mt-2.mb-2.col-sm-12
                 a.btn.btn-info#forgot-password(href='/registro') Olvidaste tu contraseña?   

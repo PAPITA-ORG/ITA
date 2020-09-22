@@ -32,26 +32,6 @@ body {
   height: 100vh;
 }
 
-/* .starrating > input {
-  display: none;
-} 
-
-.starrating > label:before {
-  content: "\f004"; 
-  margin: 2px;
-  font-size: 2em;
-  font-family: FontAwesome;
-  display: inline-block;
-}
-
-.starrating > label {
-  color: #409b03; 
-}
-*/
-/* .starrating > input:checked ~ label {
-  color: #b10c1a;
-}  */
-
 .starrating {
   font-size: 2.5rem;
 }
@@ -336,6 +316,10 @@ strong {
 /* #forgot-password {
 } */
 
+div.container-index {
+  margin-bottom: 100px;
+}
+
 img.avatar {
   width: 30%;
   opacity: 50%;
@@ -362,4 +346,8 @@ img.activity-img {
 .tab,
 .finishBtn {
   display: none;
+}
+
+i.fa {
+  cursor: pointer;
 }

@@ -30,21 +30,37 @@ module.exports = {
     let start_data = controller_renders.renderNavContent("auth");
     let usuario_id = req.session.passport.user;
 
-    let activity_content = controller_renders.activityFormContent();
-    controller_renders.getUserInfo(userInfoHandler, { _id: usuario_id });
-
-    function userInfoHandler(err, usuario) {
-      if (err)
-        res.json("ERR_USR", `Perdona, no hemos podido encontrar este usuario.`);
-
-      let { hijos } = usuario;
-      res.render("start", {
-        id: usuario._id,
-        af_0: usuario.af_0,
-        view_data: start_data,
-        hijos: hijos,
-        activity_content: activity_content
+    // en caso de que sea el usuario acabe de registrar a sus hijes...
+    // tenemos la siguiente condicion, la cual es temporal para el preregistro
+    if (req.session.primer_login || req.user.hijos.length > 0) {
+      let index_data = controller_renders.renderNavContent("index");
+      let registro_msg = `Gracias por registrar a tus chiquill@s. 
+        Quédate pendiente del avance de ITA para participar en nuestras actividades familiares`;
+      req.logout("/");
+      res.render("index", {
+        view_data: index_data,
+        registro_msg: registro_msg
       });
+    } else {
+      let activity_content = controller_renders.activityFormContent();
+      controller_renders.getUserInfo(userInfoHandler, { _id: usuario_id });
+
+      function userInfoHandler(err, usuario) {
+        if (err)
+          res.json(
+            "ERR_USR",
+            `Perdona, no hemos podido encontrar este usuario.`
+          );
+
+        let { hijos } = usuario;
+        res.render("start", {
+          id: usuario._id,
+          af_0: usuario.af_0,
+          view_data: start_data,
+          hijos: hijos,
+          activity_content: activity_content
+        });
+      }
     }
   },
   encuestaActividadView: (req, res, next) => {
