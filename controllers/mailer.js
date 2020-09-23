@@ -81,6 +81,7 @@ module.exports = {
                   <div style="max-width: 600px; min-width: 300px; margin: 10px auto 10px auto; padding: 30px 40px 30px 40px; background-color: #ffffff;">
                      <p>¡Felicitaciones!</p>
                      <p>Tu registro de ITA está completo para el correo ` + to + `.</p>
+                     <p>Recuerda ingresar a tu cuenta y registrar a tus hij@s.</p>
                      <p>Si tienes alguna duda, consulta o pregunta sobre ITA, puedes contactar a <a href="mailto:estoesla@papita.org?subject=Soporte ITA" target="_blank">nuestro equipo</a>.</p>
                      <p>Saludos, </p>
                      <p>Equipo ITA</p>
