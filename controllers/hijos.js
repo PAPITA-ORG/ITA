@@ -41,7 +41,7 @@ module.exports = {
       .then(dbHijos => res.json(dbHijos))
       .catch(err => res.status(422).json(err));
   },
-  // create one hijo
+  // create one hije
   create: (req, res) => {
     let { data } = req.body;
 
