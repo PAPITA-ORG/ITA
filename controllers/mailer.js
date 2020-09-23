@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer')
 const MAIL_USER = process.env.MAIL_USER
 const MAIL_PSWD = process.env.MAIL_PSWD
+const projectPath = require('path').dirname(require.main.filename)
 
 // create reusable transporter object using the default SMTP transport
 let transporter = nodemailer.createTransport({
@@ -60,20 +61,46 @@ module.exports = {
             from: '"ITA" ' + '<' + MAIL_USER + '>',
             to: to,
             subject: "Bienvenido a ITA",
+            envelope: {
+               from: 'ITA ' + MAIL_USER,
+               to: to,
+            },
             headers: {
-               'From': MAIL_USER
+               'From': MAIL_USER,
+               'x-from': MAIL_USER,
             },
             html: `<!doctype html>
             <html>
-               <body>
-                  Bienvenido
+               <head>
+                  <style>
+                     p { font-size: 16px; }
+                  </style>
+               </head>
+               <body style = "font-family: Tahoma, Geneva, sans-serif;">
+               <div style="min-width: 260px; min-height: 100%; padding: 30px 0 30px 0; margin: 0 auto; background-color: #f6f6f6;">
+                  <div style="max-width: 600px; min-width: 300px; margin: 10px auto 10px auto; padding: 30px 40px 30px 40px; background-color: #ffffff;">
+                     <p>¡Felicitaciones!</p>
+                     <p>Tu registro de ITA está completo para el correo ` + to + `.</p>
+                     <p>Si tienes alguna duda, consulta o pregunta sobre ITA, puedes contactar a <a href="mailto:estoesla@papita.org?subject=Soporte ITA" target="_blank">nuestro equipo</a>.</p>
+                     <p>Saludos, </p>
+                     <p>Equipo ITA</p>
+                     <div style="text-align: center;">
+                        <img src="cid:ita09232020">
+                     </div>
+                  </div>
+               </div>
                </body>
-            </html>`
+            </html>`,
+            attachments: [{
+               filename: 'ita3d_1_small.png',
+               path: projectPath + "/public/images/ita3d_1_small.png",
+               cid: 'ita09232020'
+            }]
          });
-         console.log(msg)
-         const info = await transporter.sendMail(msg)
 
-         console.log("Message sent: %s", info.messageId);
+         // const info = await transporter.sendMail(msg)
+
+         // console.log("Message sent: %s", info.messageId);
 
          res.send('Email sent')
       }
@@ -93,15 +120,32 @@ module.exports = {
             },
             html: `<!doctype html>
             <html>
-               <body>
-                  Tu contraseña ha sido cambiada exitosamente.
+               <head>
+                  <style>
+                     p { font-size: 16px; }
+                  </style>
+               </head>
+               <body style = "font-family: Tahoma, Geneva, sans-serif;">
+               <div style="min-width: 260px; min-height: 100%; padding: 30px 0 30px 0; margin: 0 auto; background-color: #f6f6f6;">
+                  <div style="max-width: 600px; min-width: 300px; margin: 10px auto 10px auto; padding: 30px 40px 30px 40px; background-color: #ffffff;">
+                     <p>Estimad@</p>
+                     <p>La contraseña para su cuenta de ITA (` + to + `) fue exitosamente cambiada a las ` + getCurrentDate() + `.</p>
+                     <p>Si tiene alguna duda o pregunta, contacte a <a href="mailto:estoesla@papita.org?subject=Soporte ITA" target="_blank">nuestro equipo</a>. Si ha recibido este correo por equivocación, recomendamos que cambie su actual contraseña.</p>
+                     <p>Saludos, </p>
+                     <p>Equipo ITA</p>
+                     <div style="text-align: center;">
+                        <img src="cid:ita092320201">
+                     </div>
+                  </div>
+               </div>
                </body>
-            </html>`
+            </html>`,
+            attachments: [{
+               filename: 'ita3d_1_small.png',
+               path: projectPath + "/public/images/ita3d_1_small.png",
+               cid: 'ita092320201'
+            }]
          });
-         console.log(msg)
-         const info = await transporter.sendMail(msg)
-
-         console.log("Message sent: %s", info.messageId);
 
          res.send('Email sent')
       }
@@ -109,4 +153,51 @@ module.exports = {
          throw (err);
       }
    }
+}
+
+function getCurrentDate() {
+   let d = new Date();
+   let hour = d.toString().split(" ")[4]
+   let month
+   switch (d.getMonth()) {
+      case 0:
+         month = "Enero"
+         break;
+      case 1:
+         month = "Febrero"
+         break;
+      case 2:
+         month = "Marzo"
+         break;
+      case 3:
+         month = "Abril"
+         break;
+      case 4:
+         month = "Mayo"
+         break;
+      case 5:
+         month = "Junio"
+         break;
+      case 6:
+         month = "Julio"
+         break;
+      case 7:
+         month = "Agosto"
+         break;
+      case 8:
+         month = "Septiembre"
+         break;
+      case 9:
+         month = "Octubre"
+         break;
+      case 10:
+         month = "Noviembre"
+         break;
+      case 11:
+         month = "Diciembre"
+         break;
+      default:
+         break;
+   }
+   return hour.split(":")[0] + ":" + hour.split(":")[1] + " horas del " + d.getDate() + " de " + month + " " + d.getFullYear()
 }
