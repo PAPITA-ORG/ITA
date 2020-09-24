@@ -316,6 +316,10 @@ strong {
 /* #forgot-password {
 } */
 
+#login-form {
+  max-width: 500px;
+}
+
 div.container-index {
   margin-bottom: 100px;
 }
