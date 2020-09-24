@@ -184,7 +184,7 @@ router.post("/register", (req, res) => {
                 .then(usuario => {
                   req.flash(
                     "success_msg",
-                    "Tu registracion esta completa! Continua con tu login."
+                    "Tu registracion esta completa! Continua con tu login y registra a tus hij@s."
                   );
                   res.redirect("/");
                 })
