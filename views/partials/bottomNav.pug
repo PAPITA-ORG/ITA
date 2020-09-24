@@ -1,6 +1,7 @@
 nav.fixed-bottom.navbar.navbar-dark.bg-dark
     div
         button.navbar-toggler(type='button' data-toggle='collapse' data-target='#nav-toggle-content' aria-controls="nav-toggle-content" aria-expanded="false" aria-label="Toggle navigation")
+
             span.navbar-toggler-icon
     
 
@@ -10,13 +11,15 @@ nav.fixed-bottom.navbar.navbar-dark.bg-dark
                 a(href=icon.href)
                     i(id= icon.icon_id class=`${icon.icon_class} mr-3` style={color: 'red', "font-size": "2.5rem"})
     else
-        if view_data
-            each icon in view_data.auth
-                if icon.href
-                    a(href=icon.href)
-                        i(id= icon.icon_id class=icon.icon_class style={color: 'red', "font-size": "2.5rem"})
-                else 
-                    i(id=icon.icon_id class=icon.icon_class style={color: 'red', "font-size": "2.5rem"})
+            if view_data
+                
+                each icon in view_data.auth
+                    
+                    if icon.href
+                        a(href=icon.href)
+                            i(id= icon.icon_id class=icon.icon_class style={color: 'red', "font-size": "2.5rem"})
+                    else
+                        i(id=icon.icon_id class=icon.icon_class style={color: 'red', "font-size": "2.5rem"})
     div.collapse#nav-toggle-content
         div.bg-dark.p-4.text-white
             span Copyright &copy; 2020 PapitaCORP. 
