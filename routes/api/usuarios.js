@@ -1,5 +1,7 @@
 // instantiate express router and store in variable `router`
 const router = require("express").Router();
+const axios = require("axios");
+axios.defaults.baseURL = 'http://localhost:3000';
 // import bcryptjs
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
@@ -170,6 +172,14 @@ router.post("/register", (req, res) => {
                     "success_msg",
                     "Tu registracion esta completa! Continua con tu login."
                   );
+                  // llamada de prueba
+                  // axios.get("/api/usuarios").then(res => console.log(res)).catch(error => console.log(error))
+
+                  console.log("Register done, sending mail")
+                  console.log(correo)
+                  // make post request with welcome email
+                  PostWelcomeEmail(correo)
+
                   res.redirect("/");
                 })
                 .catch(err => res.status(422).json(err));
@@ -210,3 +220,17 @@ router
 router.route("/activity/pdf").post(usuariosController.download);
 
 module.exports = router;
+
+function PostWelcomeEmail(correo) {
+  // let options = { headers: { 'Content-Type': 'application/json' } }
+  axios
+    .post("/api/mailer/welcome", { 'to': correo })
+    .then(r => {
+      console.log("Welcome email sent")
+      // r.redirect("/");
+      return r;
+    })
+    .catch(error => {
+      console.log("error, welcome email not sent: " + error)
+    });
+}
