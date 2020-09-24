@@ -206,4 +206,7 @@ router
   .route("/chooseActivity/:topicoCod")
   .post(usuariosController.chooseRandomActivities);
 
+// download a pdf
+router.route("/activity/pdf").post(usuariosController.download);
+
 module.exports = router;

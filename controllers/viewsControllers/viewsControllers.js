@@ -43,8 +43,7 @@ module.exports = {
         af_0: usuario.af_0,
         view_data: start_data,
         hijos: hijos,
-        activity_content: activity_content,
-        tutorial: usuario.tutorial
+        activity_content: activity_content
       });
     }
   },
@@ -97,14 +96,6 @@ module.exports = {
     });
   },
   notfoundView: (req, res) => {
-    let notfound_data = req.session.passport.user? 
-    (controller_renders.renderNavContent("auth")):
-    (controller_renders.renderNavContent("index"))
-    res.render("notfound",{ 
-      view_data: notfound_data, 
-      id: req.session.passport.user 
-    });
-    
     res.render("notfound");
   },
   accountView: (req, res) => {
@@ -113,6 +104,26 @@ module.exports = {
       id: req.session.passport.user,
       view_data: account_data,
       usuario: usuario
+    });
+  },
+  prepareEndSurvey: (req, res) => {
+    controller_renders.endsurveyContent(
+      req.body.hijos,
+      req.session.passport.user,
+      function(err, data) {
+        if (err) return err;
+
+        req.session["data"] = data;
+        res.redirect("endsurvey");
+      }
+    );
+  },
+  showEndSurvey: (req, res) => {
+    let endsurvey_data = controller_renders.renderNavContent("auth");
+    return res.render("endsurvey", {
+      id: req.session.passport.user,
+      endsurvey_data: endsurvey_data,
+      survey_people: req.session.data
     });
   }
 };

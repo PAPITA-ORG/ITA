@@ -20,15 +20,16 @@ router.route("/subscribe").get(viewsController.subscribeView);
 // start view
 router.route("/start").get(ensureAuthenticated, viewsController.startView);
 
-// encuesta-acitividad view
+// endsurvey view
 router
   .route("/endsurvey")
-  .get(ensureAuthenticated, viewsController.encuestaActividadView);
-// .then(res => {})
-// .catch(err => err);
+  .post(ensureAuthenticated, viewsController.prepareEndSurvey);
+router
+  .route("/endsurvey")
+  .get(ensureAuthenticated, viewsController.showEndSurvey);
 
 // not found view
-router.route("/*").get(viewsController.notfoundView);
+router.route("/notfound").get(viewsController.notfoundView);
 
 // get registro view
 router.route("/registro").get(viewsController.registro);

@@ -336,3 +336,9 @@ img.activity-img {
   width: 130px;
   height: auto;
 }
+
+/* End Survey */
+.tab,
+.finishBtn {
+  display: none;
+}

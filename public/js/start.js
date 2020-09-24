@@ -539,12 +539,14 @@ function displayActivities(data) {
     }
 
     let activityDiv = $("<div>", {
-      class: "mt-4 col-sm-12 justify-center center"
+      class: "mt-4 col-sm-12 justify-center center activity-div"
     });
 
-    data.activities.map(activity => {
+    data.activities.map((activity, i) => {
       let activityCard = $("<div>", {
-        class: "activity-card card mt-5"
+        class: "activity-card card mt-5",
+        id: `activity-${i}`,
+        value: i
       }).html(`
         <h5 class='card-title' data-url=${activity.Link}>
           ${activity.Descriptor}
@@ -557,6 +559,57 @@ function displayActivities(data) {
     });
 
     startContainer.prepend(activityDiv);
+
+    // when an activity is clicked...
+    $(".activity-card").on("click", function(e) {
+      // startContainer.empty();
+
+      let to_do = start_data.activities[Number($(this).attr("value"))].Link;
+
+      let embed = $("<div>", {
+        class: "activity-video video mt-5"
+      }).html(`
+
+        <iframe src=${to_do} width='100%' height='100%'>
+        
+        </iframe>
+
+      `);
+
+      let finishButton = $("<button>", {
+        class: "btn btn-success"
+      }).text("Acabamos nuestra actividad!");
+
+      $(".activity-div").empty();
+      $("#random-btn").empty();
+
+      $(".activity-div").append(embed);
+      $("#random-btn").append(finishButton);
+
+      finishButton.click(function(e) {
+        e.preventDefault();
+        axios
+          .post(`/endsurvey`, {
+            hijos: start_data.hijos
+          })
+          .then(res => {
+            if (res.status === 200) {
+              // let newDoc = document.open("text/html", "replace");
+              // newDoc.write(res.data);
+              // newDoc.close();
+              window.location.href = "/endsurvey";
+            }
+          })
+          .catch(err => console.log(err));
+      });
+
+      // axios
+      //   .post("/api/usuarios/activity/pdf", { pdf: to_do })
+      //   .then(res => {
+      //     console.log(res.status);
+      //   })
+      //   .catch(err => console.log(err));
+    });
   }
 }
 
