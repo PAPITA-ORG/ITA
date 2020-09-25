@@ -32,29 +32,17 @@ body {
   height: 100vh;
 }
 
-.starrating > input {
-  display: none;
-} /* Remove radio buttons */
-
-.starrating > label:before {
-  content: "\f004"; /* Star */
-  margin: 2px;
-  font-size: 2em;
-  font-family: FontAwesome;
-  display: inline-block;
+.starrating {
+  font-size: 2.5rem;
 }
 
-.starrating > label {
-  color: #409b03; /* Start color when not clicked */
+.starrating > i {
+  color: #409b03;
 }
 
-.starrating > input:checked ~ label {
-  color: #b10c1a;
-} /* Set yellow color when star checked */
-
-.starrating > input:hover ~ label {
+.starrating > span:hover ~ span {
   color: #ffca08;
-} /* Set yellow color when star hover */
+}
 
 .center {
   text-align: center;
@@ -139,7 +127,11 @@ h3 {
   font-size: 16px;
 }
 
-a {
+.starrating {
+  font-size: 30px;
+}
+
+.starrating a {
   padding-left: 5px;
   text-decoration: none;
   color: #2214e0;
@@ -315,9 +307,22 @@ strong {
   cursor: pointer;
 }
 
+.efficacies-range-endsurvey {
+  margin: 0;
+  width: 100%;
+}
+
 /* Index View */
 /* #forgot-password {
 } */
+
+#login-form {
+  max-width: 500px;
+}
+
+div.container-index {
+  margin-bottom: 100px;
+}
 
 img.avatar {
   width: 30%;
@@ -331,10 +336,20 @@ img.avatar {
   }
 }
 
+#btn-logout {
+  cursor: pointer;
+}
+
 /* Start View */
 img.activity-img {
   width: 130px;
   height: auto;
+}
+
+/* Sobre View */
+video {
+  width: 100% !important;
+  height: auto !important;
 }
 
 /* End Survey */
@@ -343,6 +358,7 @@ img.activity-img {
   display: none;
 }
 
+<<<<<<< HEAD
 .navIcon{
   width: 45px;
   height: 45px;
@@ -355,3 +371,16 @@ img.activity-img {
 .navbar-dark .navbar-toggler-icon{
   background-image: url(../images/icono-toggle.svg);
 }
+=======
+i.fa {
+  cursor: pointer;
+}
+
+/* bottomNav */
+@media (min-width: 610px) {
+  .toggle-content {
+    display: inline;
+    margin-left: 100px;
+  }
+}
+>>>>>>> 128b7cde9a0606232d92e90608942f25533c5370

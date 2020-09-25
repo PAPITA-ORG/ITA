@@ -1,27 +1,43 @@
 nav.fixed-bottom.navbar.navbar-dark.bg-dark
     div
         button.navbar-toggler(type='button' data-toggle='collapse' data-target='#nav-toggle-content' aria-controls="nav-toggle-content" aria-expanded="false" aria-label="Toggle navigation")
+
             span.navbar-toggler-icon
     
 
     if id == undefined
         div
+<<<<<<< HEAD
             each icon in view_data.home
                 a(href=icon.href)
                     img(src=icon.src alt=icon.alt id= icon.icon_id class=icon.icon_class)
                     
+=======
+            if view_data
+                each icon in view_data.home
+                    a(href=icon.href)
+                        i(id= icon.icon_id class=`${icon.icon_class} mr-3` style={color: 'red', "font-size": "2.5rem"})
+>>>>>>> 128b7cde9a0606232d92e90608942f25533c5370
     else
         if view_data
             each icon in view_data.auth
                 if icon.href
+<<<<<<< HEAD
                     a(href=icon.href)
                         img(src=icon.src alt=icon.alt id= icon.icon_id class=icon.icon_class)                       
                 else 
                     img(src=icon.src alt=icon.alt id= icon.icon_id class=icon.icon_class)
     div.collapse#nav-toggle-content
+=======
+                    a(href=icon.href).d-none
+                        i(id= icon.icon_id class=icon.icon_class style={color: 'red', "font-size": "2.5rem"})
+                else 
+                    i(id=icon.icon_id class=icon.icon_class style={color: 'red', "font-size": "2.5rem"})
+    div.collapse#nav-toggle-content.col-md-12.col-lg-12
+>>>>>>> 128b7cde9a0606232d92e90608942f25533c5370
         div.bg-dark.p-4.text-white
             span Copyright &copy; 2020 PapitaCORP. 
-            div.mt-4
+            div.mt-4.toggle-content
                 span Necesitas ayuda? 
                 a.btn.btn-outline-light(href='mailto:estoesla@papita.org')  Escribenos
 

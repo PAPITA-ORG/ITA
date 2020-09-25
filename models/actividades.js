@@ -12,12 +12,7 @@ const Actividades = Schema({
   Edad_hasta: { type: Schema.Types.Number },
   Duracion: { type: Schema.Types.Number },
   Fuente: { type: Schema.Types.String },
-  flag_covid: { type: Schema.Types.String },
-  flag_vpn: { type: Schema.Types.String },
-  flag_otro: { type: Schema.Types.String },
-  flag_plain: { type: Schema.Types.String },
-  flag_veg: { type: Schema.Types.String },
-  flag_glufree: { type: Schema.Types.String }
+  flags: [{ type: Schema.Types.ObjectId, ref: "Flag" }]
 });
 
 const Actividad = mongoose.model("Actividade", Actividades);

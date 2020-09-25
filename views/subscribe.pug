@@ -1,9 +1,10 @@
 extends layout
 
 block content
+        link(href="/css/subscribe.css" rel="stylesheet" type="text/css")
 
         div(class="container")
-            div(class='d-flex justify-content-center mt-20')
+            div(class='d-flex justify-content-center mt-5 subscribe-content')
                 div(class="col-sm-12 col-lg-8 justify-content-center center" id='sobre-form-container')
                     form(id='sobre-form' action='/api/usuarios/register' method='post') 
                         if errors.length > 0
@@ -12,17 +13,21 @@ block content
                                     button.close(type="button" data-dismiss='alert' aria-label='Close')
                                         span(aria-hidden='true') &times; 
                         div.form-group
-                            label(for='sobre-form-email') Ingresa tus datos
+                            h2 Ingresa tus datos
                             input.form-control#sobre-form-email.mt-3(type='email' placeholder='correo' name=data.correo.name value=data.correo.value)
                             input.form-control#sobre-form-password.mt-3(type='password' placeholder='contraseña' name=data.password.name value=data.password.value)
                             input.checkbox#sobre-checkbox(type="checkbox" required)
                             label.mt-3.ml-1(for='sobre-checkbox') Acepto los terminos y condiciones.
                         button.btn.btn-success#sobre-form-btn(aria-disabled="true") Siguiente
                         div.form-group#expanded-form.display-none
-                            label.mt-4(for='form-group-row') Cuentanos mas de ti
+                            h2.mt-4(for='form-group-row') Cuentanos mas de ti
                             div.form-group.row
+                                label.col-sm-3.col-form-label.mt-3= data.nombres.label  
+                                input#subscribe-form-input.col-sm-3.form-control(name=data.nombres.name type='text' value=data.nombres.value pattern="[A-Za-z\\s]*" title="Solo use letras alfabeticas")
+                                label.col-sm-3.col-form-label.mt-3= data.apellidos.label  
+                                input#subscribe-form-input.col-sm-3.form-control(name=data.apellidos.name type='text' value=data.apellidos.value pattern="[A-Za-z\\s]*" title="Solo use letras alfabeticas")
                                 label.col-sm-3.col-form-label.mt-3= data.edad.label  
-                                input.col-sm-3.form-control.mt-3(name=data.edad.name step="1" type='number' min='1' max='100' value=data.edad.value pattern="[0-9]{1,2}")                    
+                                input#subscribe-form-input.col-sm-3.form-control(name=data.edad.name step="1" type='number' min='1' max='100' value=data.edad.value pattern="[0-9]{1,2}")                    
                                 label.col-sm-3.col-form-label.mt-3= data.parentesco.label
                                 select.col-sm-3.form-control.mt-3(name=data.parentesco.name)
                                     each option, index in data.parentesco.options
@@ -34,19 +39,33 @@ block content
                                 label.col-sm-3.col-form-label.mt-3= data.genero.label
                                 select.col-sm-3.form-control.mt-3(name=data.genero.name)
                                     each option, index in data.genero.options
-                                        option(value=index+1)= option
+                                        if data.genero.options[index] == data.genero.selected
+                                            option(value=index+1 selected)= option
+                                        else
+                                            option(value=index+1)= option
                                 
                                 label.col-sm-3.col-form-label.mt-3= data.comuna.label
                                 select.col-sm-3.form-control.mt-3(name=data.comuna.name)
                                     each option, index in data.comuna.options
-                                        option(value=option._id)= option.comuna
-
+                                        if data.comuna.options[index]._id == data.comuna.selected
+                                            option(value=option._id selected)= option.comuna
+                                        else
+                                            option(value=option._id)= option.comuna
+                                
+                                label.col-sm-3.col-form-label.mt-3= data.educacion.label
+                                select.col-sm-3.form-control.mt-3(name=data.educacion.name)
+                                    each option, index in data.educacion.options
+                                        if data.educacion.options[index] == data.educacion.selected
+                                            option(value=index+1 selected)= option
+                                        else
+                                            option(value=index+1)= option
+                            hr.mt-5
+                            h4.mt-5 Indique cuan de acuerdo esta con cada frase moviendo la barra:
                             div.form-group.row#form-efficacies.mt-5
                                 each field in data.sliderInputs
-                                    label.col-sm-4.col-form-label= field.label
+                                    label.col-sm-12.col-md-6.col-lg-4.col-form-label= field.label
                                     span.col-lg-2.mr-2.mt-2.mobile-display-none Desacuerdo
-                                    div.col-sm-4.mt-2
-                                        //- span.col-lg-2.mr-2.mt-2 0  
+                                    div.col-sm-12.col-md-6.col-lg-4.mt-2  
                                         input.form-control.mb-3.efficacies-range(type='range' min="0" max="100" value=field.value name=field.name)
                                     span.col-lg-1.ml-2.mt-2.mobile-display-none Acuerdo
                                     span.col-lg-2.mr-2.mt-2.display-none 100
