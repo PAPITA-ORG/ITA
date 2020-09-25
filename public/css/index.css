@@ -355,3 +355,11 @@ img.activity-img {
 i.fa {
   cursor: pointer;
 }
+
+/* bottomNav */
+@media (min-width: 610px) {
+  .toggle-content {
+    display: inline;
+    margin-left: 100px;
+  }
+}
