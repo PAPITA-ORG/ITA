@@ -346,6 +346,12 @@ img.activity-img {
   height: auto;
 }
 
+/* Sobre View */
+video {
+  width: 100% !important;
+  height: auto !important;
+}
+
 /* End Survey */
 .tab,
 .finishBtn {
