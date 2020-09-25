@@ -19,19 +19,37 @@ module.exports = {
             name: "password",
             label: "Correo"
           },
+          nombres: {
+            name: "nombres",
+            label: "Nombre(s)"
+          },
+          apellidos: {
+            name: "apellidos",
+            label: "Apellido(s)"
+          },
           edad: {
             label: "Edad",
             name: "edad"
           },
+          educacion: {
+            label: "Nivel Educativo",
+            options: [
+              "basica incompleta",
+              "basica completa",
+              "media incompleta",
+              "media completa",
+              "tecnico",
+              "profesional",
+              "postgrado"
+            ]
+          },
           parentesco: {
             label: "Parentesco",
             options: [
-              "mama",
-              "papa",
-              "abuelo",
-              "abuela",
-              "otro familiar",
-              "otro no familiar"
+              "Cuidador principal",
+              "Cuidador secundario",
+              "Otro familiar",
+              "Otro no familiar"
             ],
             name: "parentesco",
             type: "select",
@@ -51,29 +69,46 @@ module.exports = {
             type: "select",
             selected: ""
           },
+          educacion: {
+            label: "Ultimo grado completado",
+            options: [
+              "Ninguno",
+              "Enseñanza básica",
+              "Enseñanza media",
+              "Técnico superior",
+              "Profesional (Instituto)",
+              "Profesional (Universidad)",
+              "Magíster o Doctorado"
+            ],
+            name: "educacion",
+            type: "select",
+            selected: ""
+          },
           sliderInputs: [
             {
-              label: "Siempre puedo resolver problemas si trato lo suficiente",
+              label: "Soy capaz de entretenerme con mi niñ@.",
               name: "i1",
               value: "50"
             },
             {
-              label: "Es facil lograr mis metas y mantener mis objetivos",
+              label: "Puedo planificar actividades que mi niñ@ disfruta.",
               name: "i2",
               value: "50"
             },
             {
-              label: "Se como manejar situaciones imprevistas",
+              label: "Sé que soy un@ cuidador@ suficientemente buen@.",
               name: "i3",
               value: "50"
             },
             {
-              label: "Puedo mantener la calma ante nuevas dificultades",
+              label:
+                "Puedo mantener coordinación de mis actividades de cuidador@.",
               name: "i4",
               value: "50"
             },
             {
-              label: "Cuando tengo problemas, logro pensar varias soluciones",
+              label:
+                "Saber que otr@s tienen dificultades similares lo hace mas fácil para mí.",
               name: "i5",
               value: "50"
             }
@@ -123,7 +158,8 @@ module.exports = {
             icon_id: "hiking",
             href: "/start"
           }
-        ]
+        ],
+        contentRouteBlocked: true
       };
 
       return content;
@@ -140,7 +176,13 @@ module.exports = {
           );
           cb(usr_err);
         } else {
-          cb(null, usuario);
+          // usuario
+          //   .populate("historials")
+          //   .execPopulate()
+          //   .then(res => {
+          return cb(null, usuario);
+          // })
+          // .catch(err => res.json(err));
         }
       });
   },
@@ -172,7 +214,6 @@ module.exports = {
   },
   endsurveyContent: (hijos, userID, cb) => {
     // create tabs for user and all participating children
-    // console.log(req.query);
     return module.exports.getUserInfo(
       function(err, usuario) {
         if (err) return cb(`Error: ${err}`);

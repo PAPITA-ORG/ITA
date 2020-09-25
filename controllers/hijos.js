@@ -41,9 +41,15 @@ module.exports = {
       .then(dbHijos => res.json(dbHijos))
       .catch(err => res.status(422).json(err));
   },
-  // create one hijo
+  // create one hije
   create: (req, res) => {
     let { data } = req.body;
+
+    data = data.filter(hije => hije !== null);
+    data.map(
+      hijo =>
+        (hijo.avatarUrl = `https://avatars.dicebear.com/api/bottts/${hijo.nombre}.svg?mood[]=happy`)
+    );
 
     db.hijos
       .insertMany(data)
@@ -57,7 +63,11 @@ module.exports = {
             { _id: req.params.parentID },
             { $push: { hijos: { $each: ids } } }
           )
-          .then(parent => res.json(parent))
+          .then(parent => {
+            // temporalmente para usuarios del preregistro, captamos que acaben de registrar a sus hijes
+            req.session["primer_login"] = true;
+            res.redirect("/");
+          })
           .catch(err => res.status(422).json(err));
       })
       .catch(err => res.status(422).json(err));

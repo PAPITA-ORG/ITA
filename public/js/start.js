@@ -1,4 +1,7 @@
 let start_data;
+let randomClicks = 0,
+  logintime,
+  activityID;
 $(document).ready(() => {
   // Initialize some variables
   let mainContainer;
@@ -403,11 +406,6 @@ $(document).ready(() => {
       $(e.target).css("opacity", avatar_opacity);
       is_clicked = !is_clicked;
 
-      console.log(
-        hijo_id,
-        hijo_number[hijo_number.length - 1],
-        $(`#hijo_${0}`)
-      );
       $(`input[type=hidden]#hijo_` + hijo_number[hijo_number.length - 1]).attr(
         "value",
         hijo_id
@@ -434,6 +432,20 @@ $(document).ready(() => {
 
   function onChooseActivity(e) {
     e.preventDefault();
+
+    if ($(`img.avatar[style="opacity: 1;"]`).length === 0) {
+      $(".form-err").html(`
+      <div class= "alert alert-warning alert-dismissible fade show" role="alert">
+        Por favor asegurese de elegir a sus chiquill@s! 
+        <button class= "close" type="button" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true"> &times; </span>
+        </button>
+      </div>
+      `);
+      return;
+    }
+
+    loginTime = Date.now();
 
     let topicoCod = $(e.target)
       .parent()
@@ -560,10 +572,17 @@ function displayActivities(data) {
 
     startContainer.prepend(activityDiv);
 
+    // when we click the random button...
+    $("#start-random-btn").on("click", e => {
+      e.preventDefault();
+      randomClicks++;
+    });
+
     // when an activity is clicked...
     $(".activity-card").on("click", function(e) {
       // startContainer.empty();
 
+      activityID = start_data.activities[Number($(this).attr("value"))]._id;
       let to_do = start_data.activities[Number($(this).attr("value"))].Link;
 
       let embed = $("<div>", {
@@ -590,7 +609,11 @@ function displayActivities(data) {
         e.preventDefault();
         axios
           .post(`/endsurvey`, {
-            hijos: start_data.hijos
+            hijos: start_data.hijos,
+            loginTime: loginTime,
+            logoutTime: Date.now(),
+            random: randomClicks,
+            actividad: activityID
           })
           .then(res => {
             if (res.status === 200) {

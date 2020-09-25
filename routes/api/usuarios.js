@@ -36,7 +36,10 @@ router.post("/register", (req, res) => {
   let {
     correo,
     password,
+    nombres,
+    apellidos,
     edad,
+    educacion,
     genero,
     parentesco,
     comunaCod,
@@ -64,7 +67,10 @@ router.post("/register", (req, res) => {
   if (
     !correo ||
     !password ||
+    !nombres ||
+    !apellidos ||
     !edad ||
+    !educacion ||
     !genero ||
     !parentesco ||
     !comunaCod ||
@@ -95,6 +101,10 @@ router.post("/register", (req, res) => {
       } else {
         subscribeForm.correo.value = correo;
         subscribeForm.password.value = password;
+
+        subscribeForm.nombres.value = nombres;
+        subscribeForm.apellidos.value = apellidos;
+
         subscribeForm.edad.value = edad;
 
         parentesco = Number(parentesco);
@@ -106,6 +116,9 @@ router.post("/register", (req, res) => {
 
         subscribeForm.genero.selected =
           subscribeForm.genero.options[genero - 1];
+
+        subscribeForm.educacion.selected =
+          subscribeForm.educacion.options[educacion - 1];
 
         subscribeForm.comuna.selected = subscribeForm.comuna.options.filter(
           comuna => comuna.id === comunaCod
@@ -143,7 +156,10 @@ router.post("/register", (req, res) => {
           const newUsuario = new Usuario({
             correo: correo,
             password: password,
+            nombres: nombres,
+            apellidos: apellidos,
             edad: Number(edad),
+            educacion: educacion,
             genero: Number(genero),
             parentesco: Number(parentesco),
             comunaCod: comunaCod,
@@ -170,7 +186,7 @@ router.post("/register", (req, res) => {
                 .then(usuario => {
                   req.flash(
                     "success_msg",
-                    "Tu registracion esta completa! Continua con tu login."
+                    "Tu registracion esta completa! Continua con tu login y registra a tus hij@s."
                   );
                   // llamada de prueba
                   // axios.get("/api/usuarios").then(res => console.log(res)).catch(error => console.log(error))
@@ -198,9 +214,10 @@ router.post(
     failureRedirect: "/"
   }),
   (req, res) => {
-    if (req.user.tutorial == 1) {
+    if (req.user.hijos.length === 0) {
       res.redirect("/tutorial");
     } else {
+      req.app.locals["usuario"] = req.user;
       res.redirect("/start");
     }
   }
