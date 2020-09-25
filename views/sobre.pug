@@ -2,37 +2,15 @@ extends layout
 
 block content
 
-    div(class="container" id="sobre-intro")
-        div(class='d-flex justify-content-center' style="margin-top: 20px")
+    div(class="container")
+        div(class='d-flex flex-column justify-content-center' style="margin-top: 20px")
             div(class="col-sm-12 justify-content-center center" id='sobre-main-container')
-              img(src="/images/ita3d_1.png" width="150px" height="180px")
-              br 
-            
-              p  
-                strong ITA  
-                | es una compañia virtual que ayuda a madres, padres y otros cuidadores a   
-                | realizar actividades saludables con las niñas y niños en casa.
+              div(id="smallVideo")
+                
+              div(id="bigVideo")  
               
-              p  
-                strong ITA  
-                | reduce el 
-                strong tiempo  
-                | de busqueda, aumenta la 
-                strong motivación  
-                | y facilita el acceso a 
-                strong  información 
-                | personalizada.
-
-              
-              img(src="/images/venn.jpeg" width="280px" height="280px")
-              
-              p Deja que 
-                strong  ITA 
-                |  te ayude, especialmente 
-                strong en estos dias
-                |  en que las cosas están siendo un poco más complejas.  
-
-              button(type='button' class='btn btn-success' id='btn-sig') Siguiente
+            div(class="col-sm-12 justify-content-center center")
+              button(type='button' class='btn btn-success' id='btn-sig' style= "margin-bottom:60px;" disabled) Siguiente
         
             
             script(src="/js/sobre.js")

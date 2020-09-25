@@ -1,8 +1,11 @@
 // import database models and store in a variable
 const db = require("../models");
+const axios = require("axios");
 // import LocalStrategy from passport-local and bcrypt
 const LocalStrategy = require("passport-local");
 const bcrypt = require("bcryptjs");
+
+const controllerRenders = require("./viewsControllers/controllerRenders");
 
 // define methods for the usuarios controller
 module.exports = {
@@ -103,15 +106,19 @@ module.exports = {
     db.usuarios
       .find({ correo: req.body.correo })
       .then(usuario => {
+        let view_data = require("./viewsControllers/controllerRenders").renderNavContent(
+          "index"
+        );
         // if no user is found...
         if (usuario.length === 0) {
           res.render("registro", {
-            correo_err: "Lo sentimos, su cuenta aun no esta registrada"
+            correo_err: "Lo sentimos, su cuenta aun no esta registrada",
+            view_data: view_data
           });
         } else if (req.body.password.length < 6) {
           res.render("registro", {
-            correo_err:
-              "Lo sentimos, su contraseña debe ser al menos 6 caracteres"
+            correo_err: "Lo sentimos, su contraseña debe ser al menos 6 caracteres",
+            view_data: view_data
           });
         } else {
           // hash password from request body
@@ -125,6 +132,15 @@ module.exports = {
                   let view_data = require("./viewsControllers/controllerRenders").renderNavContent(
                     "index"
                   );
+                  axios
+                    .post("/api/mailer/passwordChanged", { 'to': req.body.correo })
+                    .then(r => {
+                      console.log("Changed password email sent")
+                      return r;
+                    })
+                    .catch(error => {
+                      console.log("error, Changed password email not sent: " + error)
+                    });
                   res.render("registro", {
                     correo_success: "Enhorabuena! su contraseña ha cambiado",
                     view_data: view_data
@@ -136,5 +152,38 @@ module.exports = {
         }
       })
       .catch(err => res.status(422).json(err));
+  },
+  chooseRandomActivities: (req, res, next) => {
+    req.session["af1"] = req.body.af_0;
+    req.session["hijos"] = req.body.hijos;
+    let fetchActivities = require("./actividades").findByCategories;
+
+    fetchActivities(handleFetchActivities, req.params.topicoCod, req.body.af_0);
+
+    function handleFetchActivities(err, data) {
+      if (err) return res.json(err);
+
+      return res.json({
+        activities: data,
+        topicoCod: req.params.topicoCod,
+        hijos: req.body.hijos,
+        af_0: req.body.af_0
+      });
+    }
+  },
+  download: (req, res) => {
+    let download = require("download-pdf");
+
+    let pdf = req.body.pdf;
+
+    let options = {
+      directory: "",
+      filename: "test.pdf"
+    };
+
+    download(pdf, options, function (err) {
+      if (err) return err;
+      res.json("downloading!");
+    });
   }
 };

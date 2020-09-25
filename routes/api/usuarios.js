@@ -1,5 +1,7 @@
 // instantiate express router and store in variable `router`
 const router = require("express").Router();
+const axios = require("axios");
+axios.defaults.baseURL = 'http://localhost:3000';
 // import bcryptjs
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
@@ -34,7 +36,10 @@ router.post("/register", (req, res) => {
   let {
     correo,
     password,
+    nombres,
+    apellidos,
     edad,
+    educacion,
     genero,
     parentesco,
     comunaCod,
@@ -62,7 +67,10 @@ router.post("/register", (req, res) => {
   if (
     !correo ||
     !password ||
+    !nombres ||
+    !apellidos ||
     !edad ||
+    !educacion ||
     !genero ||
     !parentesco ||
     !comunaCod ||
@@ -87,10 +95,16 @@ router.post("/register", (req, res) => {
 
     function renderSubscribe(err, subscribeForm) {
       if (err) {
-        res.json("RSRC", "Could not retrieve expected database resources");
+        res
+          .status(422)
+          .json("RSRC", err, "Could not retrieve expected database resources");
       } else {
         subscribeForm.correo.value = correo;
         subscribeForm.password.value = password;
+
+        subscribeForm.nombres.value = nombres;
+        subscribeForm.apellidos.value = apellidos;
+
         subscribeForm.edad.value = edad;
 
         parentesco = Number(parentesco);
@@ -102,6 +116,13 @@ router.post("/register", (req, res) => {
 
         subscribeForm.genero.selected =
           subscribeForm.genero.options[genero - 1];
+
+        subscribeForm.educacion.selected =
+          subscribeForm.educacion.options[educacion - 1];
+
+        subscribeForm.comuna.selected = subscribeForm.comuna.options.filter(
+          comuna => comuna.id === comunaCod
+        )[0].id;
 
         subscribeForm.sliderInputs.map((efficacy, i) => {
           efficacy.value = efficacies[i];
@@ -135,7 +156,10 @@ router.post("/register", (req, res) => {
           const newUsuario = new Usuario({
             correo: correo,
             password: password,
+            nombres: nombres,
+            apellidos: apellidos,
             edad: Number(edad),
+            educacion: educacion,
             genero: Number(genero),
             parentesco: Number(parentesco),
             comunaCod: comunaCod,
@@ -162,8 +186,16 @@ router.post("/register", (req, res) => {
                 .then(usuario => {
                   req.flash(
                     "success_msg",
-                    "Tu registracion esta completa! Continua con tu login."
+                    "Tu registracion esta completa! Continua con tu login y registra a tus hij@s."
                   );
+                  // llamada de prueba
+                  // axios.get("/api/usuarios").then(res => console.log(res)).catch(error => console.log(error))
+
+                  console.log("Register done, sending mail")
+                  console.log(correo)
+                  // make post request with welcome email
+                  PostWelcomeEmail(correo)
+
                   res.redirect("/");
                 })
                 .catch(err => res.status(422).json(err));
@@ -182,9 +214,10 @@ router.post(
     failureRedirect: "/"
   }),
   (req, res) => {
-    if (req.user.tutorial == 1) {
+    if (req.user.hijos.length === 0) {
       res.redirect("/tutorial");
     } else {
+      req.app.locals["usuario"] = req.user;
       res.redirect("/start");
     }
   }
@@ -195,4 +228,26 @@ router.route("/logout").post(usuariosController.logout);
 // change password
 router.route("/changePassword").post(usuariosController.changePassword);
 
+// choose an activity
+router
+  .route("/chooseActivity/:topicoCod")
+  .post(usuariosController.chooseRandomActivities);
+
+// download a pdf
+router.route("/activity/pdf").post(usuariosController.download);
+
 module.exports = router;
+
+function PostWelcomeEmail(correo) {
+  // let options = { headers: { 'Content-Type': 'application/json' } }
+  axios
+    .post("/api/mailer/welcome", { 'to': correo })
+    .then(r => {
+      console.log("Welcome email sent")
+      // r.redirect("/");
+      return r;
+    })
+    .catch(error => {
+      console.log("error, welcome email not sent: " + error)
+    });
+}
