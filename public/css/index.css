@@ -358,7 +358,6 @@ video {
   display: none;
 }
 
-<<<<<<< HEAD
 .navIcon{
   width: 45px;
   height: 45px;
@@ -371,7 +370,6 @@ video {
 .navbar-dark .navbar-toggler-icon{
   background-image: url(../images/icono-toggle.svg);
 }
-=======
 i.fa {
   cursor: pointer;
 }
@@ -383,4 +381,3 @@ i.fa {
     margin-left: 100px;
   }
 }
->>>>>>> 128b7cde9a0606232d92e90608942f25533c5370

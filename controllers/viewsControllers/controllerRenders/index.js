@@ -146,13 +146,9 @@ module.exports = {
           {
             icon_class: "navIcon",
             icon_id: "user",
-<<<<<<< HEAD
-            href: "/perfil",
             src: "/images/icono-perfil.svg",
-            alt:"Boton para ver perfil de usuario"
-=======
+            alt:"Boton para ver perfil de usuario",
             href: "/account"
->>>>>>> 128b7cde9a0606232d92e90608942f25533c5370
           },
           {
             icon_class: "navIcon",
