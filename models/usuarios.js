@@ -8,7 +8,7 @@ const Usuarios = Schema({
   correo: { type: Schema.Types.String, required: true },
   password: { type: Schema.Types.String, required: true },
   edad: { type: Schema.Types.Number, required: true },
-  educacion: { type: Schema.Types.String, required: true },
+  educacion: { type: Schema.Types.String, required: false },
   genero: { type: Schema.Types.Number, required: true },
   parentesco: { type: Schema.Types.Number, required: true },
   comunaCod: { type: Schema.Types.ObjectId, ref: "Comunas" },

@@ -8,6 +8,7 @@ const historialRoutes = require("./historial");
 const hijosRoutes = require("./hijos");
 const actividadesRoutes = require("./actividades");
 const comunasRoutes = require("./comunas");
+const mailerRoutes = require("./mailer");
 
 // assign respective routes under '/api'
 router.use("/usuarios", usuariosRoutes);
@@ -16,5 +17,6 @@ router.use("/historial", historialRoutes);
 router.use("/hijos", hijosRoutes);
 router.use("/actividades", actividadesRoutes);
 router.use("/comunas", comunasRoutes);
+router.use("/mailer", mailerRoutes);
 
 module.exports = router;
