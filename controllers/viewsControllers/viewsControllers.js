@@ -116,6 +116,7 @@ module.exports = {
   },
   accountView: (req, res) => {
     let account_data = controller_renders.renderNavContent("auth");
+
     res.render("userAccount", {
       id: req.session.passport.user,
       view_data: account_data,

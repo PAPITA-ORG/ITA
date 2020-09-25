@@ -142,7 +142,7 @@ module.exports = {
           {
             icon_class: "fa fa-user icon-3x",
             icon_id: "user",
-            href: "/perfil"
+            href: "/account"
           },
           {
             icon_class: "fa fa-chart-line icon-3x",
@@ -169,6 +169,7 @@ module.exports = {
     Usuario.findOne(query)
       .populate("hijos")
       .exec(function(err, usuario) {
+        console.log(usuario);
         if (err) {
           let usr_err = new Error(
             "USR_ERR",
