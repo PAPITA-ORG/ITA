@@ -12,7 +12,7 @@ $(document).ready(() => {
   // Click Handlers
 
   // Logout Icon Handler
-  $("i#btn-logout").on("click", logoutHandler);
+  $("img#btn-logout").on("click", logoutHandler);
 
   $("img.avatar").on("click", avatarClickHandler);
 

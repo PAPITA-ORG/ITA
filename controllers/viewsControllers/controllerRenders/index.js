@@ -89,14 +89,18 @@ module.exports = {
       content = {
         home: [
           {
-            icon_class: "fa fa-home icon-3x",
+            icon_class: "navIcon",
             icon_id: "home",
-            href: "/"
+            href: "/",
+            src:"/images/icono-index.svg",
+            alt:"Boton para ir a pagina principal"
           },
           {
-            icon_class: "fa fa-user-plus icon-3x",
+            icon_class: "navIcon",
             icon_id: "user-plus",
-            href: "/sobre"
+            href: "/sobre",
+            src:"/images/icono-subscribe.svg",
+            alt:"Boton para suscribirse"
           }
         ]
       };
@@ -105,23 +109,31 @@ module.exports = {
       content = {
         auth: [
           {
-            icon_class: "fa fa-user icon-3x",
+            icon_class: "navIcon",
             icon_id: "user",
-            href: "/perfil"
+            href: "/perfil",
+            src: "/images/icono-perfil.svg",
+            alt:"Boton para ver perfil de usuario"
           },
           {
-            icon_class: "fa fa-chart-line icon-3x",
+            icon_class: "navIcon",
             icon_id: "chart-line",
-            href: "/stats"
+            href: "/stats",
+            src:"/images/icono-stats.svg",
+            alt:"Boton para ver estadisticas"
           },
           {
-            icon_class: "fa fa-door-open icon-3x",
-            icon_id: "btn-logout"
+            icon_class: "navIcon",
+            icon_id: "btn-logout",
+            src:"/images/icono-logout.svg",
+            alt:"Boton para salir de sesion"
           },
           {
-            icon_class: "fa fa-hiking icon-3x",
-            icon_id: "hiking",
-            href: "/start"
+            icon_class: "navIcon",
+            icon_id: "btn-start",
+            href: "/start",
+            src: "/images/icono-start.svg",
+            alt:"Boton para volver a actividades"
           }
         ]
       };

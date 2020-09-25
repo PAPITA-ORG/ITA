@@ -8,15 +8,16 @@ nav.fixed-bottom.navbar.navbar-dark.bg-dark
         div
             each icon in view_data.home
                 a(href=icon.href)
-                    i(id= icon.icon_id class=`${icon.icon_class} mr-3` style={color: 'red', "font-size": "2.5rem"})
+                    img(src=icon.src alt=icon.alt id= icon.icon_id class=icon.icon_class)
+                    
     else
         if view_data
             each icon in view_data.auth
                 if icon.href
                     a(href=icon.href)
-                        i(id= icon.icon_id class=icon.icon_class style={color: 'red', "font-size": "2.5rem"})
+                        img(src=icon.src alt=icon.alt id= icon.icon_id class=icon.icon_class)                       
                 else 
-                    i(id=icon.icon_id class=icon.icon_class style={color: 'red', "font-size": "2.5rem"})
+                    img(src=icon.src alt=icon.alt id= icon.icon_id class=icon.icon_class)
     div.collapse#nav-toggle-content
         div.bg-dark.p-4.text-white
             span Copyright &copy; 2020 PapitaCORP. 
