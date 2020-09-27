@@ -16,18 +16,35 @@ block content
                             h2 Ingresa tus datos
                             input.form-control#sobre-form-email.mt-3(type='email' placeholder='correo' name=data.correo.name value=data.correo.value)
                             input.form-control#sobre-form-password.mt-3(type='password' placeholder='contraseña' name=data.password.name value=data.password.value)
-                            button#subscribe-eula-btn.btn.btn-primary.mt-3.ml-1(type='button' onSubmit="document.getElementById('subscribe-eula-btn').disabled=true;" data-toggle='modal' data-target='#subscribe-eula-modal') Ver términos y condiciones.
+                            button#subscribe-eula-btn.btn.btn-primary.mt-3.ml-1(type='button' onSubmit="document.getElementById('subscribe-eula-btn').disabled=true;" data-toggle='modal' data-target='#subscribe-eula-modal') Ver términos y condiciones
                             div.modal.fade(tabindex='-1' id='subscribe-eula-modal' role='dialog' aria-labelledby="subscribe-eula-modal" aria-hidden="true")
-                                div.modal-dialog.modal-dialog-centered(role='document')
+                                div.modal-dialog.modal-dialog-centered(class="modal-xl" role='document')
                                     div.modal-content
                                         div.modal-header                                
-                                            h5.modal-title Términos y condiciones de uso de sitio web
+                                            h5.modal-title Términos y condiciones de uso del sitio web de ITA
                                         div.modal-body
                                             div(data-spy='scroll' data-offset='0')
+                                                p *Bienvenida*
+                                                p Bienvenido a la experiencia ITA. Por favor leer las reglas y restricciones de nuestro sitio, servicios y aplicaciones ("ITA"). Si tienes cualquier duda, escribir a ita@papita.org  
+                                                p Los terminos de uso ("Terminos")son un contrato entre la Corporacion Papita ("PapitaCORP") y usted(es). La aceptacion de los Terminos es requerido para el uso de ITA, y son validos durante el uso del servicio.  
+                                                p IMPORTANTE: al aceptar los Terminos, se asume que cualquier disputa sera resuelta por mediacion y se renuncia al derecho de resolucion por via judicial.
+                                                p *Los servicios*   
+                                                p ITA se creo como una herramienta para acompañar a los usuarios en actividades saludables con sus peques. ITA no entrega servicios medicos, de salud mental, u otros servicios profesionales.
+                                                p ITA NO ES UN SERVICIO DE EMERGENCIA. SI CREE TENER UNA EMERGENCIA, CONTACTAR AL 131 O AL SERVICIO DE SALUD MAS CERCANO.  
+                                                P *Privacidad*
+                                                p ITA tiene un compromiso inquebrantable con su privacidad. Usamos un sistema de capas que permite que su informacion se mantenga protegida, y en cumplimiento de la normativa vigente. Si tiene cualquier duda, contactenos a ita@papita.org
+                                                p Adicionalmente, la aceptacion de los terminos funciona como consentimiento informado que la informacion de uso de ITA se utilizara, de forma anonima, tanto para mejorar la experiencia de usuario como para investigacion academica.
+                                                p La informacion solicitada en el registro y uso de ITA solo se guardara y usara para identificar el usuario, y con fines academicos. Su data no sera revelada o compartida con terceros. 
+                                                p Como usuario, tiene derecho a acceso, rectificacion, borrado, restriccion y portabilidad de sus datos. Si tiene cualquier duda sobre el uso de sus datos, puede contactarnos directamente.
+                                                p *Como funciona ITA*
+                                                p Requerimos su registro para crear un usuario y poder adaptar la aplicacion a usted y su entorno familiar. Esta cuenta es intransferible y permite adaptar ITA a sus propias necesidades. Asimismo lo convierte en contraparte legal en cuanto a los Terminos descritos en este documento.
+                                                P 
                                                 p 
-                                                | 
+                                                p Si necesitamos hacer cambios a este documento, le informaremos adecuadamente. La responsabilidad de ITA corresponde a PapitaCORP, situada en Antonio Varas 1414 of 136. Providencia, Chile.
+
+
                                         div.modal-footer
-                                                button#modal-footer-btn.btn.btn-primary(type='button' data-dismiss='modal' ) Siguiente
+                                                button#modal-footer-btn.btn.btn-primary(type='button' data-dismiss='modal' ) Acepto
                         div
                             input.checkbox#sobre-checkbox(type="checkbox" required)
                             label.mt-3.ml-1(for='sobre-checkbox') Acepto los términos y condiciones.
