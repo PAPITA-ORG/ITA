@@ -114,6 +114,7 @@ module.exports = {
   notfoundView: (req, res) => {
     res.render("notfound");
   },
+
   accountView: (req, res) => {
     let account_data = controller_renders.renderNavContent("auth");
 
