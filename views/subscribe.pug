@@ -16,8 +16,21 @@ block content
                             h2 Ingresa tus datos
                             input.form-control#sobre-form-email.mt-3(type='email' placeholder='correo' name=data.correo.name value=data.correo.value)
                             input.form-control#sobre-form-password.mt-3(type='password' placeholder='contraseña' name=data.password.name value=data.password.value)
+                            button#subscribe-eula-btn.btn.btn-primary.mt-3.ml-1(type='button' onSubmit="document.getElementById('subscribe-eula-btn').disabled=true;" data-toggle='modal' data-target='#subscribe-eula-modal') Ver términos y condiciones.
+                            div.modal.fade(tabindex='-1' id='subscribe-eula-modal' role='dialog' aria-labelledby="subscribe-eula-modal" aria-hidden="true")
+                                div.modal-dialog.modal-dialog-centered(role='document')
+                                    div.modal-content
+                                        div.modal-header                                
+                                            h5.modal-title Términos y condiciones de uso de sitio web
+                                        div.modal-body
+                                            div(data-spy='scroll' data-offset='0')
+                                                p 
+                                                | 
+                                        div.modal-footer
+                                                button#modal-footer-btn.btn.btn-primary(type='button' data-dismiss='modal' ) Siguiente
+                        div
                             input.checkbox#sobre-checkbox(type="checkbox" required)
-                            label.mt-3.ml-1(for='sobre-checkbox') Acepto los terminos y condiciones.
+                            label.mt-3.ml-1(for='sobre-checkbox') Acepto los términos y condiciones.
                         button.btn.btn-success#sobre-form-btn(aria-disabled="true") Siguiente
                         div.form-group#expanded-form.display-none
                             h2.mt-4(for='form-group-row') Cuentanos mas de ti

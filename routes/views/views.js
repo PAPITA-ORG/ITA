@@ -35,7 +35,7 @@ router.route("/notfound").get(viewsController.notfoundView);
 router.route("/registro").get(viewsController.registro);
 
 // get stats view
-router.route("/stats").get(ensureAuthenticated, viewsController.statsView);
+//router.route("/stats").get(ensureAuthenticated, viewsController.statsView);
 
 // selector view
 router
