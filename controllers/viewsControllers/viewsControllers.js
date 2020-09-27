@@ -152,5 +152,12 @@ module.exports = {
       actividad: req.session.actividad,
       hijos: req.session.hijos
     });
-  }
+  },
+  statsView: (req, res) => {
+    let stats_data = renderContent("auth");
+    res.render("stats", {
+      id: req.session.passport.user,
+      view_data: stats_data
+    });
+  },
 };
