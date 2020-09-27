@@ -152,5 +152,42 @@ module.exports = {
       actividad: req.session.actividad,
       hijos: req.session.hijos
     });
+  },
+  statsView: (req, res) => {
+    let stats_data = renderContent("auth");
+    res.render("stats", {
+      id: req.session.passport.user,
+      view_data: account_data,
+      usuario: usuario
+    });
+  },
+  prepareEndSurvey: (req, res) => {
+    controller_renders.endsurveyContent(
+      req.body.hijos,
+      req.session.passport.user,
+      function(err, data) {
+        if (err) return err;
+        req.session["loginTime"] = req.body.loginTime;
+        req.session["logoutTime"] = req.body.logoutTime;
+        req.session["random"] = req.body.random;
+        req.session["actividad"] = req.body.actividad;
+        req.session["data"] = data;
+        res.redirect("endsurvey");
+      }
+    );
+  },
+  showEndSurvey: (req, res) => {
+    let endsurvey_data = controller_renders.renderNavContent("auth");
+    return res.render("endsurvey", {
+      id: req.session.passport.user,
+      endsurvey_data: endsurvey_data,
+      survey_people: req.session.data,
+      af1: req.session.af1,
+      logoutTime: req.session.logoutTime,
+      loginTime: req.session.loginTime,
+      random: req.session.random,
+      actividad: req.session.actividad,
+      hijos: req.session.hijos
+    });
   }
 };
