@@ -1,6 +1,389 @@
+let start_data;
+let randomClicks = 0,
+  logintime,
+  activityID;
 $(document).ready(() => {
+  // Initialize some variables
+  let mainContainer;
+
+  let af_0 = $("#activity-efficacy").val();
+  let hijos = [];
+
+  let avatar_opacity = $("img.avatar").css("opacity");
+  let is_clicked = false;
+
+  // Click Handlers
+  var intro = new Anno([
+    //pasos del tour
+    {
+      target: "#activity-efficacy",
+      content: "En este tutorial te explicaremos brevemente las funciones de los botones que ves",
+      position: "center-bottom",
+      arrowPosition: "center-bottom",
+      className: "anno-width-250",
+      buttons: [
+        {
+          text: "Sgte",
+          click: function(anno, evt) {
+            anno.switchToChainNext();
+          }
+        },
+        {
+          text: "Fin",
+          click: function(anno, evt) {
+            anno.hide();
+            axios
+              .put(`/api/usuarios/${userId}`, { tutorial: 0 })
+              .then(res => {
+              })
+              .catch(err => {});
+          }
+        }
+      ]
+    },
+    {
+      target: "#activity-efficacy",
+      content: "Selector de nivel de energia para hacer actividades",
+      position: "center-bottom",
+      arrowPosition: "center-top",
+      className: "anno-width-250",
+      buttons: [
+        {
+          text: "Atras",
+          click: function(anno, evt) {
+            anno.switchToChainPrev();
+          }
+        },
+        {
+          text: "Sgte",
+          click: function(anno, evt) {
+            anno.switchToChainNext();
+          }
+        },
+        {
+          text: "Fin",
+          click: function(anno, evt) {
+            anno.hide();
+            axios
+              .put(`/api/usuarios/${userId}`, { tutorial: 0 })
+              .then(res => {
+
+              })
+              .catch(err => {
+
+              });
+          }
+        }
+      ]
+    },
+    {
+      target: "#avatar-text",
+      content: "Selector de hijas/hijos que participaran de la actividad",
+      position: "center-bottom",
+      arrowPosition: "center-top",
+      className: "anno-width-250",
+      buttons: [
+        {
+          text: "Atras",
+          click: function(anno, evt) {
+            anno.switchToChainPrev();
+          }
+        },
+        {
+          text: "Sgte",
+          click: function(anno, evt) {
+            anno.switchToChainNext();
+          }
+        },
+        {
+          text: "Fin",
+          click: function(anno, evt) {
+            anno.hide();
+            axios
+              .put(`/api/usuarios/${userId}`, { tutorial: 0 })
+              .then(res => {
+
+              })
+              .catch(err => {
+
+              });
+          }
+        }
+      ]
+    },
+    {
+      target: "#activity-3",
+      content: "Muestra misiones relacionados a actividades fisicas",
+      position: "top",
+      arrowPosition: "center-bottom",
+      className: "anno-width-250",
+      buttons: [
+        {
+          text: "Atras",
+          click: function(anno, evt) {
+            anno.switchToChainPrev();
+          }
+        },
+        {
+          text: "Sgte",
+          click: function(anno, evt) {
+            anno.switchToChainNext();
+          }
+        },
+        {
+          text: "Fin",
+          click: function(anno, evt) {
+            anno.hide();
+            axios
+              .put(`/api/usuarios/${userId}`, { tutorial: 0 })
+              .then(res => {
+
+              })
+              .catch(err => {
+
+              });
+          }
+        }
+      ]
+    },
+    {
+      target: "#activity-2",
+      content: "Muestra misiones relacionados a actividades alimentarias",
+      position: "top",
+      arrowPosition: "center-bottom",
+      className: "anno-width-250",
+      buttons: [
+        {
+          text: "Atras",
+          click: function(anno, evt) {
+            anno.switchToChainPrev();
+          }
+        },
+        {
+          text: "Sgte",
+          click: function(anno, evt) {
+            anno.switchToChainNext();
+          }
+        },
+        {
+          text: "Fin",
+          click: function(anno, evt) {
+            anno.hide();
+            axios
+              .put(`/api/usuarios/${userId}`, { tutorial: 0 })
+              .then(res => {
+
+              })
+              .catch(err => {
+
+              });
+          }
+        }
+      ]
+    },
+    {
+      target: "#activity-1",
+      content: "Muestra misiones relacionados a actividades para la mente",
+      position: "top",
+      arrowPosition: "center-bottom",
+      className: "anno-width-250",
+      buttons: [
+        {
+          text: "Atras",
+          click: function(anno, evt) {
+            anno.switchToChainPrev();
+          }
+        },
+        {
+          text: "Sgte",
+          click: function(anno, evt) {
+            anno.switchToChainNext();
+          }
+        },
+        {
+          text: "Fin",
+          click: function(anno, evt) {
+            anno.hide();
+            axios
+              .put(`/api/usuarios/${userId}`, { tutorial: 0 })
+              .then(res => {
+
+              })
+              .catch(err => {
+
+              });
+          }
+        }
+      ]
+    },
+    {
+      target: ".navbar",
+      content: "Muestra la pestaña de perfil de usuario",
+      position: "top",
+      className: "anno-width-250",
+      onShow: function(anno, $target, $annoElem) {
+        let iconTour = $("<i>", {
+          class: "fa fa-user icon-3x",
+          style: "color:red;font-size: 1.5rem;"
+        });
+        $(".anno-content").append(iconTour);
+      },
+      buttons: [
+        {
+          text: "Atras",
+          click: function(anno, evt) {
+            anno.switchToChainPrev();
+          }
+        },
+        {
+          text: "Sgte",
+          click: function(anno, evt) {
+            anno.switchToChainNext();
+          }
+        },
+        {
+          text: "Fin",
+          click: function(anno, evt) {
+            anno.hide();
+            axios
+              .put(`/api/usuarios/${userId}`, { tutorial: 0 })
+              .then(res => {
+
+              })
+              .catch(err => {
+
+              });
+          }
+        }
+      ]
+    },
+    {
+      target: ".navbar",
+      content: "Muestra las estadisticas obtenidas al realizar actividades",
+      position: "top",
+      className: "anno-width-250",
+      onShow: function (anno, $target, $annoElem) {
+        let iconTour = $("<i>", {
+          class: "fa fa-chart-line icon-3x",
+          style: "color:red;font-size: 1.5rem;"
+        });
+        $( ".anno-content" ).append(iconTour);
+      },
+      buttons: [
+        {
+          text: "Atras",
+          click: function(anno, evt) {
+            anno.switchToChainPrev();
+          }
+        },
+        {
+          text: "Sgte",
+          click: function(anno, evt) {
+            anno.switchToChainNext();
+          }
+        },
+        {
+          text: "Fin",
+          click: function(anno, evt) {
+            anno.hide();
+            axios
+              .put(`/api/usuarios/${userId}`, { tutorial: 0 })
+              .then(res => {
+
+              })
+              .catch(err => {
+
+              });
+          }
+        }
+      ]
+    },
+    {
+      target: ".navbar",
+      content: "Salir de la sesión actual ",
+      position: "top",
+      className: "anno-width-300",
+      onShow: function (anno, $target, $annoElem) {
+        let iconTour = $("<i>", {
+          class: "fa fa-door-open icon-3x",
+          style: "color:red;font-size: 1.3rem;"
+        });
+        $( ".anno-content" ).append(iconTour);
+      },
+      buttons: [
+        {
+          text: "Atras",
+          click: function(anno, evt) {
+            anno.switchToChainPrev();
+          }
+        },
+        {
+          text: "Sgte",
+          click: function(anno, evt) {
+            anno.switchToChainNext();
+          }
+        },
+        {
+          text: "Fin",
+          click: function(anno, evt) {
+            anno.hide();
+            axios
+              .put(`/api/usuarios/${userId}`, { tutorial: 0 })
+              .then(res => {
+
+              })
+              .catch(err => {
+
+              });
+          }
+        }
+      ]
+    },
+    {
+      target: ".navbar",
+      content: "LLeva al selector de actividades inicial",
+      position: "top",
+      className: "anno-width-250",
+      onShow: function (anno, $target, $annoElem) {
+        let iconTour = $("<i>", {
+          class: "fa fa-hiking icon-3x",
+          style: "color:red;font-size: 1.5rem;"
+        });
+        $( ".anno-content" ).append(iconTour);
+      },
+      buttons: [
+        {
+          text: "Atras",
+          click: function(anno, evt) {
+            anno.switchToChainPrev();
+          }
+        },
+        {
+          text: "Fin",
+          click: function(anno, evt) {
+            anno.hide();
+            axios
+              .put(`/api/usuarios/${userId}`, { tutorial: 0 })
+              .then(res => {
+
+              })
+              .catch(err => {
+
+              });
+          }
+        }
+      ]
+    }
+  ]);
+
   // Logout Icon Handler
   $("i#btn-logout").on("click", logoutHandler);
+
+  $("img.avatar").on("click", avatarClickHandler);
+
+  $("#activity-efficacy").on("change", onSliderChange);
+
+  $(".form-activity-btn").on("click", onChooseActivity);
 
   function logoutHandler() {
     axios
@@ -13,11 +396,40 @@ $(document).ready(() => {
       .catch(err => err);
   }
 
+  function avatarClickHandler(e) {
+    let hijo_id = $(e.target).attr("value");
+    let target_id = $(e.target).attr("id");
+    let hijo_number = target_id.split("_");
+
+    if (avatar_opacity === "0.5") {
+      avatar_opacity = "1";
+      $(e.target).css("opacity", avatar_opacity);
+      is_clicked = !is_clicked;
+
+      $(`input[type=hidden]#hijo_` + hijo_number[hijo_number.length - 1]).attr(
+        "value",
+        hijo_id
+      );
+    } else {
+      avatar_opacity = "0.5";
+      $(e.target).css("opacity", avatar_opacity);
+      is_clicked = !is_clicked;
+      $(`input[type=hidden]#hijo_` + hijo_number[hijo_number.length - 1]).attr(
+        "value",
+        ""
+      );
+    }
+  }
+
+
+  function onSliderChange(e) {
+    $("#eficacia-label").html(e.target.value);
+    af_0 = $("#activity-efficacy").val();
+  }
+
   axios
     .get(`/api/usuarios/${userId}`)
     .then(res => {
-      // click handler for logout
-
       const usuario = res.data[0];
       let topicoCod;
 
@@ -53,7 +465,9 @@ $(document).ready(() => {
         });
       });
 
-      const startDashboard = () => {
+      startDashboard();
+
+      function startDashboard(){
         startBottomContainer.empty();
 
         let fuelGaugeDiv = $("#fuel-row");
@@ -150,9 +564,68 @@ $(document).ready(() => {
           $myFuelGauge.changeValue(e.currentTarget.valueAsNumber);
           historial["af1"] = e.currentTarget.valueAsNumber;
         });
+        var tour = new Tour({
+          //pasos del tour
+          steps: [
+          {
+            element: "#slider-af1",
+            title: "Barra de energía",
+            content: "Selector de nivel de energia para hacer actividades"
+          },
+          {
+            element: "#avatar-text",
+            title: "Iconos selección hijos",
+            content: "Selector de hijas/hijos que participaran de la actividad"
+          },
+          {
+            element: "#btn-stats",
+            title: "Estadísticas",
+            content: "Muestra las estadísticas obtenidas al realizar actividades"
+          },
+          {
+            element: "#btn-body",
+            title: "Actividades físicas",
+            content: "Muestra misiones relacionados a actividades fisicas"
+          },
+          {
+            element: "#btn-diet",
+            title: "Actividades alimenticias",
+            content: "Muestra misiones relacionados a actividades alimentarias"
+          },
+          {
+            element: "#btn-mind",
+            title: "Actividades mentales",
+            content: "Muestra misiones relacionados a actividades para la mente"
+          },
+          {
+            element: "#user",
+            title: "Perfil",
+            content: "Muestra la pestaña de perfil de usuario"
+          },
+          {
+            element: "#chart-line",
+            title: "Estadísticas",
+            content: "Muestra las estadísticas obtenidas al realizar actividades"
+          },
+          {
+            element: "#btn-logout",
+            title: "Cerrar sesión",
+            content: "Salir de la sesión actual"
+          },
+          {
+            element: "#hiking",
+            title: "Ir a inicio",
+            content: "LLeva al selector de actividades inicial"
+          },
+        ]});
+        
+        // Initialize the tour
+        tour.init();
+        if(usuario.tutorial===1){
+          // Start the tour
+          tour.start();
+        }
       };
-
-      startDashboard();
 
       // loading screen
 
@@ -287,7 +760,20 @@ $(document).ready(() => {
                   e.currentTarget.id === "activity-0"
                     ? (historial["actividad"] = randomActivities[0]._id)
                     : (historial["actividad"] = randomActivities[1]._id);
-                  startEndSurvey();
+
+                  // TO DO
+                  // SEND USER TO /encuesta-actividad
+
+                  let active_hijos =
+                    avatar_opacity === "1" ? avatar.attr("value") : "";
+
+                  goToEndSurvey(active_hijos);
+                  function goToEndSurvey(active_hijos) {
+                    axios
+                      .post("/endsurvey", { active_hijos: active_hijos })
+                      .then(res => res)
+                      .catch(err => err);
+                  }
                 });
               });
             };
@@ -299,6 +785,7 @@ $(document).ready(() => {
               historial["random"] = historial["random"] + 1;
               displayActivities();
             });
+            
           })
           .catch(err => err);
       };
@@ -318,329 +805,235 @@ $(document).ready(() => {
           class: "form-group justify-center"
         });
 
-        let formLabel = $("<label>", {
-          for: "form-group"
-        }).text("Cuentame tu experiencia");
 
-        // user rating
-
-        let starsRating = [1, 2, 3, 4, 5];
-
-        let rateUserDiv = $("<div>", {
-          id: "rate-user-div"
-        });
-
-        let rateUserLabel = $("<label>", {
-          for: "rate-user-div"
-        }).text("Te gusto la actividad?");
-
-        let rateUser = $("<div>", {
-          id: "rate-user",
-          class:
-            "starrating risingstar d-flex justify-content-center flex-row-reverse"
-        });
-
-        rateUserDiv.append(rateUserLabel);
-
-        starsRating.map((stars, i) => {
-          let starUserInput = $(`<input>`, {
-            type: "radio",
-            value: starsRating.length - i,
-            id: `staruser${i + 1}`,
-            name: "ratingUser",
-            class: "rating userRating"
-          });
-
-          let starUserInputLabel = $(`<label>`, {
-            for: `staruser${i + 1}`
-          });
-
-          rateUser.append(starUserInput);
-          rateUser.append(starUserInputLabel);
-        });
-
-        rateUserDiv.append(rateUser);
-
-        // child rating
-
-        let rateChildDiv = $("<div>", {
-          id: "rate-child-div"
-        });
-
-        let rateChildLabel = $("<label>", {
-          for: "rate-child-div"
-        }).text("Le gusto la actividad a tu niño(s) y/o niña(s)?");
-
-        // ALBERTO ME VA A AYUDAR A HACER ESTO EN UNA FUNCION
-
-        let rateChild = $("<div>", {
-          id: "rate-child",
-          class:
-            "starrating risingstar d-flex justify-content-center flex-row-reverse"
-        });
-
-        rateChildDiv.append(rateChildLabel);
-
-        starsRating.map((stars2, i) => {
-          let starChildInput = $(`<input>`, {
-            type: "radio",
-            value: starsRating.length - i,
-            id: `starchild${i + 1}`,
-            name: "ratingChild",
-            class: "rating childRating"
-          });
-
-          let starChildInputLabel = $(`<label>`, {
-            for: `starchild${i + 1}`
-          });
-
-          rateChild.append(starChildInput);
-          rateChild.append(starChildInputLabel);
-        });
-
-        rateChildDiv.append(rateChild);
-
-        //  self-efficacy bar
-
-        let efficacyEnd = $("<div>", {
-          class: "form-group row",
-          id: "form-efficacies"
-        });
-
-        let efficacyEndLabel = $(`<label>`, {
-          class: "col-sm-6 col-form-label"
-        }).text("Cual es tu energia ahora?");
-
-        let formInputDiv = $(`<div>`, { class: "col-sm-6" });
-
-        let formInput = $("<input>", {
-          type: "range",
-          val: "0",
-          min: "0",
-          max: "100",
-          class: "form-control",
-          id: "slider-af2"
-        }).css("margin-bottom", "10px");
-
-        formInputDiv.append(formInput);
-        efficacyEnd.append(efficacyEndLabel);
-        efficacyEnd.append(formInputDiv);
-
-        // create submit button
-
-        let submitButton = $("<button>", {
-          type: "submit",
-          class: "btn btn-success",
-          id: "start-form-btn"
-        }).text("Volver");
-
-        formGroup.append(formLabel);
-
-        startForm.append(formGroup);
-        startForm.append(rateUserDiv);
-        startForm.append(rateChildDiv);
-        startForm.append(efficacyEnd);
-        startForm.append(submitButton);
-        startTopContainer.append(startForm);
-        startContainer.append(startTopContainer);
-        $(".rating").on("click", e => {
-          e.currentTarget.className === "rating userRating"
-            ? (historial["disfruta"] = Number(e.currentTarget.value))
-            : (historial["disfrutaNino"] = Number(e.currentTarget.value));
-        });
-
-        $("#slider-af2").on("change", e => {
-          historial["af2"] = e.currentTarget.valueAsNumber;
-        });
-
-        $("#start-form-btn").on("click", e => {
-          e.preventDefault();
-          historial["logoutTime"] = Date.now();
-
-          axios
-            .post("/api/historial", historial)
-            .then(res => {
-              let fieldsToModify = { af_0: historial.af2, tutorial: 0 };
-              axios
-                .put(`/api/usuarios/${usuario._id}`, fieldsToModify)
-                .then(res => {
-                  window.location.href = "start";
-                });
-            })
-            .catch(err => err);
-        });
-      }
-
-      const mind = (usuario, topicoCod) => {
-        startContainer.empty();
-
-        startTopContainer.empty();
-        startBottomContainer.empty();
-
-        let mindRow = $("<div>", {
-          style: "margin-top: 20px",
-          class: "col-sm-12 form-group justify-center center",
-          id: "mind-row"
-        });
-
-        let mindLabel = $("<label>", {
-          for: "start-potatostat"
-        }).text("Hagamos una actividad saludable juntos!");
-
-        mindRow.append(mindLabel);
-
-        mindRow.append(mindLabel);
-        startTopContainer.append(mindRow);
-        selector(usuario, topicoCod);
-        startContainer.append(startTopContainer);
-        startContainer.append(startBottomContainer);
-      };
-
-      const diet = (usuario, topicoCod) => {
-        startContainer.empty();
-
-        startTopContainer.empty();
-        startBottomContainer.empty();
-
-        let dietRow = $("<div>", {
-          style: "margin-top: 20px",
-          class: "col-sm-12 form-group justify-center center",
-          id: "diet-row"
-        });
-
-        let dietLabel = $("<label>", {
-          for: "diet-row"
-        }).text("Cocinemos juntos!");
-
-        dietRow.append(dietLabel);
-
-        dietRow.append(dietLabel);
-        startTopContainer.append(dietRow);
-        selector(usuario, topicoCod);
-        startContainer.append(startTopContainer);
-        startContainer.append(startBottomContainer);
-      };
-
-      const stats = () => {
-        startContainer.empty();
-
-        let statsRow = $("<div>", {
-          style: "margin-top: 20px",
-          class: "col-sm-12 form-group justify-center center",
-          id: "stats-row"
-        });
-
-        let statsRowLabel = $("<div>", {
-          style: "margin-top: 20px",
-          class: "col-sm-12 form-group justify-center center",
-          id: "stats-row"
-        });
-
-        let potatoStatLabel = $("<label>", {
-          for: "start-potatostat"
-        }).text("Aun no has hecho suficientes actividades para tener stats :D");
-
-        let potatoStat = $("<img>", {
-          src: "/images/logo_papita-01.png",
-          class: "center"
-        }).height(200);
-
-        let potatoButton = $("<button>", {
-          class: "btn btn-success",
-          id: "potato-button"
-        }).text("Llevame de vuelta!");
-
-        statsRow.append(potatoStat);
-        statsRow.append(document.createElement("br"));
-        statsRow.append(potatoButton);
-        statsRowLabel.append(potatoStatLabel);
-
-        startContainer.append(statsRowLabel);
-        startContainer.append(statsRow);
-
-        $("#potato-button").on("click", () => {
-          window.location.href = "start";
-        });
-      };
-
-      const body = (usuario, topicoCod) => {
-        startContainer.empty();
-
-        startTopContainer.empty();
-        startBottomContainer.empty();
-
-        let bodyRow = $("<div>", {
-          style: "margin-top: 10px",
-          class: "col-sm-12 form-group justify-center center",
-          id: "body-row"
-        });
-
-        let bodyLabel = $("<label>", {
-          for: "body-row"
-        }).text("Hagamos actividad física juntos!");
-
-        bodyRow.append(bodyLabel);
-
-        bodyRow.append(bodyLabel);
-        startTopContainer.append(bodyRow);
-        selector(usuario, topicoCod);
-        startContainer.append(startTopContainer);
-        startContainer.append(startBottomContainer);
-      };
-
-      $("#btn-stats").on("click", e => {
-        e.preventDefault();
-        stats();
-      });
-
-      $("#btn-body").on("click", e => {
-        e.preventDefault();
-
-        topicoCod = e.currentTarget.dataset.value;
-
+  if (tutorial_on && tutorial_on === 1) {
+    intro.show();
+  }
+
+  function onChooseActivity(e) {
+    e.preventDefault();
+
+    if ($(`img.avatar[style="opacity: 1;"]`).length === 0) {
+      $(".form-err").html(`
+      <div class= "alert alert-warning alert-dismissible fade show" role="alert">
+        Por favor asegurese de elegir a sus chiquill@s! 
+        <button class= "close" type="button" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true"> &times; </span>
+        </button>
+      </div>
+      `);
+      return;
+    }
+
+    loginTime = Date.now();
+
+    let topicoCod = $(e.target)
+      .parent()
+      .val();
+
+    $(`img.avatar[style="opacity: 1;"]`).each(function() {
+      hijos.push($(this).attr("value"));
+    });
+
+    axios
+      .post(`/api/usuarios/chooseActivity/${topicoCod}`, {
+        af_0: af_0,
+        hijos: hijos
+      })
+      .then(res => {
+        // console.log(res.data);
+        start_data = res.data;
+        mainContainer = $("#start-main-container");
+
+        // loading screen
         loading();
-        setTimeout(function() {
-          body(usuario, topicoCod);
-        }, 3000);
-      });
 
-      $("#btn-diet").on("click", e => {
-        e.preventDefault();
-        topicoCod = e.currentTarget.dataset.value;
-        loading();
-        setTimeout(function() {
-          diet(usuario, topicoCod);
-        }, 3000);
-      });
+        function loading() {
+          mainContainer.empty();
 
-      $("#btn-mind").on("click", e => {
-        topicoCod = e.currentTarget.dataset.value;
-        e.preventDefault();
-        loading();
-        setTimeout(function() {
-          mind(usuario, topicoCod);
-        }, 3000);
-      });
-    })
-    .catch(err => err);
+          let startMessage = $("<div>", {
+            style: "margin-top: 20px",
+            class: "col-sm-12 form-group justify-center center",
+            id: "start-message"
+          });
 
-  var i = 0;
-  function move() {
-    if (i == 0) {
-      i = 1;
-      var elem = document.getElementById("myBar");
-      var width = 10;
-      var id = setInterval(frame, 10);
-      function frame() {
-        if (width >= 100) {
-          clearInterval(id);
-          i = 0;
-        } else {
-          width++;
-          elem.style.width = width + "%";
-          elem.innerHTML = width + "%";
+          let startIta = $("<img>", {
+            src: "/images/ita3d_1.png",
+            class: "center"
+          })
+            .width(200)
+            .height(240);
+
+          let startRandomMessage = $("<label>", {
+            for: "start-random-message"
+            //MAKE MESSAGE RANDOM FROM MESSAGES COLLECTION
+          }).text("Practica, Practica, Practica");
+
+          let progressRow = $("<div>", {
+            //style: "margin-top: 20px",
+            //class: "col-sm-12 form-group justify-center center",
+            id: "myProgress"
+          });
+
+          let barRow = $("<div>", {
+            //style: "margin-top: 20px",
+            //class: "col-sm-12 form-group justify-center center",
+            id: "myBar"
+          });
+
+          startMessage.append(startIta);
+          startMessage.append(startRandomMessage);
+          mainContainer.append(startMessage);
+          progressRow.append(barRow);
+          mainContainer.append(progressRow);
+
+          move(start_data);
+
+          // TO DO -- append buttons for random activities with appropriate attributes
         }
+      })
+      .catch(err => console.error(err));
+  }
+});
+
+var i = 0;
+function move(data) {
+  if (i == 0) {
+    i = 1;
+    var elem = document.getElementById("myBar");
+    var width = 10;
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+        i = 0;
+        setTimeout(displayActivities(data), 800);
+      } else {
+        width++;
+        elem.style.width = width + "%";
+        elem.innerHTML = width + "%";
       }
     }
   }
+}
+function displayActivities(data) {
+  let startContainer = $("#start-activity-container");
+  $("#start-main-container").fadeOut("slow");
+  if (startContainer.hasClass("d-none")) {
+    startContainer.delay(700).fadeIn("slow", function() {
+      $(this).removeClass("d-none");
+    });
+
+    $("#activities").empty();
+
+    if ($("#start-random-btn").hasClass("d-none")) {
+      $("#start-random-btn").removeClass("d-none");
+    }
+
+    let activityDiv = $("<div>", {
+      class: "mt-4 col-sm-12 justify-center center activity-div"
+    });
+
+    data.activities.map((activity, i) => {
+      let activityCard = $("<div>", {
+        class: "activity-card card mt-5",
+        id: `activity-${i}`,
+        value: i
+      }).html(`
+        <h5 class='card-title' data-url=${activity.Link}>
+          ${activity.Descriptor}
+        </h5>
+        <p class='card-text'>Duración: ${activity.Duracion} minutos</p>
+        <h6 class='card-subtitle'>Edades: ${activity.Edad_desde}-${activity.Edad_hasta} años</h6>
+      `);
+
+      activityDiv.append(activityCard);
+    });
+
+    startContainer.prepend(activityDiv);
+
+    // when we click the random button...
+    $("#start-random-btn").on("click", e => {
+      e.preventDefault();
+      randomClicks++;
+    });
+
+    // when an activity is clicked...
+    $(".activity-card").on("click", function(e) {
+      // startContainer.empty();
+
+      activityID = start_data.activities[Number($(this).attr("value"))]._id;
+      let to_do = start_data.activities[Number($(this).attr("value"))].Link;
+
+      let embed = $("<div>", {
+        class: "activity-video video mt-5"
+      }).html(`
+
+        <iframe src=${to_do} width='100%' height='100%'>
+        
+        </iframe>
+
+      `);
+
+      let finishButton = $("<button>", {
+        class: "btn btn-success"
+      }).text("Acabamos nuestra actividad!");
+
+      $(".activity-div").empty();
+      $("#random-btn").empty();
+
+      $(".activity-div").append(embed);
+      $("#random-btn").append(finishButton);
+
+      finishButton.click(function(e) {
+        e.preventDefault();
+        axios
+          .post(`/endsurvey`, {
+            hijos: start_data.hijos,
+            loginTime: loginTime,
+            logoutTime: Date.now(),
+            random: randomClicks,
+            actividad: activityID
+          })
+          .then(res => {
+            if (res.status === 200) {
+              // let newDoc = document.open("text/html", "replace");
+              // newDoc.write(res.data);
+              // newDoc.close();
+              window.location.href = "/endsurvey";
+            }
+          })
+          .catch(err => console.log(err));
+      });
+
+      // axios
+      //   .post("/api/usuarios/activity/pdf", { pdf: to_do })
+      //   .then(res => {
+      //     console.log(res.status);
+      //   })
+      //   .catch(err => console.log(err));
+    });
+  }
+}
+
+$("#start-random-btn").on("click", function() {
+  // TODO -- axios post request to /api/usuarios/chooseActivity/:topicoCod
+  // then invoke displayActivities passing res.data as argument
+  axios
+    .post(`/api/usuarios/chooseActivity/${start_data.topicoCod}`, {
+      af_0: start_data.af_0,
+      hijos: start_data.hijos
+    })
+    .then(res => {
+      // console.log(res.data);
+      $(".card-title").each(function(i) {
+        $(this).html(`${res.data.activities[i].Descriptor}`);
+        $(this).attr("data-url", res.data.activities[i].Link);
+        start_data = res.data;
+      });
+    })
+    .catch(err => {
+      return err;
+    });
+  // console.log($(this));
 });

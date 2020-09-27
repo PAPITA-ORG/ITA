@@ -1,0 +1,56 @@
+extends layout
+
+block content
+    div(class="container" id="start-main-container")
+        form(action='/api/historial' method='post')
+            div.form-err
+            if success_msg!= ''
+                div.alert.alert-success.alert-dismissible.fade.show(role="alert")=success_msg
+                    button.close(type="button" data-dismiss='alert' aria-label='Close')
+                        span(aria-hidden='true') &times;
+                div
+                    a.btn.btn-info(href='/start') Llevame hacia mas actividades
+            else
+                h1#form-header Cuentanos tu experiencia!
+                div.progress
+                    div(class='progress-bar progress-bar-striped progress-bar-animated' role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width:10%;")
+                input(type="hidden" name='usuario' value=id)
+                input(type="hidden" name='logoutTime' value=logoutTime)
+                input(type="hidden" name='loginTime' value=loginTime)
+                input(type="hidden" name='random' value=random)
+                input(type="hidden" name='actividad' value=actividad)
+                each hijo in hijos
+                    input(type="hidden" name='hijos[]' value=hijo)
+                if survey_people
+                    each person, i in survey_people
+                        input.tab-input(type="hidden" name="encuestados[]" value=`${person}`)
+                        div.tab=`${person}:`
+                            input.tab-input-ratings(type="hidden", name="ratings[]")
+                            p Le gusto la actividad?
+                            div.starrating.risingstar.d-flex.justify-content-center.flex-row
+                                each value in [1,2,3,4,5]
+                                    i.fa.fa-heart.icon-3x.mr-2(value=value)
+                            if i == survey_people.length - 1
+                                div.col-sm-6.mt-5
+                                    input(type='hidden' name="af1" value=af1)
+                                    h3.text-dark Cual es tu nivel de energía ahora?
+                                    input#slider-af2.mt-2.efficacies-range.efficacies-range-endsurvey(type='range' min='0' max="100" value=af1 name="af2")
+                                div.col-sm-6.mt-5
+                                    h3.text-dark Que tan dificil te encontraste la actividad?
+                                    input#slider-dificultad.mt-2.efficacies-range.efficacies-range-endsurvey(type='range' min='0' max="100" value="50" name="dificultad")
+                                    
+                    div.form-nav.mt-5
+                        button.prevBtn.prevNext.mr-4(value=-1) Previo
+                        button.nextBtn.prevNext(value=1) Siguiente
+                        button.finishBtn(type='submit') Finalizar!
+
+                    div.step.mt-4
+                        each person in survey_people
+                            span.step
+
+
+
+    include partials/bottomNav.pug
+    script.
+        let userId = !{JSON.stringify(id)}
+    script(src='/js/endsurvey.js')

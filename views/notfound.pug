@@ -12,6 +12,9 @@ block content
               | Ups! creo que esta pagina no existe. Si tienes algun problema 
               a(href='mailto:estoesla@papita.org') Escribenos 
 
-            button(type='button' class='btn btn-success' onclick="window.location.href = '/';") Sacame de aqui!
+            if id == undefined  
+              a(href="/" class='btn btn-success') Sacame de aqui!
+            else
+              a(href="start" class='btn btn-success') Sacame de aqui!
             
                     

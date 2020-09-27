@@ -4,5 +4,6 @@ module.exports = {
   hijos: require("./hijos"),
   historial: require("./historial"),
   mensajes: require("./mensajes"),
-  comunas: require("./comunas")
+  comunas: require("./comunas"),
+  ratingHijos: require("./rating_hijos")
 };

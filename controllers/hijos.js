@@ -1,6 +1,5 @@
 // import database models and store in a variable
 const db = require("../models");
-const bcrypt = require("bcryptjs");
 
 const Hijo = db.hijos;
 
@@ -42,16 +41,18 @@ module.exports = {
       .then(dbHijos => res.json(dbHijos))
       .catch(err => res.status(422).json(err));
   },
-  // create one hijo
+  // create one hije
   create: (req, res) => {
-    let encryptedChildren = req.body.data.map(child => {
-      let hash = bcrypt.hashSync(child.nombre, 10);
-      child.nombre = hash;
-      return child;
-    });
+    let { data } = req.body;
+
+    data = data.filter(hije => hije !== null);
+    data.map(
+      hijo =>
+        (hijo.avatarUrl = `https://avatars.dicebear.com/api/bottts/${hijo.nombre}.svg?mood[]=happy`)
+    );
 
     db.hijos
-      .insertMany(encryptedChildren)
+      .insertMany(data)
       .then(hijos => {
         let ids = hijos.map(hijo => {
           return hijo._id;
@@ -62,7 +63,11 @@ module.exports = {
             { _id: req.params.parentID },
             { $push: { hijos: { $each: ids } } }
           )
-          .then(parent => res.json(parent))
+          .then(parent => {
+            // temporalmente para usuarios del preregistro, captamos que acaben de registrar a sus hijes
+            req.session["primer_login"] = true;
+            res.redirect("/");
+          })
           .catch(err => res.status(422).json(err));
       })
       .catch(err => res.status(422).json(err));

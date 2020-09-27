@@ -1,0 +1,34 @@
+#child-form {
+  margin-bottom: 100px;
+}
+
+.input-form-group {
+  margin-left: 0px;
+}
+
+input.form-control,
+select.form-control {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 300px) {
+  .tutorial-btn {
+    margin: 20px 0px 0px 0px !important;
+  }
+}
+
+@media (max-width: 610px) {
+  .efficacies-range {
+    margin: 0px 0px 20px 0px;
+  }
+  h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (min-width: 610px) {
+  .efficacies-range {
+    margin: 10px 0px 0px 0px;
+  }
+}
