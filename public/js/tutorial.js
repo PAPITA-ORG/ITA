@@ -234,7 +234,7 @@ $(document).ready(function() {
     let childFormDiv = $(`<div>`, { class: "text-center" });
 
     let childFormButton = $("<button>", {
-      class: "btn btn-success tutorial-btn",
+      class: "btn btn-info tutorial-btn",
       id: "btn-child-form",
       style: "margin-right: 10px"
     }).text("Ir al menu");
@@ -242,7 +242,7 @@ $(document).ready(function() {
     childFormDiv.append(childFormButton);
 
     let childFormButton2 = $("<button>", {
-      class: "btn btn-success tutorial-btn",
+      class: "btn btn-info tutorial-btn",
       id: "btn-child-form-2",
       style: "margin-left: 10px"
     }).text("Agregar otro");
