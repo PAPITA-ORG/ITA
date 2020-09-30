@@ -358,6 +358,18 @@ video {
   display: none;
 }
 
+.navIcon{
+  width: 45px;
+  height: 45px;
+}
+
+#btn-logout{
+  cursor: pointer;
+}
+
+.navbar-dark .navbar-toggler-icon{
+  background-image: url(../images/icono-toggle.svg);
+}
 i.fa {
   cursor: pointer;
 }
