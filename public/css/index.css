@@ -22,7 +22,7 @@ body {
   padding: 0 0 70 0;
   margin: 0px;
   font-family: "Gabriola", Tahoma, Geneva, Verdana, sans-serif;
-  color: #FFF9D6;
+  background-color: #C9C2BA;
   font-size: 15px;
 }
 
@@ -84,6 +84,7 @@ form {
   margin-left: auto;
   margin-right: auto;
   border: 2px solid #ccc;
+  color: #FFF9D6;
   border-radius: 4px;
 }
 
@@ -145,7 +146,7 @@ a:hover {
 .label {
   font-size: 16px;
   text-align: center;
-  color: black;
+  color: #C9C2BA;
   padding-bottom: 15px;
 }
 
@@ -176,7 +177,7 @@ label {
 
 strong {
   font-weight: bold;
-  color: rgb(10, 7, 167);
+  color: #413B39;
 }
 
 #myProgress {
@@ -214,6 +215,23 @@ strong {
   height: 100%;
   vertical-align: middle;
 }
+
+.modal-body
+{
+    background-color: #FFFFFF;
+    color: #413B39;
+}
+
+.modal-footer
+{
+    background-color: #45287E;
+}
+
+.modal-header
+{
+    background-color: #45287E;
+}
+
 .hover_bkgr_fricc > div {
   background-color: #fff;
   box-shadow: 10px 10px 60px #555;
@@ -358,18 +376,6 @@ video {
   display: none;
 }
 
-.navIcon{
-  width: 45px;
-  height: 45px;
-}
-
-#btn-logout{
-  cursor: pointer;
-}
-
-.navbar-dark .navbar-toggler-icon{
-  background-image: url(../images/icono-toggle.svg);
-}
 i.fa {
   cursor: pointer;
 }
