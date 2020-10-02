@@ -47,6 +47,20 @@ function buildHijo(inputObj) {
   }
 }
 $(document).ready(function() {
+  // Logout Icon Handler
+  $("img#btn-logout").on("click", logoutHandler);
+
+  function logoutHandler() {
+    axios
+      .post(`/api/usuarios/logout`)
+      .then(res => {
+        if (res.status === 200) {
+          window.location.href = res.data.url;
+        }
+      })
+      .catch(err => err);
+  }
+
   let tutorialContainer = $("#tutorial-main-container");
   let hijos = [];
 

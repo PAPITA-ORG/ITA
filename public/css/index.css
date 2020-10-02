@@ -22,7 +22,7 @@ body {
   padding: 0 0 70 0;
   margin: 0px;
   font-family: "Gabriola", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #C9C2BA;
+  background-color: #c9c2ba;
   font-size: 15px;
 }
 
@@ -30,8 +30,20 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #C9C2BA;
+  color: #c9c2ba;
   height: 100vh;
+}
+
+#ita-logo {
+  width: 150px;
+  height: auto;
+}
+
+@media (max-width: 610px) {
+  #ita-logo {
+    width: 100px;
+    height: auto;
+  }
 }
 
 .starrating {
@@ -39,7 +51,7 @@ body {
 }
 
 .starrating > i {
-  color: #45287E;
+  color: #45287e;
 }
 
 .starrating > span:hover ~ span {
@@ -53,7 +65,7 @@ body {
 .header {
   padding: 20px;
   text-align: center;
-  color: #45287E;
+  color: #45287e;
   font-size: 16px;
 }
 
@@ -77,14 +89,14 @@ button:focus {
 }
 
 form {
-  background-color: #45287E;
+  background-color: #45287e;
   padding: 30px;
   text-align: center;
   display: inline-block;
   margin-left: auto;
   margin-right: auto;
   border: 2px solid #ccc;
-  color: #FFF9D6;
+  color: #fff9d6;
   border-radius: 4px;
 }
 
@@ -146,7 +158,7 @@ a:hover {
 .label {
   font-size: 16px;
   text-align: center;
-  color: #C9C2BA;
+  color: #c9c2ba;
   padding-bottom: 15px;
 }
 
@@ -177,7 +189,7 @@ label {
 
 strong {
   font-weight: bold;
-  color: #45287E;
+  color: #45287e;
 }
 
 #myProgress {
@@ -216,20 +228,17 @@ strong {
   vertical-align: middle;
 }
 
-.modal-body
-{
-    background-color: #FFFFFF;
-    color: #413B39;
+.modal-body {
+  background-color: #ffffff;
+  color: #413b39;
 }
 
-.modal-footer
-{
-    background-color: #45287E;
+.modal-footer {
+  background-color: #45287e;
 }
 
-.modal-header
-{
-    background-color: #45287E;
+.modal-header {
+  background-color: #45287e;
 }
 
 .hover_bkgr_fricc > div {
@@ -376,16 +385,16 @@ video {
   display: none;
 }
 
-.navIcon{
+.navIcon {
   width: 45px;
   height: 45px;
 }
 
-#btn-logout{
+#btn-logout {
   cursor: pointer;
 }
 
-.navbar-dark .navbar-toggler-icon{
+.navbar-dark .navbar-toggler-icon {
   background-image: url(../images/icono-toggle.svg);
 }
 
@@ -461,7 +470,7 @@ i.fa {
   transition: all 0.35s;
 }
 
-.tab-switch:checked+.tab-label {
+.tab-switch:checked + .tab-label {
   background: #fff;
   color: #2c3e50;
   border-bottom: 0;
@@ -471,11 +480,11 @@ i.fa {
   top: -0.0625rem;
 }
 
-.tab-switch:checked+.tab-label:hover {
+.tab-switch:checked + .tab-label:hover {
   top: -0.0625rem;
 }
 
-.tab-switch:checked+.tab-label+.tab-content {
+.tab-switch:checked + .tab-label + .tab-content {
   opacity: 1;
   transition: all 0.35s;
   z-index: 3;

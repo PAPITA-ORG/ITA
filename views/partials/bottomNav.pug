@@ -7,19 +7,20 @@ nav.fixed-bottom.navbar.navbar-dark.bg-dark
 
     if id == undefined
         div
-            each icon in view_data.home
-                a(href=icon.href)
-                    img(src=icon.src alt=icon.alt id= icon.icon_id class=icon.icon_class)
+            if view_data && view_data.home
+                each icon in view_data.home
+                    a.mr-4(href=icon.href)
+                        img(src=icon.src alt=icon.alt id= icon.icon_id class=icon.icon_class)
                     
     else
         if view_data
             each icon in view_data.auth
                 if icon.href
-                    a(href=icon.href)
+                    a.d-none(href=icon.href)
                         img(src=icon.src alt=icon.alt id= icon.icon_id class=icon.icon_class)                       
                 else 
                     img(src=icon.src alt=icon.alt id= icon.icon_id class=icon.icon_class)
-    div.collapse#nav-toggle-content
+    div.collapse#nav-toggle-content.col-md-12.col-lg-12
         div.bg-dark.p-4.text-white
             span Copyright &copy; 2020 PapitaCORP. 
             div.mt-4.toggle-content
