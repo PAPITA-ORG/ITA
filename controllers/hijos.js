@@ -66,7 +66,7 @@ module.exports = {
           .then(parent => {
             // temporalmente para usuarios del preregistro, captamos que acaben de registrar a sus hijes
             req.session["primer_login"] = true;
-            res.redirect("/");
+            res.redirect("/start");
           })
           .catch(err => res.status(422).json(err));
       })
