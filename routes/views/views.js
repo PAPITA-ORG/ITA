@@ -43,7 +43,7 @@ router
   .get(ensureAuthenticated, viewsController.tutorialView);
 
 // User Account
-router.route("/perfil").get(ensureAuthenticated, viewsController.accountView);
+router.route("/account").get(ensureAuthenticated, viewsController.accountView);
 
 // not found view
 router.route("/*").get(viewsController.notfoundView);

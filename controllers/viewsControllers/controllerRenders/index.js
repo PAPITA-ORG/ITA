@@ -127,15 +127,15 @@ module.exports = {
             icon_class: "navIcon",
             icon_id: "home",
             href: "/",
-            src:"/images/icono-index.svg",
-            alt:"Boton para ir a pagina principal"
+            src: "/images/icono-index.svg",
+            alt: "Boton para ir a pagina principal"
           },
           {
             icon_class: "navIcon",
             icon_id: "user-plus",
             href: "/sobre",
-            src:"/images/icono-subscribe.svg",
-            alt:"Boton para suscribirse"
+            src: "/images/icono-subscribe.svg",
+            alt: "Boton para suscribirse"
           }
         ]
       };
@@ -147,28 +147,28 @@ module.exports = {
             icon_class: "navIcon",
             icon_id: "user",
             src: "/images/icono-perfil.svg",
-            alt:"Boton para ver perfil de usuario",
+            alt: "Boton para ver perfil de usuario",
             href: "/account"
           },
           {
             icon_class: "navIcon",
             icon_id: "chart-line",
             href: "/stats",
-            src:"/images/icono-stats.svg",
-            alt:"Boton para ver estadisticas"
+            src: "/images/icono-stats.svg",
+            alt: "Boton para ver estadisticas"
           },
           {
             icon_class: "navIcon",
             icon_id: "btn-logout",
-            src:"/images/icono-logout.svg",
-            alt:"Boton para salir de sesion"
+            src: "/images/icono-logout.svg",
+            alt: "Boton para salir de sesion"
           },
           {
             icon_class: "navIcon",
             icon_id: "btn-start",
             href: "/start",
             src: "/images/icono-start.svg",
-            alt:"Boton para volver a actividades"
+            alt: "Boton para volver a actividades"
           }
         ],
         contentRouteBlocked: true
@@ -181,7 +181,6 @@ module.exports = {
     Usuario.findOne(query)
       .populate("hijos")
       .exec(function(err, usuario) {
-        console.log(usuario);
         if (err) {
           let usr_err = new Error(
             "USR_ERR",

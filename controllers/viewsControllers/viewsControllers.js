@@ -32,6 +32,7 @@ module.exports = {
 
     // en caso de que sea el usuario acabe de registrar a sus hijes...
     // tenemos la siguiente condicion, la cual es temporal para el preregistro
+
     // if (req.session.primer_login || req.user.hijos.length > 0) {
     //   let index_data = controller_renders.renderNavContent("index");
     //   let registro_msg = `Gracias por registrar a tus chiquill@s.
@@ -75,19 +76,11 @@ module.exports = {
 
           // filter hijos from db based on ids from hijos from request body
           let chosen = hijos.filter((hijo, i) => {
-            console.log(hijo.id, active_hijos, hijo.id === active_hijos);
             return hijo.id === active_hijos;
           });
-          console.log("res", res);
-          console.log(res.locals)((res["locals"]["id"] = usuario_id)),
-            (res["locals"]["usuario"] = usuario),
+          (res["locals"]["usuario"] = usuario),
             (res["locals"]["chosen_hijos"] = chosen),
             (res["locals"]["endsurvey_data"] = endsurvey_data);
-          console.log(chosen);
-          // res.render("start", {
-          //   view_data: endsurvey_data,
-          //   chosen_hijos: true
-          // });
           next();
         }
       },
@@ -114,11 +107,23 @@ module.exports = {
   accountView: (req, res) => {
     let account_data = controller_renders.renderNavContent("auth");
 
-    res.render("userAccount", {
-      id: req.session.passport.user,
-      view_data: account_data,
-      usuario: usuario
+    controller_renders.getUserInfo(userInfoHandler, {
+      _id: req.session.passport.user
     });
+
+    function userInfoHandler(err, usuario) {
+      if (err)
+        res.json("ERR_USR", `Perdona, no hemos podido encontrar este usuario.`);
+
+      let { hijos } = usuario;
+      res.render("userAccount", {
+        id: usuario._id,
+        af_0: usuario.af_0,
+        view_data: account_data,
+        hijos: hijos,
+        usuario: usuario
+      });
+    }
   },
   prepareEndSurvey: (req, res) => {
     controller_renders.endsurveyContent(
@@ -150,12 +155,24 @@ module.exports = {
     });
   },
   statsView: (req, res) => {
-    let stats_data = renderContent("auth");
-    res.render("stats", {
-      id: req.session.passport.user,
-      view_data: account_data,
-      usuario: usuario
+    let stats_data = controller_renders.renderNavContent("auth");
+
+    controller_renders.getUserInfo(userInfoHandler, {
+      _id: req.session.passport.user
     });
+
+    function userInfoHandler(err, usuario) {
+      if (err)
+        res.json("ERR_USR", `Perdona, no hemos podido encontrar este usuario.`);
+
+      let { hijos } = usuario;
+      res.render("stats", {
+        id: req.session.passport.user,
+        view_data: stats_data,
+        usuario: usuario,
+        hijos: hijos
+      });
+    }
   },
   prepareEndSurvey: (req, res) => {
     controller_renders.endsurveyContent(
