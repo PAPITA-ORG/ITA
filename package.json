@@ -4,7 +4,7 @@
   "description": "Aplicacion ITA",
   "main": "server.js",
   "scripts": {
-    "start": "node --inspect-brk server.js",
+    "inspect": "node --inspect-brk server.js",
     "dev": "nodemon server.js"
   },
   "author": "Alberto Vargas",
