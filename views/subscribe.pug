@@ -1,0 +1,106 @@
+extends layout
+
+block content
+        link(href="/css/subscribe.css" rel="stylesheet" type="text/css")
+
+        div(class="container")
+            div(class='d-flex justify-content-center mt-5 subscribe-content')
+                div(class="col-sm-12 col-lg-8 justify-content-center center" id='sobre-form-container')
+                    form(id='sobre-form' action='/api/usuarios/register' method='post') 
+                        if errors.length > 0
+                            each err in errors
+                                div.alert.alert-warning.alert-dismissible.fade.show(role="alert")=err.msg
+                                    button.close(type="button" data-dismiss='alert' aria-label='Close')
+                                        span(aria-hidden='true') &times; 
+                        div.form-group
+                            h2 Ingresa tus datos
+                            input.form-control#sobre-form-email.mt-3(type='email' placeholder='correo' name=data.correo.name value=data.correo.value)
+                            input.form-control#sobre-form-password.mt-3(type='password' placeholder='contraseña' name=data.password.name value=data.password.value)
+                            button#subscribe-eula-btn.btn.btn-primary.mt-3.ml-1(type='button' onSubmit="document.getElementById('subscribe-eula-btn').disabled=true;" data-toggle='modal' data-target='#subscribe-eula-modal') Ver términos y condiciones
+                            div.modal.fade(tabindex='-1' id='subscribe-eula-modal' role='dialog' aria-labelledby="subscribe-eula-modal" aria-hidden="true")
+                                div.modal-dialog.modal-dialog-centered(class="modal-xl" role='document')
+                                    div.modal-content
+                                        div.modal-header                                
+                                            h5.modal-title Términos y condiciones de uso del sitio web de ITA
+                                        div.modal-body
+                                            div(data-spy='scroll' data-offset='0')
+                                                h2 Bienvenida
+                                                p Bienvenido a la experiencia ITA. Por favor leer las reglas y restricciones de nuestro sitio, servicios y aplicaciones ("ITA"). Si tienes cualquier duda, escribir a ita@papita.org  
+                                                p Los terminos de uso ("Terminos")son un contrato entre la Corporacion Papita ("PapitaCORP") y usted(es). La aceptacion de los Terminos es requerido para el uso de ITA, y son validos durante el uso del servicio.  
+                                                p IMPORTANTE: al aceptar los Terminos, se asume que cualquier disputa sera resuelta por mediacion y se renuncia al derecho de resolucion por via judicial.
+                                                h2 Los servicios   
+                                                p ITA se creo como una herramienta para acompañar a los usuarios en actividades saludables con sus peques. ITA no entrega servicios medicos, de salud mental, u otros servicios profesionales.
+                                                p ITA NO ES UN SERVICIO DE SALUD O DE EMERGENCIA MEDICA. SI CREE TENER UNA EMERGENCIA, CONTACTAR AL 131 O AL SERVICIO DE SALUD MAS CERCANO.  
+                                                h2 Privacidad
+                                                p ITA tiene un compromiso inquebrantable con su privacidad. Usamos un sistema de capas que permite que su informacion se mantenga protegida, y en cumplimiento de la normativa vigente. Si tiene cualquier duda, contactenos a ita@papita.org
+                                                p Adicionalmente, la aceptacion de los terminos funciona como consentimiento informado que la informacion de uso de ITA se utilizara, de forma anonima, tanto para mejorar la experiencia de usuario como para investigacion academica.
+                                                p La informacion solicitada en el registro y uso de ITA solo se guardara y usara para identificar el usuario, y con fines academicos. Su data no sera revelada o compartida con terceros. 
+                                                p Como usuario, tiene derecho a acceso, rectificacion, borrado, restriccion y portabilidad de sus datos. Si tiene cualquier duda sobre el uso de sus datos, puede contactarnos directamente.
+                                                h2 Elementos basicos de ITA
+                                                p Requerimos su registro para crear un usuario y poder adaptar la aplicacion a usted y su entorno familiar. Esta cuenta es intransferible y permite adaptar ITA a sus propias necesidades. Asimismo lo convierte en contraparte legal en cuanto a los Terminos descritos en este documento.
+                                                P Al mismo tiempo que no compartimos su informacion con terceros, ITA no puede usarse para fines comerciales de ningun tipo. Lo anterior incluye cualquier tipo de tecnologia que intente acceder a la informacion guardada en el servidor de ITA.
+                                                p Queremos que compartas el uso de ITA, para ellos facilitaremos la interacion entre plataformas para su uso, entendido que se entrega una licencia permanente para la visualizacion del contenido mientras la cuenta se mantenga activa.
+                                                p ITA no tiene costo alguno. Programas adicionales pueden existir, y es posible que terceros puedan cobrar por ello.  
+                                                h2 Descargo de responsabilidad
+                                                p PapitaCORP no se considera responsable por proveer ninguna garantia por ITA, asi como por el contenido que se accede a traves de terceros (e.g. YouTube). De la misma forma, PapitaCORP no es responsable por daños de ninguna naturaleza a personas o bienes por el uso de ITA. Asimismo, no existen compensaciones de ninguna naturaleza.    
+                                                p Si necesitamos hacer cambios a este documento, o se evidencia cualquier actividad que viole los Terminos, le informaremos adecuadamente. La responsabilidad de ITA corresponde a PapitaCORP, situada en Antonio Varas 1414 of 136. Providencia, Chile.
+
+
+                                        div.modal-footer
+                                                button#modal-footer-btn.btn.btn-info(type='button' data-dismiss='modal' ) Acepto
+                        div
+                            input.checkbox#sobre-checkbox(type="checkbox" required)
+                            label.mt-3.ml-1(for='sobre-checkbox') Acepto los términos y condiciones.
+                        button.btn.btn-info#sobre-form-btn(aria-disabled="true") Siguiente
+                        div.form-group#expanded-form.display-none
+                            h2.mt-4(for='form-group-row') Cuentanos mas de ti
+                            div.form-group.row
+                                label.col-sm-3.col-form-label.mt-3= data.nombres.label  
+                                input#subscribe-form-input.col-sm-3.form-control(name=data.nombres.name type='text' value=data.nombres.value pattern="[A-Za-z\\s]*" title="Solo use letras alfabeticas")
+                                label.col-sm-3.col-form-label.mt-3= data.apellidos.label  
+                                input#subscribe-form-input.col-sm-3.form-control(name=data.apellidos.name type='text' value=data.apellidos.value pattern="[A-Za-z\\s]*" title="Solo use letras alfabeticas")
+                                label.col-sm-3.col-form-label.mt-3= data.edad.label  
+                                input#subscribe-form-input.col-sm-3.form-control(name=data.edad.name step="1" type='number' min='1' max='100' value=data.edad.value pattern="[0-9]{1,2}")                    
+                                label.col-sm-3.col-form-label.mt-3= data.parentesco.label
+                                select.col-sm-3.form-control.mt-3(name=data.parentesco.name)
+                                    each option, index in data.parentesco.options
+                                        if data.parentesco.options[index] == data.parentesco.selected
+                                            option(value=index+1 selected)= option
+                                        else
+                                            option(value=index+1)= option
+
+                                label.col-sm-3.col-form-label.mt-3= data.genero.label
+                                select.col-sm-3.form-control.mt-3(name=data.genero.name)
+                                    each option, index in data.genero.options
+                                        if data.genero.options[index] == data.genero.selected
+                                            option(value=index+1 selected)= option
+                                        else
+                                            option(value=index+1)= option
+                                
+                                label.col-sm-3.col-form-label.mt-3= data.comuna.label
+                                select.col-sm-3.form-control.mt-3(name=data.comuna.name)
+                                    each option, index in data.comuna.options
+                                        if data.comuna.options[index]._id == data.comuna.selected
+                                            option(value=option._id selected)= option.comuna
+                                        else
+                                            option(value=option._id)= option.comuna
+                                
+                                label.col-sm-3.col-form-label.mt-3= data.educacion.label
+                                select.col-sm-3.form-control.mt-3(name=data.educacion.name)
+                                    each option, index in data.educacion.options
+                                        if data.educacion.options[index] == data.educacion.selected
+                                            option(value=index+1 selected)= option
+                                        else
+                                            option(value=index+1)= option
+                            hr.mt-5
+                            h4.mt-5 Indique cuan de acuerdo esta con cada frase moviendo la barra:
+                            div.form-group.row#form-efficacies.mt-5
+                                each field in data.sliderInputs
+                                    label.col-sm-12.col-md-6.col-lg-4.col-form-label= field.label
+                                    span.col-lg-2.mr-2.mt-2.mobile-display-none Desacuerdo
+                                    div.col-sm-12.col-md-6.col-lg-4.mt-2  
+                                        input.form-control.mb-3.efficacies-range(type='range' min="0" max="100" value=field.value name=field.name)
+                                    span.col-lg-1.ml-2.mt-2.mobile-display-none Acuerdo
+                                    span.col-lg-2.mr-2.mt-2.display-none 100
+                            button.btn.btn-info(type='submit') Registrar
+                script(src="/js/subscribe.js")

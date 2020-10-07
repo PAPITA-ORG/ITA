@@ -1,0 +1,19 @@
+.subscribe-content {
+  margin-bottom: 100px;
+}
+
+.efficacies-range {
+  margin-left: 0;
+}
+
+@media (min-width: 610px) {
+  input#subscribe-form-input {
+    margin-top: 1rem !important;
+  }
+}
+
+@media (max-width: 610px) {
+  .efficacies-range {
+    margin-bottom: 2rem !important;
+  }
+}

@@ -2,52 +2,46 @@ extends layout
 
 block content
 
-    div(class="container")
+    div.container-index(class="container")
         div(class='row align-items-center center' id='index-container')
           
-          div(class="col-sm-12 center" style="margin-top: 20px")
-            img(src="/images/ita3d_1.png" width="150px" height="180px")
+          div(class="col-sm-12 center")
+            img#ita-logo.mt-4(src="/images/ita3d_1.png")
             
-            p.thin 
+            h4
               | Hola! soy 
               strong ITA
               |, tu compania virtual 
               | para actividades infantiles saludables.
                     
-            if error_msg!= ''
-              div.alert.alert-warning.alert-dismissible.fade.show(role="alert")=error_msg
-                button.close(type="button" data-dismiss='alert' aria-label='Close')
-                  span(aria-hidden='true') &times;
-            form(action="/api/usuarios/login", method='post')
-              div.label Ingresa a tu cuenta
+            form#login-form(action="/api/usuarios/login", method='post')
+              
+              if registro_msg
+                div.alert.alert-success.alert-dismissible.fade.show(role="alert")=registro_msg
+                  button.close(type="button" data-dismiss='alert' aria-label='Close')
+                    span(aria-hidden='true') &times;
+              if success_msg!= ''
+                div.alert.alert-success.alert-dismissible.fade.show(role="alert")=success_msg
+                  button.close(type="button" data-dismiss='alert' aria-label='Close')
+                    span(aria-hidden='true') &times;
+              if error_msg!= ''
+                div.alert.alert-warning.alert-dismissible.fade.show(role="alert")=error_msg
+                  button.close(type="button" data-dismiss='alert' aria-label='Close')
+                    span(aria-hidden='true') &times;
+              div.label
+                h4 Ingresa a tu cuenta
               div.username
                 input(type="text" placeholder="correo electronico" name='correo')
               div.password
                 input(type="password" placeholder="contraseña" name='password')
-              div.checkbox
-                input(type='checkbox' name='agreement' checked)
-                |  Recuerdame
-              button(type='submit' class='btn btn-success' id='btn-login') Siguiente
-              div.social(style="margin-top: 10px")
-                button(type="button" class="btn-floating btn-lg btn-fb") <i class="fa fa-facebook"></i>
-                button(type="button" class="btn-floating btn-lg btn-gplus") <i class="fa fa-google-plus"></i>
-    
-          div(class="col-sm-12" style="margin-top: 20px")
-            p
-              | Aun no has usado
-              strong  ITA    
-              | ?    
-              button(type='button' class='btn btn-success' id='btn-si') Pruebame ahora
-            
-          div(class="col-sm-12")
-            p
-              | Olvidaste tu contraseña?     
-              button(type='button' class='btn btn-success' id='btn-password') Obten una nueva
-            
-          div(class="col-sm-12")               
-            p
-              | Quieres saber mas?    
-              button(type='button' class='btn btn-success' id='btn-team') Papita CORP  
+              button.mt-4(type='submit' class='btn btn-primary' id='btn-login') Siguiente
+              div.mt-3.mb-2.col-sm-12
+                a.btn.btn-info#forgot-password(href='/registro') Olvidaste tu contraseña?   
+              div.mt-5.col-sm-12
+                h4 Aun no tienes una cuenta?
+              div.mt-4.col-sm-12
+                a.btn.btn-primary.btn-lg.btn-block#btn-sobre(href='/sobre') Registrate ya!
 
-          script(src="/js/index.js")
-    
+                
+
+        script(src="/js/index.js")

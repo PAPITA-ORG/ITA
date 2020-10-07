@@ -3,21 +3,52 @@ $(document).ready(() => {
   let comunasList = {};
 
   let sobreContainer = $("#sobre-main-container");
+  var dimension = window.innerWidth
+  if(dimension < 720){
+    let smallVideoForm =$("<video class='presentvideo' autoplay controls>",{
+      width:"320",
+      height:"240",
+      class: "video"
+    });
+    let smallSourceForm =$("<source>",{
+      src: "/video/Hola_320x240.mp4",
+      type:"video/mp4"
+    });
+    smallVideoForm.append(smallSourceForm);
+    $("#smallVideo").append(smallVideoForm);
+  }else{
+    let bigVideoForm =$("<video class='presentvideo' autoplay controls>",{
+      width:"720",
+      height:"480",
+      class: "video"
+    });
+    let bigSourceForm =$("<source>",{
+      src: "/video/Hola_720x480.mp4",
+      type:"video/mp4"
+    });
+    bigVideoForm.append(bigSourceForm);
+    $("#bigVideo").append(bigVideoForm);
+  };
+  $('.presentvideo').on('ended',function(){
+    $("#btn-sig").removeAttr("disabled");
+  });
+
   $("#btn-sig").click(e => {
     e.preventDefault();
-    axios
-    .get("/api/comunas")
-    .then((res) => {
-      comunasList = res.data;
-      // call addForm function
-      addForm();   
-    })
-    .catch(err => err);
-  });
-  
-  function addForm() {
-    sobreContainer.empty();
     
+
+    // take user to get subscribed
+    subscribeViewHandler();
+  });
+
+  function subscribeViewHandler() {
+    // sobreContainer.empty();
+
+    // $("#sobre-form").removeClass("display-none");
+    window.location.href = "/subscribe";
+  }
+
+  function addForm() {
     // create a form
     let sobreForm = $("<form>", {
       id: "sobre-form"
@@ -33,9 +64,9 @@ $(document).ready(() => {
       for: "sobre-form-email"
     }).text("Ingresa tus datos");
 
-     let passwordLabel = $("<label>", {
+    let passwordLabel = $("<label>", {
       for: "sobre-form-password"
-    }).text("Contrasena"); 
+    }).text("Contrasena");
 
     // create email input tag
     let emailInput = $("<input>", {
@@ -56,17 +87,17 @@ $(document).ready(() => {
     // create small tag
     let emailSmall = $("<small>", {
       class: "form-text text-muted"
-    }).text("We'll never share your verguita with anyone else");
+    }).text("Nunca compartiremos tu correo con nadie.");
 
     // create small tag for password
     let passwordSmall = $("<small>", {
       class: "form-text text-muted"
-    }).text("Asegure que su contrasena sea de mas de 6 caracteres");
+    }).text("Asegure que su contraseña de mas de 6 caracteres");
 
     // create checkbox
 
     let checkBoxLabel = $("<label>", {
-      for: "sobre-checkbox",
+      for: "sobre-checkbox"
     }).text(" Acepto los ");
 
     let checkBoxPopup = $("<a />", {
@@ -74,19 +105,20 @@ $(document).ready(() => {
       text: "terminos y condiciones"
     });
 
-     let checkBox = $("<input>", {
-      type: 'checkbox',
+    let checkBox = $("<input>", {
+      type: "checkbox",
       class: "checkbox",
       id: "sobre-checkbox"
-     }).prop( "checked", false );
-     
-    // create submit button
+    }).prop("checked", false);
 
-    let submitButton = $("<button>", {
-      type: "submit",
-      class: "btn btn-success",
-      id: "sobre-form-btn"
-    }).text("Siguiente");
+    // create a disabled submit button with a tooltip
+    let data_toggle = "tooltip",
+      data_placement = "bottom",
+      tooltip_title = "Asegure llenar todos los campos";
+
+    let submitButton = $(
+      `<button class='btn btn-success' id='sobre-form-btn' data-toggle=${data_toggle} data-placement=${data_placement} title="${tooltip_title}">`
+    ).text("Siguiente");
 
     formGroup.append(emailLabel);
     formGroup.append(emailInput);
@@ -95,34 +127,32 @@ $(document).ready(() => {
     //formGroup.append(passwordLabel);
     formGroup.append(passwordInput);
     //formGroup.append(passwordSmall);
-    formGroup.append(checkBox)
-    formGroup.append(checkBoxLabel)
+    formGroup.append(checkBox);
+    formGroup.append(checkBoxLabel);
     formGroup.append(checkBoxPopup);
-    
+
     sobreForm.append(formGroup);
     sobreForm.append(submitButton);
-    
+
     sobreContainer.append(sobreForm);
-    
 
     const appendUserForm = () => {
-    
       var generoList = [
-        {"genero":1, "nombre":"prefiero no decir"},
-        {"genero":2, "nombre":"otro"},
-        {"genero":3, "nombre":"mujer"},
-        {"genero":4, "nombre":"hombre"}
+        { genero: 1, nombre: "prefiero no decir" },
+        { genero: 2, nombre: "otro" },
+        { genero: 3, nombre: "mujer" },
+        { genero: 4, nombre: "hombre" }
       ];
 
       var parentescoList = [
-        {"parentesco":1, "nombre":"mama"},
-        {"parentesco":2, "nombre":"papa"},
-        {"parentesco":3, "nombre":"abuelo"},
-        {"parentesco":4, "nombre":"abuela"},
-        {"parentesco":5, "nombre":"otro familiar"},
-        {"parentesco":6, "nombre":"otro no familiar"}
+        { parentesco: 1, nombre: "mama" },
+        { parentesco: 2, nombre: "papa" },
+        { parentesco: 3, nombre: "abuelo" },
+        { parentesco: 4, nombre: "abuela" },
+        { parentesco: 5, nombre: "otro familiar" },
+        { parentesco: 6, nombre: "otro no familiar" }
       ];
-      
+
       let efficacies = [
         "Siempre puedo resolver problemas si trato lo suficiente",
         "Es facil lograr mis metas y mantener mis objetivos",
@@ -138,13 +168,13 @@ $(document).ready(() => {
 
       let formGroupRowLabel = $("<label>", {
         for: "formGroupRow"
-      }).text("Cuentanos mas de ti"); 
+      }).text("Cuentanos mas de ti");
 
-      inlineForm.append(formGroupRowLabel);  
+      inlineForm.append(formGroupRowLabel);
 
       let formGroupRow = $(`<div>`, { class: "form-group row" });
       inlineForm.append(formGroupRow);
-   
+
       let fieldLabel0 = $(`<label>`, {
         for: `input0`,
         class: "col-sm-3 col-form-label"
@@ -219,15 +249,15 @@ $(document).ready(() => {
       formInputDiv3.append(formInput3);
       formGroupRow.append(fieldLabel3);
       formGroupRow.append(formInputDiv3);
-     
+
       let efficaciesRow = $("<div>", {
         class: "form-group row",
         id: "form-efficacies"
       });
-      
+
       let formInputLabel = $("<label>", {
-        for: "formInput",
-      }).text("Indique cuan de acuerdo esta con cada frase moviendo la barra"); 
+        for: "formInput"
+      }).text("Indique cuan de acuerdo esta con cada frase moviendo la barra");
 
       inlineForm.append(formInputLabel);
 
@@ -249,7 +279,7 @@ $(document).ready(() => {
           class: "form-control",
           id: `range${i}`
         }).css("margin-bottom", "10px");
-                
+
         formInputDiv.append(formInput);
         efficaciesRow.append(efficacyLabel);
         efficaciesRow.append(formInputDiv);
@@ -264,94 +294,100 @@ $(document).ready(() => {
       nextButtonDiv.append(nextButton);
 
       inlineForm.append(nextButtonDiv);
-      
+
       $("#selector-btn-registrar").on("click", e => {
         e.preventDefault();
 
         let af_0 = -1;
 
         let genero = generoList.filter(d => {
-          return d.nombre === $("#input2").val();  
+          return d.nombre === $("#input2").val();
         });
 
         let parentesco = parentescoList.filter(d => {
-          return d.nombre === $("#input1").val();  
+          return d.nombre === $("#input1").val();
         });
 
         let comuna = comunasList.filter(d => {
-          return d.comuna === $("#input3").val();  
+          return d.comuna === $("#input3").val();
         });
 
         let formFields = [
-          {field: "edad", value: Number($("#input0").val())},
-          {field: "parentesco", value: parentesco[0].parentesco},
-          {field: "genero", value: genero[0].genero},
-          {field: "comunaCod", value: comuna[0]._id},
-          {field: "i1", value: Number($("#range0").val())},
-          {field: "i2", value: Number($("#range1").val())},
-          {field: "i3", value: Number($("#range2").val())},
-          {field: "i4", value: Number($("#range3").val())},
-          {field: "i5", value: Number($("#range4").val())},
-          {field: "af_0", value: af_0}, 
-          {field: "tutorial", value: 1}
+          { field: "edad", value: Number($("#input0").val()) },
+          { field: "parentesco", value: parentesco[0].parentesco },
+          { field: "genero", value: genero[0].genero },
+          { field: "comunaCod", value: comuna[0]._id },
+          { field: "i1", value: Number($("#range0").val()) },
+          { field: "i2", value: Number($("#range1").val()) },
+          { field: "i3", value: Number($("#range2").val()) },
+          { field: "i4", value: Number($("#range3").val()) },
+          { field: "i5", value: Number($("#range4").val()) },
+          { field: "af_0", value: af_0 },
+          { field: "tutorial", value: 1 }
         ];
-        
+
         let formRanges = formFields.filter(field => {
-          return (field.field === "i1" ||
-          field.field === "i2" ||
-          field.field === "i3" ||
-          field.field === "i4" ||
-          field.field === "i5")  
+          return (
+            field.field === "i1" ||
+            field.field === "i2" ||
+            field.field === "i3" ||
+            field.field === "i4" ||
+            field.field === "i5"
+          );
         });
-        
+
         let totalRanges = 0;
 
-        for(var i = 0; i < formRanges.length; i++) {
+        for (var i = 0; i < formRanges.length; i++) {
           totalRanges += formRanges[i].value;
         }
 
         af_0 = totalRanges / formRanges.length;
 
-        function replaceByValue( field, oldvalue, newvalue ) {
-          for( var k = 0; k < formFields.length; ++k ) {
-              if( oldvalue == formFields[k][field] ) {
-                  formFields[k][field] = newvalue ;
-              }
+        function replaceByValue(field, oldvalue, newvalue) {
+          for (var k = 0; k < formFields.length; ++k) {
+            if (oldvalue == formFields[k][field]) {
+              formFields[k][field] = newvalue;
+            }
           }
           return formFields;
         }
 
-        replaceByValue('value','-1',af_0);
+        replaceByValue("value", "-1", af_0);
 
         formFields.forEach(field => {
           usuarioRegistro[field.field] = field.value;
         });
-        
+
         //console.log(usuarioRegistro);
 
         axios
           .post("/api/usuarios/register", usuarioRegistro)
-          .then(res => res)
+          .then(res => {
+            if (res.status === 200) {
+              window.location.href = "/";
+            }
+            return res;
+          })
           .catch(err => err);
-
-        window.location.href="/";
       });
     };
 
+    // Validate that fields are filled
+
     $("#sobre-form-btn").click(e => {
-            e.preventDefault();
+      e.preventDefault();
       let formFields = [
         { field: "correo", value: $("#sobre-form-email").val() },
         { field: "password", value: $("#sobre-form-password").val() }
       ];
 
-      if ($('#sobre-checkbox').is(':checked')) {
-          alert('Usted acepta los terminos y condiciones')
+      if ($("#sobre-checkbox").is(":checked")) {
+        alert("Usted acepta los terminos y condiciones");
+      } else {
+        alert("Por favor acepte los terminos y condiciones");
       }
-      else {
-          alert('Por favor acepte los terminos y condiciones')
-      }
-      
+
       formFields.forEach(field => {
         usuarioRegistro[field.field] = field.value;
       });
@@ -363,7 +399,3 @@ $(document).ready(() => {
     });
   }
 });
-
-
-
-

@@ -5,10 +5,24 @@
 
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
+/* -------------------------------- 
+Globals
+---------------------------------*/
+
+.display-none {
+  display: none;
+}
+@media (max-width: 992px) {
+  .mobile-display-none {
+    display: none;
+  }
+}
+
 body {
-  padding: 0;
+  padding: 0 0 70 0;
   margin: 0px;
-  font-family: 'Gabriola', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Gabriola", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #c9c2ba;
   font-size: 15px;
 }
 
@@ -16,30 +30,33 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #c9c2ba;
   height: 100vh;
 }
 
-.starrating > input {display: none;}  /* Remove radio buttons */
-
-.starrating > label:before { 
-  content: "\f004"; /* Star */
-  margin: 2px;
-  font-size: 2em;
-  font-family: FontAwesome;
-  display: inline-block; 
+#ita-logo {
+  width: 150px;
+  height: auto;
 }
 
-.starrating > label
-{
-  color: #409b03; /* Start color when not clicked */
+@media (max-width: 610px) {
+  #ita-logo {
+    width: 100px;
+    height: auto;
+  }
 }
 
-.starrating > input:checked ~ label
-{ color: #b10c1a ; } /* Set yellow color when star checked */
+.starrating {
+  font-size: 2.5rem;
+}
 
-.starrating > input:hover ~ label
-{ color: #ffca08 ;  } /* Set yellow color when star hover */
+.starrating > i {
+  color: #45287e;
+}
 
+.starrating > span:hover ~ span {
+  color: #ffca08;
+}
 
 .center {
   text-align: center;
@@ -48,20 +65,12 @@ body {
 .header {
   padding: 20px;
   text-align: center;
-  background: url("../images/texturas-02.svg");
-  background-repeat: repeat;
-  color: black;
+  color: #45287e;
   font-size: 16px;
 }
 
-.footer {
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background: url("../images/texturas-01.svg");
-  background-repeat: repeat;
-  opacity: 0.75;
-  text-align: center;
+footer {
+  margin-top: 150px;
 }
 
 .username input,
@@ -80,13 +89,14 @@ button:focus {
 }
 
 form {
-  background-color: #87db1859;
+  background-color: #45287e;
   padding: 30px;
   text-align: center;
   display: inline-block;
   margin-left: auto;
   margin-right: auto;
   border: 2px solid #ccc;
+  color: #fff9d6;
   border-radius: 4px;
 }
 
@@ -101,11 +111,6 @@ h3 {
   color: #fff;
   text-transform: capitalize;
   margin-bottom: 10px;
-}
-
-p {
-  text-align: center;
-  color: black;
 }
 
 .social {
@@ -135,7 +140,11 @@ p {
   font-size: 16px;
 }
 
-a {
+.starrating {
+  font-size: 30px;
+}
+
+.starrating a {
   padding-left: 5px;
   text-decoration: none;
   color: #2214e0;
@@ -149,7 +158,7 @@ a:hover {
 .label {
   font-size: 16px;
   text-align: center;
-  color: black;
+  color: #c9c2ba;
   padding-bottom: 15px;
 }
 
@@ -158,7 +167,7 @@ label {
   text-align: center;
 }
 
-@media(max-width:610px) {
+@media (max-width: 610px) {
   form {
     width: 100%;
   }
@@ -168,7 +177,7 @@ label {
   }
 }
 
-@media(max-width:420px) {
+@media (max-width: 420px) {
   form {
     width: 100%;
   }
@@ -180,7 +189,7 @@ label {
 
 strong {
   font-weight: bold;
-  color: rgb(10, 7, 167);
+  color: #45287e;
 }
 
 #myProgress {
@@ -202,22 +211,36 @@ strong {
 }
 
 /* Popup box BEGIN */
-.hover_bkgr_fricc{
-  background:rgba(0,0,0,.4);
-  cursor:pointer;
-  display:none;
-  height:100%;
-  position:fixed;
-  text-align:center;
-  top:0;
-  width:100%;
-  z-index:10000;
+.hover_bkgr_fricc {
+  background: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  display: none;
+  height: 100%;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  z-index: 10000;
 }
-.hover_bkgr_fricc .helper{
-  display:inline-block;
-  height:100%;
-  vertical-align:middle;
+.hover_bkgr_fricc .helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
 }
+
+.modal-body {
+  background-color: #ffffff;
+  color: #413b39;
+}
+
+.modal-footer {
+  background-color: #45287e;
+}
+
+.modal-header {
+  background-color: #45287e;
+}
+
 .hover_bkgr_fricc > div {
   background-color: #fff;
   box-shadow: 10px 10px 60px #555;
@@ -261,7 +284,7 @@ strong {
 /* Popup box END */
 
 .swiper-container {
-  width:375px;
+  width: 375px;
   height: 450px;
   padding: 5px;
 }
@@ -276,4 +299,193 @@ strong {
 
 #start-top-container {
   padding: 0 20px;
+}
+
+/* Efficacies Sliders */
+
+.efficacies-range {
+  -webkit-appearance: none;
+  margin-left: 20px;
+  height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.efficacies-range:hover {
+  opacity: 1;
+}
+
+.efficacies-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #087e8b;
+  cursor: pointer;
+}
+
+.efficacies-range::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #087e8b;
+  cursor: pointer;
+}
+
+.efficacies-range-endsurvey {
+  margin: 0;
+  width: 100%;
+}
+
+/* Index View */
+/* #forgot-password {
+} */
+
+#login-form {
+  max-width: 500px;
+}
+
+div.container-index {
+  margin-bottom: 100px;
+}
+
+img.avatar {
+  width: 30%;
+  opacity: 50%;
+  transition: opacity 0.5s ease-in-out;
+}
+
+@media (min-width: 610px) {
+  img.avatar {
+    width: 10%;
+  }
+}
+
+#btn-logout {
+  cursor: pointer;
+}
+
+/* Start View */
+img.activity-img {
+  width: 130px;
+  height: auto;
+}
+
+/* Sobre View */
+video {
+  width: 100% !important;
+  height: auto !important;
+}
+
+/* End Survey */
+.tab,
+.finishBtn {
+  display: none;
+}
+
+.navIcon {
+  width: 45px;
+  height: 45px;
+}
+
+#btn-logout {
+  cursor: pointer;
+}
+
+.navbar-dark .navbar-toggler-icon {
+  background-image: url(../images/icono-toggle.svg);
+}
+
+i.fa {
+  cursor: pointer;
+}
+
+/* bottomNav */
+@media (min-width: 610px) {
+  .toggle-content {
+    display: inline;
+    margin-left: 100px;
+  }
+}
+
+/* TABS */
+
+.tabs {
+  position: relative;
+  margin: 3rem 0;
+  background: #1abc9c;
+  height: 14.75rem;
+}
+
+.tabs::before,
+.tabs::after {
+  content: "";
+  display: table;
+}
+
+.tabs::after {
+  clear: both;
+}
+
+.tab {
+  float: left;
+}
+
+.tab-switch {
+  display: none;
+}
+
+.tab-label {
+  position: relative;
+  display: block;
+  line-height: 2.75em;
+  height: 3em;
+  padding: 0 1.618em;
+  background: #1abc9c;
+  border-right: 0.125rem solid #16a085;
+  color: #fff;
+  cursor: pointer;
+  top: 0;
+  transition: all 0.25s;
+}
+
+.tab-label:hover {
+  top: -0.25rem;
+  transition: all 0.25s;
+}
+
+.tab-content {
+  padding: 1.618rem;
+  background: #fff;
+  color: #2c3e50;
+  border-bottom: 0.25rem solid #bdc3c7;
+  /* height: 12rem; */
+  position: absolute;
+  z-index: 1;
+  top: 2.75em;
+  left: 0;
+  opacity: 0;
+  transition: all 0.35s;
+}
+
+.tab-switch:checked + .tab-label {
+  background: #fff;
+  color: #2c3e50;
+  border-bottom: 0;
+  border-right: 0.0625rem solid #fff;
+  transition: all 0.35s;
+  z-index: 2;
+  top: -0.0625rem;
+}
+
+.tab-switch:checked + .tab-label:hover {
+  top: -0.0625rem;
+}
+
+.tab-switch:checked + .tab-label + .tab-content {
+  opacity: 1;
+  transition: all 0.35s;
+  z-index: 3;
 }

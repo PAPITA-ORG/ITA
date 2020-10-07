@@ -3,22 +3,10 @@ extends layout
 block content
 
     div(class="container")
+
         div(class='row align-items-center center')
             div(class="col-sm-12 center" style="margin-top: 20px")
-                form(method='POST' action='/register')
-                    img(src="/images/ita3d_1.png" width="150px" height="180px")
-            
-                    div.label Cambia tu contraseña
-                    div.form-group
-                        label(for='email') Correo electronico
-                        input#email.form-control(type='input' name='correo')                 
-                    div.form-group
-                        label(for='pw') Nueva contraseña:
-                        input#pw.form-control(type='password' name='password')
-                    div.form-group
-                        label(for='pw2') Confirmar contraseña:
-                        input#pw2.form-control(type='password' name='confirmPassword')
-                    div.form-group
-                    button(type='button' class='btn btn-success' id='btn-registro-enviar') Enviar
+                include partials/passwordChangeForm.pug
+                
         script(src="/js/registro.js")
     

@@ -1,20 +1,58 @@
 extends layout
 
 block content
-    
+
     div(class="container" id="start-main-container")
+        div.mt-2(class='row align-items-center justify-content-center' id="start-top-container") 
+            if !action
+                div(id="fuel-row" class="row col-md-12 align-items-center justify-content-center")            
+                    div(id="fuel-gauge")
+                        div(id="fuel-gauge-control")
 
-        div(class='row align-items-center justify-content-center' id="start-top-container" style="margin-top: 20px") 
-            div(id="fuel-row" class="row col-md-12 align-items-center justify-content-center")            
-                div(id="fuel-gauge")
-                    div(id="fuel-gauge-control")
+        div.container.col-md-12.center.mt-2#start-main-container
+            div.form-check.form-check.inline
+                    form(method='POST' action='/api/usuarios/chooseActivity')
+                        if !action
+                            input.form-control.mb-3.efficacies-range#activity-efficacy(type='range' min="0" max="100" value=af_0 name='af_0')
+                            label.pull-right#eficacia-label
+                            div.form-err.mt-3.mb-3
+                            h3.text-dark Con quien vas a participar?
+                            if hijos
+                                each hijo, i in hijos
+                                    input.hijo(name='hijos[]' type='hidden' id=`hijo_${i}` value=hijo)
+                                    img.avatar.img-responsive(src=`https://avatars.dicebear.com/api/bottts/${hijo.id}.svg?mood[]=happy` id=`avatar_${i}` value=`${hijo.id}`)
+                            h3.text-dark#avatar-text Con quien vas a participar?
+                            div.mt-2(class="container col-md-12 center" id="start-bottom-container")
+                                div.row
+                                    if activity_content.activity_btns
+                                        each btn, i in activity_content.activity_btns
+                                            div.mt-4(class=`col-md-3 ${i%2 ==0? 'offset-md-3': ''}`)
+                                                input#input-topicoCod(type='hidden')
+                                                button(id=`activity-${btn.data_value}` class='form-activity-btn' type='submit' formaction=`/api/usuarios/chooseActivity/${btn.data_value}` value=btn.data_value)
+                                                    img.img-responsive(src=btn.src class=activity_content.attrs.class_name)
+    div.mt-2.d-none(class="container col-md-12 center" id="start-activity-container")
+        h3.text-dark Elige tu actividad!
+        div.mt-2#activities
+        div.mt-4#random-btn
+            button.btn.btn-success#start-random-btn.d-none(value=`/api/usuarios/chooseActivity/${topico}`) Cambia mis actividades!
 
-        div(class="container col-md-12 center" style="margin-top: 20px" id="start-bottom-container")
-      
-        div(class='center')
-            button(type='button' class='btn btn-success' id='btn-logout') Bye!
+                        if action == 'choose-activity'
+                            h3.text-dark Elige tu actividad!
+                            div.mt-2(class="container col-md-12 center" id="start-bottom-container")
+                                div.mt-4.col-sm-12.justify-center.center#actividades-container
+                                    if activities
+                                        each activity in activities
+                                            a.btn.btn-success.btn-block.activity-btn(target='_blank' href=activity.Link value=activity.Link type='button')=activity.Descriptor
+                                        div.mt-3
+                                            input(type='hidden' name='af_0' value=af_0)
+                                            button.btn.btn-success#start-random-btn(type='submit' formaction=`/api/usuarios/chooseActivity/${topico}`) Cambia mis actividades!
+                                        each hijo in hijos
+                                            input(type='hidden' name='hijos[]' value=hijo)
 
+        include partials/bottomNav.pug
         script.
             let userId = !{JSON.stringify(id)}
+            let tutorial_on = !{(tutorial)}
+
 
         script(src="/js/start.js")

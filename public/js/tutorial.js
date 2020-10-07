@@ -1,27 +1,72 @@
+function buildHijo(inputObj) {
+  let {
+    nombreInput,
+    edadInput,
+    pesoInput,
+    tallaInput,
+    frecuenciaInput,
+    genero
+  } = inputObj;
+
+  if (
+    nombreInput.val() === "" ||
+    edadInput.val() === 0 ||
+    Number(pesoInput.val()) === 0
+  ) {
+    // validar campos relevantes en el formulario
+    $("div.form-alert").html(`
+    <div class= "alert alert-warning alert-dismissible fade show" role="alert">
+      Por favor asegurese de completar el formulario 
+      <button class= "close" type="button" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true"> &times; </span>
+      </button>
+    </div>
+    `);
+    return;
+  } else {
+    if ($("div.alert")) {
+      $(".alert").remove();
+    }
+
+    let hijo = {
+      nombre: nombreInput.val(),
+      edad: edadInput.val(),
+      genero: Number(genero[0].genero),
+      peso: Number(pesoInput.val()),
+      talla: Number(tallaInput.val()),
+      e1: Number($("#range0").val()),
+      e2: Number($("#range1").val()),
+      e3: Number($("#range2").val()),
+      e4: Number($("#range3").val()),
+      e5: Number($("#range4").val()),
+      frecuencia_actividad: Number(frecuenciaInput.val()),
+      usuario: userId
+    };
+
+    return hijo;
+  }
+}
 $(document).ready(function() {
+  // Logout Icon Handler
+  $("img#btn-logout").on("click", logoutHandler);
+
+  function logoutHandler() {
+    axios
+      .post(`/api/usuarios/logout`)
+      .then(res => {
+        if (res.status === 200) {
+          window.location.href = res.data.url;
+        }
+      })
+      .catch(err => err);
+  }
+
   let tutorialContainer = $("#tutorial-main-container");
   let hijos = [];
 
-  //initialize swiper
-  var mySwiper = new Swiper(".swiper-container", {
-    // If we need pagination
-    pagination: {
-      el: ".swiper-pagination"
-    },
+  childUserForm();
 
-    // Navigation arrows
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev"
-    },
-
-    // And if we need scrollbar
-    scrollbar: {
-      el: ".swiper-scrollbar"
-    }
-  });
-
-  const childUserForm = () => {
+  function childUserForm() {
     tutorialContainer.empty();
 
     let childForm = $("<form>", {
@@ -37,15 +82,15 @@ $(document).ready(function() {
     ];
 
     // create a label
-    let formLabel = $("<label>", {
-      for: "childForm"
+    let formLabel = $("<h2>", {
+      class: "mb-4"
     }).text("Ingresa los datos de tu niña/o para ayudarte mejor");
 
     childForm.append(formLabel);
 
     // create a div with class form-group
     let formGroup = $("<div>", {
-      class: "form-group row col-md-12"
+      class: "input-form-group form-group row col-md-12"
     });
     childForm.append(formGroup);
 
@@ -54,6 +99,7 @@ $(document).ready(function() {
     let formGroupGenero = $(`<div>`, { class: "col-sm-3" });
     let formGroupPeso = $(`<div>`, { class: "col-sm-3" });
     let formGroupTalla = $(`<div>`, { class: "col-sm-3" });
+    let formGroupFrecuencia = $(`<div>`, { class: "col-sm-3" });
 
     let nombreLabel = $("<label>", {
       for: "tutorial-form-nombre",
@@ -62,8 +108,11 @@ $(document).ready(function() {
 
     let nombreInput = $("<input>", {
       class: "form-control",
-      id: "tutorial-form-nombre",
-    }).css("margin-bottom", "10px");
+      type: "text",
+      pattern: `"[A-Za-z\\s]*"`,
+      title: "Solo use letras alfabeticas",
+      id: "tutorial-form-nombre"
+    });
 
     let edadLabel = $("<label>", {
       for: "tutorial-form-edad",
@@ -73,8 +122,8 @@ $(document).ready(function() {
     let edadInput = $("<input>", {
       class: "form-control",
       id: "tutorial-form-edad",
-      placeholder: "mes/año"
-    }).css("margin-bottom", "10px");
+      type: "date"
+    });
 
     let generoLabel = $("<label>", {
       for: "tutorial-form-genero",
@@ -85,7 +134,7 @@ $(document).ready(function() {
       type: "text",
       class: "form-control",
       id: "tutorial-form-genero"
-    }).css("margin-bottom", "10px");
+    });
 
     generoList.map(list => {
       let option = $("<option>").text(list.nombre);
@@ -95,14 +144,14 @@ $(document).ready(function() {
     let tallaLabel = $("<label>", {
       for: "tutorial-form-talla",
       class: "col-sm-3 col-form-label"
-    }).text("Talla (mts)");
+    }).text("Talla (cm)");
 
     let tallaInput = $("<input>", {
       type: "number",
-      step: "0.01",
+      step: "1",
       class: "form-control",
       id: "tutorial-form-talla"
-    }).css("margin-bottom", "10px");
+    });
 
     let pesoLabel = $("<label>", {
       for: "tutorial-form-peso",
@@ -111,16 +160,29 @@ $(document).ready(function() {
 
     let pesoInput = $("<input>", {
       type: "number",
-      step: "0.1",
+      step: "1",
       class: "form-control",
       id: "tutorial-form-peso"
-    }).css("margin-bottom", "10px");
+    });
+
+    let frecuenciaLabel = $("<label>", {
+      for: "tutorial-form-frecuencia",
+      class: "col-sm-3 col-form-label"
+    }).text("Numero de actividades saludables en la ultima semana");
+
+    let frecuenciaInput = $("<input>", {
+      type: "number",
+      step: "1",
+      class: "form-control",
+      id: "tutorial-form-frecuencia"
+    });
 
     formGroupNombre.append(nombreInput);
     formGroupEdad.append(edadInput);
     formGroupGenero.append(generoInput);
     formGroupPeso.append(pesoInput);
     formGroupTalla.append(tallaInput);
+    formGroupFrecuencia.append(frecuenciaInput);
 
     formGroup.append(nombreLabel);
     formGroup.append(formGroupNombre);
@@ -132,6 +194,8 @@ $(document).ready(function() {
     formGroup.append(formGroupPeso);
     formGroup.append(tallaLabel);
     formGroup.append(formGroupTalla);
+    formGroup.append(frecuenciaLabel);
+    formGroup.append(formGroupFrecuencia);
 
     let formGroup2 = $("<div>", {
       class:
@@ -140,10 +204,11 @@ $(document).ready(function() {
     childForm.append(formGroup2);
 
     let emotions = [
-      "No tiene dificultades para controlar su comportamiento",
-      "No se lleva bien con otros niños/as",
-      "Es explosivo/a o agresivo/a",
-      "No tiene dificultades para entender a otros"
+      "Mantengo mi calma fácilmente ",
+      "No soy paciente",
+      "Usualmente estoy de mal humor",
+      "Me siento calmad@ cuando las cosas son diferentes para mí",
+      "Usualmente estoy triste"
     ];
 
     let emotionsRow = $("<div>", {
@@ -151,8 +216,8 @@ $(document).ready(function() {
       id: "form-emotions"
     });
 
-    let formInputLabel = $("<label>", {
-      for: "formInput"
+    let formInputLabel = $("<h2>", {
+      class: "mt-5 mb-5"
     }).text("Indique cuan de acuerdo esta con cada frase moviendo la barra");
 
     formGroup2.append(formInputLabel);
@@ -168,12 +233,12 @@ $(document).ready(function() {
 
       let formInput = $(`<input>`, {
         type: "range",
-        val: "0",
+        val: "50",
         min: "0",
         max: "100",
-        class: "form-control",
+        class: "form-control efficacies-range mr-1",
         id: `range${i}`
-      }).css("margin-bottom", "10px");
+      });
 
       formInputDiv.append(formInput);
       emotionsRow.append(emotionsLabel);
@@ -183,7 +248,7 @@ $(document).ready(function() {
     let childFormDiv = $(`<div>`, { class: "text-center" });
 
     let childFormButton = $("<button>", {
-      class: "btn btn-success",
+      class: "btn btn-info tutorial-btn",
       id: "btn-child-form",
       style: "margin-right: 10px"
     }).text("Ir al menu");
@@ -191,7 +256,7 @@ $(document).ready(function() {
     childFormDiv.append(childFormButton);
 
     let childFormButton2 = $("<button>", {
-      class: "btn btn-success",
+      class: "btn btn-info tutorial-btn",
       id: "btn-child-form-2",
       style: "margin-left: 10px"
     }).text("Agregar otro");
@@ -208,31 +273,33 @@ $(document).ready(function() {
         return d.nombre === generoInput.val();
       });
 
-      let hijo = {
-        nombre: nombreInput.val(),
-        edad: edadInput.val(),
-        genero: Number(genero[0].genero),
-        peso: Number(pesoInput.val()),
-        talla: Number(tallaInput.val()),
-        noDificultadComp: Number($("#range0").val()),
-        noLleva: Number($("#range1").val()),
-        explosivoAgresivo: Number($("#range2").val()),
-        noDificultadEnt: Number($("#range3").val()),
-        usuario: userId
+      let inputObj = {
+        nombreInput: nombreInput,
+        edadInput: edadInput,
+        pesoInput: pesoInput,
+        tallaInput: tallaInput,
+        frecuenciaInput: frecuenciaInput,
+        genero: genero
       };
 
-      hijos.push(hijo);
+      let hijo = buildHijo(inputObj);
 
-      let bulkHijos = {
-        data: hijos
-      };
+      if (!hijo) {
+        return;
+      } else {
+        hijos.push(hijo);
 
-      axios
-        .post(`/api/hijos/${userId}`, bulkHijos)
-        .then(res => {
-          window.location.href = "start";
-        })
-        .catch(err => err);
+        let bulkHijos = {
+          data: hijos
+        };
+
+        axios
+          .post(`/api/hijos/${userId}`, bulkHijos)
+          .then(res => {
+            if (res.status === 200) window.location.href = "/start";
+          })
+          .catch(err => err);
+      }
     });
 
     // click handler to add next child
@@ -242,28 +309,20 @@ $(document).ready(function() {
         return d.nombre === generoInput.val();
       });
 
-      let hijo = {
-        nombre: nombreInput.val(),
-        edad: edadInput.val(),
-        genero: Number(genero[0].genero),
-        peso: Number(pesoInput.val()),
-        talla: Number(tallaInput.val()),
-        noDificultadComp: Number($("#range0").val()),
-        noLleva: Number($("#range1").val()),
-        explosivoAgresivo: Number($("#range2").val()),
-        noDificultadEnt: Number($("#range3").val()),
-        usuario: userId
+      let inputObj = {
+        nombreInput: nombreInput,
+        edadInput: edadInput,
+        pesoInput: pesoInput,
+        tallaInput: tallaInput,
+        frecuenciaInput: frecuenciaInput,
+        genero: genero
       };
 
+      let hijo = buildHijo(inputObj);
+
       hijos.push(hijo);
-      console.log(hijos);
+
       childUserForm();
     });
-  };
-
-  // this button just append the first child form
-
-  $("#btn-finish").on("click", () => {
-    childUserForm();
-  });
+  }
 });
