@@ -1,7 +1,7 @@
 // instantiate express router and store in variable `router`
 const router = require("express").Router();
 const axios = require("axios");
-axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = `http://localhost:${process.env.PORT || 3000}`;
 // import bcryptjs
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
@@ -191,10 +191,10 @@ router.post("/register", (req, res) => {
                   // llamada de prueba
                   // axios.get("/api/usuarios").then(res => console.log(res)).catch(error => console.log(error))
 
-                  console.log("Register done, sending mail")
-                  console.log(correo)
+                  console.log("Register done, sending mail");
+                  console.log(correo);
                   // make post request with welcome email
-                  PostWelcomeEmail(correo)
+                  PostWelcomeEmail(correo);
 
                   res.redirect("/");
                 })
@@ -241,13 +241,13 @@ module.exports = router;
 function PostWelcomeEmail(correo) {
   // let options = { headers: { 'Content-Type': 'application/json' } }
   axios
-    .post("/api/mailer/welcome", { 'to': correo })
+    .post("/api/mailer/welcome", { to: correo })
     .then(r => {
-      console.log("Welcome email sent")
+      console.log("Welcome email sent");
       // r.redirect("/");
       return r;
     })
     .catch(error => {
-      console.log("error, welcome email not sent: " + error)
+      console.log("error, welcome email not sent: " + error);
     });
 }
