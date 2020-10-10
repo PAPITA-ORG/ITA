@@ -1,7 +1,10 @@
 // instantiate express router and store in variable `router`
 const router = require("express").Router();
 const axios = require("axios");
-// axios.defaults.baseURL = `http://localhost:${process.env.PORT || 3000}`;
+axios.defaults.baseURL =
+  process.env.NODE_ENV === "production"
+    ? "https://ita-production.herokuapp.com/"
+    : `http://localhost:${process.env.PORT || 3000}`;
 // import bcryptjs
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
