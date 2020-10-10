@@ -262,7 +262,6 @@ $(document).ready(function() {
     }).text("Agregar otro");
 
     childFormDiv.append(childFormButton2);
-
     childForm.append(childFormDiv);
 
     // click handler to submit post request with children information
