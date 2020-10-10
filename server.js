@@ -1,7 +1,10 @@
 const express = require("express");
 const path = require("path");
 require("dotenv").config();
-const mongoKeys = process.env.MONGODB_URI;
+const mongoKeys =
+  process.env.NODE_ENV === "production"
+    ? process.env.MONGODB_URI_PROD
+    : process.env.MONGODB_URI_DEV;
 const mongoose = require("mongoose");
 const PORT = process.env.PORT || 3000;
 const routes = require("./routes");
@@ -9,7 +12,7 @@ const passport = require("passport");
 const session = require("express-session");
 const flash = require("express-flash");
 const helmet = require("helmet");
-
+console.log(mongoKeys);
 // initialize express app
 const app = express();
 
@@ -57,11 +60,11 @@ app.use(routes);
 mongoose
   .connect(mongoKeys, {
     useNewUrlParser: true,
-    dbName: "ITA",
+    dbName: process.env.NODE_ENV === "production" ? "Cluster0" : "ITA",
     useUnifiedTopology: true
   })
   .then(() => console.log("Mongo Database connected..."))
-  .catch(err => err);
+  .catch(err => console.log(`Error Connecting to Database: ${err}`));
 
 // Load View Engine
 app.set("views", path.join(__dirname, "views"));
