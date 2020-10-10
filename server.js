@@ -12,7 +12,7 @@ const passport = require("passport");
 const session = require("express-session");
 const flash = require("express-flash");
 const helmet = require("helmet");
-console.log(mongoKeys);
+
 // initialize express app
 const app = express();
 
