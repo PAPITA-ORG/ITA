@@ -60,7 +60,7 @@ app.use(routes);
 mongoose
   .connect(mongoKeys, {
     useNewUrlParser: true,
-    dbName: process.env.NODE_ENV === "production" ? "Cluster0" : "ITA",
+    dbName: "ITA",
     useUnifiedTopology: true
   })
   .then(() => console.log("Mongo Database connected..."))
