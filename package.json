@@ -22,7 +22,7 @@
     "dotenv": "^8.2.0",
     "download-pdf": "^0.1.6",
     "emotion-ratings": "^2.0.2",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-flash": "0.0.2",
     "express-session": "^1.17.1",
     "helmet": "^4.0.0",
