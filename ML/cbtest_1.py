@@ -1,4 +1,4 @@
-import vowpalwabbit
+import vowpalwabbit 
 import random
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -11,9 +11,21 @@ df['cost'] =  df['af1'] - df['af2']
 train_df = df[df.index < 70000]
 test_df = df[df.index >= 70000]
 test_df.reset_index
+    
+def to_vw_example_format(context, actions, cb_label=None):
+    if cb_label is not None:
+        chosen_action, cost, prob = cb_label
+    example_string = ""
+    example_string += "shared |User user={} time_of_day={}\n".format(
+        context["user"], context["time_of_day"]
+    )
+    for action in actions:
+        if cb_label is not None and action == chosen_action:
+            example_string += "0:{}:{} ".format(cost, prob)
+        example_string += "|Action article={} \n".format(action)
+    # Strip the last newline
+    return example_string[:-1]    
 
-# create python model - this stores the model parameters in the python vw object; here a contextual bandit with four possible actions
-vw = vowpalwabbit.Workspace("--cb 5", quiet=True)
 
 for i in train_df.index:
     ## provide data to cb in requested format
@@ -24,30 +36,6 @@ for i in train_df.index:
     feature2 = train_df.loc[i, "gender"]
     feature3 = train_df.loc[i, "age"]
     feature4 = train_df.loc[i, "topic"]
-        
-    ## do the actual learning
-    vw.learn(
-        str(action)
-        + ":"
-        + str(cost)
-        + ":"
-        + str(probability)
-        + " | "
-        + str(feature1)
-        + " "
-        + str(feature2)
-        + " "
-        + str(feature3)
-        + " "
-        + str(feature4)
-    )
-    
-for j in test_df.index:
-    feature1 = test_df.loc[j, "af0"]
-    feature2 = test_df.loc[j, "gender"]
-    feature3 = test_df.loc[j, "age"]
-    feature4 = test_df.loc[j, "topic"]
-    choice = vw.predict(
-        "| " + str(feature1) + " " + str(feature2) + " " + str(feature3) + " " + str(feature4)
-    )
-    print(j, choice)
+
+# create python model - this stores the model parameters in the python vw object; here a contextual bandit with four possible actions
+#vw -d --cb_explore --first 2
