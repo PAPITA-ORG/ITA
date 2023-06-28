@@ -37,5 +37,53 @@ for i in train_df.index:
     feature3 = train_df.loc[i, "age"]
     feature4 = train_df.loc[i, "topic"]
 
-# create python model - this stores the model parameters in the python vw object; here a contextual bandit with four possible actions
-#vw -d --cb_explore --first 2
+###
+
+from vowpalwabbit import pyvw
+import random
+
+class ContextualBanditModel:
+    def __init__(self, num_actions):
+        self.model = pyvw.vw("--cb_explore_adf --quiet --epsilon 0.2 --power_t 0.6")
+        self.num_actions = num_actions
+
+    def format_example(self, user_id, context, actions):
+        example = []
+        for action in actions:
+            formatted_example = f"|{user_id} {action} {context} :"
+            example.append(formatted_example)
+        return example
+
+    def train(self, user_id, context, actions, probabilities, reward):
+        examples = self.format_example(user_id, context, actions)
+        self.model.learn(examples, probabilities, labels)
+
+    def choose_action(self, user_id, context):
+        examples = self.format_example(user_id, context, range(1, self.num_actions + 1))
+        predictions = self.model.predict(examples)
+        chosen_action = predictions[0].action + 1
+        return chosen_action
+
+# Example usage
+model = ContextualBanditModel(num_actions=3)
+
+# Training phase
+training_data = [
+    {"user_id": 1, "context": "age:25 gender:male", "actions": [1, 2, 3], "probabilities": [0.4, 0.3, 0.3], "reward": 1},
+    {"user_id": 2, "context": "age:30 gender:female", "actions": [1, 2, 3], "probabilities": [0.2, 0.6, 0.2], "reward": 0},
+    # Add more training examples
+]
+
+for example in training_data:
+    model.train(example["user_id"], example["context"], example["actions"], example["probabilities"], example["reward"])
+
+# Inference phase
+user_id = 1
+user_context = "age:25 gender:male"
+chosen_action = model.choose_action(user_id, user_context)
+print(f"User {user_id}: Recommended action: {chosen_action}")
+
+user_id = 2
+user_context = "age:30 gender:female"
+chosen_action = model.choose_action(user_id, user_context)
+print(f"User {user_id}: Recommended action: {chosen_action}")
