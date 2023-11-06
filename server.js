@@ -1,10 +1,11 @@
 const express = require("express");
 const path = require("path");
 require("dotenv").config();
-const mongoKeys =
-  process.env.NODE_ENV === "production"
-    ? process.env.MONGODB_URI
-    : process.env.MONGODB_URI;
+//const mongoKeys =
+  //process.env.NODE_ENV === "production"
+    //? process.env.MONGODB_URI
+    //: process.env.MONGODB_URI;
+const mongoKeys = process.env.MONGODB_URI;
 const mongoose = require("mongoose");
 const PORT = process.env.PORT || 3000;
 const routes = require("./routes");
