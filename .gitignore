@@ -116,3 +116,6 @@ dist
 
 # secret keys and config
 config/keys*
+
+node_modules/
+.env
