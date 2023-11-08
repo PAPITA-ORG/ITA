@@ -36,7 +36,13 @@ module.exports = {
       let index_data = controller_renders.renderNavContent("index");
       let registro_msg = `Gracias por registrar a tus chiquill@s. 
         Quédate pendiente del avance de ITA para participar en nuestras actividades familiares`;
-      req.logout("/");
+      //req.logout("/");
+
+      req.logout(function(err) {
+        if (err) { return next(err); }
+        res.redirect("/sobre");
+      });
+
       res.render("index", {
         view_data: index_data,
         registro_msg: registro_msg
