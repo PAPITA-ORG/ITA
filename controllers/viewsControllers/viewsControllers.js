@@ -36,17 +36,25 @@ module.exports = {
       let index_data = controller_renders.renderNavContent("index");
       let registro_msg = `Gracias por registrar a tus chiquill@s. 
         Quédate pendiente del avance de ITA para participar en nuestras actividades familiares`;
-      //req.logout("/");
+      //req.logout("/"); Original
+
+      //req.logout(function(err) {
+      //  if (err) { return next(err); }
+      //  res.redirect("index");
+      //});
 
       req.logout(function(err) {
         if (err) { return next(err); }
-        res.redirect("index");
+        res.render("index", {
+          view_data: index_data,
+          registro_msg: registro_msg
+        });
       });
 
-      res.render("index", {
-        view_data: index_data,
-        registro_msg: registro_msg
-      });
+      //res.render("index", {                      ORIGINAL
+      //  view_data: index_data,
+      //  registro_msg: registro_msg
+      //});
     } else {
       let activity_content = controller_renders.activityFormContent();
       controller_renders.getUserInfo(userInfoHandler, { _id: usuario_id });
