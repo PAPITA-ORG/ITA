@@ -40,7 +40,10 @@ module.exports = {
 
       req.logout(function(err) {
         if (err) { return next(err); }
-        res.redirect("/");
+        res.redirect("index", {
+          view_data: index_data,
+          registro_msg: registro_msg
+        });
       });
 
 
