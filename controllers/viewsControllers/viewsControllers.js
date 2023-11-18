@@ -52,10 +52,10 @@ module.exports = {
       //  });
       //});
 
-      res.render("index", {
-        view_data: index_data,
-        registro_msg: registro_msg
-      });
+      //res.render("index", {
+      //  view_data: index_data,
+      //  registro_msg: registro_msg
+      //});
     } else {
       let activity_content = controller_renders.activityFormContent();
       controller_renders.getUserInfo(userInfoHandler, { _id: usuario_id });
