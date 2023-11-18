@@ -43,6 +43,7 @@ module.exports = {
       //  res.redirect("index");
       //});
 
+      
       req.logout(function(err) {
         if (err) { return next(err); }
         res.render("index", {
