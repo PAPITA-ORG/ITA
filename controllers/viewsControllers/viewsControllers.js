@@ -38,19 +38,19 @@ module.exports = {
         Quédate pendiente del avance de ITA para participar en nuestras actividades familiares`;
       //req.logout("/"); Original
 
-      //req.logout(function(err) {
-      //  if (err) { return next(err); }
-      //  res.redirect("index");
-      //});
-
-      
       req.logout(function(err) {
         if (err) { return next(err); }
-        res.render("index", {
-          view_data: index_data,
-          registro_msg: registro_msg
-        });
+        res.redirect("/");
       });
+
+
+      //req.logout(function(err) {
+      //  if (err) { return next(err); }
+      //  res.render("index", {
+      //    view_data: index_data,
+      //    registro_msg: registro_msg
+      //  });
+      //});
 
       //res.render("index", {                      ORIGINAL
       //  view_data: index_data,
