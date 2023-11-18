@@ -38,10 +38,12 @@ module.exports = {
         Quédate pendiente del avance de ITA para participar en nuestras actividades familiares`;
       //req.logout("/"); Original
 
-      req.logout(function(err) {
-        if (err) { return next(err); }
-        res.redirect("/");
-      });
+      //req.logout(function(err) {
+      //  if (err) { return next(err); }
+      //  res.redirect("/");
+      //});
+
+      res.redirect("/")
 
 
       //req.logout(function(err) {
