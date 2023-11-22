@@ -32,7 +32,7 @@ module.exports = {
 
     // en caso de que sea el usuario acabe de registrar a sus hijes...
     // tenemos la siguiente condicion, la cual es temporal para el preregistro
-    if (req.session.primer_login || req.user.hijos.length > 0) {
+    if (req.session.primer_login && req.user.hijos.length > 0) {
       let index_data = controller_renders.renderNavContent("index");
       let registro_msg = `Gracias por registrar a tus chiquill@s. 
         Quédate pendiente del avance de ITA para participar en nuestras actividades familiares`;
@@ -43,10 +43,7 @@ module.exports = {
       //  res.redirect("/");
       //});
 
-      res.render("index", {
-        view_data: index_data,
-        registro_msg: registro_msg
-      });
+
 
       //req.logout(function(err) {
       //  if (err) { return next(err); }
