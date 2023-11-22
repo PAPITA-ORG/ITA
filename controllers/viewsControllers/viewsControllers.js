@@ -43,7 +43,13 @@ module.exports = {
       //  res.redirect("/");
       //});
 
-      res.redirect("/")
+      res.render("start", {
+        id: usuario._id,
+        af_0: usuario.af_0,
+        view_data: start_data,
+        hijos: hijos,
+        activity_content: activity_content
+      });
 
 
       //req.logout(function(err) {
