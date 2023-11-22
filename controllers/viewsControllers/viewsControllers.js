@@ -43,14 +43,10 @@ module.exports = {
       //  res.redirect("/");
       //});
 
-      res.render("start", {
-        id: usuario._id,
-        af_0: usuario.af_0,
-        view_data: start_data,
-        hijos: hijos,
-        activity_content: activity_content
+      res.render("index", {
+        view_data: index_data,
+        registro_msg: registro_msg
       });
-
 
       //req.logout(function(err) {
       //  if (err) { return next(err); }
@@ -60,7 +56,7 @@ module.exports = {
       //  });
       //});
 
-      //res.render("index", {
+      //res.render("index", {   ORIGINAL
       //  view_data: index_data,
       //  registro_msg: registro_msg
       //});
